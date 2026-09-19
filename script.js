@@ -6,4 +6,15 @@ window.addEventListener('scroll',syncNav,{passive:true});syncNav();
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -30px'});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('click',()=>{document.querySelectorAll('.video-card').forEach(x=>x.classList.remove('active'));card.classList.add('active')}));
+const videoMain=document.querySelector('.video-main');
+const videoLabel=document.querySelector('.video-main-label');
+document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('click',()=>{
+  if(card.classList.contains('active'))return;
+  document.querySelectorAll('.video-card').forEach(x=>x.classList.remove('active'));
+  card.classList.add('active');
+  videoMain.classList.add('switching');
+  window.setTimeout(()=>{
+    videoLabel.textContent=card.dataset.label;
+    videoMain.classList.remove('switching');
+  },180);
+}));
