@@ -1546,7 +1546,8 @@
     overflow:hidden;
     background:#101010;
   }
-  .frame-split-pane video{
+  .frame-split-pane video,
+  .frame-split-pane img{
     width:100%;
     height:100%;
     object-fit:cover;
@@ -1567,11 +1568,11 @@
   .split-master{left:0;top:0;width:56%;height:66%}
   .split-master video{object-position:50% 50%}
   .split-portrait{left:58%;top:0;width:18%;height:72%}
-  .split-portrait video{object-position:46% 50%}
+  .split-portrait img{object-position:46% 50%}
   .split-vertical{right:0;top:0;width:21%;height:86%}
-  .split-vertical video{object-position:46% 50%}
+  .split-vertical img{object-position:46% 50%}
   .split-square{left:28%;bottom:0;width:25%;aspect-ratio:1/1}
-  .split-square video{object-position:46% 50%}
+  .split-square img{object-position:46% 50%}
   .frame-split-word{
     position:absolute;
     z-index:4;
@@ -1585,6 +1586,37 @@
     mix-blend-mode:difference;
     pointer-events:none;
   }
+
+  .frame-split.reveal .frame-split-head,
+  .frame-split.reveal .frame-split-pane,
+  .frame-split.reveal .frame-split-note{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .42s ease,transform .78s var(--motion-ease);
+  }
+  .frame-split.reveal .frame-split-word{
+    opacity:0;
+    clip-path:inset(0 0 100% 0);
+    transform:translateY(22px);
+    transition:opacity .32s ease .28s,clip-path .95s var(--motion-ease) .28s,transform .95s var(--motion-ease) .28s;
+  }
+  .frame-split.reveal.visible .frame-split-head,
+  .frame-split.reveal.visible .frame-split-pane,
+  .frame-split.reveal.visible .frame-split-note{
+    opacity:1;
+    transform:none;
+  }
+  .frame-split.reveal.visible .frame-split-word{
+    opacity:1;
+    clip-path:inset(0 0 0 0);
+    transform:none;
+  }
+  .frame-split.reveal .split-master{transition-delay:.06s}
+  .frame-split.reveal .split-portrait{transition-delay:.13s}
+  .frame-split.reveal .split-vertical{transition-delay:.20s}
+  .frame-split.reveal .split-square{transition-delay:.27s}
+  .frame-split.reveal .frame-split-note{transition-delay:.34s}
+
   .frame-split-note{
     position:absolute;
     z-index:5;

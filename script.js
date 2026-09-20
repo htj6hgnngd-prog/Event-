@@ -166,6 +166,15 @@ const setCaseOutput=mode=>{
 };
 
 caseOutputTabs.forEach(button=>button.addEventListener('click',()=>setCaseOutput(button.dataset.caseOutput||'film')));
+caseOutputTabs.forEach((button,index)=>button.addEventListener('keydown',event=>{
+  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
+  event.preventDefault();
+  const direction=event.key==='ArrowRight'?1:-1;
+  const next=(index+direction+caseOutputTabs.length)%caseOutputTabs.length;
+  const target=caseOutputTabs[next];
+  setCaseOutput(target.dataset.caseOutput||'film');
+  target.focus();
+}));
 
 const closeProjectViewer=()=>{
   if(!projectViewer)return;
@@ -254,7 +263,18 @@ if(caseContact)caseContact.addEventListener('click',event=>{
   window.setTimeout(()=>document.querySelector('#contact')?.scrollIntoView({behavior:'smooth'}),80);
 });
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&projectViewer?.classList.contains('open'))closeProjectViewer();
+  if(!projectViewer?.classList.contains('open'))return;
+  if(event.key==='Escape'){
+    event.preventDefault();
+    closeProjectViewer();
+    return;
+  }
+  if(event.key!=='Tab')return;
+  const focusable=[...projectViewer.querySelectorAll('button:not([disabled]),a[href],video[controls]')].filter(el=>el.offsetParent!==null);
+  if(!focusable.length)return;
+  const first=focusable[0],last=focusable[focusable.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
 });
 
 /* Stage 05 / Conversion brief. The site stores nothing: it prepares a local email draft. */
