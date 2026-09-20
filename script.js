@@ -184,6 +184,7 @@ caseOutputTabs.forEach((button,index)=>button.addEventListener('keydown',event=>
 const closeProjectViewer=()=>{
   if(!projectViewer)return;
   projectViewer.classList.remove('open');
+  if(window.location.hash.startsWith('#case-')&&window.history&&window.history.replaceState)window.history.replaceState(null,'','#work');
   projectViewer.setAttribute('aria-hidden','true');
   document.body.classList.remove('viewer-open');
   if(mediaCursor)mediaCursor.classList.remove('visible');
@@ -235,6 +236,8 @@ const openProjectViewer=card=>{
   projectViewer.scrollTop=0;
   setCaseOutput('film');
   projectViewer.classList.add('open');
+  const caseId=card?.dataset?.case||'01';
+  if(window.history&&window.history.replaceState)window.history.replaceState(null,'','#case-'+caseId);
   projectViewer.setAttribute('aria-hidden','false');
   document.body.classList.add('viewer-open');
   if(mediaCursor)mediaCursor.classList.remove('visible');
@@ -751,3 +754,9 @@ document.addEventListener('keydown',event=>{
   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
 });
+
+
+/* Case deep links: open a selected case directly without changing page content. */
+const openCaseFromHash=()=>{const match=window.location.hash.match(/^#case-(01|02)$/);if(!match)return;const card=document.querySelector('.project-open[data-case="'+match[1]+'"]');if(card)window.setTimeout(()=>openProjectViewer(card),120)};
+window.addEventListener('hashchange',openCaseFromHash);
+openCaseFromHash();
