@@ -85,3 +85,57 @@ if(featuredVideo){
   if(section)featuredObserver.observe(section);
 }
 setPlayState();
+
+
+/* Selected work opens as a focused fullscreen film on desktop. */
+const projectViewer=document.querySelector('#project-viewer');
+const projectViewerVideo=document.querySelector('#project-viewer-video');
+const projectViewerTitle=document.querySelector('#project-viewer-title');
+const projectViewerClose=document.querySelector('.project-viewer-close');
+const mediaCursor=document.querySelector('.media-cursor');
+
+const closeProjectViewer=()=>{
+  if(!projectViewer)return;
+  projectViewer.classList.remove('open');
+  projectViewer.setAttribute('aria-hidden','true');
+  document.body.classList.remove('viewer-open');
+  if(projectViewerVideo){
+    projectViewerVideo.pause();
+    projectViewerVideo.removeAttribute('src');
+    projectViewerVideo.removeAttribute('poster');
+    projectViewerVideo.load();
+  }
+};
+const openProjectViewer=card=>{
+  if(!projectViewer||!projectViewerVideo||window.innerWidth<1101)return;
+  projectViewerVideo.src=card.dataset.projectSrc||'';
+  projectViewerVideo.poster=card.dataset.projectPoster||'';
+  if(projectViewerTitle)projectViewerTitle.textContent=card.dataset.projectTitle||'LIVE EVENT';
+  projectViewer.classList.add('open');
+  projectViewer.setAttribute('aria-hidden','false');
+  document.body.classList.add('viewer-open');
+  projectViewerVideo.load();
+  projectViewerVideo.muted=false;
+  const p=projectViewerVideo.play();
+  if(p&&typeof p.catch==='function')p.catch(()=>{});
+};
+document.querySelectorAll('.project-open').forEach(card=>{
+  card.addEventListener('click',()=>openProjectViewer(card));
+  card.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){
+      event.preventDefault();
+      openProjectViewer(card);
+    }
+  });
+  if(mediaCursor){
+    card.addEventListener('pointerenter',()=>mediaCursor.classList.add('visible'));
+    card.addEventListener('pointerleave',()=>mediaCursor.classList.remove('visible'));
+    card.addEventListener('pointermove',event=>{
+      mediaCursor.style.left=event.clientX+'px';
+      mediaCursor.style.top=event.clientY+'px';
+    });
+  }
+});
+if(projectViewerClose)projectViewerClose.addEventListener('click',closeProjectViewer);
+if(projectViewer)projectViewer.addEventListener('click',event=>{if(event.target===projectViewer)closeProjectViewer()});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&projectViewer?.classList.contains('open'))closeProjectViewer()});
