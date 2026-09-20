@@ -302,7 +302,8 @@ const collectBrief=()=>{
     format:String(data.get('format')||'').trim(),
     services,
     contact:String(data.get('contact')||'').trim(),
-    frame:String(data.get('frame')||'').trim()
+    frame:String(data.get('frame')||'').trim(),
+    context:String(data.get('context')||'').trim()
   };
 };
 
@@ -334,6 +335,7 @@ const formatBriefText=brief=>{
     'Нужно: '+brief.services.join(', '),
     'Контакт: '+brief.contact
   ];
+  if(brief.context)lines.push('Контекст: '+brief.context);
   if(brief.frame)lines.push('','VECTA FRAME',brief.frame);
   return lines.join('\n');
 };
@@ -391,8 +393,68 @@ const agencyMode=document.querySelector('#agency-mode');
 const agencyModeTrigger=document.querySelector('.agency-mode-trigger');
 const agencyModeClose=document.querySelector('.agency-mode-close');
 const agencyModeCta=document.querySelector('.agency-mode-cta');
+const agencyConfigButtons=[...document.querySelectorAll('[data-agency-config]')];
+const agencyConfigKicker=document.querySelector('#agency-config-kicker');
+const agencyConfigTitle=document.querySelector('#agency-config-title');
+const agencyConfigCopy=document.querySelector('#agency-config-copy');
+const agencyConfigInput=document.querySelector('#agency-config-input');
+const agencyConfigTeam=document.querySelector('#agency-config-team');
+const agencyConfigControl=document.querySelector('#agency-config-control');
+const agencyConfigHandoff=document.querySelector('#agency-config-handoff');
 let agencyModeLastFocus=null;
+let agencySelectedConfig='CAMERA UNIT';
 let agencyModeCloseTimer=null;
+
+const agencyConfigs={
+  camera:{
+    kicker:'01 / CAMERA UNIT',
+    title:'ОТДЕЛЬНАЯ СЪЁМОЧНАЯ ЕДИНИЦА.',
+    copy:'Подключаем фото или видео на конкретный участок проекта без изменения вашей общей production-архитектуры.',
+    input:'ТАЙМИНГ / ТЗ / ЗОНА',
+    team:'PHOTO ИЛИ VIDEO UNIT',
+    control:'COVERAGE ПО НАЗНАЧЕННОМУ УЧАСТКУ',
+    handoff:'МАТЕРИАЛЫ В СОГЛАСОВАННОЙ СТРУКТУРЕ'
+  },
+  content:{
+    kicker:'02 / CONTENT UNIT',
+    title:'ЕДИНЫЙ CONTENT UNIT.',
+    copy:'Связываем фото, видео, интервью и vertical вокруг общей задачи и одной coverage map.',
+    input:'ТАЙМИНГ / ТЗ / OUTPUT LIST',
+    team:'PHOTO + VIDEO + CONTENT',
+    control:'ОБЩАЯ COVERAGE MAP',
+    handoff:'СВЯЗАННЫЙ НАБОР МАТЕРИАЛОВ'
+  },
+  full:{
+    kicker:'03 / FULL MEDIA',
+    title:'ПОЛНОЕ MEDIA COVERAGE.',
+    copy:'Строим FRAME по событию целиком: от приоритетов программы до набора выходов и структуры передачи.',
+    input:'ПРОГРАММА / ТЗ / OUTPUTS / REFERENCES',
+    team:'СОСТАВ ПОД ЗАДАЧУ СОБЫТИЯ',
+    control:'FRAME / MUST CAPTURE / FALLBACK',
+    handoff:'СОГЛАСОВАННЫЙ DELIVERY MAP'
+  }
+};
+
+const setAgencyConfig=key=>{
+  const cfg=agencyConfigs[key];
+  if(!cfg)return;
+  agencySelectedConfig=cfg.kicker.replace(/^\d+\s*\/\s*/,'');
+  agencyConfigButtons.forEach(button=>{
+    const active=button.dataset.agencyConfig===key;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-selected',active?'true':'false');
+  });
+  if(agencyConfigKicker)agencyConfigKicker.textContent=cfg.kicker;
+  if(agencyConfigTitle)agencyConfigTitle.textContent=cfg.title;
+  if(agencyConfigCopy)agencyConfigCopy.textContent=cfg.copy;
+  if(agencyConfigInput)agencyConfigInput.textContent=cfg.input;
+  if(agencyConfigTeam)agencyConfigTeam.textContent=cfg.team;
+  if(agencyConfigControl)agencyConfigControl.textContent=cfg.control;
+  if(agencyConfigHandoff)agencyConfigHandoff.textContent=cfg.handoff;
+};
+
+agencyConfigButtons.forEach(button=>button.addEventListener('click',()=>setAgencyConfig(button.dataset.agencyConfig||'camera')));
+
 
 const openAgencyMode=()=>{
   if(!agencyMode||window.innerWidth<1101)return;
@@ -436,6 +498,11 @@ agencyMode?.addEventListener('click',event=>{
 
 agencyModeCta?.addEventListener('click',event=>{
   event.preventDefault();
+  if(briefContext)briefContext.value='AGENCY / '+agencySelectedConfig;
+  if(briefStatus){
+    briefStatus.textContent='Agency context добавлен в бриф. Укажите дату, площадку и контакт.';
+    briefStatus.classList.add('is-success');
+  }
   closeAgencyMode(false);
   window.setTimeout(()=>{
     document.querySelector('#contact')?.scrollIntoView({behavior:'smooth',block:'start'});
@@ -481,7 +548,10 @@ const frameBuilderBack=document.querySelector('.frame-builder-back');
 const frameBuilderNext=document.querySelector('.frame-builder-next');
 const frameMapState=document.querySelector('#frame-map-state');
 const frameBuilderVideo=document.querySelector('.frame-builder-media video');
+const frameBuilderContextLabel=document.querySelector('#frame-builder-context');
 const briefFrame=document.querySelector('#brief-frame');
+const briefContext=document.querySelector('#brief-context');
+let currentFrameContext='DIRECT / GENERAL';
 let frameBuilderLastFocus=null;
 let frameBuilderStep=0;
 let frameBuilderCloseTimer=null;
@@ -564,6 +634,8 @@ frameBuilderOptions?.addEventListener('click',event=>{
 
 const openFrameBuilder=trigger=>{
   if(!frameBuilder)return;
+  currentFrameContext=trigger?.dataset?.frameContext||'DIRECT / GENERAL';
+  if(frameBuilderContextLabel)frameBuilderContextLabel.textContent=currentFrameContext;
   if(frameBuilderCloseTimer){window.clearTimeout(frameBuilderCloseTimer);frameBuilderCloseTimer=null}
   frameBuilderLastFocus=trigger||document.activeElement;
   frameBuilder.hidden=false;
@@ -603,6 +675,7 @@ const transferFrameToBrief=()=>{
   const formatInput=document.querySelector('#brief-format');
   if(formatInput&&run)formatInput.value=run.charAt(0)+run.slice(1).toLowerCase();
   if(briefFrame)briefFrame.value=frameSummary();
+  if(briefContext)briefContext.value=currentFrameContext;
   const checkboxes=[...document.querySelectorAll('input[name="services"]')];
   checkboxes.forEach(box=>{box.checked=false});
   const hasPhoto=media.includes('PHOTO SERIES');

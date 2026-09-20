@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "check:copy": "node scripts/copy-lint.js",
+    "prestart": "npm run check:copy",
     "start": "node server.js"
   },
   "dependencies": {

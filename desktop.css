@@ -1878,3 +1878,197 @@
   }
   .proof-control .arrow-link{justify-self:end}
 }
+
+
+/* VECTA 2.0 / Pass 04 / Project Routes + Agency Integration */
+@media (min-width:1101px){
+  .project-routes>div>p{
+    max-width:690px;
+  }
+  .project-route-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-top:42px;
+  }
+  .project-route-card{
+    min-height:450px;
+    display:flex;
+    flex-direction:column;
+    padding:22px 24px 24px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.008);
+    transition:background .25s ease,border-color .25s ease,transform .28s var(--motion-ease);
+  }
+  .project-route-card:hover{
+    transform:translateY(-3px);
+    border-color:#3e3c38;
+    background:rgba(255,255,255,.015);
+  }
+  .project-route-top{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:var(--muted);
+    font-size:8px;
+    font-weight:650;
+    letter-spacing:.055em;
+  }
+  .project-route-top b{
+    color:#3f3d38;
+    font-size:42px;
+    font-weight:650;
+    line-height:.8;
+    letter-spacing:-.06em;
+  }
+  .project-route-card h3{
+    max-width:500px;
+    margin:82px 0 20px;
+    font-size:clamp(25px,2.2vw,42px);
+    font-weight:650;
+    line-height:.96;
+    letter-spacing:-.045em;
+  }
+  .project-route-card>p{
+    max-width:520px;
+    margin:0;
+    color:#a8a59d;
+    font-size:12px;
+    line-height:1.6;
+  }
+  .project-route-tags{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    margin-top:auto;
+    padding-top:36px;
+  }
+  .project-route-tags span{
+    min-height:42px;
+    display:flex;
+    align-items:center;
+    padding:0 10px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);
+    color:#85827a;
+    font-size:8px;
+    font-weight:650;
+    letter-spacing:.045em;
+  }
+  .project-route-tags span:first-child{padding-left:0}
+  .project-route-tags span:last-child{border-right:0}
+  .route-action{
+    min-height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    margin-top:24px;
+    padding:0;
+    border:0;
+    border-bottom:1px solid var(--fg);
+    background:transparent;
+    color:var(--fg);
+    font-family:var(--font);
+    font-size:10px;
+    font-weight:650;
+    letter-spacing:.04em;
+    cursor:pointer;
+    text-align:left;
+    transition:letter-spacing .25s ease;
+  }
+  .route-action:hover{letter-spacing:.055em}
+  .route-action>span{font-size:14px}
+
+  .agency-mode-intro{
+    padding-bottom:54px;
+  }
+  .agency-mode-config{
+    display:grid;
+    grid-template-columns:1fr 3fr;
+    gap:40px;
+    padding:0 0 58px;
+    border-bottom:1px solid var(--line);
+  }
+  .agency-config-nav{
+    border-top:1px solid var(--line);
+  }
+  .agency-config-nav button{
+    width:100%;
+    min-height:72px;
+    display:flex;
+    align-items:center;
+    padding:0;
+    border:0;
+    border-bottom:1px solid var(--line);
+    background:transparent;
+    color:#68655f;
+    font-family:var(--font);
+    font-size:9px;
+    font-weight:650;
+    letter-spacing:.055em;
+    text-align:left;
+    cursor:pointer;
+    transition:color .2s ease,padding .22s ease;
+  }
+  .agency-config-nav button:hover{padding-left:7px;color:#aaa79f}
+  .agency-config-nav button.active{color:var(--fg)}
+  .agency-config-detail{
+    padding-top:2px;
+  }
+  .agency-config-detail>p:first-child{
+    margin:0 0 14px;
+    color:var(--muted);
+    font-size:8px;
+    font-weight:650;
+    letter-spacing:.055em;
+  }
+  .agency-config-detail h3{
+    margin:0;
+    max-width:880px;
+    font-size:clamp(34px,3.4vw,64px);
+    font-weight:650;
+    line-height:.94;
+    letter-spacing:-.05em;
+  }
+  .agency-config-detail>p:nth-of-type(2){
+    width:62%;
+    max-width:650px;
+    margin:20px 0 34px;
+    color:#aaa79f;
+    font-size:12px;
+    line-height:1.6;
+  }
+  .agency-config-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .agency-config-grid>div{
+    min-height:116px;
+    padding:16px 16px 16px 0;
+    border-right:1px solid var(--line);
+  }
+  .agency-config-grid>div+div{padding-left:16px}
+  .agency-config-grid>div:last-child{border-right:0}
+  .agency-config-grid small{
+    display:block;
+    margin-bottom:30px;
+    color:var(--muted);
+    font-size:8px;
+    font-weight:650;
+    letter-spacing:.055em;
+  }
+  .agency-config-grid strong{
+    display:block;
+    color:#d0cdc5;
+    font-size:10px;
+    font-weight:500;
+    line-height:1.45;
+  }
+}
+
+@media (min-width:1101px) and (prefers-reduced-motion:reduce){
+  .project-route-card,.route-action,.agency-config-nav button{transition:none!important}
+}
