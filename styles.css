@@ -58,3 +58,18 @@
 }
 
 body.frame-builder-open{overflow:hidden}
+
+
+/* Pass 03 responsive safeguards */
+@media(max-width:1100px){
+  .frame-split{display:none}
+  .proof-head{display:grid;grid-template-columns:1fr 2fr;gap:24px}
+  .proof-columns{display:grid;grid-template-columns:1fr 1fr;margin-top:48px}
+  .proof-column{padding:18px}.proof-column+article{border-left:1px solid var(--line)}
+  .proof-list>a,.proof-list>div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+  .proof-control{display:grid;grid-template-columns:1fr 2fr 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+}
+@media(max-width:700px){
+  .proof-head{grid-template-columns:1fr}.proof-head h2{font-size:9vw}.proof-columns{grid-template-columns:1fr}.proof-column+article{border-left:0;border-top:1px solid var(--line)}
+  .proof-control{grid-template-columns:1fr}.proof-control .arrow-link{justify-self:start}
+}

@@ -97,6 +97,13 @@ const caseFormat=document.querySelector('#case-format');
 const caseTitle=document.querySelector('#case-title');
 const caseSummary=document.querySelector('#case-summary');
 const caseFocus=document.querySelector('#case-focus');
+const caseTask=document.querySelector('#case-task');
+const casePlan=document.querySelector('#case-plan');
+const caseCoverage=document.querySelector('#case-coverage');
+const caseOutputs=document.querySelector('#case-outputs');
+const caseDelivery=document.querySelector('#case-delivery');
+const caseOutputTabs=[...document.querySelectorAll('[data-case-output]')];
+const caseOutputPanels=[...document.querySelectorAll('[data-case-panel]')];
 const caseLoop=document.querySelector('#case-loop');
 const casePoster=document.querySelector('#case-poster');
 const caseNoteText=document.querySelector('#case-note-text');
@@ -108,6 +115,11 @@ const caseData={
     format:'LIVE EVENT / VIDEO PRODUCTION',
     summary:'Динамичный live-event с акцентом на сцену, публику и энергию момента. Визуальный ритм строится на чередовании общего масштаба, реакций людей и сильных сценических эпизодов.',
     focus:'PEOPLE / STAGE / ENERGY',
+    task:'Передать масштаб события через сцену, аудиторию и реакции',
+    plan:'LIVE EVENT / RHYTHM FIRST',
+    coverage:'STAGE / AUDIENCE / DETAIL',
+    outputs:'FULL FILM / MOTION / COVER',
+    delivery:'WEB SHOWCASE / 16:9',
     film:'/media/event-1',
     poster:'/cover/event-1?v=final2',
     loop:'/clip/work-top',
@@ -119,6 +131,11 @@ const caseData={
     format:'LIVE EVENT / VIDEO PRODUCTION',
     summary:'Событие показано через людей, сценический свет и атмосферу площадки. Монтаж держит ощущение присутствия и соединяет масштаб, движение и короткие эмоциональные детали.',
     focus:'ATMOSPHERE / PEOPLE / MOTION',
+    task:'Сохранить ощущение присутствия через людей, свет и движение',
+    plan:'LIVE EVENT / PRESENCE FIRST',
+    coverage:'PEOPLE / LIGHT / STAGE',
+    outputs:'FULL FILM / MOTION / COVER',
+    delivery:'WEB SHOWCASE / 16:9',
     film:'/media/event-2',
     poster:'/clip-poster/work-bottom?v=2',
     loop:'/clip/work-bottom',
@@ -128,6 +145,27 @@ const caseData={
 };
 
 let lastCaseTrigger=null;
+let activeCaseOutput='film';
+
+const setCaseOutput=mode=>{
+  activeCaseOutput=mode;
+  caseOutputTabs.forEach(button=>{
+    const active=button.dataset.caseOutput===mode;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-selected',active?'true':'false');
+  });
+  caseOutputPanels.forEach(panel=>panel.classList.toggle('active',panel.dataset.casePanel===mode));
+  if(mode==='motion'&&caseLoop){
+    caseLoop.muted=true;
+    const play=caseLoop.play();
+    if(play&&typeof play.catch==='function')play.catch(()=>{});
+  }else if(caseLoop){
+    caseLoop.pause();
+  }
+  if(mode!=='film'&&projectViewerVideo&&!projectViewerVideo.paused)projectViewerVideo.pause();
+};
+
+caseOutputTabs.forEach(button=>button.addEventListener('click',()=>setCaseOutput(button.dataset.caseOutput||'film')));
 
 const closeProjectViewer=()=>{
   if(!projectViewer)return;
@@ -161,6 +199,11 @@ const openProjectViewer=card=>{
   if(caseTitle)caseTitle.textContent=data.title;
   if(caseSummary)caseSummary.textContent=data.summary;
   if(caseFocus)caseFocus.textContent=data.focus;
+  if(caseTask)caseTask.textContent=data.task;
+  if(casePlan)casePlan.textContent=data.plan;
+  if(caseCoverage)caseCoverage.textContent=data.coverage;
+  if(caseOutputs)caseOutputs.textContent=data.outputs;
+  if(caseDelivery)caseDelivery.textContent=data.delivery;
   if(caseNoteText)caseNoteText.textContent=data.note;
 
   projectViewerVideo.src=data.film;
@@ -176,16 +219,13 @@ const openProjectViewer=card=>{
   if(casePoster)casePoster.src=data.poster;
 
   projectViewer.scrollTop=0;
+  setCaseOutput('film');
   projectViewer.classList.add('open');
   projectViewer.setAttribute('aria-hidden','false');
   document.body.classList.add('viewer-open');
   if(mediaCursor)mediaCursor.classList.remove('visible');
   projectViewerVideo.load();
   projectViewerVideo.muted=false;
-  if(caseLoop){
-    const loopPlay=caseLoop.play();
-    if(loopPlay&&typeof loopPlay.catch==='function')loopPlay.catch(()=>{});
-  }
   window.setTimeout(()=>projectViewerClose?.focus({preventScroll:true}),80);
 };
 
