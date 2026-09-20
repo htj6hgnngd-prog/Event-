@@ -36,6 +36,7 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
   if(featuredVideo){
     featuredVideo.pause();
     featuredVideo.src=card.dataset.src;
+    featuredVideo.poster=card.dataset.poster||'';
     featuredVideo.load();
   }
   window.setTimeout(()=>{
