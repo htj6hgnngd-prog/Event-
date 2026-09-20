@@ -32,11 +32,11 @@
   /* VIDEO: clean stage, no SaaS card treatment. */
   .video-section h2{padding-left:25%;margin-bottom:52px}
   .video-stage{position:relative}
-  .video-main{width:75%;max-height:650px;box-shadow:none}
+  .video-main{width:75%;max-height:650px;box-shadow:none}\n  .video-main:after{pointer-events:none}\n  .video-main button{z-index:4}\n  .video-main-label{z-index:4}
   .video-main button{opacity:.68;transition:opacity .25s ease,transform .25s ease,background .25s ease}
   .video-main:hover button{opacity:1}
-  .video-rail{width:37.5%;margin:-54px 0 0 auto}
-  .video-card{transition:opacity .25s ease,transform .3s ease}
+  .video-rail{width:37.5%;margin:-54px 0 0 auto;grid-template-columns:repeat(2,1fr)}
+  .video-card{transition:opacity .25s ease,transform .3s ease}\n  .thumb b{position:absolute;right:10px;bottom:7px;z-index:4;font-size:28px;line-height:1;color:#f2f0e9;opacity:.72}
   .video-card:hover{transform:translateY(-2px)}
 
   /* Content-ready media behavior. */
