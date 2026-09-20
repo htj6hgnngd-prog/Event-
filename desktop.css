@@ -330,3 +330,277 @@
   }
   body.viewer-open{overflow:hidden}
 }
+
+
+/* Stage 04 / Unified motion language
+   Editorial, restrained, desktop-first. No layout geometry changes. */
+@media (min-width:1101px){
+  :root{
+    --motion-ease:cubic-bezier(.22,1,.36,1);
+    --motion-soft:cubic-bezier(.2,.7,.2,1);
+  }
+
+  /* The parent reveal only gates visibility. Choreography happens inside each section. */
+  .reveal{
+    opacity:0;
+    transform:none;
+    transition:opacity .38s ease;
+  }
+  .reveal.visible{opacity:1;transform:none}
+
+  /* Section labels enter quietly instead of moving with the whole block. */
+  .statement.reveal>.section-index,
+  .discipline-title.reveal>.section-index,
+  .process-head.reveal>.section-index,
+  .agency.reveal>.section-index,
+  .section-head.reveal>.section-index,
+  .section-head.reveal>.micro{
+    opacity:0;
+    transform:translateY(9px);
+    transition:opacity .55s ease,transform .72s var(--motion-ease);
+  }
+  .statement.reveal.visible>.section-index,
+  .discipline-title.reveal.visible>.section-index,
+  .process-head.reveal.visible>.section-index,
+  .agency.reveal.visible>.section-index,
+  .section-head.reveal.visible>.section-index,
+  .section-head.reveal.visible>.micro{
+    opacity:1;
+    transform:none;
+  }
+  .section-head.reveal>.micro{transition-delay:.07s}
+
+  /* Large typography uses one consistent masked rise. */
+  .statement.reveal h2,
+  .discipline-title.reveal h2,
+  .process-head.reveal h2,
+  .agency.reveal h2,
+  .video-section>h2.reveal,
+  .contact>h2.reveal{
+    opacity:0;
+    clip-path:inset(0 0 100% 0);
+    transform:translateY(22px);
+    transition:
+      opacity .28s ease,
+      clip-path .92s var(--motion-ease),
+      transform .92s var(--motion-ease);
+    will-change:transform,clip-path;
+  }
+  .statement.reveal.visible h2,
+  .discipline-title.reveal.visible h2,
+  .process-head.reveal.visible h2,
+  .agency.reveal.visible h2,
+  .video-section>h2.reveal.visible,
+  .contact>h2.reveal.visible{
+    opacity:1;
+    clip-path:inset(0 0 0 0);
+    transform:none;
+  }
+  .statement.reveal h2,
+  .discipline-title.reveal h2,
+  .process-head.reveal h2,
+  .agency.reveal h2{transition-delay:.05s}
+
+  /* Supporting copy follows the title, never competes with it. */
+  .statement.reveal .statement-bottom,
+  .agency.reveal>div>p,
+  .discipline-foot.reveal>p,
+  .discipline-foot.reveal>.arrow-link,
+  .contact-grid.reveal>p,
+  .contact-grid.reveal>.contact-link{
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .56s ease,transform .72s var(--motion-ease);
+  }
+  .statement.reveal.visible .statement-bottom,
+  .agency.reveal.visible>div>p,
+  .discipline-foot.reveal.visible>p,
+  .discipline-foot.reveal.visible>.arrow-link,
+  .contact-grid.reveal.visible>p,
+  .contact-grid.reveal.visible>.contact-link{
+    opacity:1;
+    transform:none;
+  }
+  .statement.reveal .statement-bottom{transition-delay:.16s}
+  .agency.reveal>div>p{transition-delay:.18s}
+  .discipline-foot.reveal>p{transition-delay:.03s}
+  .discipline-foot.reveal>.arrow-link{transition-delay:.11s}
+  .contact-grid.reveal>.contact-link{transition-delay:.10s}
+
+  /* Repeated information reveals in a measured left-to-right rhythm. */
+  .statement.reveal .approach-strip>div,
+  .agency.reveal .agency-strip>span,
+  .process-line.reveal>div,
+  .service-list.reveal>div,
+  .contact-prompt.reveal>span{
+    opacity:0;
+    transform:translateY(12px);
+    transition:
+      opacity .5s ease,
+      transform .68s var(--motion-ease),
+      background .28s ease,
+      color .28s ease;
+  }
+  .statement.reveal.visible .approach-strip>div,
+  .agency.reveal.visible .agency-strip>span,
+  .process-line.reveal.visible>div,
+  .service-list.reveal.visible>div,
+  .contact-prompt.reveal.visible>span{
+    opacity:1;
+    transform:none;
+  }
+
+  .statement.reveal .approach-strip>div:nth-child(1),
+  .agency.reveal .agency-strip>span:nth-child(1),
+  .process-line.reveal>div:nth-child(1),
+  .contact-prompt.reveal>span:nth-child(1){transition-delay:.22s}
+  .statement.reveal .approach-strip>div:nth-child(2),
+  .agency.reveal .agency-strip>span:nth-child(2),
+  .process-line.reveal>div:nth-child(2),
+  .contact-prompt.reveal>span:nth-child(2){transition-delay:.29s}
+  .statement.reveal .approach-strip>div:nth-child(3),
+  .agency.reveal .agency-strip>span:nth-child(3),
+  .process-line.reveal>div:nth-child(3),
+  .contact-prompt.reveal>span:nth-child(3){transition-delay:.36s}
+  .statement.reveal .approach-strip>div:nth-child(4),
+  .agency.reveal .agency-strip>span:nth-child(4),
+  .process-line.reveal>div:nth-child(4){transition-delay:.43s}
+
+  .service-list.reveal>div:nth-child(1){transition-delay:.02s}
+  .service-list.reveal>div:nth-child(2){transition-delay:.10s}
+  .service-list.reveal>div:nth-child(3){transition-delay:.18s}
+
+  /* Portfolio media reveals as framed surfaces, not generic fades. */
+  .work-wall.reveal .work-cell,
+  .photo-editorial.reveal .media{
+    opacity:0;
+    clip-path:inset(7% 0 7% 0);
+    transform:translateY(18px) scale(.992);
+    transition:
+      opacity .46s ease,
+      clip-path .82s var(--motion-ease),
+      transform .82s var(--motion-ease),
+      filter .35s ease;
+    will-change:transform,clip-path;
+  }
+  .work-wall.reveal.visible .work-cell,
+  .photo-editorial.reveal.visible .media{
+    opacity:1;
+    clip-path:inset(0 0 0 0);
+    transform:none;
+  }
+  .work-wall.reveal .work-cell:nth-child(1){transition-delay:.02s}
+  .work-wall.reveal .work-cell:nth-child(2){transition-delay:.06s}
+  .work-wall.reveal .work-cell:nth-child(3){transition-delay:.10s}
+  .work-wall.reveal .work-cell:nth-child(4){transition-delay:.14s}
+  .work-wall.reveal .work-cell:nth-child(5){transition-delay:.18s}
+  .work-wall.reveal .work-cell:nth-child(6){transition-delay:.22s}
+  .work-wall.reveal .work-cell:nth-child(7){transition-delay:.26s}
+
+  .photo-editorial.reveal .media:nth-child(1){transition-delay:.02s}
+  .photo-editorial.reveal .media:nth-child(2){transition-delay:.10s}
+  .photo-editorial.reveal .media:nth-child(3){transition-delay:.18s}
+  .photo-editorial.reveal .media:nth-child(4){transition-delay:.26s}
+
+  /* Video section: hero player first, rail follows. */
+  .video-stage.reveal .video-main,
+  .video-stage.reveal .video-card{
+    opacity:0;
+    transform:translateY(16px);
+    transition:
+      opacity .5s ease,
+      transform .76s var(--motion-ease),
+      filter .22s ease;
+  }
+  .video-stage.reveal.visible .video-main,
+  .video-stage.reveal.visible .video-card{
+    opacity:1;
+    transform:none;
+  }
+  .video-stage.reveal .video-main{transition-delay:.02s}
+  .video-stage.reveal .video-card:nth-child(1){transition-delay:.12s}
+  .video-stage.reveal .video-card:nth-child(2){transition-delay:.20s}
+
+  /* Preserve interaction transforms after the entrance animation completes. */
+  .work-wall.reveal.visible .work-cell:hover{transform:scale(.997)}
+  .photo-editorial.reveal.visible .media:hover{transform:scale(.997);filter:brightness(1.04)}
+  .video-stage.reveal.visible .video-card:hover{transform:translateY(-2px)}
+  .statement.reveal.visible .approach-strip>div:hover,
+  .process-line.reveal.visible>div:hover{transform:translateY(-2px)}
+
+  /* Footer wordmark is the final typographic reveal. */
+  .footer-wordmark.reveal{
+    opacity:0;
+    clip-path:inset(0 100% 0 0);
+    transform:translateX(-18px);
+    transition:
+      opacity .35s ease,
+      clip-path 1.05s var(--motion-ease),
+      transform 1.05s var(--motion-ease);
+  }
+  .footer-wordmark.reveal.visible{
+    opacity:1;
+    clip-path:inset(0 0 0 0);
+    transform:none;
+  }
+
+  /* Case study opens with the same editorial rhythm as the page. */
+  .project-viewer .case-top,
+  .project-viewer .case-intro,
+  .project-viewer .case-meta,
+  .project-viewer .case-hero{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .38s ease,transform .72s var(--motion-ease);
+  }
+  .project-viewer.open .case-top,
+  .project-viewer.open .case-intro,
+  .project-viewer.open .case-meta,
+  .project-viewer.open .case-hero{
+    opacity:1;
+    transform:none;
+  }
+  .project-viewer.open .case-top{transition-delay:.04s}
+  .project-viewer.open .case-intro{transition-delay:.10s}
+  .project-viewer.open .case-meta{transition-delay:.17s}
+  .project-viewer.open .case-hero{transition-delay:.24s}
+
+  /* Hero copy gets a faster first-screen version of the same language. */
+  .hero-copy.reveal .eyebrow,
+  .hero-copy.reveal h1,
+  .hero-copy.reveal .hero-bottom{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .5s ease,transform .82s var(--motion-ease);
+  }
+  .hero-copy.reveal h1{
+    clip-path:inset(0 0 100% 0);
+    transition:
+      opacity .32s ease,
+      clip-path .92s var(--motion-ease),
+      transform .92s var(--motion-ease);
+  }
+  .hero-copy.reveal.visible .eyebrow,
+  .hero-copy.reveal.visible h1,
+  .hero-copy.reveal.visible .hero-bottom{
+    opacity:1;
+    transform:none;
+  }
+  .hero-copy.reveal.visible h1{clip-path:inset(0 0 0 0)}
+  .hero-copy.reveal .eyebrow{transition-delay:.03s}
+  .hero-copy.reveal h1{transition-delay:.08s}
+  .hero-copy.reveal .hero-bottom{transition-delay:.20s}
+}
+
+@media (min-width:1101px) and (prefers-reduced-motion:reduce){
+  .reveal,
+  .reveal *,
+  .project-viewer *,
+  .footer-wordmark.reveal{
+    opacity:1!important;
+    transform:none!important;
+    clip-path:none!important;
+    transition:none!important;
+    animation:none!important;
+  }
+}
