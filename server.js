@@ -155,7 +155,7 @@ async function prepareHero(){
       ],{maxBuffer:1024*1024*12});
     }
     if(!(await exists(poster))){
-      await execFileAsync(ffmpeg,['-y','-v','error','-ss','.35','-i',out,'-frames:v','1','-q:v','2',poster],{maxBuffer:1024*1024*4});
+      await execFileAsync(ffmpeg,['-y','-v','error','-ss','0.35','-i',out,'-frames:v','1','-q:v','2',poster],{maxBuffer:1024*1024*4});
     }
     console.log('Hero loop ready');
     return {video:out,poster};
