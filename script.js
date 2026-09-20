@@ -104,6 +104,7 @@ const caseFrames=[
   document.querySelector('#case-frame-2'),
   document.querySelector('#case-frame-3')
 ];
+const casePlay=document.querySelector('.case-play');
 const caseNoteText=document.querySelector('#case-note-text');
 const caseContact=document.querySelector('.case-contact');
 
