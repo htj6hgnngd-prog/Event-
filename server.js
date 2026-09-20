@@ -143,7 +143,7 @@ async function prepareHero(){
       "[0:v]trim=start=52.2:end=53.4,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v3]",
       "[1:v]trim=start=61.5:end=63.1,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v4]",
       "[0:v]trim=start=34.1:end=34.9,setpts=1.5*(PTS-STARTPTS),minterpolate=fps=24:mi_mode=mci,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v5]",
-      "[v0][v1][v2][v3][v4][v5]concat=n=6:v=1:a=0,eq=brightness=-0.035:contrast=1.04:saturation=.9,fade=t=in:st=0:d=.14,fade=t=out:st=6.75:d=.25,format=yuv420p[v]"
+      "[v0][v1][v2][v3][v4][v5]concat=n=6:v=1:a=0,eq=brightness=-0.035:contrast=1.04:saturation=.9,fade=t=in:st=0:d=0.14,fade=t=out:st=6.75:d=0.25,format=yuv420p[v]"
     ].join(';');
 
     if(!(await exists(out))){
