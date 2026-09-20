@@ -131,3 +131,28 @@
   .work-cell,.photo-editorial .media,.video-card{transition:none!important}
   .work-cell:hover,.photo-editorial .media:hover,.video-card:hover{transform:none!important}
 }
+
+
+/* Interaction refinement / desktop pass */
+@media (min-width:1101px){
+  .approach-strip>div,.agency-strip span,.process-line>div{
+    transition:background .28s ease,color .28s ease,transform .28s cubic-bezier(.2,.7,.2,1);
+  }
+  .approach-strip>div:hover,.agency-strip span:hover,.process-line>div:hover{
+    background:rgba(255,255,255,.018);
+  }
+  .approach-strip>div:hover,.process-line>div:hover{transform:translateY(-2px)}
+  .agency-strip span:hover{color:var(--fg)}
+  .process-line>div:hover span{color:var(--fg)}
+  .project-viewer{
+    background:
+      radial-gradient(circle at 50% 42%,rgba(255,255,255,.022),transparent 42%),
+      rgba(8,8,8,.985);
+  }
+  .project-viewer-media{cursor:zoom-out}
+  .project-viewer-media video{cursor:default;box-shadow:0 28px 90px rgba(0,0,0,.34)}
+  .project-viewer-close{transition:opacity .2s ease}
+  .project-viewer-close:hover{opacity:.55}
+  .contact-link{transition:opacity .2s ease,letter-spacing .28s ease}
+  .contact-link:hover{letter-spacing:-.025em}
+}

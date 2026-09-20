@@ -99,6 +99,7 @@ const closeProjectViewer=()=>{
   projectViewer.classList.remove('open');
   projectViewer.setAttribute('aria-hidden','true');
   document.body.classList.remove('viewer-open');
+  if(mediaCursor)mediaCursor.classList.remove('visible');
   if(projectViewerVideo){
     projectViewerVideo.pause();
     projectViewerVideo.removeAttribute('src');
@@ -114,6 +115,7 @@ const openProjectViewer=card=>{
   projectViewer.classList.add('open');
   projectViewer.setAttribute('aria-hidden','false');
   document.body.classList.add('viewer-open');
+  if(mediaCursor)mediaCursor.classList.remove('visible');
   projectViewerVideo.load();
   projectViewerVideo.muted=false;
   const p=projectViewerVideo.play();
@@ -137,5 +139,9 @@ document.querySelectorAll('.project-open').forEach(card=>{
   }
 });
 if(projectViewerClose)projectViewerClose.addEventListener('click',closeProjectViewer);
-if(projectViewer)projectViewer.addEventListener('click',event=>{if(event.target===projectViewer)closeProjectViewer()});
+if(projectViewer)projectViewer.addEventListener('click',event=>{
+  const clickedVideo=projectViewerVideo&&projectViewerVideo.contains(event.target);
+  const clickedClose=projectViewerClose&&projectViewerClose.contains(event.target);
+  if(!clickedVideo&&!clickedClose)closeProjectViewer();
+});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&projectViewer?.classList.contains('open'))closeProjectViewer()});
