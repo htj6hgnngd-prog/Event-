@@ -136,21 +136,24 @@ async function prepareHero(){
     const e1=(await prepareMedia('event-1')).video.replace(/\.mp4$/,'.mov');
     const e2=(await prepareMedia('event-2')).video.replace(/\.mp4$/,'.mov');
 
+    // Curated 6-shot hero rhythm:
+    // scale -> people -> production detail -> hero -> energy -> finale.
+    // Every range stays inside a stable source shot to avoid flash cuts inside the loop.
     const filter=[
-      "[1:v]trim=start=26.7:end=27.7,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v0]",
-      "[1:v]trim=start=19.6:end=20.7,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v1]",
-      "[0:v]trim=start=16.6:end=17.5,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v2]",
-      "[0:v]trim=start=52.2:end=53.4,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v3]",
-      "[1:v]trim=start=61.5:end=63.1,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v4]",
-      "[0:v]trim=start=34.1:end=34.9,setpts=1.5*(PTS-STARTPTS),minterpolate=fps=24:mi_mode=mci,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v5]",
-      "[v0][v1][v2][v3][v4][v5]concat=n=6:v=1:a=0,eq=brightness=-0.035:contrast=1.04:saturation=.9,fade=t=in:st=0:d=0.14,fade=t=out:st=6.75:d=0.25,format=yuv420p[v]"
+      "[1:v]trim=start=62.55:end=63.45,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.06:contrast=1.10:saturation=0.84[v0]",
+      "[1:v]trim=start=19.55:end=20.65,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.045:contrast=1.08:saturation=0.86[v1]",
+      "[0:v]trim=start=16.65:end=17.45,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.05:contrast=1.09:saturation=0.82[v2]",
+      "[0:v]trim=start=54.00:end=55.20,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.06:contrast=1.10:saturation=0.86[v3]",
+      "[1:v]trim=start=26.15:end=27.45,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.055:contrast=1.10:saturation=0.86[v4]",
+      "[0:v]trim=start=43.15:end=44.70,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.055:contrast=1.10:saturation=0.84[v5]",
+      "[v0][v1][v2][v3][v4][v5]concat=n=6:v=1:a=0,format=yuv420p[v]"
     ].join(';');
 
     if(!(await exists(out))){
       await execFileAsync(ffmpeg,[
         '-y','-v','error','-i',e1,'-i',e2,
         '-filter_complex',filter,'-map','[v]',
-        '-an','-c:v','libx264','-preset','veryfast','-crf','23',
+        '-an','-c:v','libx264','-profile:v','high','-level','4.1','-preset','medium','-crf','22',
         '-movflags','+faststart',out
       ],{maxBuffer:1024*1024*12});
     }

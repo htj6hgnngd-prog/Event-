@@ -18,9 +18,9 @@
 
   /* Hero */
   .hero-media{background:#080808;animation:none;transform:none}
-  .hero-media video{filter:brightness(.78) saturate(.9) contrast(1.04);transform:scale(1.015);animation:heroFilmDrift 15s ease-in-out infinite alternate}
+  .hero-media video{filter:brightness(.84) saturate(.92) contrast(1.045);transform:scale(1.015);animation:heroFilmDrift 16s ease-in-out infinite alternate}
   .hero-media-tag{position:absolute;right:var(--pad);top:104px;left:auto!important;z-index:4;color:#d0cec7!important;opacity:.55;font-size:9px!important;letter-spacing:.055em!important}
-  .hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.28),transparent 48%),linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.02) 42%,rgba(0,0,0,.9))}
+  .hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.42),rgba(0,0,0,.08) 46%,transparent 68%),linear-gradient(180deg,rgba(0,0,0,.13),rgba(0,0,0,.02) 40%,rgba(0,0,0,.92))}
   @keyframes heroFilmDrift{to{transform:scale(1.045) translate3d(-.3%,.15%,0)}}
 
   /* Selected work */
