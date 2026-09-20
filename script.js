@@ -74,7 +74,7 @@ const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
     video.pause();
   }
 }),{rootMargin:'180px 0px',threshold:.05});
-document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video,.video-card video').forEach(video=>{prepareVideo(video);mediaObserver.observe(video)});
+document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video,.video-card video,.signature video').forEach(video=>{prepareVideo(video);mediaObserver.observe(video)});
 
 /* Full film stops when the video section leaves the viewport. */
 if(featuredVideo){
