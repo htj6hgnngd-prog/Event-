@@ -14,8 +14,8 @@ const root=__dirname;
 const port=Number(process.env.PORT||3000);
 const mediaRoot=path.join('/tmp','event-production-media');
 const sources={
-  'event-1':{url:'https://disk.yandex.ru/i/iIj6z28I2z0d3w',poster:'54'},
-  'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28'}
+  'event-1':{url:'https://disk.yandex.ru/i/iIj6z28I2z0d3w',poster:'54.0'},
+  'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28.0'}
 };
 const jobs=new Map();
 const clips={
