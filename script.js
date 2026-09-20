@@ -161,6 +161,7 @@ const setCaseOutput=mode=>{
   });
   caseOutputPanels.forEach(panel=>panel.classList.toggle('active',panel.dataset.casePanel===mode));
   if(mode==='motion'&&caseLoop){
+    if(!caseLoop.src&&caseLoop.dataset.src)caseLoop.src=caseLoop.dataset.src;
     caseLoop.muted=true;
     const play=caseLoop.play();
     if(play&&typeof play.catch==='function')play.catch(()=>{});
