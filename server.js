@@ -23,6 +23,11 @@ const clips={
   'work-bottom':{source:'event-2',start:'43.8',duration:'4.8',poster:'45.0'}
 };
 const clipJobs=new Map();
+const caseStills={
+  'event-1':['16.9','43.5','54.5'],
+  'event-2':['19.9','26.7','62.8']
+};
+const stillJobs=new Map();
 let heroJob=null;
 
 const types={
@@ -167,6 +172,42 @@ async function prepareHero(){
 }
 
 
+async function prepareCaseStill(id,index){
+  const times=caseStills[id];
+  if(!times||!times[index]) throw new Error('Unknown case still');
+  const key=id+'-'+index;
+  if(stillJobs.has(key)) return stillJobs.get(key);
+  const job=(async()=>{
+    await fsp.mkdir(mediaRoot,{recursive:true});
+    const source=path.join(mediaRoot,id+'.mov');
+    const out=path.join(mediaRoot,'case-'+id+'-'+(index+1)+'.jpg');
+    if(await exists(out)) return out;
+    if(!(await exists(source))) await prepareMedia(id);
+    await execFileAsync(ffmpeg,[
+      '-y','-v','error','-ss',times[index],'-i',source,
+      '-frames:v','1',
+      '-vf','scale=1600:-2:flags=lanczos',
+      '-q:v','2',out
+    ],{maxBuffer:1024*1024*4});
+    console.log('Case still ready:',id,index+1);
+    return out;
+  })().catch(err=>{stillJobs.delete(key);throw err});
+  stillJobs.set(key,job);
+  return job;
+}
+
+async function serveCaseStill(req,res,id,index){
+  const file=await prepareCaseStill(id,index);
+  const st=await fsp.stat(file);
+  res.writeHead(200,{
+    'Content-Type':'image/jpeg',
+    'Content-Length':st.size,
+    'Cache-Control':'public, max-age=86400'
+  });
+  if(req.method==='HEAD'){res.end();return;}
+  fs.createReadStream(file).pipe(res);
+}
+
 async function serveFileVideo(req,res,file){
   const st=await fsp.stat(file);
   const range=req.headers.range;
@@ -221,6 +262,8 @@ http.createServer(async(req,res)=>{
     if(m){await servePoster(req,res,m[1]);return;}
     m=u.pathname.match(/^\/clip\/(work-top|work-bottom)$/);
     if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
+    m=u.pathname.match(/^\/case-still\/(event-[12])\/([1-3])$/);
+    if(m){await serveCaseStill(req,res,m[1],Number(m[2])-1);return;}
     if(u.pathname==='/cover/event-1'){const file=path.join(root,'assets','event1-cover-final.webp');const st=await fsp.stat(file);res.writeHead(200,{'Content-Type':'image/webp','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(file).pipe(res);return;}
     if(u.pathname==='/hero-loop'){const {video}=await prepareHero();await serveFileVideo(req,res,video);return;}
     if(u.pathname==='/hero-poster'){const {poster}=await prepareHero();const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
@@ -242,6 +285,12 @@ http.createServer(async(req,res)=>{
     for(const name of Object.keys(clips)){
       try{await prepareClip(name)}
       catch(err){console.error('Clip preload failed:',name,err.message)}
+    }
+    for(const id of Object.keys(caseStills)){
+      for(let i=0;i<caseStills[id].length;i++){
+        try{await prepareCaseStill(id,i)}
+        catch(err){console.error('Case still preload failed:',id,i+1,err.message)}
+      }
     }
     try{await prepareHero()}
     catch(err){console.error('Hero preload failed:',err.message)}
