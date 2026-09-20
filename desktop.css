@@ -2072,3 +2072,18 @@
 @media (min-width:1101px) and (prefers-reduced-motion:reduce){
   .project-route-card,.route-action,.agency-config-nav button{transition:none!important}
 }
+
+
+/* Pass 05 / Navigation intelligence */
+@media (min-width:1101px){
+  .nav{position:fixed;overflow:hidden}
+  .nav nav a{position:relative;transition:color .2s ease}
+  .nav nav a.active{color:var(--fg)}
+  .nav nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:1px;background:currentColor;transform-origin:left;animation:navActive .28s ease both}
+  @keyframes navActive{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .nav-progress{position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(242,240,233,.08);pointer-events:none}
+  .nav-progress span{display:block;height:100%;width:0;background:var(--fg);transition:width .08s linear}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
