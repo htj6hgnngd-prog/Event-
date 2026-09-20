@@ -454,10 +454,28 @@ const setAgencyConfig=key=>{
 };
 
 agencyConfigButtons.forEach(button=>button.addEventListener('click',()=>setAgencyConfig(button.dataset.agencyConfig||'camera')));
+agencyConfigButtons.forEach((button,index)=>button.addEventListener('keydown',event=>{
+  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight'&&event.key!=='ArrowUp'&&event.key!=='ArrowDown')return;
+  event.preventDefault();
+  const forward=event.key==='ArrowRight'||event.key==='ArrowDown';
+  const next=(index+(forward?1:-1)+agencyConfigButtons.length)%agencyConfigButtons.length;
+  const target=agencyConfigButtons[next];
+  setAgencyConfig(target.dataset.agencyConfig||'camera');
+  target.focus();
+}));
 
 
 const openAgencyMode=()=>{
-  if(!agencyMode||window.innerWidth<1101)return;
+  if(!agencyMode)return;
+  if(window.innerWidth<1101){
+    if(briefContext)briefContext.value='AGENCY / PARTNER';
+    if(briefStatus){
+      briefStatus.textContent='Agency context добавлен в бриф. Укажите дату, площадку и контакт.';
+      briefStatus.classList.add('is-success');
+    }
+    document.querySelector('#contact')?.scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
   if(agencyModeCloseTimer){
     window.clearTimeout(agencyModeCloseTimer);
     agencyModeCloseTimer=null;
