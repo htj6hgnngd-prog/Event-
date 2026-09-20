@@ -18,6 +18,7 @@ const sources={
   'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28.0'}
 };
 const jobs=new Map();
+const sourceJobs=new Map();
 const clips={
   'work-top':{source:'event-1',start:'49.2',duration:'4.8',poster:'50.2'},
   'work-bottom':{source:'event-2',start:'43.8',duration:'4.8',poster:'45.0'}
@@ -60,17 +61,38 @@ async function exists(file){
   try{await fsp.access(file);return true}catch{return false}
 }
 
+async function prepareSource(id){
+  if(sourceJobs.has(id)) return sourceJobs.get(id);
+  const job=(async()=>{
+    await fsp.mkdir(mediaRoot,{recursive:true});
+    const source=path.join(mediaRoot,id+'.mov');
+    if(await exists(source)) return source;
+    const partial=source+'.part';
+    await fsp.rm(partial,{force:true});
+    console.log('Downloading source:',id);
+    try{
+      await download(id,partial);
+      await fsp.rename(partial,source);
+    }finally{
+      await fsp.rm(partial,{force:true}).catch(()=>{});
+    }
+    console.log('Source ready:',id);
+    return source;
+  })().catch(err=>{sourceJobs.delete(id);throw err});
+  sourceJobs.set(id,job);
+  return job;
+}
+
 async function prepareMedia(id){
   if(jobs.has(id)) return jobs.get(id);
   const job=(async()=>{
     await fsp.mkdir(mediaRoot,{recursive:true});
-    const source=path.join(mediaRoot,id+'.mov');
+    const source=await prepareSource(id);
     const video=path.join(mediaRoot,id+'.mp4');
     const poster=path.join(mediaRoot,id+'.jpg');
     if(await exists(video) && await exists(poster)) return {video,poster};
 
     console.log('Preparing media:',id);
-    if(!(await exists(source))) await download(id,source);
 
     if(!(await exists(poster))){
       await execFileAsync(ffmpeg,['-y','-v','error','-ss',sources[id].poster,'-i',source,'-frames:v','1','-q:v','2',poster],{maxBuffer:1024*1024*4});
@@ -103,8 +125,7 @@ async function prepareClip(name){
     const poster=path.join(mediaRoot,'clip-'+name+'.jpg');
     if(await exists(out) && await exists(poster)) return {video:out,poster};
 
-    const source=path.join(mediaRoot,cfg.source+'.mov');
-    if(!(await exists(source))) await download(cfg.source,source);
+    const source=await prepareSource(cfg.source);
 
     if(!(await exists(out))){
       await execFileAsync(ffmpeg,[
@@ -133,8 +154,8 @@ async function prepareHero(){
     const poster=path.join(mediaRoot,'hero-loop.jpg');
     if(await exists(out) && await exists(poster)) return {video:out,poster};
 
-    const e1=(await prepareMedia('event-1')).video.replace(/\.mp4$/,'.mov');
-    const e2=(await prepareMedia('event-2')).video.replace(/\.mp4$/,'.mov');
+    const e1=await prepareSource('event-1');
+    const e2=await prepareSource('event-2');
 
     // Curated 6-shot hero rhythm:
     // atmosphere -> team -> production detail -> hero -> audience -> finale.
@@ -170,12 +191,35 @@ async function prepareHero(){
 async function serveFileVideo(req,res,file){
   const st=await fsp.stat(file);
   const range=req.headers.range;
-  const common={'Content-Type':'video/mp4','Accept-Ranges':'bytes','Cache-Control':'public, max-age=86400'};
+  const etag='W/"'+st.size.toString(16)+'-'+Math.floor(st.mtimeMs).toString(16)+'"';
+  const common={
+    'Content-Type':'video/mp4',
+    'Accept-Ranges':'bytes',
+    'Cache-Control':'public, max-age=86400, stale-while-revalidate=604800',
+    'ETag':etag
+  };
+  if(!range&&req.headers['if-none-match']===etag){
+    res.writeHead(304,common);res.end();return;
+  }
   if(range){
-    const m=/bytes=(\d*)-(\d*)/.exec(range);
-    const start=m&&m[1]?Number(m[1]):0;
-    const end=m&&m[2]?Number(m[2]):st.size-1;
-    if(!Number.isFinite(start)||!Number.isFinite(end)||start<0||end>=st.size||start>end){res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;}
+    const m=/^bytes=(\d*)-(\d*)$/.exec(range.trim());
+    if(!m){res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;}
+    let start,end;
+    if(m[1]){
+      start=Number(m[1]);
+      end=m[2]?Number(m[2]):st.size-1;
+    }else if(m[2]){
+      const suffix=Number(m[2]);
+      if(!Number.isFinite(suffix)||suffix<=0){res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;}
+      start=Math.max(0,st.size-suffix);
+      end=st.size-1;
+    }else{
+      res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;
+    }
+    if(!Number.isFinite(start)||!Number.isFinite(end)||start<0||start>=st.size||end<start){
+      res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;
+    }
+    end=Math.min(end,st.size-1);
     res.writeHead(206,{...common,'Content-Range':`bytes ${start}-${end}/${st.size}`,'Content-Length':end-start+1});
     if(req.method==='HEAD'){res.end();return;}
     fs.createReadStream(file,{start,end}).pipe(res);
@@ -206,15 +250,40 @@ function serveStatic(req,res,pathname){
   if(!file.startsWith(root)){res.writeHead(403);res.end();return;}
   fs.stat(file,(err,st)=>{
     if(err||!st.isFile()){res.writeHead(404);res.end('Not found');return;}
-    res.writeHead(200,{'Content-Type':types[path.extname(file).toLowerCase()]||'application/octet-stream','Cache-Control':path.basename(file)==='index.html'?'no-cache':'public, max-age=300'});
+    const isHtml=path.basename(file)==='index.html';
+    const etag='W/"'+st.size.toString(16)+'-'+Math.floor(st.mtimeMs).toString(16)+'"';
+    const headers={
+      'Content-Type':types[path.extname(file).toLowerCase()]||'application/octet-stream',
+      'Cache-Control':isHtml?'no-cache':'public, max-age=3600, stale-while-revalidate=86400',
+      'ETag':etag,
+      'Last-Modified':st.mtime.toUTCString()
+    };
+    if(req.headers['if-none-match']===etag){
+      res.writeHead(304,headers);res.end();return;
+    }
+    res.writeHead(200,headers);
     if(req.method==='HEAD'){res.end();return;}
     fs.createReadStream(file).pipe(res);
   });
 }
 
+const securityHeaders={
+  'X-Content-Type-Options':'nosniff',
+  'X-Frame-Options':'DENY',
+  'Referrer-Policy':'strict-origin-when-cross-origin',
+  'Permissions-Policy':'camera=(), microphone=(), geolocation=()'
+};
+
 http.createServer(async(req,res)=>{
+  for(const [name,value] of Object.entries(securityHeaders)) res.setHeader(name,value);
   try{
     const u=new URL(req.url,'http://localhost');
+    if(u.pathname==='/health'){
+      const body=JSON.stringify({ok:true,service:'vecta'});
+      res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Content-Length':Buffer.byteLength(body),'Cache-Control':'no-store'});
+      if(req.method==='HEAD'){res.end();return;}
+      res.end(body);return;
+    }
     let m=u.pathname.match(/^\/media\/(event-[12])$/);
     if(m){await serveVideo(req,res,m[1]);return;}
     m=u.pathname.match(/^\/poster\/(event-[12])$/);
@@ -235,10 +304,6 @@ http.createServer(async(req,res)=>{
 }).listen(port,'0.0.0.0',()=>{
   console.log('Event site listening on',port);
   (async()=>{
-    for(const id of Object.keys(sources)){
-      try{await prepareMedia(id)}
-      catch(err){console.error('Preload failed:',id,err.message)}
-    }
     for(const name of Object.keys(clips)){
       try{await prepareClip(name)}
       catch(err){console.error('Clip preload failed:',name,err.message)}

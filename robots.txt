@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://event-production-web-production.up.railway.app/sitemap.xml
