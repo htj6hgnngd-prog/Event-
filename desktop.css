@@ -1314,3 +1314,97 @@
   }
   .signature-inset{transform:translateY(-50%)!important}
 }
+
+
+/* VECTA 2.0 / Pass 01 / Positioning + FRAME + story architecture */
+@media (min-width:1101px){
+  .hero h1{
+    max-width:1480px;
+    font-size:clamp(68px,7.55vw,145px);
+    line-height:.88;
+  }
+  .hero-bottom p{
+    max-width:680px;
+    font-size:15px;
+    line-height:1.6;
+  }
+
+  .statement h2{
+    max-width:1280px;
+    font-size:clamp(56px,5.9vw,112px);
+    line-height:.9;
+  }
+  .statement-bottom>p:first-child{
+    max-width:700px;
+  }
+
+  .frame-system{
+    border-top:1px solid var(--line);
+  }
+  .frame-system .process-head{
+    align-items:start;
+  }
+  .frame-head-copy{
+    grid-column:2;
+    min-width:0;
+  }
+  .frame-head-copy h2{
+    margin:0;
+    max-width:1260px;
+  }
+  .frame-lead{
+    width:62%;
+    max-width:760px;
+    margin:34px 0 0 auto;
+    color:#b6b3ab;
+    font-size:15px;
+    line-height:1.65;
+  }
+  .frame-system .process-line{
+    width:75%;
+    margin:58px 0 0 auto;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+  }
+  .frame-system .process-line>div{
+    min-height:286px;
+    position:relative;
+    padding-top:18px;
+    transition:background .28s ease,transform .28s ease;
+  }
+  .frame-system .process-line>div:hover{
+    background:rgba(255,255,255,.014);
+  }
+  .frame-system .process-line strong{
+    display:block;
+    margin:28px 0 48px;
+    color:#34332f;
+    font-size:clamp(48px,4.2vw,80px);
+    font-weight:650;
+    line-height:.78;
+    letter-spacing:-.07em;
+    transition:color .28s ease;
+  }
+  .frame-system .process-line>div:hover strong{
+    color:#5a5851;
+  }
+  .frame-system .process-line p{
+    margin:0;
+    max-width:210px;
+    color:#d3d0c8;
+    font-size:12px;
+    line-height:1.6;
+  }
+  .frame-system .process-line.reveal>div:nth-child(5){
+    transition-delay:.50s;
+  }
+
+  .services .section-index{
+    color:var(--muted);
+  }
+}
+
+@media (min-width:1101px) and (prefers-reduced-motion:reduce){
+  .frame-system .process-line>div{
+    transition:none!important;
+  }
+}
