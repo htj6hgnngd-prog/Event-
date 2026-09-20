@@ -26,6 +26,8 @@ const clips={
 };
 const clipJobs=new Map();
 let heroJob=null;
+let criticalMediaReady=false;
+let criticalMediaError='';
 
 const types={
   '.html':'text/html; charset=utf-8',
@@ -340,8 +342,14 @@ http.createServer(async(req,res)=>{
     }
     const u=new URL(req.url,'http://localhost');
     if(u.pathname==='/health'){
-      const body=JSON.stringify({ok:true,service:'vecta'});
-      res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Content-Length':Buffer.byteLength(body),'Cache-Control':'no-store'});
+      const status=criticalMediaReady?200:503;
+      const body=JSON.stringify({
+        ok:criticalMediaReady,
+        service:'vecta',
+        state:criticalMediaReady?'ready':'warming',
+        ...(criticalMediaError?{error:criticalMediaError}:{})
+      });
+      res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Content-Length':Buffer.byteLength(body),'Cache-Control':'no-store','Retry-After':criticalMediaReady?undefined:'3'});
       if(req.method==='HEAD'){res.end();return;}
       res.end(body);return;
     }
@@ -364,12 +372,19 @@ http.createServer(async(req,res)=>{
   }
 }).listen(port,'0.0.0.0',()=>{
   console.log('Event site listening on',port);
-  (async()=>{
-    for(const name of Object.keys(clips)){
-      try{await prepareClip(name)}
-      catch(err){console.error('Clip preload failed:',name,err.message)}
-    }
-    try{await prepareHero()}
-    catch(err){console.error('Hero preload failed:',err.message)}
-  })();
+  void warmCriticalMedia();
 });
+
+async function warmCriticalMedia(){
+  try{
+    for(const name of Object.keys(clips)) await prepareClip(name);
+    await prepareHero();
+    criticalMediaReady=true;
+    criticalMediaError='';
+    console.log('Critical media ready');
+  }catch(err){
+    criticalMediaReady=false;
+    criticalMediaError=err instanceof Error?err.message:String(err);
+    console.error('Critical media warmup failed:',criticalMediaError);
+  }
+}
