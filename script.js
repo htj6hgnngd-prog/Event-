@@ -7,16 +7,45 @@ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entr
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 const videoMain=document.querySelector('.video-main');
+const featuredVideo=document.querySelector('#featured-video');
 const videoLabel=document.querySelector('.video-main-label');
+const playButton=document.querySelector('.video-play');
+
+const setPlayLabel=()=>{if(!playButton||!featuredVideo)return;playButton.textContent=featuredVideo.paused?'PLAY':'PAUSE'};
+if(featuredVideo){
+  featuredVideo.addEventListener('play',setPlayLabel);
+  featuredVideo.addEventListener('pause',setPlayLabel);
+  featuredVideo.addEventListener('ended',setPlayLabel);
+}
+if(playButton&&featuredVideo){
+  playButton.addEventListener('click',()=>{
+    if(featuredVideo.paused){
+      featuredVideo.muted=false;
+      const p=featuredVideo.play();
+      if(p&&typeof p.catch==='function')p.catch(()=>{});
+    }else{
+      featuredVideo.pause();
+    }
+  });
+}
 document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('click',()=>{
   if(card.classList.contains('active'))return;
   document.querySelectorAll('.video-card').forEach(x=>x.classList.remove('active'));
   card.classList.add('active');
   videoMain.classList.add('switching');
-  window.setTimeout(()=>{videoLabel.textContent=card.dataset.label;videoMain.classList.remove('switching')},180);
+  if(featuredVideo){
+    featuredVideo.pause();
+    featuredVideo.src=card.dataset.src;
+    featuredVideo.load();
+  }
+  window.setTimeout(()=>{
+    videoLabel.textContent=card.dataset.label;
+    videoMain.classList.remove('switching');
+    setPlayLabel();
+  },180);
 }));
 
-/* Future event clips stay silent, looped and only run near the viewport. */
+/* Event-wall clips stay silent, looped and only run near the viewport. */
 const prepareVideo=video=>{video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('muted','');video.setAttribute('playsinline','')};
 const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{const video=entry.target;if(entry.isIntersecting){const p=video.play();if(p&&typeof p.catch==='function')p.catch(()=>{})}else{video.pause()}}),{rootMargin:'180px 0px',threshold:.05});
-document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video').forEach(video=>{prepareVideo(video);mediaObserver.observe(video)});
+document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video,.video-card video').forEach(video=>{prepareVideo(video);mediaObserver.observe(video)});
