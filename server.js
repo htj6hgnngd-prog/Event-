@@ -1,17 +1,23 @@
 const http=require('http');
 const fs=require('fs');
+const fsp=fs.promises;
 const path=require('path');
 const {Readable}=require('stream');
+const {pipeline}=require('stream/promises');
+const {execFile}=require('child_process');
+const {promisify}=require('util');
 const {URL}=require('url');
+const ffmpeg=require('ffmpeg-static');
 
+const execFileAsync=promisify(execFile);
 const root=__dirname;
 const port=Number(process.env.PORT||3000);
+const mediaRoot=path.join('/tmp','event-production-media');
 const sources={
-  'event-1':'https://disk.yandex.ru/i/iIj6z28I2z0d3w',
-  'event-2':'https://disk.yandex.ru/i/CGJbZxDuh1ORXw'
+  'event-1':{url:'https://disk.yandex.ru/i/iIj6z28I2z0d3w',poster:'54'},
+  'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28'}
 };
-const resolved=new Map();
-const TTL=5*60*1000;
+const jobs=new Map();
 
 const types={
   '.html':'text/html; charset=utf-8',
@@ -26,44 +32,90 @@ const types={
   '.mp4':'video/mp4'
 };
 
-async function resolveYandex(id,force=false){
-  const pub=sources[id];
-  if(!pub) return null;
-  const cached=resolved.get(id);
-  if(!force&&cached&&Date.now()-cached.time<TTL) return cached.href;
-  const api='https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key='+encodeURIComponent(pub);
+async function yandexHref(id){
+  const source=sources[id];
+  if(!source) throw new Error('Unknown media id');
+  const api='https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key='+encodeURIComponent(source.url);
   const r=await fetch(api,{headers:{'User-Agent':'EventProduction/1.0'}});
   if(!r.ok) throw new Error('Yandex API '+r.status);
   const data=await r.json();
-  if(!data.href) throw new Error('No Yandex href');
-  resolved.set(id,{href:data.href,time:Date.now()});
+  if(!data.href) throw new Error('No Yandex download href');
   return data.href;
 }
 
-async function proxyMedia(req,res,id){
-  let href=await resolveYandex(id);
-  if(!href){res.writeHead(404);res.end('Not found');return;}
-  const headers={'User-Agent':'Mozilla/5.0'};
-  if(req.headers.range) headers.Range=req.headers.range;
-  let upstream=await fetch(href,{headers,redirect:'follow'});
-  if(upstream.status===403||upstream.status===404){
-    href=await resolveYandex(id,true);
-    upstream=await fetch(href,{headers,redirect:'follow'});
+async function download(id,dest){
+  const href=await yandexHref(id);
+  const r=await fetch(href,{headers:{'User-Agent':'Mozilla/5.0'},redirect:'follow'});
+  if(!r.ok||!r.body) throw new Error('Yandex download '+r.status);
+  await pipeline(Readable.fromWeb(r.body),fs.createWriteStream(dest));
+}
+
+async function exists(file){
+  try{await fsp.access(file);return true}catch{return false}
+}
+
+async function prepareMedia(id){
+  if(jobs.has(id)) return jobs.get(id);
+  const job=(async()=>{
+    await fsp.mkdir(mediaRoot,{recursive:true});
+    const source=path.join(mediaRoot,id+'.mov');
+    const video=path.join(mediaRoot,id+'.mp4');
+    const poster=path.join(mediaRoot,id+'.jpg');
+    if(await exists(video) && await exists(poster)) return {video,poster};
+
+    console.log('Preparing media:',id);
+    if(!(await exists(source))) await download(id,source);
+
+    if(!(await exists(poster))){
+      await execFileAsync(ffmpeg,['-y','-v','error','-ss',sources[id].poster,'-i',source,'-frames:v','1','-q:v','2',poster],{maxBuffer:1024*1024*4});
+    }
+
+    if(!(await exists(video))){
+      await execFileAsync(ffmpeg,[
+        '-y','-v','error','-i',source,
+        '-map','0:v:0','-map','0:a:0?',
+        '-c:v','copy','-c:a','aac','-b:a','160k',
+        '-movflags','+faststart',
+        video
+      ],{maxBuffer:1024*1024*8});
+    }
+
+    fsp.unlink(source).catch(()=>{});
+    console.log('Media ready:',id);
+    return {video,poster};
+  })().catch(err=>{jobs.delete(id);throw err});
+  jobs.set(id,job);
+  return job;
+}
+
+async function serveVideo(req,res,id){
+  const {video}=await prepareMedia(id);
+  const st=await fsp.stat(video);
+  const range=req.headers.range;
+  const common={'Content-Type':'video/mp4','Accept-Ranges':'bytes','Cache-Control':'public, max-age=86400'};
+  if(range){
+    const m=/bytes=(\d*)-(\d*)/.exec(range);
+    let start=m&&m[1]?Number(m[1]):0;
+    let end=m&&m[2]?Number(m[2]):st.size-1;
+    if(!Number.isFinite(start)||!Number.isFinite(end)||start<0||end>=st.size||start>end){
+      res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;
+    }
+    res.writeHead(206,{...common,'Content-Range':`bytes ${start}-${end}/${st.size}`,'Content-Length':end-start+1});
+    if(req.method==='HEAD'){res.end();return;}
+    fs.createReadStream(video,{start,end}).pipe(res);
+  }else{
+    res.writeHead(200,{...common,'Content-Length':st.size});
+    if(req.method==='HEAD'){res.end();return;}
+    fs.createReadStream(video).pipe(res);
   }
-  if(!upstream.ok&&upstream.status!==206){
-    res.writeHead(502,{'Content-Type':'text/plain; charset=utf-8'});
-    res.end('Video source unavailable');
-    return;
-  }
-  const out={};
-  for(const h of ['content-type','content-length','content-range','accept-ranges','etag','last-modified']){
-    const v=upstream.headers.get(h);
-    if(v) out[h]=v;
-  }
-  out['cache-control']='public, max-age=300';
-  res.writeHead(upstream.status,out);
-  if(req.method==='HEAD'||!upstream.body){res.end();return;}
-  Readable.fromWeb(upstream.body).pipe(res);
+}
+
+async function servePoster(req,res,id){
+  const {poster}=await prepareMedia(id);
+  const st=await fsp.stat(poster);
+  res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});
+  if(req.method==='HEAD'){res.end();return;}
+  fs.createReadStream(poster).pipe(res);
 }
 
 function serveStatic(req,res,pathname){
@@ -82,18 +134,22 @@ function serveStatic(req,res,pathname){
 http.createServer(async(req,res)=>{
   try{
     const u=new URL(req.url,'http://localhost');
-    const match=u.pathname.match(/^\/media\/(event-[12])$/);
-    if(match){await proxyMedia(req,res,match[1]);return;}
+    let m=u.pathname.match(/^\/media\/(event-[12])$/);
+    if(m){await serveVideo(req,res,m[1]);return;}
+    m=u.pathname.match(/^\/poster\/(event-[12])$/);
+    if(m){await servePoster(req,res,m[1]);return;}
     serveStatic(req,res,u.pathname);
   }catch(err){
     console.error(err);
-    if(!res.headersSent) res.writeHead(500,{'Content-Type':'text/plain; charset=utf-8'});
-    res.end('Server error');
+    if(!res.headersSent) res.writeHead(500,{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'});
+    res.end('Media temporarily unavailable');
   }
 }).listen(port,'0.0.0.0',()=>{
   console.log('Event site listening on',port);
-  Promise.all(Object.keys(sources).map(async id=>{
-    try{await resolveYandex(id,true);console.log('Video source ready:',id)}
-    catch(err){console.error('Video source failed:',id,err.message)}
-  }));
+  (async()=>{
+    for(const id of Object.keys(sources)){
+      try{await prepareMedia(id)}
+      catch(err){console.error('Preload failed:',id,err.message)}
+    }
+  })();
 });
