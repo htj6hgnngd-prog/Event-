@@ -24,7 +24,6 @@ const clips={
 };
 const clipJobs=new Map();
 let heroJob=null;
-let event1CoverBuffer=null;
 
 const types={
   '.html':'text/html; charset=utf-8',
@@ -165,13 +164,6 @@ async function prepareHero(){
 }
 
 
-function getEvent1CoverBuffer(){
-  if(event1CoverBuffer) return event1CoverBuffer;
-  const parts=[0,1,2].map(i=>fs.readFileSync(path.join(root,'assets','event1-cover.part'+String(i).padStart(2,'0')),'utf8'));
-  event1CoverBuffer=Buffer.from(parts.join(''),'base64');
-  return event1CoverBuffer;
-}
-
 async function serveFileVideo(req,res,file){
   const st=await fsp.stat(file);
   const range=req.headers.range;
@@ -226,7 +218,7 @@ http.createServer(async(req,res)=>{
     if(m){await servePoster(req,res,m[1]);return;}
     m=u.pathname.match(/^\/clip\/(work-top|work-bottom)$/);
     if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
-    if(u.pathname==='/cover/event-1'){const buf=getEvent1CoverBuffer();res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':buf.length,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}res.end(buf);return;}
+    if(u.pathname==='/cover/event-1'){const file=path.join(root,'assets','event1-cover-final.webp');const st=await fsp.stat(file);res.writeHead(200,{'Content-Type':'image/webp','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(file).pipe(res);return;}
     if(u.pathname==='/hero-loop'){const {video}=await prepareHero();await serveFileVideo(req,res,video);return;}
     if(u.pathname==='/hero-poster'){const {poster}=await prepareHero();const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
     m=u.pathname.match(/^\/clip-poster\/(work-top|work-bottom)$/);
