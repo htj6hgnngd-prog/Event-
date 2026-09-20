@@ -610,3 +610,250 @@
     animation:none!important;
   }
 }
+
+
+/* Stage 05 / Conversion brief */
+@media (min-width:1101px){
+  .contact{
+    min-height:100vh;
+    padding-bottom:28px;
+  }
+  .contact h2{
+    margin-bottom:0;
+  }
+  .contact-intro{
+    width:75%;
+    margin:42px 0 48px auto;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:40px;
+    align-items:end;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+  }
+  .contact-intro p{
+    margin:0;
+    max-width:650px;
+    color:#c9c7c1;
+    font-size:15px;
+    line-height:1.65;
+  }
+  .contact-intro span{
+    justify-self:end;
+    color:var(--muted);
+    font-size:9px;
+    font-weight:650;
+    letter-spacing:.055em;
+  }
+
+  .brief-form{
+    width:75%;
+    margin:0 0 0 auto;
+    border-top:1px solid var(--line);
+  }
+  .brief-row{
+    min-height:94px;
+    display:grid;
+    grid-template-columns:2fr 7fr;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+    transition:background .28s ease;
+  }
+  .brief-row:focus-within{
+    background:rgba(255,255,255,.018);
+  }
+  .brief-row>label,
+  .brief-label{
+    display:flex;
+    align-items:center;
+    min-height:100%;
+    padding-right:22px;
+    color:var(--muted);
+    font-size:9px;
+    font-weight:650;
+    letter-spacing:.055em;
+  }
+  .brief-row input[type="text"],
+  .brief-row input[type="date"]{
+    width:100%;
+    min-width:0;
+    height:92px;
+    padding:0;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:var(--fg);
+    font-family:var(--font);
+    font-size:clamp(25px,2.15vw,42px);
+    font-weight:500;
+    letter-spacing:-.035em;
+    caret-color:var(--fg);
+  }
+  .brief-row input[type="date"]{
+    color-scheme:dark;
+  }
+  .brief-row input::placeholder{
+    color:#5d5b56;
+    opacity:1;
+  }
+  .brief-row input:focus::placeholder{
+    color:#77746d;
+  }
+  .brief-row input:invalid:not(:placeholder-shown){
+    box-shadow:none;
+  }
+
+  .brief-services{
+    min-height:108px;
+  }
+  .brief-options{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:10px;
+    padding:17px 0;
+  }
+  .brief-options label{
+    position:relative;
+    cursor:pointer;
+  }
+  .brief-options input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+  .brief-options span{
+    min-height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 12px;
+    border:1px solid #383836;
+    color:#9d9a93;
+    font-size:10px;
+    font-weight:650;
+    letter-spacing:.045em;
+    transition:
+      border-color .22s ease,
+      color .22s ease,
+      background .22s ease,
+      transform .22s ease;
+  }
+  .brief-options label:hover span{
+    color:var(--fg);
+    border-color:#6a6760;
+  }
+  .brief-options input:focus-visible+span{
+    outline:1px solid var(--fg);
+    outline-offset:3px;
+  }
+  .brief-options input:checked+span{
+    color:#080808;
+    border-color:var(--fg);
+    background:var(--fg);
+  }
+
+  .brief-actions{
+    display:grid;
+    grid-template-columns:2fr 4fr 3fr;
+    gap:20px;
+    align-items:end;
+    padding:28px 0 0;
+  }
+  .brief-submit,
+  .brief-copy{
+    border:0;
+    background:none;
+    color:var(--fg);
+    cursor:pointer;
+    font-family:var(--font);
+  }
+  .brief-submit{
+    grid-column:1/3;
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 0 12px;
+    border-bottom:2px solid var(--fg);
+    text-align:left;
+    font-size:clamp(30px,3vw,58px);
+    font-weight:650;
+    line-height:1;
+    letter-spacing:-.045em;
+    transition:opacity .2s ease,letter-spacing .28s ease;
+  }
+  .brief-submit span{
+    font-size:.65em;
+    font-weight:500;
+    transform:translateY(-2px);
+  }
+  .brief-submit:hover{
+    letter-spacing:-.035em;
+  }
+  .brief-copy{
+    justify-self:end;
+    align-self:center;
+    padding:8px 0 4px;
+    border-bottom:1px solid #66635d;
+    color:var(--muted);
+    font-size:9px;
+    font-weight:650;
+    letter-spacing:.055em;
+    transition:color .2s ease,border-color .2s ease;
+  }
+  .brief-copy:hover{
+    color:var(--fg);
+    border-color:var(--fg);
+  }
+  .brief-status{
+    grid-column:1/4;
+    margin:8px 0 0;
+    color:#77746d;
+    font-size:10px;
+    line-height:1.5;
+  }
+  .brief-form.is-invalid .brief-status{
+    color:#c6a79f;
+  }
+  .brief-status.is-success{
+    color:#b8b6af;
+  }
+
+  .contact .footer-wordmark{
+    margin-top:104px;
+  }
+
+  /* The brief participates in the same motion system as the rest of VECTA. */
+  .contact-intro.reveal>p,
+  .contact-intro.reveal>span,
+  .brief-form.reveal .brief-row,
+  .brief-form.reveal .brief-actions{
+    opacity:0;
+    transform:translateY(12px);
+    transition:opacity .48s ease,transform .7s var(--motion-ease);
+  }
+  .contact-intro.reveal.visible>p,
+  .contact-intro.reveal.visible>span,
+  .brief-form.reveal.visible .brief-row,
+  .brief-form.reveal.visible .brief-actions{
+    opacity:1;
+    transform:none;
+  }
+  .contact-intro.reveal>span{transition-delay:.08s}
+  .brief-form.reveal .brief-row:nth-child(1){transition-delay:.02s}
+  .brief-form.reveal .brief-row:nth-child(2){transition-delay:.08s}
+  .brief-form.reveal .brief-row:nth-child(3){transition-delay:.14s}
+  .brief-form.reveal .brief-row:nth-child(4){transition-delay:.20s}
+  .brief-form.reveal .brief-row:nth-child(5){transition-delay:.26s}
+  .brief-form.reveal .brief-actions{transition-delay:.34s}
+}
+
+@media (min-width:1101px) and (prefers-reduced-motion:reduce){
+  .contact-intro.reveal>*,
+  .brief-form.reveal .brief-row,
+  .brief-form.reveal .brief-actions{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+}
