@@ -137,15 +137,15 @@ async function prepareHero(){
     const e2=(await prepareMedia('event-2')).video.replace(/\.mp4$/,'.mov');
 
     // Curated 6-shot hero rhythm:
-    // scale -> people -> production detail -> hero -> energy -> finale.
-    // Every range stays inside a stable source shot to avoid flash cuts inside the loop.
+    // atmosphere -> team -> production detail -> hero -> audience -> finale.
+    // The sequence avoids dance-only fragments so the page reads as production, not nightclub promo.
     const filter=[
-      "[1:v]trim=start=62.55:end=63.45,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.06:contrast=1.10:saturation=0.84[v0]",
-      "[1:v]trim=start=19.55:end=20.65,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.045:contrast=1.08:saturation=0.86[v1]",
-      "[0:v]trim=start=16.65:end=17.45,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.05:contrast=1.09:saturation=0.82[v2]",
-      "[0:v]trim=start=54.00:end=55.20,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.06:contrast=1.10:saturation=0.86[v3]",
-      "[1:v]trim=start=26.15:end=27.45,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.055:contrast=1.10:saturation=0.86[v4]",
-      "[0:v]trim=start=43.15:end=44.70,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.055:contrast=1.10:saturation=0.84[v5]",
+      "[1:v]trim=start=11.85:end=12.75,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.055:contrast=1.10:saturation=0.70[v0]",
+      "[1:v]trim=start=19.65:end=20.65,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.075:contrast=1.12:saturation=0.70[v1]",
+      "[0:v]trim=start=16.65:end=17.45,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.045:contrast=1.08:saturation=0.82[v2]",
+      "[0:v]trim=start=53.95:end=55.15,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.065:contrast=1.10:saturation=0.84[v3]",
+      "[0:v]trim=start=37.65:end=38.65,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.075:contrast=1.12:saturation=0.55[v4]",
+      "[1:v]trim=start=55.65:end=57.10,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900,eq=brightness=-0.07:contrast=1.10:saturation=0.84[v5]",
       "[v0][v1][v2][v3][v4][v5]concat=n=6:v=1:a=0,format=yuv420p[v]"
     ].join(';');
 
