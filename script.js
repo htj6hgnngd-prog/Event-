@@ -7,7 +7,8 @@ const syncNav=()=>{const y=window.scrollY;nav.classList.toggle('nav-solid',y>24)
 const navSectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)navLinks.forEach(link=>link.classList.toggle('active',link.dataset.navTarget===entry.target.id))}),{rootMargin:'-34% 0px -54% 0px',threshold:0});
 window.addEventListener('scroll',syncNav,{passive:true});syncNav();
 
-const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -30px'});
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:reduceMotion.matches?0:.08,rootMargin:'0px 0px -30px'});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 const videoMain=document.querySelector('.video-main');
@@ -71,7 +72,7 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
 const prepareVideo=video=>{video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('muted','');video.setAttribute('playsinline','')};
 const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   const video=entry.target;
-  if(entry.isIntersecting){
+  if(entry.isIntersecting&&!reduceMotion.matches){
     const p=video.play();
     if(p&&typeof p.catch==='function')p.catch(()=>{});
   }else{
