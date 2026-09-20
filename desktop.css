@@ -3,7 +3,7 @@
   :root{--pad:clamp(56px,4.2vw,80px)}
   .section-pad{padding-top:112px;padding-bottom:112px}
 
-  /* Selected work: one seamless rectangular media wall. 2px seams only. */
+  /* Selected work: one rectangular mixed-ratio wall with the same spacing as PHOTO. */
   .work{padding-bottom:120px}
   .work-wall{
     width:100%;
@@ -11,7 +11,7 @@
     display:grid;
     grid-template-columns:repeat(12,1fr);
     grid-template-rows:1.05fr 1.7fr 1.7fr 1.15fr;
-    gap:2px;
+    gap:20px;
     background:var(--bg);
     overflow:hidden;
   }
