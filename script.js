@@ -216,3 +216,106 @@ if(caseContact)caseContact.addEventListener('click',event=>{
 document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&projectViewer?.classList.contains('open'))closeProjectViewer();
 });
+
+/* Stage 05 / Conversion brief. The site stores nothing: it prepares a local email draft. */
+const briefForm=document.querySelector('#project-brief');
+const briefStatus=document.querySelector('#brief-status');
+const briefCopy=document.querySelector('.brief-copy');
+const briefServices=document.querySelector('.brief-services');
+const briefRecipient='79858954264@ya.ru';
+const briefDefaultStatus='Данные не сохраняются на сайте. Письмо откроется в вашем почтовом приложении.';
+
+const setBriefStatus=(message,state='')=>{
+  if(!briefStatus)return;
+  briefStatus.textContent=message;
+  briefStatus.classList.toggle('is-success',state==='success');
+  if(briefForm)briefForm.classList.toggle('is-invalid',state==='error');
+};
+
+const collectBrief=()=>{
+  if(!briefForm)return null;
+  const data=new FormData(briefForm);
+  const services=data.getAll('services').map(String);
+  return{
+    date:String(data.get('date')||'').trim(),
+    venue:String(data.get('venue')||'').trim(),
+    format:String(data.get('format')||'').trim(),
+    services,
+    contact:String(data.get('contact')||'').trim()
+  };
+};
+
+const validateBrief=()=>{
+  if(!briefForm)return null;
+  if(!briefForm.checkValidity()){
+    briefForm.reportValidity();
+    setBriefStatus('Заполните обязательные поля брифа.','error');
+    return null;
+  }
+  const brief=collectBrief();
+  if(!brief||!brief.services.length){
+    if(briefServices)briefServices.setAttribute('aria-invalid','true');
+    setBriefStatus('Выберите, что нужно от продакшена.','error');
+    briefServices?.scrollIntoView({behavior:'smooth',block:'center'});
+    return null;
+  }
+  if(briefServices)briefServices.removeAttribute('aria-invalid');
+  return brief;
+};
+
+const formatBriefText=brief=>[
+  'VECTA - НОВЫЙ ПРОЕКТ',
+  '',
+  'Дата: '+brief.date,
+  'Площадка: '+brief.venue,
+  'Формат: '+brief.format,
+  'Нужно: '+brief.services.join(', '),
+  'Контакт: '+brief.contact
+].join('\n');
+
+if(briefForm){
+  briefForm.addEventListener('input',()=>{
+    briefForm.classList.remove('is-invalid');
+    if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent=briefDefaultStatus;
+  });
+  briefForm.addEventListener('change',()=>{
+    briefForm.classList.remove('is-invalid');
+    if(briefServices)briefServices.removeAttribute('aria-invalid');
+    if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent=briefDefaultStatus;
+  });
+  briefForm.addEventListener('submit',event=>{
+    event.preventDefault();
+    const brief=validateBrief();
+    if(!brief)return;
+    const subject='VECTA / Новый проект / '+brief.date;
+    const body=formatBriefText(brief);
+    setBriefStatus('Бриф собран. Открываю письмо.','success');
+    window.location.href='mailto:'+briefRecipient+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  });
+}
+
+if(briefCopy){
+  briefCopy.addEventListener('click',async()=>{
+    const brief=validateBrief();
+    if(!brief)return;
+    const text=formatBriefText(brief);
+    try{
+      if(navigator.clipboard&&window.isSecureContext){
+        await navigator.clipboard.writeText(text);
+      }else{
+        const area=document.createElement('textarea');
+        area.value=text;
+        area.setAttribute('readonly','');
+        area.style.position='fixed';
+        area.style.opacity='0';
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+      }
+      setBriefStatus('Бриф скопирован. Его можно отправить в любом мессенджере.','success');
+    }catch(error){
+      setBriefStatus('Не удалось скопировать автоматически. Выделите данные и отправьте их вручную.','error');
+    }
+  });
+}
