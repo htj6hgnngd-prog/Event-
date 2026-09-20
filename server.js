@@ -18,6 +18,11 @@ const sources={
   'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28'}
 };
 const jobs=new Map();
+const clips={
+  'work-top':{source:'event-1',start:'49.2',duration:'4.8',poster:'50.2'},
+  'work-bottom':{source:'event-2',start:'43.8',duration:'4.8',poster:'45.0'}
+};
+const clipJobs=new Map();
 
 const types={
   '.html':'text/html; charset=utf-8',
@@ -88,26 +93,59 @@ async function prepareMedia(id){
   return job;
 }
 
-async function serveVideo(req,res,id){
-  const {video}=await prepareMedia(id);
-  const st=await fsp.stat(video);
+async function prepareClip(name){
+  if(clipJobs.has(name)) return clipJobs.get(name);
+  const cfg=clips[name];
+  if(!cfg) throw new Error('Unknown clip');
+  const job=(async()=>{
+    await fsp.mkdir(mediaRoot,{recursive:true});
+    const out=path.join(mediaRoot,'clip-'+name+'.mp4');
+    const poster=path.join(mediaRoot,'clip-'+name+'.jpg');
+    if(await exists(out) && await exists(poster)) return {video:out,poster};
+
+    const source=path.join(mediaRoot,cfg.source+'.mov');
+    if(!(await exists(source))) await download(cfg.source,source);
+
+    if(!(await exists(out))){
+      await execFileAsync(ffmpeg,[
+        '-y','-v','error','-ss',cfg.start,'-i',source,'-t',cfg.duration,
+        '-an','-vf','scale=1600:-2:flags=lanczos,format=yuv420p',
+        '-c:v','libx264','-preset','veryfast','-crf','22',
+        '-movflags','+faststart',out
+      ],{maxBuffer:1024*1024*8});
+    }
+    if(!(await exists(poster))){
+      await execFileAsync(ffmpeg,['-y','-v','error','-ss',cfg.poster,'-i',source,'-frames:v','1','-vf','scale=1600:-2:flags=lanczos','-q:v','2',poster],{maxBuffer:1024*1024*4});
+    }
+    console.log('Clip ready:',name);
+    return {video:out,poster};
+  })().catch(err=>{clipJobs.delete(name);throw err});
+  clipJobs.set(name,job);
+  return job;
+}
+
+async function serveFileVideo(req,res,file){
+  const st=await fsp.stat(file);
   const range=req.headers.range;
   const common={'Content-Type':'video/mp4','Accept-Ranges':'bytes','Cache-Control':'public, max-age=86400'};
   if(range){
     const m=/bytes=(\d*)-(\d*)/.exec(range);
-    let start=m&&m[1]?Number(m[1]):0;
-    let end=m&&m[2]?Number(m[2]):st.size-1;
-    if(!Number.isFinite(start)||!Number.isFinite(end)||start<0||end>=st.size||start>end){
-      res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;
-    }
+    const start=m&&m[1]?Number(m[1]):0;
+    const end=m&&m[2]?Number(m[2]):st.size-1;
+    if(!Number.isFinite(start)||!Number.isFinite(end)||start<0||end>=st.size||start>end){res.writeHead(416,{'Content-Range':'bytes */'+st.size});res.end();return;}
     res.writeHead(206,{...common,'Content-Range':`bytes ${start}-${end}/${st.size}`,'Content-Length':end-start+1});
     if(req.method==='HEAD'){res.end();return;}
-    fs.createReadStream(video,{start,end}).pipe(res);
+    fs.createReadStream(file,{start,end}).pipe(res);
   }else{
     res.writeHead(200,{...common,'Content-Length':st.size});
     if(req.method==='HEAD'){res.end();return;}
-    fs.createReadStream(video).pipe(res);
+    fs.createReadStream(file).pipe(res);
   }
+}
+
+async function serveVideo(req,res,id){
+  const {video}=await prepareMedia(id);
+  await serveFileVideo(req,res,video);
 }
 
 async function servePoster(req,res,id){
@@ -138,6 +176,10 @@ http.createServer(async(req,res)=>{
     if(m){await serveVideo(req,res,m[1]);return;}
     m=u.pathname.match(/^\/poster\/(event-[12])$/);
     if(m){await servePoster(req,res,m[1]);return;}
+    m=u.pathname.match(/^\/clip\/(work-top|work-bottom)$/);
+    if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
+    m=u.pathname.match(/^\/clip-poster\/(work-top|work-bottom)$/);
+    if(m){const {poster}=await prepareClip(m[1]);const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
     serveStatic(req,res,u.pathname);
   }catch(err){
     console.error(err);
@@ -150,6 +192,10 @@ http.createServer(async(req,res)=>{
     for(const id of Object.keys(sources)){
       try{await prepareMedia(id)}
       catch(err){console.error('Preload failed:',id,err.message)}
+    }
+    for(const name of Object.keys(clips)){
+      try{await prepareClip(name)}
+      catch(err){console.error('Clip preload failed:',name,err.message)}
     }
   })();
 });
