@@ -23,6 +23,7 @@ const clips={
   'work-bottom':{source:'event-2',start:'43.8',duration:'4.8',poster:'45.0'}
 };
 const clipJobs=new Map();
+let heroJob=null;
 
 const types={
   '.html':'text/html; charset=utf-8',
@@ -123,6 +124,45 @@ async function prepareClip(name){
   return job;
 }
 
+
+async function prepareHero(){
+  if(heroJob) return heroJob;
+  heroJob=(async()=>{
+    await fsp.mkdir(mediaRoot,{recursive:true});
+    const out=path.join(mediaRoot,'hero-loop.mp4');
+    const poster=path.join(mediaRoot,'hero-loop.jpg');
+    if(await exists(out) && await exists(poster)) return {video:out,poster};
+
+    const e1=(await prepareMedia('event-1')).video.replace(/\.mp4$/,'.mov');
+    const e2=(await prepareMedia('event-2')).video.replace(/\.mp4$/,'.mov');
+
+    const filter=[
+      "[1:v]trim=start=26.7:end=27.7,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v0]",
+      "[1:v]trim=start=19.6:end=20.7,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v1]",
+      "[0:v]trim=start=16.6:end=17.5,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v2]",
+      "[0:v]trim=start=52.2:end=53.4,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v3]",
+      "[1:v]trim=start=61.5:end=63.1,setpts=PTS-STARTPTS,fps=24,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v4]",
+      "[0:v]trim=start=34.1:end=34.9,setpts=1.5*(PTS-STARTPTS),minterpolate=fps=24:mi_mode=mci,scale=1600:900:force_original_aspect_ratio=increase,crop=1600:900[v5]",
+      "[v0][v1][v2][v3][v4][v5]concat=n=6:v=1:a=0,eq=brightness=-0.035:contrast=1.04:saturation=.9,fade=t=in:st=0:d=.14,fade=t=out:st=6.75:d=.25,format=yuv420p[v]"
+    ].join(';');
+
+    if(!(await exists(out))){
+      await execFileAsync(ffmpeg,[
+        '-y','-v','error','-i',e1,'-i',e2,
+        '-filter_complex',filter,'-map','[v]',
+        '-an','-c:v','libx264','-preset','veryfast','-crf','23',
+        '-movflags','+faststart',out
+      ],{maxBuffer:1024*1024*12});
+    }
+    if(!(await exists(poster))){
+      await execFileAsync(ffmpeg,['-y','-v','error','-ss','.35','-i',out,'-frames:v','1','-q:v','2',poster],{maxBuffer:1024*1024*4});
+    }
+    console.log('Hero loop ready');
+    return {video:out,poster};
+  })().catch(err=>{heroJob=null;throw err});
+  return heroJob;
+}
+
 async function serveFileVideo(req,res,file){
   const st=await fsp.stat(file);
   const range=req.headers.range;
@@ -177,6 +217,8 @@ http.createServer(async(req,res)=>{
     if(m){await servePoster(req,res,m[1]);return;}
     m=u.pathname.match(/^\/clip\/(work-top|work-bottom)$/);
     if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
+    if(u.pathname==='/hero-loop'){const {video}=await prepareHero();await serveFileVideo(req,res,video);return;}
+    if(u.pathname==='/hero-poster'){const {poster}=await prepareHero();const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
     m=u.pathname.match(/^\/clip-poster\/(work-top|work-bottom)$/);
     if(m){const {poster}=await prepareClip(m[1]);const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
     serveStatic(req,res,u.pathname);
@@ -196,5 +238,7 @@ http.createServer(async(req,res)=>{
       try{await prepareClip(name)}
       catch(err){console.error('Clip preload failed:',name,err.message)}
     }
+    try{await prepareHero()}
+    catch(err){console.error('Hero preload failed:',err.message)}
   })();
 });
