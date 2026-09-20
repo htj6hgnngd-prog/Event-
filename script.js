@@ -182,8 +182,6 @@ const openProjectViewer=card=>{
   if(mediaCursor)mediaCursor.classList.remove('visible');
   projectViewerVideo.load();
   projectViewerVideo.muted=false;
-  const fullPlay=projectViewerVideo.play();
-  if(fullPlay&&typeof fullPlay.catch==='function')fullPlay.catch(()=>{});
   if(caseLoop){
     const loopPlay=caseLoop.play();
     if(loopPlay&&typeof loopPlay.catch==='function')loopPlay.catch(()=>{});
