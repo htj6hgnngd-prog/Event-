@@ -554,6 +554,7 @@ agencyMode?.addEventListener('click',event=>{
   if(event.target===agencyMode)closeAgencyMode(true);
 });
 
+window.addEventListener('hashchange',()=>{const hash=window.location.hash;if(hash==='#agency'){if(window.innerWidth>=1101&&!agencyMode?.classList.contains('open'))openAgencyMode(true);return}if(hash==='#frame'||hash.startsWith('#frame-map=')){if(!frameBuilder?.classList.contains('open'))openFrameBuilder(document.querySelector('.frame-builder-trigger'));return}if(agencyMode?.classList.contains('open'))closeAgencyMode(false,false);if(frameBuilder?.classList.contains('open'))closeFrameBuilder(false,false)});
 agencyModeCta?.addEventListener('click',event=>{
   event.preventDefault();
   if(briefContext)briefContext.value='AGENCY / '+agencySelectedConfig;
@@ -722,8 +723,9 @@ const openFrameBuilder=trigger=>{
   window.requestAnimationFrame(()=>window.requestAnimationFrame(()=>{frameBuilder.classList.add('open');frameBuilderClose?.focus({preventScroll:true})}));
 };
 
-const closeFrameBuilder=(restoreFocus=true)=>{
+const closeFrameBuilder=(restoreFocus=true,updateRoute=true)=>{
   if(!frameBuilder||frameBuilder.hidden)return;
+  if(updateRoute&&window.location.hash.startsWith('#frame')&&window.history?.replaceState)window.history.replaceState(null,'','#top');
   frameBuilder.classList.remove('open');frameBuilder.setAttribute('aria-hidden','true');document.body.classList.remove('frame-builder-open');frameBuilderVideo?.pause();
   frameBuilderCloseTimer=window.setTimeout(()=>{frameBuilder.hidden=true;frameBuilderCloseTimer=null;if(restoreFocus&&frameBuilderLastFocus instanceof HTMLElement)frameBuilderLastFocus.focus({preventScroll:true})},300);
 };
