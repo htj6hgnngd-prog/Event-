@@ -11,23 +11,40 @@ const featuredVideo=document.querySelector('#featured-video');
 const videoLabel=document.querySelector('.video-main-label');
 const playButton=document.querySelector('.video-play');
 
-const setPlayLabel=()=>{if(!playButton||!featuredVideo)return;playButton.textContent=featuredVideo.paused?'PLAY':'PAUSE'};
+const setPlayState=()=>{
+  if(!playButton||!featuredVideo||!videoMain)return;
+  const paused=featuredVideo.paused;
+  playButton.textContent=paused?'PLAY':'PAUSE';
+  videoMain.setAttribute('aria-label',paused?'Воспроизвести выбранное видео':'Поставить выбранное видео на паузу');
+};
+const toggleFeatured=()=>{
+  if(!featuredVideo)return;
+  if(featuredVideo.paused){
+    featuredVideo.muted=false;
+    const p=featuredVideo.play();
+    if(p&&typeof p.catch==='function')p.catch(()=>{});
+  }else{
+    featuredVideo.pause();
+  }
+};
 if(featuredVideo){
-  featuredVideo.addEventListener('play',setPlayLabel);
-  featuredVideo.addEventListener('pause',setPlayLabel);
-  featuredVideo.addEventListener('ended',setPlayLabel);
+  featuredVideo.addEventListener('play',setPlayState);
+  featuredVideo.addEventListener('pause',setPlayState);
+  featuredVideo.addEventListener('ended',setPlayState);
 }
-if(playButton&&featuredVideo){
-  playButton.addEventListener('click',()=>{
-    if(featuredVideo.paused){
-      featuredVideo.muted=false;
-      const p=featuredVideo.play();
-      if(p&&typeof p.catch==='function')p.catch(()=>{});
-    }else{
-      featuredVideo.pause();
+if(playButton){
+  playButton.addEventListener('click',event=>{event.stopPropagation();toggleFeatured()});
+}
+if(videoMain){
+  videoMain.addEventListener('click',toggleFeatured);
+  videoMain.addEventListener('keydown',event=>{
+    if(event.key==='Enter'||event.key===' '){
+      event.preventDefault();
+      toggleFeatured();
     }
   });
 }
+
 document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('click',()=>{
   if(card.classList.contains('active'))return;
   document.querySelectorAll('.video-card').forEach(x=>x.classList.remove('active'));
@@ -42,11 +59,29 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
   window.setTimeout(()=>{
     videoLabel.textContent=card.dataset.label;
     videoMain.classList.remove('switching');
-    setPlayLabel();
+    setPlayState();
   },180);
 }));
 
-/* Event-wall clips stay silent, looped and only run near the viewport. */
+/* Motion previews only run near the viewport. */
 const prepareVideo=video=>{video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('muted','');video.setAttribute('playsinline','')};
-const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{const video=entry.target;if(entry.isIntersecting){const p=video.play();if(p&&typeof p.catch==='function')p.catch(()=>{})}else{video.pause()}}),{rootMargin:'180px 0px',threshold:.05});
+const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  const video=entry.target;
+  if(entry.isIntersecting){
+    const p=video.play();
+    if(p&&typeof p.catch==='function')p.catch(()=>{});
+  }else{
+    video.pause();
+  }
+}),{rootMargin:'180px 0px',threshold:.05});
 document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video,.video-card video').forEach(video=>{prepareVideo(video);mediaObserver.observe(video)});
+
+/* Full film stops when the video section leaves the viewport. */
+if(featuredVideo){
+  const featuredObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(!entry.isIntersecting&&!featuredVideo.paused)featuredVideo.pause();
+  }),{threshold:.08});
+  const section=document.querySelector('#video');
+  if(section)featuredObserver.observe(section);
+}
+setPlayState();
