@@ -472,7 +472,7 @@ const renderFrameStep=()=>{
   if(frameBuilderStep>=5){renderFrameResult();syncFrameMap();return}
   const cfg=frameConfig[frameBuilderStep];
   frameBuilderOptions.hidden=false;
-  frameBuilderOptions.innerHTML=cfg.options.map(option=>'<button class="frame-option'+(frameState[cfg.key].includes(option)?' active':'')+'" type="button" data-frame-value="'+option.replace(/"/g,'&quot;')+'">'+option+'</button>').join('');
+  frameBuilderOptions.innerHTML=cfg.options.map(option=>'<button class="frame-option'+(frameState[cfg.key].includes(option)?' active':'')+'" type="button" aria-pressed="'+(frameState[cfg.key].includes(option)?'true':'false')+'" data-frame-value="'+option.replace(/"/g,'&quot;')+'">'+option+'</button>').join('');
   frameBuilderResult.hidden=true;
   frameBuilderIndex.textContent=cfg.index;
   frameBuilderTitle.textContent=cfg.title;
@@ -526,7 +526,13 @@ const closeFrameBuilder=(restoreFocus=true)=>{
 
 frameBuilderTriggers.forEach(trigger=>trigger.addEventListener('click',()=>openFrameBuilder(trigger)));
 frameBuilderClose?.addEventListener('click',()=>closeFrameBuilder(true));
-frameBuilderSteps.forEach((button,index)=>button.addEventListener('click',()=>{frameBuilderStep=index;renderFrameStep()}));
+frameBuilderSteps.forEach((button,index)=>button.addEventListener('click',()=>{
+  const firstIncomplete=frameConfig.findIndex(cfg=>!frameState[cfg.key].length);
+  const maxReachable=firstIncomplete<0?4:firstIncomplete;
+  if(index>maxReachable)return;
+  frameBuilderStep=index;
+  renderFrameStep();
+}));
 frameBuilderBack?.addEventListener('click',()=>{frameBuilderStep=frameBuilderStep===5?4:Math.max(0,frameBuilderStep-1);renderFrameStep()});
 
 const frameSummary=()=>frameConfig.map(cfg=>cfg.letter+' / '+cfg.key.toUpperCase()+': '+frameValueText(cfg.key)).join('\n');
@@ -554,8 +560,23 @@ const transferFrameToBrief=()=>{
 frameBuilderNext?.addEventListener('click',()=>{
   if(frameBuilderStep===5){transferFrameToBrief();return}
   const cfg=frameConfig[frameBuilderStep];
-  if(!frameState[cfg.key].length){frameBuilderOptions?.classList.add('needs-choice');window.setTimeout(()=>frameBuilderOptions?.classList.remove('needs-choice'),450);return}
-  frameBuilderStep+=1;renderFrameStep();
+  if(!frameState[cfg.key].length){
+    frameBuilderOptions?.classList.add('needs-choice');
+    window.setTimeout(()=>frameBuilderOptions?.classList.remove('needs-choice'),450);
+    return;
+  }
+  if(frameBuilderStep===4){
+    const missing=frameConfig.findIndex(item=>!frameState[item.key].length);
+    if(missing>=0){
+      frameBuilderStep=missing;
+      renderFrameStep();
+      frameBuilderOptions?.classList.add('needs-choice');
+      window.setTimeout(()=>frameBuilderOptions?.classList.remove('needs-choice'),450);
+      return;
+    }
+  }
+  frameBuilderStep+=1;
+  renderFrameStep();
 });
 
 frameBuilder?.addEventListener('click',event=>{if(event.target===frameBuilder)closeFrameBuilder(true)});

@@ -56,3 +56,5 @@
 @media(max-width:620px){
   .frame-builder-shell{padding:18px 18px 32px}.frame-builder-top span:last-child{display:none}.frame-builder-grid{grid-template-columns:1fr}.frame-builder-steps{display:grid;grid-template-columns:repeat(5,1fr);padding:18px 0;border:0}.frame-builder-steps button{display:block;min-height:42px;border-right:1px solid var(--line);border-bottom:0;text-align:center}.frame-builder-steps button:last-child{border-right:0}.frame-builder-steps span{display:none}.frame-builder-stage{padding:0}.frame-builder-media{height:180px}.frame-builder-question h2{font-size:28px}.frame-builder-options{grid-template-columns:1fr}.frame-builder-map{grid-column:1}
 }
+
+body.frame-builder-open{overflow:hidden}
