@@ -4,6 +4,7 @@ const fsp=fs.promises;
 const path=require('path');
 const {Readable}=require('stream');
 const {pipeline}=require('stream/promises');
+const zlib=require('zlib');
 const {execFile}=require('child_process');
 const {promisify}=require('util');
 const {URL}=require('url');
@@ -36,7 +37,10 @@ const types={
   '.jpg':'image/jpeg',
   '.jpeg':'image/jpeg',
   '.webp':'image/webp',
-  '.mp4':'video/mp4'
+  '.mp4':'video/mp4',
+  '.webmanifest':'application/manifest+json; charset=utf-8',
+  '.txt':'text/plain; charset=utf-8',
+  '.xml':'application/xml; charset=utf-8'
 };
 
 async function yandexHref(id){
@@ -59,6 +63,11 @@ async function download(id,dest){
 
 async function exists(file){
   try{await fsp.access(file);return true}catch{return false}
+}
+
+function tempOutput(file){
+  const ext=path.extname(file);
+  return file.slice(0,-ext.length)+'.part'+ext;
 }
 
 async function prepareSource(id){
@@ -95,17 +104,23 @@ async function prepareMedia(id){
     console.log('Preparing media:',id);
 
     if(!(await exists(poster))){
-      await execFileAsync(ffmpeg,['-y','-v','error','-ss',sources[id].poster,'-i',source,'-frames:v','1','-q:v','2',poster],{maxBuffer:1024*1024*4});
+      const temp=tempOutput(poster);
+      await fsp.rm(temp,{force:true}).catch(()=>{});
+      await execFileAsync(ffmpeg,['-y','-v','error','-ss',sources[id].poster,'-i',source,'-frames:v','1','-q:v','2',temp],{maxBuffer:1024*1024*4});
+      await fsp.rename(temp,poster);
     }
 
     if(!(await exists(video))){
+      const temp=tempOutput(video);
+      await fsp.rm(temp,{force:true}).catch(()=>{});
       await execFileAsync(ffmpeg,[
         '-y','-v','error','-i',source,
         '-map','0:v:0','-map','0:a:0?',
         '-c:v','copy','-c:a','aac','-b:a','160k',
         '-movflags','+faststart',
-        video
+        temp
       ],{maxBuffer:1024*1024*8});
+      await fsp.rename(temp,video);
     }
 
     console.log('Media ready:',id);
@@ -128,15 +143,21 @@ async function prepareClip(name){
     const source=await prepareSource(cfg.source);
 
     if(!(await exists(out))){
+      const temp=tempOutput(out);
+      await fsp.rm(temp,{force:true}).catch(()=>{});
       await execFileAsync(ffmpeg,[
         '-y','-v','error','-ss',cfg.start,'-i',source,'-t',cfg.duration,
         '-an','-vf','scale=1600:-2:flags=lanczos,format=yuv420p',
         '-c:v','libx264','-preset','veryfast','-crf','22',
-        '-movflags','+faststart',out
+        '-movflags','+faststart',temp
       ],{maxBuffer:1024*1024*8});
+      await fsp.rename(temp,out);
     }
     if(!(await exists(poster))){
-      await execFileAsync(ffmpeg,['-y','-v','error','-ss',cfg.poster,'-i',source,'-frames:v','1','-vf','scale=1600:-2:flags=lanczos','-q:v','2',poster],{maxBuffer:1024*1024*4});
+      const temp=tempOutput(poster);
+      await fsp.rm(temp,{force:true}).catch(()=>{});
+      await execFileAsync(ffmpeg,['-y','-v','error','-ss',cfg.poster,'-i',source,'-frames:v','1','-vf','scale=1600:-2:flags=lanczos','-q:v','2',temp],{maxBuffer:1024*1024*4});
+      await fsp.rename(temp,poster);
     }
     console.log('Clip ready:',name);
     return {video:out,poster};
@@ -171,15 +192,21 @@ async function prepareHero(){
     ].join(';');
 
     if(!(await exists(out))){
+      const temp=tempOutput(out);
+      await fsp.rm(temp,{force:true}).catch(()=>{});
       await execFileAsync(ffmpeg,[
         '-y','-v','error','-i',e1,'-i',e2,
         '-filter_complex',filter,'-map','[v]',
         '-an','-c:v','libx264','-profile:v','high','-level','4.1','-preset','medium','-crf','22',
-        '-movflags','+faststart',out
+        '-movflags','+faststart',temp
       ],{maxBuffer:1024*1024*12});
+      await fsp.rename(temp,out);
     }
     if(!(await exists(poster))){
-      await execFileAsync(ffmpeg,['-y','-v','error','-ss','0.35','-i',out,'-frames:v','1','-q:v','2',poster],{maxBuffer:1024*1024*4});
+      const temp=tempOutput(poster);
+      await fsp.rm(temp,{force:true}).catch(()=>{});
+      await execFileAsync(ffmpeg,['-y','-v','error','-ss','0.35','-i',out,'-frames:v','1','-q:v','2',temp],{maxBuffer:1024*1024*4});
+      await fsp.rename(temp,poster);
     }
     console.log('Hero loop ready');
     return {video:out,poster};
@@ -195,7 +222,7 @@ async function serveFileVideo(req,res,file){
   const common={
     'Content-Type':'video/mp4',
     'Accept-Ranges':'bytes',
-    'Cache-Control':'public, max-age=86400, stale-while-revalidate=604800',
+    'Cache-Control':'public, max-age=31536000, immutable',
     'ETag':etag
   };
   if(!range&&req.headers['if-none-match']===etag){
@@ -238,45 +265,79 @@ async function serveVideo(req,res,id){
 async function servePoster(req,res,id){
   const {poster}=await prepareMedia(id);
   const st=await fsp.stat(poster);
-  res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});
+  const etag='W/"'+st.size.toString(16)+'-'+Math.floor(st.mtimeMs).toString(16)+'"';
+  if(req.headers['if-none-match']===etag){
+    res.writeHead(304,{'ETag':etag,'Cache-Control':'public, max-age=31536000, immutable'});
+    res.end();
+    return;
+  }
+  res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable','ETag':etag});
   if(req.method==='HEAD'){res.end();return;}
   fs.createReadStream(poster).pipe(res);
 }
 
-function serveStatic(req,res,pathname){
+async function serveStatic(req,res,pathname){
   let rel=pathname==='/'?'index.html':pathname.replace(/^\/+/, '');
-  rel=decodeURIComponent(rel);
+  try{rel=decodeURIComponent(rel)}catch{res.writeHead(400);res.end('Bad request');return;}
   const file=path.resolve(root,rel);
-  if(!file.startsWith(root)){res.writeHead(403);res.end();return;}
-  fs.stat(file,(err,st)=>{
-    if(err||!st.isFile()){res.writeHead(404);res.end('Not found');return;}
-    const isHtml=path.basename(file)==='index.html';
-    const etag='W/"'+st.size.toString(16)+'-'+Math.floor(st.mtimeMs).toString(16)+'"';
-    const headers={
-      'Content-Type':types[path.extname(file).toLowerCase()]||'application/octet-stream',
-      'Cache-Control':isHtml?'no-cache':'public, max-age=3600, stale-while-revalidate=86400',
-      'ETag':etag,
-      'Last-Modified':st.mtime.toUTCString()
-    };
-    if(req.headers['if-none-match']===etag){
-      res.writeHead(304,headers);res.end();return;
-    }
-    res.writeHead(200,headers);
-    if(req.method==='HEAD'){res.end();return;}
-    fs.createReadStream(file).pipe(res);
-  });
+  if(file!==path.join(root,'index.html')&&!file.startsWith(root+path.sep)){res.writeHead(403);res.end('Forbidden');return;}
+  let st;
+  try{st=await fsp.stat(file)}catch{res.writeHead(404,{'Cache-Control':'no-store'});res.end('Not found');return;}
+  if(!st.isFile()){res.writeHead(404,{'Cache-Control':'no-store'});res.end('Not found');return;}
+
+  const isHtml=path.basename(file)==='index.html';
+  const ext=path.extname(file).toLowerCase();
+  const versioned=String(req.url||'').includes('?v=');
+  const etag='W/"'+st.size.toString(16)+'-'+Math.floor(st.mtimeMs).toString(16)+'"';
+  const headers={
+    'Content-Type':types[ext]||'application/octet-stream',
+    'Cache-Control':isHtml?'no-cache':versioned?'public, max-age=31536000, immutable':'public, max-age=3600, stale-while-revalidate=86400',
+    'ETag':etag,
+    'Last-Modified':st.mtime.toUTCString()
+  };
+  if(req.headers['if-none-match']===etag){
+    res.writeHead(304,headers);res.end();return;
+  }
+
+  const compressible=new Set(['.html','.css','.js','.json','.svg','.xml','.txt','.webmanifest']);
+  const accepted=String(req.headers['accept-encoding']||'');
+  let encoding='';
+  if(st.size>1024&&compressible.has(ext)&&accepted.includes('br')) encoding='br';
+  else if(st.size>1024&&compressible.has(ext)&&accepted.includes('gzip')) encoding='gzip';
+
+  if(encoding){
+    headers['Content-Encoding']=encoding;
+    headers['Vary']='Accept-Encoding';
+  }else{
+    headers['Content-Length']=st.size;
+  }
+
+  res.writeHead(200,headers);
+  if(req.method==='HEAD'){res.end();return;}
+  const stream=fs.createReadStream(file);
+  if(encoding==='br') stream.pipe(zlib.createBrotliCompress({params:{[zlib.constants.BROTLI_PARAM_QUALITY]:5}})).pipe(res);
+  else if(encoding==='gzip') stream.pipe(zlib.createGzip({level:6})).pipe(res);
+  else stream.pipe(res);
 }
 
 const securityHeaders={
   'X-Content-Type-Options':'nosniff',
   'X-Frame-Options':'DENY',
   'Referrer-Policy':'strict-origin-when-cross-origin',
-  'Permissions-Policy':'camera=(), microphone=(), geolocation=()'
+  'Permissions-Policy':'camera=(), microphone=(), geolocation=()',
+  'Cross-Origin-Opener-Policy':'same-origin',
+  'Strict-Transport-Security':'max-age=31536000',
+  'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 };
 
 http.createServer(async(req,res)=>{
   for(const [name,value] of Object.entries(securityHeaders)) res.setHeader(name,value);
   try{
+    if(req.method!=='GET'&&req.method!=='HEAD'){
+      res.writeHead(405,{'Allow':'GET, HEAD','Cache-Control':'no-store'});
+      res.end('Method not allowed');
+      return;
+    }
     const u=new URL(req.url,'http://localhost');
     if(u.pathname==='/health'){
       const body=JSON.stringify({ok:true,service:'vecta'});
@@ -292,10 +353,10 @@ http.createServer(async(req,res)=>{
     if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
     if(u.pathname==='/cover/event-1'){const file=path.join(root,'assets','event1-cover-final.webp');const st=await fsp.stat(file);res.writeHead(200,{'Content-Type':'image/webp','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(file).pipe(res);return;}
     if(u.pathname==='/hero-loop'){const {video}=await prepareHero();await serveFileVideo(req,res,video);return;}
-    if(u.pathname==='/hero-poster'){const {poster}=await prepareHero();const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
+    if(u.pathname==='/hero-poster'){const {poster}=await prepareHero();const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
     m=u.pathname.match(/^\/clip-poster\/(work-top|work-bottom)$/);
-    if(m){const {poster}=await prepareClip(m[1]);const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=86400'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
-    serveStatic(req,res,u.pathname);
+    if(m){const {poster}=await prepareClip(m[1]);const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
+    await serveStatic(req,res,u.pathname);
   }catch(err){
     console.error(err);
     if(!res.headersSent) res.writeHead(500,{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store'});

@@ -1,0 +1,17 @@
+{
+  "name": "VECTA Event Production",
+  "short_name": "VECTA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#080808",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/favicon.svg?v=1",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
