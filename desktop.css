@@ -3,11 +3,28 @@
   :root{--pad:clamp(56px,4.2vw,80px)}
   .section-pad{padding-top:112px;padding-bottom:112px}
 
+  /* Approach: one useful production statement, then four factual outputs. */
+  .statement{align-items:start}
+  .statement>div{min-width:0}
+  .statement h2{max-width:1260px}
+  .statement-bottom{margin-top:38px;align-items:end}
+  .statement-bottom>p:first-child{max-width:650px;font-size:16px;line-height:1.7}
+  .approach-strip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:64px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .approach-strip>div{min-height:118px;padding:18px 18px 20px 0;border-right:1px solid var(--line)}
+  .approach-strip>div+div{padding-left:18px}
+  .approach-strip>div:last-child{border-right:0}
+  .approach-strip small{display:block;font-size:9px;font-weight:650;letter-spacing:.055em;color:var(--muted);margin-bottom:26px}
+  .approach-strip p{margin:0;max-width:220px;font-size:13px;line-height:1.45}
+
   /* Selected work: unified mixed-media wall, same 20px rhythm as PHOTO. */
   .work{padding-bottom:120px}
   .work-wall{width:100%;height:clamp(760px,49vw,940px);display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:1.05fr 1.7fr 1.7fr 1.15fr;gap:20px;background:var(--bg);overflow:hidden}
   .work-cell{width:100%;height:100%;min-width:0;min-height:0;margin:0;aspect-ratio:auto;isolation:isolate;transition:filter .35s ease,opacity .35s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
   .work-cell img,.work-cell video,.hero-media img,.hero-media video,.photo-editorial img,.photo-editorial video,.video-main img,.video-main video,.thumb img,.thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+  .work-cell video{filter:brightness(.92);transition:filter .35s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .work-cell:hover video{filter:brightness(1.04);transform:scale(1.012)}
+  .work-ultra video{object-position:50% 48%}
+  .work-cinema video{object-position:50% 44%}
   .work-wall:has(.work-cell:hover) .work-cell:not(:hover){filter:brightness(.58);opacity:.82}
   .work-cell:hover{transform:scale(.997);z-index:2}
   .work-cell>span{left:14px;top:12px;opacity:.45;transition:opacity .25s ease}
@@ -35,7 +52,11 @@
   .video-main{width:75%;max-height:650px;box-shadow:none}\n  .video-main:after{pointer-events:none}\n  .video-main button{z-index:4}\n  .video-main-label{z-index:4}
   .video-main button{opacity:.68;transition:opacity .25s ease,transform .25s ease,background .25s ease}
   .video-main:hover button{opacity:1}
-  .video-rail{width:37.5%;margin:-54px 0 0 auto;grid-template-columns:repeat(2,1fr)}
+  .video-rail{width:42%;margin:-48px 0 0 auto;grid-template-columns:repeat(2,1fr);gap:14px}
+  .video-card small{font-size:9px;letter-spacing:.035em;color:var(--muted)}
+  .video-card.active small{color:var(--fg)}
+  .video-main-label{left:18px!important;top:15px!important;color:#d0cec7!important;opacity:.75}
+  .video-main:before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.04) 62%,rgba(0,0,0,.34))}
   .video-card{transition:opacity .25s ease,transform .3s ease}\n  .thumb b{position:absolute;right:10px;bottom:7px;z-index:4;font-size:28px;line-height:1;color:#f2f0e9;opacity:.72}
   .video-card:hover{transform:translateY(-2px)}
 
