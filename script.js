@@ -13,8 +13,10 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
   document.querySelectorAll('.video-card').forEach(x=>x.classList.remove('active'));
   card.classList.add('active');
   videoMain.classList.add('switching');
-  window.setTimeout(()=>{
-    videoLabel.textContent=card.dataset.label;
-    videoMain.classList.remove('switching');
-  },180);
+  window.setTimeout(()=>{videoLabel.textContent=card.dataset.label;videoMain.classList.remove('switching')},180);
 }));
+
+/* Future event clips stay silent, looped and only run near the viewport. */
+const prepareVideo=video=>{video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('muted','');video.setAttribute('playsinline','')};
+const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{const video=entry.target;if(entry.isIntersecting){const p=video.play();if(p&&typeof p.catch==='function')p.catch(()=>{})}else{video.pause()}}),{rootMargin:'180px 0px',threshold:.05});
+document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video').forEach(video=>{prepareVideo(video);mediaObserver.observe(video)});
