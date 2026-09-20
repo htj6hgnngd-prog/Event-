@@ -87,12 +87,47 @@ if(featuredVideo){
 setPlayState();
 
 
-/* Selected work opens as a focused fullscreen film on desktop. */
+/* Selected Work opens as a complete fullscreen case study on desktop. */
 const projectViewer=document.querySelector('#project-viewer');
 const projectViewerVideo=document.querySelector('#project-viewer-video');
-const projectViewerTitle=document.querySelector('#project-viewer-title');
 const projectViewerClose=document.querySelector('.project-viewer-close');
 const mediaCursor=document.querySelector('.media-cursor');
+const caseNumber=document.querySelector('#case-number');
+const caseFormat=document.querySelector('#case-format');
+const caseTitle=document.querySelector('#case-title');
+const caseSummary=document.querySelector('#case-summary');
+const caseFocus=document.querySelector('#case-focus');
+const caseLoop=document.querySelector('#case-loop');
+const casePoster=document.querySelector('#case-poster');
+const caseNoteText=document.querySelector('#case-note-text');
+const caseContact=document.querySelector('.case-contact');
+
+const caseData={
+  '01':{
+    title:'LIVE EVENT / 01',
+    format:'LIVE EVENT / VIDEO PRODUCTION',
+    summary:'Динамичный live-event с акцентом на сцену, публику и энергию момента. Визуальный ритм строится на чередовании общего масштаба, реакций людей и сильных сценических эпизодов.',
+    focus:'PEOPLE / STAGE / ENERGY',
+    film:'/media/event-1',
+    poster:'/cover/event-1?v=final2',
+    loop:'/clip/work-top',
+    loopPoster:'/clip-poster/work-top',
+    note:'Сначала читаем пространство и свет, затем собираем действия, реакции и детали в единый визуальный ритм. Камера работает внутри события и не ломает его естественный ход.'
+  },
+  '02':{
+    title:'LIVE EVENT / 02',
+    format:'LIVE EVENT / VIDEO PRODUCTION',
+    summary:'Событие показано через людей, сценический свет и атмосферу площадки. Монтаж держит ощущение присутствия и соединяет масштаб, движение и короткие эмоциональные детали.',
+    focus:'ATMOSPHERE / PEOPLE / MOTION',
+    film:'/media/event-2',
+    poster:'/poster/event-2?v=cover2',
+    loop:'/clip/work-bottom',
+    loopPoster:'/clip-poster/work-bottom',
+    note:'Ключевой принцип: не просто зафиксировать программу, а передать ощущение присутствия. Для этого чередуем масштаб, людей, сцену и короткие детали, сохраняя естественный темп события.'
+  }
+};
+
+let lastCaseTrigger=null;
 
 const closeProjectViewer=()=>{
   if(!projectViewer)return;
@@ -106,21 +141,56 @@ const closeProjectViewer=()=>{
     projectViewerVideo.removeAttribute('poster');
     projectViewerVideo.load();
   }
+  if(caseLoop){
+    caseLoop.pause();
+    caseLoop.removeAttribute('src');
+    caseLoop.removeAttribute('poster');
+    caseLoop.load();
+  }
+  if(casePoster)casePoster.removeAttribute('src');
+  if(lastCaseTrigger)lastCaseTrigger.focus({preventScroll:true});
 };
+
 const openProjectViewer=card=>{
   if(!projectViewer||!projectViewerVideo||window.innerWidth<1101)return;
-  projectViewerVideo.src=card.dataset.projectSrc||'';
-  projectViewerVideo.poster=card.dataset.projectPoster||'';
-  if(projectViewerTitle)projectViewerTitle.textContent=card.dataset.projectTitle||'LIVE EVENT';
+  const data=caseData[card.dataset.case];
+  if(!data)return;
+  lastCaseTrigger=card;
+  if(caseNumber)caseNumber.textContent=card.dataset.case;
+  if(caseFormat)caseFormat.textContent=data.format;
+  if(caseTitle)caseTitle.textContent=data.title;
+  if(caseSummary)caseSummary.textContent=data.summary;
+  if(caseFocus)caseFocus.textContent=data.focus;
+  if(caseNoteText)caseNoteText.textContent=data.note;
+
+  projectViewerVideo.src=data.film;
+  projectViewerVideo.poster=data.poster;
+  if(caseLoop){
+    caseLoop.src=data.loop;
+    caseLoop.poster=data.loopPoster;
+    caseLoop.muted=true;
+    caseLoop.loop=true;
+    caseLoop.playsInline=true;
+    caseLoop.load();
+  }
+  if(casePoster)casePoster.src=data.poster;
+
+  projectViewer.scrollTop=0;
   projectViewer.classList.add('open');
   projectViewer.setAttribute('aria-hidden','false');
   document.body.classList.add('viewer-open');
   if(mediaCursor)mediaCursor.classList.remove('visible');
   projectViewerVideo.load();
   projectViewerVideo.muted=false;
-  const p=projectViewerVideo.play();
-  if(p&&typeof p.catch==='function')p.catch(()=>{});
+  const fullPlay=projectViewerVideo.play();
+  if(fullPlay&&typeof fullPlay.catch==='function')fullPlay.catch(()=>{});
+  if(caseLoop){
+    const loopPlay=caseLoop.play();
+    if(loopPlay&&typeof loopPlay.catch==='function')loopPlay.catch(()=>{});
+  }
+  window.setTimeout(()=>projectViewerClose?.focus({preventScroll:true}),80);
 };
+
 document.querySelectorAll('.project-open').forEach(card=>{
   card.addEventListener('click',()=>openProjectViewer(card));
   card.addEventListener('keydown',event=>{
@@ -138,10 +208,13 @@ document.querySelectorAll('.project-open').forEach(card=>{
     });
   }
 });
+
 if(projectViewerClose)projectViewerClose.addEventListener('click',closeProjectViewer);
-if(projectViewer)projectViewer.addEventListener('click',event=>{
-  const clickedVideo=projectViewerVideo&&projectViewerVideo.contains(event.target);
-  const clickedClose=projectViewerClose&&projectViewerClose.contains(event.target);
-  if(!clickedVideo&&!clickedClose)closeProjectViewer();
+if(caseContact)caseContact.addEventListener('click',event=>{
+  event.preventDefault();
+  closeProjectViewer();
+  window.setTimeout(()=>document.querySelector('#contact')?.scrollIntoView({behavior:'smooth'}),80);
 });
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&projectViewer?.classList.contains('open'))closeProjectViewer()});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&projectViewer?.classList.contains('open'))closeProjectViewer();
+});
