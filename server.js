@@ -90,4 +90,10 @@ http.createServer(async(req,res)=>{
     if(!res.headersSent) res.writeHead(500,{'Content-Type':'text/plain; charset=utf-8'});
     res.end('Server error');
   }
-}).listen(port,'0.0.0.0',()=>console.log('Event site listening on',port));
+}).listen(port,'0.0.0.0',()=>{
+  console.log('Event site listening on',port);
+  Promise.all(Object.keys(sources).map(async id=>{
+    try{await resolveYandex(id,true);console.log('Video source ready:',id)}
+    catch(err){console.error('Video source failed:',id,err.message)}
+  }));
+});
