@@ -4,7 +4,7 @@ const navLinks=[...document.querySelectorAll('[data-nav-target]')];
 const navProgress=document.querySelector('.nav-progress span');
 const navSections=navLinks.map(link=>document.getElementById(link.dataset.navTarget)).filter(Boolean);
 const syncNav=()=>{const y=window.scrollY;nav.classList.toggle('nav-solid',y>24);nav.style.transform=y>lastY&&y>170?'translateY(-100%)':'translateY(0)';lastY=y;const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);if(navProgress)navProgress.style.width=Math.min(100,Math.max(0,(y/max)*100))+'%';};
-const navSectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)navLinks.forEach(link=>link.classList.toggle('active',link.dataset.navTarget===entry.target.id))}),{rootMargin:'-34% 0px -54% 0px',threshold:0});
+const navSectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)navLinks.forEach(link=>link.classList.toggle('active',link.dataset.navTarget===entry.target.id))}),{rootMargin:'-34% 0px -54% 0px',threshold:0});navSections.forEach(section=>navSectionObserver.observe(section));
 window.addEventListener('scroll',syncNav,{passive:true});syncNav();
 
 const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -71,6 +71,8 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
 /* Motion previews only run near the viewport. */
 const prepareVideo=video=>{video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('muted','');video.setAttribute('playsinline','')};
 const saveData=Boolean(navigator.connection?.saveData);
+const markMediaFailure=video=>{video.dataset.mediaState='error';video.closest('.media,.frame-builder-media,.case-output-panel')?.classList.add('media-error')};
+document.querySelectorAll('video').forEach(video=>{video.addEventListener('error',()=>markMediaFailure(video));video.addEventListener('canplay',()=>{video.dataset.mediaState='ready';video.closest('.media-error')?.classList.remove('media-error')})});
 const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   const video=entry.target;
   if(entry.isIntersecting&&!reduceMotion.matches&&!saveData){
@@ -310,6 +312,9 @@ const briefCopy=document.querySelector('.brief-copy');
 const briefServices=document.querySelector('.brief-services');
 const briefRecipient='79858954264@ya.ru';
 const briefDefaultStatus='Данные не сохраняются на сайте. Письмо откроется в вашем почтовом приложении.';
+const BRIEF_DRAFT_KEY='vecta-brief-draft-v1';
+const saveBriefDraft=()=>{try{const brief=collectBrief();if(brief)window.localStorage.setItem(BRIEF_DRAFT_KEY,JSON.stringify(brief))}catch(_){}};
+const restoreBriefDraft=()=>{try{const saved=JSON.parse(window.localStorage.getItem(BRIEF_DRAFT_KEY)||'null');if(!saved||!briefForm)return;['date','venue','format','contact'].forEach(key=>{const input=briefForm.elements.namedItem(key);if(input&&typeof saved[key]==='string')input.value=saved[key]});if(Array.isArray(saved.services))briefForm.querySelectorAll('input[name="services"]').forEach(input=>input.checked=saved.services.includes(input.value));if(briefFrame&&typeof saved.frame==='string')briefFrame.value=saved.frame;if(briefContext&&typeof saved.context==='string')briefContext.value=saved.context}catch(_){}};
 
 const setBriefStatus=(message,state='')=>{
   if(!briefStatus)return;
@@ -367,11 +372,12 @@ const formatBriefText=brief=>{
 };
 
 if(briefForm){
-  briefForm.addEventListener('input',()=>{
+  restoreBriefDraft();
+  briefForm.addEventListener('input',()=>{saveBriefDraft();
     briefForm.classList.remove('is-invalid');
     if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent=briefDefaultStatus;
   });
-  briefForm.addEventListener('change',()=>{
+  briefForm.addEventListener('change',()=>{saveBriefDraft();
     briefForm.classList.remove('is-invalid');
     if(briefServices)briefServices.removeAttribute('aria-invalid');
     if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent=briefDefaultStatus;
@@ -497,8 +503,9 @@ agencyConfigButtons.forEach((button,index)=>button.addEventListener('keydown',ev
 }));
 
 
-const openAgencyMode=()=>{
+const openAgencyMode=(fromHistory=false)=>{
   if(!agencyMode)return;
+  if(!fromHistory&&window.innerWidth>=1101&&window.history?.pushState)window.history.pushState({vectaAgency:true},'','#agency');
   if(window.innerWidth<1101){
     if(briefContext)briefContext.value='AGENCY / PARTNER';
     if(briefStatus){
@@ -525,8 +532,9 @@ const openAgencyMode=()=>{
   });
 };
 
-const closeAgencyMode=(restoreFocus=true)=>{
+const closeAgencyMode=(restoreFocus=true,updateRoute=true)=>{
   if(!agencyMode||agencyMode.hidden)return;
+  if(updateRoute&&window.location.hash==='#agency'&&window.history?.replaceState)window.history.replaceState(null,'','#top');
   agencyMode.classList.remove('open');
   agencyMode.setAttribute('aria-hidden','true');
   document.body.classList.remove('agency-mode-open');
@@ -596,6 +604,9 @@ const frameBuilderLetter=document.querySelector('#frame-builder-letter');
 const frameBuilderProgress=document.querySelector('#frame-builder-progress');
 const frameBuilderBack=document.querySelector('.frame-builder-back');
 const frameBuilderNext=document.querySelector('.frame-builder-next');
+const frameShare=document.querySelector('.frame-share');
+const frameReset=document.querySelector('.frame-reset');
+const frameResultActions=document.querySelector('.frame-builder-result-actions');
 const frameMapState=document.querySelector('#frame-map-state');
 const frameBuilderVideo=document.querySelector('.frame-builder-media video');
 const frameBuilderContextLabel=document.querySelector('#frame-builder-context');
@@ -616,7 +627,9 @@ const frameConfig=[
 
 const frameState={focus:[],run:[],architecture:[],media:[],export:[]};
 const FRAME_STORAGE_KEY='vecta-frame-v1';
-const loadFrameState=()=>{try{const saved=JSON.parse(window.localStorage.getItem(FRAME_STORAGE_KEY)||'null');if(!saved)return;Object.keys(frameState).forEach(key=>{if(Array.isArray(saved[key]))frameState[key]=saved[key].filter(value=>typeof value==='string')})}catch(_){}};
+const loadFrameState=()=>{try{const match=window.location.hash.match(/^#frame-map=([^&]+)$/);const shared=match?JSON.parse(decodeURIComponent(match[1])):null;const saved=JSON.parse(window.localStorage.getItem(FRAME_STORAGE_KEY)||'null');const source=shared||saved;if(!source)return;Object.keys(frameState).forEach(key=>{if(Array.isArray(source[key]))frameState[key]=source[key].filter(value=>typeof value==='string').slice(0,8)})}catch(_){}};
+const encodeFrameMap=()=>encodeURIComponent(JSON.stringify(frameState));
+const frameShareUrl=()=>window.location.origin+window.location.pathname+'#frame-map='+encodeFrameMap();
 const saveFrameState=()=>{try{window.localStorage.setItem(FRAME_STORAGE_KEY,JSON.stringify(frameState))}catch(_){}};
 loadFrameState();
 const frameValueText=key=>frameState[key].length?frameState[key].join(' / '):'Не выбрано';
@@ -649,6 +662,7 @@ const renderFrameResult=()=>{
   frameBuilderProgress.textContent='READY';
   frameBuilderBack.disabled=false;
   frameBuilderNext.innerHTML='ПЕРЕДАТЬ В БРИФ <span>↗</span>';
+  if(frameResultActions)frameResultActions.hidden=false;
   frameBuilderSteps.forEach(button=>button.classList.remove('active'));
 };
 
@@ -665,6 +679,7 @@ const renderFrameStep=()=>{
   frameBuilderProgress.textContent=String(frameBuilderStep+1).padStart(2,'0')+' / 05';
   frameBuilderBack.disabled=frameBuilderStep===0;
   frameBuilderNext.innerHTML=(frameBuilderStep===4?'BUILD MAP':'NEXT')+' <span>→</span>';
+  if(frameResultActions)frameResultActions.hidden=true;
   syncFrameMap();
   saveFrameState();
 };
@@ -715,6 +730,8 @@ const closeFrameBuilder=(restoreFocus=true)=>{
 
 frameBuilderTriggers.forEach(trigger=>trigger.addEventListener('click',()=>openFrameBuilder(trigger)));
 frameBuilderClose?.addEventListener('click',()=>closeFrameBuilder(true));
+frameShare?.addEventListener('click',async()=>{const url=frameShareUrl();try{await navigator.clipboard.writeText(url);if(frameBuilderCopy)frameBuilderCopy.textContent='Ссылка на эту карту скопирована. Её можно открыть на любом устройстве.';frameShare.textContent='LINK COPIED';window.setTimeout(()=>frameShare.textContent='COPY SHARE LINK',1400)}catch(_){if(frameBuilderCopy)frameBuilderCopy.textContent=url;frameShare.textContent='SELECT LINK'}});
+frameReset?.addEventListener('click',()=>{Object.keys(frameState).forEach(key=>frameState[key]=[]);saveFrameState();frameBuilderStep=0;renderFrameStep()});
 frameBuilderSteps.forEach((button,index)=>button.addEventListener('click',()=>{
   const firstIncomplete=frameConfig.findIndex(cfg=>!frameState[cfg.key].length);
   const maxReachable=firstIncomplete<0?4:firstIncomplete;
