@@ -1331,7 +1331,7 @@
 
   .statement h2{
     max-width:1280px;
-    font-size:clamp(56px,5.9vw,112px);
+    font-size:clamp(54px,5vw,96px);
     line-height:.9;
   }
   .statement-bottom>p:first-child{
