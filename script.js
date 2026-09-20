@@ -70,9 +70,10 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
 
 /* Motion previews only run near the viewport. */
 const prepareVideo=video=>{video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('muted','');video.setAttribute('playsinline','')};
+const saveData=Boolean(navigator.connection?.saveData);
 const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   const video=entry.target;
-  if(entry.isIntersecting&&!reduceMotion.matches){
+  if(entry.isIntersecting&&!reduceMotion.matches&&!saveData){
     const p=video.play();
     if(p&&typeof p.catch==='function')p.catch(()=>{});
   }else{
@@ -80,6 +81,17 @@ const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   }
 }),{rootMargin:'180px 0px',threshold:.05});
 document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video,.video-card video,.signature video').forEach(video=>{prepareVideo(video);mediaObserver.observe(video)});
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){
+    document.querySelectorAll('video').forEach(video=>video.pause());
+  }else if(!reduceMotion.matches&&!saveData){
+    document.querySelectorAll('.hero-media video,.work-cell video,.photo-editorial video,.signature video').forEach(video=>{
+      if(video.closest('.project-viewer')||video.closest('.frame-builder'))return;
+      const rect=video.getBoundingClientRect();
+      if(rect.bottom>0&&rect.top<window.innerHeight){const p=video.play();if(p&&typeof p.catch==='function')p.catch(()=>{});}
+    });
+  }
+});
 
 /* Full film stops when the video section leaves the viewport. */
 if(featuredVideo){
@@ -182,10 +194,10 @@ caseOutputTabs.forEach((button,index)=>button.addEventListener('keydown',event=>
   target.focus();
 }));
 
-const closeProjectViewer=()=>{
+const closeProjectViewer=(restoreHistory=true)=>{
   if(!projectViewer)return;
   projectViewer.classList.remove('open');
-  if(window.location.hash.startsWith('#case-')&&window.history&&window.history.replaceState)window.history.replaceState(null,'','#work');
+  if(restoreHistory&&window.location.hash.startsWith('#case-')&&window.history&&window.history.replaceState)window.history.replaceState(null,'','#work');
   projectViewer.setAttribute('aria-hidden','true');
   document.body.classList.remove('viewer-open');
   if(mediaCursor)mediaCursor.classList.remove('visible');
@@ -205,7 +217,7 @@ const closeProjectViewer=()=>{
   if(lastCaseTrigger)lastCaseTrigger.focus({preventScroll:true});
 };
 
-const openProjectViewer=card=>{
+const openProjectViewer=(card,{fromHistory=false}={})=>{
   if(!projectViewer||!projectViewerVideo||window.innerWidth<1101)return;
   const data=caseData[card.dataset.case];
   if(!data)return;
@@ -238,7 +250,7 @@ const openProjectViewer=card=>{
   setCaseOutput('film');
   projectViewer.classList.add('open');
   const caseId=card?.dataset?.case||'01';
-  if(window.history&&window.history.replaceState)window.history.replaceState(null,'','#case-'+caseId);
+  if(window.history&&!fromHistory)window.history.pushState({vectaCase:caseId},'','#case-'+caseId);
   projectViewer.setAttribute('aria-hidden','false');
   document.body.classList.add('viewer-open');
   if(mediaCursor)mediaCursor.classList.remove('visible');
@@ -266,6 +278,11 @@ document.querySelectorAll('.project-open').forEach(card=>{
 });
 
 if(projectViewerClose)projectViewerClose.addEventListener('click',closeProjectViewer);
+window.addEventListener('popstate',()=>{
+  const match=window.location.hash.match(/^#case-(01|02)$/);
+  if(match){const card=document.querySelector('.project-open[data-case="'+match[1]+'"]');if(card)openProjectViewer(card,{fromHistory:true});}
+  else if(projectViewer?.classList.contains('open'))closeProjectViewer(false);
+});
 if(caseContact)caseContact.addEventListener('click',event=>{
   event.preventDefault();
   closeProjectViewer();
@@ -444,10 +461,16 @@ const agencyConfigs={
   }
 };
 
+try{
+  const savedAgency=window.localStorage.getItem('vecta-agency-route-v1');
+  if(savedAgency&&agencyConfigs[savedAgency])agencySelectedConfig=agencyConfigs[savedAgency].kicker.replace(/^\d+\s*\/\s*/,'');
+}catch(_){}
+
 const setAgencyConfig=key=>{
   const cfg=agencyConfigs[key];
   if(!cfg)return;
   agencySelectedConfig=cfg.kicker.replace(/^\d+\s*\/\s*/,'');
+  try{window.localStorage.setItem('vecta-agency-route-v1',key)}catch(_){};
   agencyConfigButtons.forEach(button=>{
     const active=button.dataset.agencyConfig===key;
     button.classList.toggle('active',active);
@@ -670,6 +693,8 @@ const openFrameBuilder=trigger=>{
   if(frameBuilderContextLabel)frameBuilderContextLabel.textContent=currentFrameContext;
   if(frameBuilderCloseTimer){window.clearTimeout(frameBuilderCloseTimer);frameBuilderCloseTimer=null}
   frameBuilderLastFocus=trigger||document.activeElement;
+  const firstIncomplete=frameConfig.findIndex(cfg=>!frameState[cfg.key].length);
+  frameBuilderStep=firstIncomplete<0?5:firstIncomplete;
   frameBuilder.hidden=false;
   frameBuilder.scrollTop=0;
   frameBuilder.setAttribute('aria-hidden','false');
@@ -758,6 +783,6 @@ document.addEventListener('keydown',event=>{
 
 
 /* Case deep links: open a selected case directly without changing page content. */
-const openCaseFromHash=()=>{const match=window.location.hash.match(/^#case-(01|02)$/);if(!match)return;const card=document.querySelector('.project-open[data-case="'+match[1]+'"]');if(card)window.setTimeout(()=>openProjectViewer(card),120)};
+const openCaseFromHash=()=>{const match=window.location.hash.match(/^#case-(01|02)$/);if(!match)return;const card=document.querySelector('.project-open[data-case="'+match[1]+'"]');if(card)window.setTimeout(()=>openProjectViewer(card,{fromHistory:true}),120)};
 window.addEventListener('hashchange',openCaseFromHash);
 openCaseFromHash();
