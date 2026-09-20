@@ -1,6 +1,10 @@
 const nav=document.querySelector('.nav');
 let lastY=0;
-const syncNav=()=>{const y=window.scrollY;nav.classList.toggle('nav-solid',y>24);nav.style.transform=y>lastY&&y>170?'translateY(-100%)':'translateY(0)';lastY=y};
+const navLinks=[...document.querySelectorAll('[data-nav-target]')];
+const navProgress=document.querySelector('.nav-progress span');
+const navSections=navLinks.map(link=>document.getElementById(link.dataset.navTarget)).filter(Boolean);
+const syncNav=()=>{const y=window.scrollY;nav.classList.toggle('nav-solid',y>24);nav.style.transform=y>lastY&&y>170?'translateY(-100%)':'translateY(0)';lastY=y;const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);if(navProgress)navProgress.style.width=Math.min(100,Math.max(0,(y/max)*100))+'%';};
+const navSectionObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)navLinks.forEach(link=>link.classList.toggle('active',link.dataset.navTarget===entry.target.id))}),{rootMargin:'-34% 0px -54% 0px',threshold:0});
 window.addEventListener('scroll',syncNav,{passive:true});syncNav();
 
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -30px'});
