@@ -784,5 +784,4 @@ document.addEventListener('keydown',event=>{
 
 /* Case deep links: open a selected case directly without changing page content. */
 const openCaseFromHash=()=>{const match=window.location.hash.match(/^#case-(01|02)$/);if(!match)return;const card=document.querySelector('.project-open[data-case="'+match[1]+'"]');if(card)window.setTimeout(()=>openProjectViewer(card,{fromHistory:true}),120)};
-window.addEventListener('hashchange',openCaseFromHash);
 openCaseFromHash();

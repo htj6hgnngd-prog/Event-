@@ -2087,3 +2087,22 @@
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
 }
+
+/* Pass 06 / Interaction state + shareable FRAME */
+@media (min-width:1101px){
+  .frame-builder-top{position:relative;padding-right:110px}
+  .frame-builder-share{
+    position:absolute;right:0;top:0;min-width:88px;min-height:28px;padding:0;
+    border:0;border-bottom:1px solid var(--line);background:transparent;color:#77746d;
+    font-family:var(--font);font-size:8px;font-weight:650;letter-spacing:.055em;cursor:pointer;
+    transition:color .2s ease,border-color .2s ease;
+  }
+  .frame-builder-share:hover{color:var(--fg);border-bottom-color:var(--fg)}
+  video.media-loading{opacity:.72;transition:opacity .35s ease}
+  video.media-ready{opacity:1}
+  video.media-error{opacity:.42}
+  .project-viewer.open .case-output-stage{isolation:isolate}
+}
+@media (prefers-reduced-motion:reduce){
+  .frame-builder-share{transition:none!important}
+}
