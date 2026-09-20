@@ -587,6 +587,10 @@ const frameConfig=[
 ];
 
 const frameState={focus:[],run:[],architecture:[],media:[],export:[]};
+const FRAME_STORAGE_KEY='vecta-frame-v1';
+const loadFrameState=()=>{try{const saved=JSON.parse(window.localStorage.getItem(FRAME_STORAGE_KEY)||'null');if(!saved)return;Object.keys(frameState).forEach(key=>{if(Array.isArray(saved[key]))frameState[key]=saved[key].filter(value=>typeof value==='string')})}catch(_){}};
+const saveFrameState=()=>{try{window.localStorage.setItem(FRAME_STORAGE_KEY,JSON.stringify(frameState))}catch(_){}};
+loadFrameState();
 const frameValueText=key=>frameState[key].length?frameState[key].join(' / '):'Не выбрано';
 const frameFilledCount=()=>Object.values(frameState).filter(values=>values.length).length;
 
@@ -634,6 +638,7 @@ const renderFrameStep=()=>{
   frameBuilderBack.disabled=frameBuilderStep===0;
   frameBuilderNext.innerHTML=(frameBuilderStep===4?'BUILD MAP':'NEXT')+' <span>→</span>';
   syncFrameMap();
+  saveFrameState();
 };
 
 const chooseFrameOption=value=>{
