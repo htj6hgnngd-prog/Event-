@@ -85,7 +85,6 @@ async function prepareMedia(id){
       ],{maxBuffer:1024*1024*8});
     }
 
-    fsp.unlink(source).catch(()=>{});
     console.log('Media ready:',id);
     return {video,poster};
   })().catch(err=>{jobs.delete(id);throw err});
