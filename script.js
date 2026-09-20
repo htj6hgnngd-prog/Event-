@@ -241,7 +241,8 @@ const collectBrief=()=>{
     venue:String(data.get('venue')||'').trim(),
     format:String(data.get('format')||'').trim(),
     services,
-    contact:String(data.get('contact')||'').trim()
+    contact:String(data.get('contact')||'').trim(),
+    frame:String(data.get('frame')||'').trim()
   };
 };
 
@@ -263,15 +264,19 @@ const validateBrief=()=>{
   return brief;
 };
 
-const formatBriefText=brief=>[
-  'VECTA - НОВЫЙ ПРОЕКТ',
-  '',
-  'Дата: '+brief.date,
-  'Площадка: '+brief.venue,
-  'Формат: '+brief.format,
-  'Нужно: '+brief.services.join(', '),
-  'Контакт: '+brief.contact
-].join('\n');
+const formatBriefText=brief=>{
+  const lines=[
+    'VECTA - НОВЫЙ ПРОЕКТ',
+    '',
+    'Дата: '+brief.date,
+    'Площадка: '+brief.venue,
+    'Формат: '+brief.format,
+    'Нужно: '+brief.services.join(', '),
+    'Контакт: '+brief.contact
+  ];
+  if(brief.frame)lines.push('','VECTA FRAME',brief.frame);
+  return lines.join('\n');
+};
 
 if(briefForm){
   briefForm.addEventListener('input',()=>{
@@ -397,4 +402,170 @@ document.addEventListener('keydown',event=>{
     event.preventDefault();
     first.focus();
   }
+});
+
+
+/* VECTA 2.0 / Pass 02 / FRAME Builder */
+const frameBuilder=document.querySelector('#frame-builder');
+const frameBuilderTriggers=document.querySelectorAll('.frame-builder-trigger');
+const frameBuilderClose=document.querySelector('.frame-builder-close');
+const frameBuilderSteps=[...document.querySelectorAll('[data-frame-step]')];
+const frameBuilderOptions=document.querySelector('#frame-builder-options');
+const frameBuilderResult=document.querySelector('#frame-builder-result');
+const frameBuilderIndex=document.querySelector('#frame-builder-index');
+const frameBuilderTitle=document.querySelector('#frame-builder-title');
+const frameBuilderCopy=document.querySelector('#frame-builder-copy');
+const frameBuilderLetter=document.querySelector('#frame-builder-letter');
+const frameBuilderProgress=document.querySelector('#frame-builder-progress');
+const frameBuilderBack=document.querySelector('.frame-builder-back');
+const frameBuilderNext=document.querySelector('.frame-builder-next');
+const frameMapState=document.querySelector('#frame-map-state');
+const frameBuilderVideo=document.querySelector('.frame-builder-media video');
+const briefFrame=document.querySelector('#brief-frame');
+let frameBuilderLastFocus=null;
+let frameBuilderStep=0;
+let frameBuilderCloseTimer=null;
+
+const frameConfig=[
+  {key:'focus',letter:'F',index:'01 / FOCUS',title:'ЧТО ДОЛЖЕН СДЕЛАТЬ КОНТЕНТ?',copy:'Выберите главную бизнес-задачу. Она определит приоритеты съёмки и набор конечных материалов.',multi:false,options:['PR / СМИ','SOCIAL','HR / EMPLOYER BRAND','BRAND','INTERNAL']},
+  {key:'run',letter:'R',index:'02 / RUN',title:'КАК УСТРОЕНО СОБЫТИЕ?',copy:'Тип события задаёт ритм, критические точки программы и логику покрытия на площадке.',multi:false,options:['КОРПОРАТИВ','КОНФЕРЕНЦИЯ','ПРЕЗЕНТАЦИЯ','ПРЕМИЯ','ЧАСТНОЕ СОБЫТИЕ']},
+  {key:'architecture',letter:'A',index:'03 / ARCHITECTURE',title:'ЧТО НЕЛЬЗЯ ПОТЕРЯТЬ?',copy:'Выберите приоритеты coverage map. Можно отметить несколько зон внимания.',multi:true,options:['ЛЮДИ','СЦЕНА','СПИКЕРЫ','АТМОСФЕРА','ДЕТАЛИ']},
+  {key:'media',letter:'M',index:'04 / MEDIA',title:'КАКИЕ МАТЕРИАЛЫ ДОЛЖНЫ ОСТАТЬСЯ?',copy:'FRAME связывает съёмку с конкретными outputs, а не с абстрактным объёмом материала.',multi:true,options:['PHOTO SERIES','MASTER FILM','HIGHLIGHTS','INTERVIEWS','VERTICAL']},
+  {key:'export',letter:'E',index:'05 / EXPORT',title:'ГДЕ БУДЕТ РАБОТАТЬ РЕЗУЛЬТАТ?',copy:'Конечные площадки влияют на версии, формат кадра и приоритет постпродакшна.',multi:true,options:['PR / СМИ','СОЦСЕТИ','ВНУТРЕННИЕ КОММУНИКАЦИИ','АРХИВ','РЕКЛАМНЫЕ МАТЕРИАЛЫ']}
+];
+
+const frameState={focus:[],run:[],architecture:[],media:[],export:[]};
+const frameValueText=key=>frameState[key].length?frameState[key].join(' / '):'Не выбрано';
+const frameFilledCount=()=>Object.values(frameState).filter(values=>values.length).length;
+
+const syncFrameMap=()=>{
+  Object.keys(frameState).forEach(key=>{
+    const row=document.querySelector('[data-map-layer="'+key+'"]');
+    if(!row)return;
+    row.classList.toggle('filled',frameState[key].length>0);
+    const p=row.querySelector('p');
+    if(p)p.textContent=frameValueText(key);
+  });
+  if(frameMapState)frameMapState.textContent=frameFilledCount()+' / 5 LAYERS';
+  frameBuilderSteps.forEach((button,index)=>{
+    const cfg=frameConfig[index];
+    button.classList.toggle('complete',frameState[cfg.key].length>0);
+    button.classList.toggle('active',index===frameBuilderStep&&frameBuilderStep<5);
+  });
+};
+
+const renderFrameResult=()=>{
+  frameBuilderOptions.hidden=true;
+  frameBuilderResult.hidden=false;
+  frameBuilderResult.innerHTML=frameConfig.map(cfg=>'<div class="frame-result-row"><small>'+cfg.letter+' / '+cfg.key.toUpperCase()+'</small><strong>'+frameValueText(cfg.key)+'</strong></div>').join('');
+  frameBuilderIndex.textContent='PRODUCTION MAP / READY';
+  frameBuilderTitle.textContent='КАРТА ПРОЕКТА СОБРАНА.';
+  frameBuilderCopy.textContent='FRAME собрал исходную архитектуру проекта. Передайте её в бриф, чтобы не вводить выбранные параметры повторно.';
+  frameBuilderLetter.textContent='V';
+  frameBuilderProgress.textContent='READY';
+  frameBuilderBack.disabled=false;
+  frameBuilderNext.innerHTML='ПЕРЕДАТЬ В БРИФ <span>↗</span>';
+  frameBuilderSteps.forEach(button=>button.classList.remove('active'));
+};
+
+const renderFrameStep=()=>{
+  if(frameBuilderStep>=5){renderFrameResult();syncFrameMap();return}
+  const cfg=frameConfig[frameBuilderStep];
+  frameBuilderOptions.hidden=false;
+  frameBuilderOptions.innerHTML=cfg.options.map(option=>'<button class="frame-option'+(frameState[cfg.key].includes(option)?' active':'')+'" type="button" data-frame-value="'+option.replace(/"/g,'&quot;')+'">'+option+'</button>').join('');
+  frameBuilderResult.hidden=true;
+  frameBuilderIndex.textContent=cfg.index;
+  frameBuilderTitle.textContent=cfg.title;
+  frameBuilderCopy.textContent=cfg.copy;
+  frameBuilderLetter.textContent=cfg.letter;
+  frameBuilderProgress.textContent=String(frameBuilderStep+1).padStart(2,'0')+' / 05';
+  frameBuilderBack.disabled=frameBuilderStep===0;
+  frameBuilderNext.innerHTML=(frameBuilderStep===4?'BUILD MAP':'NEXT')+' <span>→</span>';
+  syncFrameMap();
+};
+
+const chooseFrameOption=value=>{
+  const cfg=frameConfig[frameBuilderStep];
+  if(!cfg)return;
+  const values=frameState[cfg.key];
+  if(cfg.multi){
+    const index=values.indexOf(value);
+    if(index>=0)values.splice(index,1);else values.push(value);
+  }else{
+    frameState[cfg.key]=[value];
+  }
+  renderFrameStep();
+};
+
+frameBuilderOptions?.addEventListener('click',event=>{
+  const option=event.target.closest('.frame-option');
+  if(option)chooseFrameOption(option.dataset.frameValue||'');
+});
+
+const openFrameBuilder=trigger=>{
+  if(!frameBuilder)return;
+  if(frameBuilderCloseTimer){window.clearTimeout(frameBuilderCloseTimer);frameBuilderCloseTimer=null}
+  frameBuilderLastFocus=trigger||document.activeElement;
+  frameBuilder.hidden=false;
+  frameBuilder.scrollTop=0;
+  frameBuilder.setAttribute('aria-hidden','false');
+  document.body.classList.add('frame-builder-open');
+  renderFrameStep();
+  if(frameBuilderVideo){
+    frameBuilderVideo.muted=true;frameBuilderVideo.loop=true;frameBuilderVideo.playsInline=true;frameBuilderVideo.load();
+    const play=frameBuilderVideo.play();if(play&&typeof play.catch==='function')play.catch(()=>{});
+  }
+  window.requestAnimationFrame(()=>window.requestAnimationFrame(()=>{frameBuilder.classList.add('open');frameBuilderClose?.focus({preventScroll:true})}));
+};
+
+const closeFrameBuilder=(restoreFocus=true)=>{
+  if(!frameBuilder||frameBuilder.hidden)return;
+  frameBuilder.classList.remove('open');frameBuilder.setAttribute('aria-hidden','true');document.body.classList.remove('frame-builder-open');frameBuilderVideo?.pause();
+  frameBuilderCloseTimer=window.setTimeout(()=>{frameBuilder.hidden=true;frameBuilderCloseTimer=null;if(restoreFocus&&frameBuilderLastFocus instanceof HTMLElement)frameBuilderLastFocus.focus({preventScroll:true})},300);
+};
+
+frameBuilderTriggers.forEach(trigger=>trigger.addEventListener('click',()=>openFrameBuilder(trigger)));
+frameBuilderClose?.addEventListener('click',()=>closeFrameBuilder(true));
+frameBuilderSteps.forEach((button,index)=>button.addEventListener('click',()=>{frameBuilderStep=index;renderFrameStep()}));
+frameBuilderBack?.addEventListener('click',()=>{frameBuilderStep=frameBuilderStep===5?4:Math.max(0,frameBuilderStep-1);renderFrameStep()});
+
+const frameSummary=()=>frameConfig.map(cfg=>cfg.letter+' / '+cfg.key.toUpperCase()+': '+frameValueText(cfg.key)).join('\n');
+
+const transferFrameToBrief=()=>{
+  const run=frameState.run[0]||'';
+  const media=frameState.media;
+  const formatInput=document.querySelector('#brief-format');
+  if(formatInput&&run)formatInput.value=run.charAt(0)+run.slice(1).toLowerCase();
+  if(briefFrame)briefFrame.value=frameSummary();
+  const checkboxes=[...document.querySelectorAll('input[name="services"]')];
+  checkboxes.forEach(box=>{box.checked=false});
+  const hasPhoto=media.includes('PHOTO SERIES');
+  const hasVideo=media.some(value=>['MASTER FILM','HIGHLIGHTS','INTERVIEWS'].includes(value));
+  const hasContent=media.includes('VERTICAL');
+  if(hasPhoto&&hasVideo){const combo=checkboxes.find(box=>box.value==='Фото + видео');if(combo)combo.checked=true}
+  else if(hasPhoto){const photo=checkboxes.find(box=>box.value==='Фото');if(photo)photo.checked=true}
+  else if(hasVideo){const video=checkboxes.find(box=>box.value==='Видео');if(video)video.checked=true}
+  if(hasContent){const content=checkboxes.find(box=>box.value==='Контент');if(content)content.checked=true}
+  if(briefStatus){briefStatus.textContent='VECTA FRAME перенесён в бриф. Добавьте дату, площадку и контакт.';briefStatus.classList.add('is-success')}
+  closeFrameBuilder(false);
+  window.setTimeout(()=>document.querySelector('#contact')?.scrollIntoView({behavior:'smooth',block:'start'}),320);
+};
+
+frameBuilderNext?.addEventListener('click',()=>{
+  if(frameBuilderStep===5){transferFrameToBrief();return}
+  const cfg=frameConfig[frameBuilderStep];
+  if(!frameState[cfg.key].length){frameBuilderOptions?.classList.add('needs-choice');window.setTimeout(()=>frameBuilderOptions?.classList.remove('needs-choice'),450);return}
+  frameBuilderStep+=1;renderFrameStep();
+});
+
+frameBuilder?.addEventListener('click',event=>{if(event.target===frameBuilder)closeFrameBuilder(true)});
+document.addEventListener('keydown',event=>{
+  if(!frameBuilder||frameBuilder.hidden||!frameBuilder.classList.contains('open'))return;
+  if(event.key==='Escape'){event.preventDefault();closeFrameBuilder(true);return}
+  if(event.key!=='Tab')return;
+  const focusable=[...frameBuilder.querySelectorAll('button:not([disabled]),a[href]')].filter(el=>el.offsetParent!==null);
+  if(!focusable.length)return;
+  const first=focusable[0],last=focusable[focusable.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
 });

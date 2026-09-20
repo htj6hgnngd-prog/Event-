@@ -33,3 +33,26 @@
   .frame-system .process-line>div,.frame-system .process-line>div:nth-child(2n){border-right:0}
   .frame-system .process-line strong{margin:20px 0 26px;font-size:40px}
 }
+
+.frame-builder[hidden]{display:none!important}.frame-builder-trigger,.frame-launch-button,.hero-build{font-family:var(--font)}
+
+
+/* FRAME Builder responsive behavior */
+@media(max-width:1100px){
+  .hero-actions{display:grid;gap:10px}.hero-build,.frame-launch-button{border:0;border-bottom:1px solid var(--fg);background:transparent;color:var(--fg);padding:12px 0;text-align:left}.hero-work-link{color:var(--muted);font-size:9px}
+  .frame-launch{margin-top:36px;padding-top:18px;border-top:1px solid var(--line)}.frame-launch-button{width:100%;display:flex;justify-content:space-between}
+  .frame-builder{position:fixed;inset:0;z-index:130;overflow:auto;background:#080808;color:var(--fg);opacity:0;visibility:hidden;pointer-events:none;transition:.25s}.frame-builder.open{opacity:1;visibility:visible;pointer-events:auto}
+  .frame-builder-close{position:fixed;right:24px;top:18px;z-index:5;border:0;background:none;color:var(--fg)}
+  .frame-builder-shell{min-height:100vh;padding:22px 24px 40px}.frame-builder-top{display:flex;justify-content:space-between;padding:0 80px 16px 0;border-bottom:1px solid var(--line);font-size:8px;color:var(--muted)}
+  .frame-builder-grid{display:grid;grid-template-columns:100px 1fr}.frame-builder-steps{padding:28px 14px 0 0;border-right:1px solid var(--line)}
+  .frame-builder-steps button{width:100%;min-height:58px;display:grid;grid-template-columns:26px 1fr;align-items:center;border:0;border-bottom:1px solid var(--line);background:none;color:#66635d;text-align:left}.frame-builder-steps button.active,.frame-builder-steps button.complete{color:var(--fg)}
+  .frame-builder-stage{padding:28px 0 0 24px}.frame-builder-media{position:relative;height:220px;overflow:hidden;background:#111}.frame-builder-media video{width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(.5)}.frame-builder-letter{position:absolute;left:16px;bottom:-8px;font-size:100px;font-weight:650;line-height:.7}.frame-builder-media-label{position:absolute;right:12px;top:12px;font-size:8px;color:var(--muted)}
+  .frame-builder-question{padding:28px 0}.frame-builder-index{font-size:8px;color:var(--muted)}.frame-builder-question h2{font-size:34px;line-height:.96}.frame-builder-copy{font-size:12px;color:var(--muted);line-height:1.6}
+  .frame-builder-options{display:grid;grid-template-columns:1fr 1fr;margin-top:22px;border-top:1px solid var(--line)}.frame-option{min-height:54px;border:0;border-bottom:1px solid var(--line);background:none;color:#aaa;text-align:left}.frame-option.active{color:var(--fg)}
+  .frame-builder-controls{display:flex;justify-content:space-between;padding:18px 0;border-top:1px solid var(--line)}.frame-builder-controls button{border:0;background:none;color:var(--fg)}
+  .frame-builder-map{grid-column:1/3;padding:30px 0 0;border-top:1px solid var(--line)}.frame-map-head{display:flex;justify-content:space-between;font-size:8px;color:var(--muted)}.frame-map-layers>div{padding:14px 0;border-bottom:1px solid var(--line)}.frame-map-layers small{display:block;font-size:8px;color:var(--muted)}.frame-map-layers p{margin:7px 0 0;font-size:11px}.frame-map-note{display:none}
+  .frame-result-row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.frame-result-row small{font-size:8px;color:var(--muted)}
+}
+@media(max-width:620px){
+  .frame-builder-shell{padding:18px 18px 32px}.frame-builder-top span:last-child{display:none}.frame-builder-grid{grid-template-columns:1fr}.frame-builder-steps{display:grid;grid-template-columns:repeat(5,1fr);padding:18px 0;border:0}.frame-builder-steps button{display:block;min-height:42px;border-right:1px solid var(--line);border-bottom:0;text-align:center}.frame-builder-steps button:last-child{border-right:0}.frame-builder-steps span{display:none}.frame-builder-stage{padding:0}.frame-builder-media{height:180px}.frame-builder-question h2{font-size:28px}.frame-builder-options{grid-template-columns:1fr}.frame-builder-map{grid-column:1}
+}
