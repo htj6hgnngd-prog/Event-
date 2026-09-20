@@ -99,12 +99,6 @@ const caseSummary=document.querySelector('#case-summary');
 const caseFocus=document.querySelector('#case-focus');
 const caseLoop=document.querySelector('#case-loop');
 const casePoster=document.querySelector('#case-poster');
-const caseFrames=[
-  document.querySelector('#case-frame-1'),
-  document.querySelector('#case-frame-2'),
-  document.querySelector('#case-frame-3')
-];
-const casePlay=document.querySelector('.case-play');
 const caseNoteText=document.querySelector('#case-note-text');
 const caseContact=document.querySelector('.case-contact');
 
@@ -118,7 +112,6 @@ const caseData={
     poster:'/cover/event-1?v=final2',
     loop:'/clip/work-top',
     loopPoster:'/clip-poster/work-top',
-    frames:['/case-still/event-1/1','/case-still/event-1/2','/case-still/event-1/3'],
     note:'Сначала читаем пространство и свет, затем собираем действия, реакции и детали в единый визуальный ритм. Камера работает внутри события и не ломает его естественный ход.'
   },
   '02':{
@@ -130,7 +123,6 @@ const caseData={
     poster:'/poster/event-2?v=cover2',
     loop:'/clip/work-bottom',
     loopPoster:'/clip-poster/work-bottom',
-    frames:['/case-still/event-2/1','/case-still/event-2/2','/case-still/event-2/3'],
     note:'Ключевой принцип: не просто зафиксировать программу, а передать ощущение присутствия. Для этого чередуем масштаб, людей, сцену и короткие детали, сохраняя естественный темп события.'
   }
 };
