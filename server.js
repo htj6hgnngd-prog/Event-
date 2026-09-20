@@ -349,7 +349,9 @@ http.createServer(async(req,res)=>{
         state:criticalMediaReady?'ready':'warming',
         ...(criticalMediaError?{error:criticalMediaError}:{})
       });
-      res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Content-Length':Buffer.byteLength(body),'Cache-Control':'no-store','Retry-After':criticalMediaReady?undefined:'3'});
+      const headers={'Content-Type':'application/json; charset=utf-8','Content-Length':Buffer.byteLength(body),'Cache-Control':'no-store'};
+      if(!criticalMediaReady) headers['Retry-After']='3';
+      res.writeHead(status,headers);
       if(req.method==='HEAD'){res.end();return;}
       res.end(body);return;
     }
