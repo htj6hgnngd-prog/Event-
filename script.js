@@ -99,6 +99,11 @@ const caseSummary=document.querySelector('#case-summary');
 const caseFocus=document.querySelector('#case-focus');
 const caseLoop=document.querySelector('#case-loop');
 const casePoster=document.querySelector('#case-poster');
+const caseFrames=[
+  document.querySelector('#case-frame-1'),
+  document.querySelector('#case-frame-2'),
+  document.querySelector('#case-frame-3')
+];
 const caseNoteText=document.querySelector('#case-note-text');
 const caseContact=document.querySelector('.case-contact');
 
