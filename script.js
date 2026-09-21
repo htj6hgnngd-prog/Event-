@@ -822,3 +822,43 @@ document.addEventListener('keydown',event=>{
   if(event.key==='Escape'&&mobileNav&&!mobileNav.hidden){event.preventDefault();setMobileNav(false);mobileNavToggle?.focus({preventScroll:true})}
 });
 window.addEventListener('resize',()=>{if(window.innerWidth>=1101&&mobileNav&&!mobileNav.hidden)setMobileNav(false)});
+
+/* VECTA 2.2 / production continuity + accessibility hardening */
+const openRouteFromHash=()=>{
+  const hash=window.location.hash;
+  if(hash==='#agency'){
+    if(window.innerWidth>=1101&&!agencyMode?.classList.contains('open'))openAgencyMode(true);
+    return;
+  }
+  if(hash==='#frame'||hash.startsWith('#frame-map=')){
+    if(!frameBuilder?.classList.contains('open'))openFrameBuilder(document.querySelector('.frame-builder-trigger'));
+  }
+};
+openRouteFromHash();
+
+const syncNavCurrent=()=>{
+  navLinks.forEach(link=>{
+    const active=link.classList.contains('active');
+    if(active)link.setAttribute('aria-current','location');
+    else link.removeAttribute('aria-current');
+  });
+};
+window.addEventListener('scroll',syncNavCurrent,{passive:true});
+window.addEventListener('hashchange',syncNavCurrent);
+syncNavCurrent();
+
+window.addEventListener('resize',()=>{
+  if(window.innerWidth<1101){
+    if(projectViewer?.classList.contains('open'))closeProjectViewer(false,false);
+    if(agencyMode?.classList.contains('open'))closeAgencyMode(false,false);
+  }
+});
+
+const resetMediaState=video=>{
+  if(!video)return;
+  video.closest('.media,.frame-builder-media,.case-output-panel')?.classList.remove('media-error');
+  video.dataset.mediaState='loading';
+};
+document.querySelectorAll('video').forEach(video=>{
+  video.addEventListener('loadstart',()=>resetMediaState(video),{passive:true});
+});
