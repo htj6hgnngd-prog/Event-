@@ -71,7 +71,23 @@ document.querySelectorAll('.video-card').forEach(card=>card.addEventListener('cl
 /* Motion previews only run near the viewport. */
 const prepareVideo=video=>{video.muted=true;video.loop=true;video.playsInline=true;video.setAttribute('muted','');video.setAttribute('playsinline','')};
 const saveData=Boolean(navigator.connection?.saveData);
-const markMediaFailure=video=>{video.dataset.mediaState='error';video.closest('.media,.frame-builder-media,.case-output-panel')?.classList.add('media-error')};
+const markMediaFailure=video=>{
+  video.dataset.mediaState='error';
+  const host=video.closest('.media,.frame-builder-media,.case-output-panel');
+  host?.classList.add('media-error');
+  if(!host||host.querySelector('.media-retry'))return;
+  const retry=document.createElement('button');
+  retry.type='button';retry.className='media-retry';retry.textContent='RELOAD MEDIA';
+  retry.addEventListener('click',event=>{
+    event.stopPropagation();
+    host.classList.remove('media-error');video.dataset.mediaState='loading';
+    const current=video.currentTime;
+    video.load();
+    const p=video.play();if(p&&typeof p.catch==='function')p.catch(()=>{});
+    try{video.currentTime=current}catch(_){}
+  });
+  host.appendChild(retry);
+};
 document.querySelectorAll('video').forEach(video=>{video.addEventListener('error',()=>markMediaFailure(video));video.addEventListener('canplay',()=>{video.dataset.mediaState='ready';video.closest('.media-error')?.classList.remove('media-error')})});
 const mediaObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
   const video=entry.target;
@@ -187,8 +203,9 @@ const setCaseOutput=mode=>{
 
 caseOutputTabs.forEach(button=>button.addEventListener('click',()=>setCaseOutput(button.dataset.caseOutput||'film')));
 caseOutputTabs.forEach((button,index)=>button.addEventListener('keydown',event=>{
-  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
+  if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
   event.preventDefault();
+  if(event.key==='Home'||event.key==='End'){const target=caseOutputTabs[event.key==='Home'?0:caseOutputTabs.length-1];setCaseOutput(target.dataset.caseOutput||'film');target.focus();return;}
   const direction=event.key==='ArrowRight'?1:-1;
   const next=(index+direction+caseOutputTabs.length)%caseOutputTabs.length;
   const target=caseOutputTabs[next];
@@ -203,6 +220,7 @@ const closeProjectViewer=(restoreHistory=true)=>{
   projectViewer.setAttribute('aria-hidden','true');
   document.body.classList.remove('viewer-open');
   if(mediaCursor)mediaCursor.classList.remove('visible');
+  setDocumentTitle(defaultDocumentTitle);
   if(projectViewerVideo){
     projectViewerVideo.pause();
     projectViewerVideo.removeAttribute('src');
@@ -235,6 +253,7 @@ const openProjectViewer=(card,{fromHistory=false}={})=>{
   if(caseOutputs)caseOutputs.textContent=data.outputs;
   if(caseDelivery)caseDelivery.textContent=data.delivery;
   if(caseNoteText)caseNoteText.textContent=data.note;
+  setDocumentTitle(data.title+' | VECTA');
 
   projectViewerVideo.src=data.film;
   projectViewerVideo.poster=data.poster;
@@ -279,6 +298,20 @@ document.querySelectorAll('.project-open').forEach(card=>{
   }
 });
 
+const caseShare=document.querySelector('.case-share');
+const defaultDocumentTitle=document.title;
+const setDocumentTitle=(title)=>{document.title=title||defaultDocumentTitle;};
+const copyText=async value=>{
+  try{await navigator.clipboard.writeText(value);return true}catch(_){
+    try{const area=document.createElement('textarea');area.value=value;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();const ok=document.execCommand('copy');area.remove();return ok}catch(__){return false}
+  }
+};
+caseShare?.addEventListener('click',async()=>{
+  const ok=await copyText(window.location.href);
+  const label=caseShare.textContent;
+  caseShare.textContent=ok?'LINK COPIED':'SELECT LINK';
+  window.setTimeout(()=>{caseShare.textContent=label},1400);
+});
 if(projectViewerClose)projectViewerClose.addEventListener('click',closeProjectViewer);
 window.addEventListener('popstate',()=>{
   const match=window.location.hash.match(/^#case-(01|02)$/);
@@ -493,8 +526,9 @@ const setAgencyConfig=key=>{
 
 agencyConfigButtons.forEach(button=>button.addEventListener('click',()=>setAgencyConfig(button.dataset.agencyConfig||'camera')));
 agencyConfigButtons.forEach((button,index)=>button.addEventListener('keydown',event=>{
-  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight'&&event.key!=='ArrowUp'&&event.key!=='ArrowDown')return;
+  if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(event.key))return;
   event.preventDefault();
+  if(event.key==='Home'||event.key==='End'){const target=agencyConfigButtons[event.key==='Home'?0:agencyConfigButtons.length-1];setAgencyConfig(target.dataset.agencyConfig||'camera');target.focus();return;}
   const forward=event.key==='ArrowRight'||event.key==='ArrowDown';
   const next=(index+(forward?1:-1)+agencyConfigButtons.length)%agencyConfigButtons.length;
   const target=agencyConfigButtons[next];
