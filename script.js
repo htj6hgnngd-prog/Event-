@@ -804,3 +804,21 @@ document.addEventListener('keydown',event=>{
 /* Case deep links: open a selected case directly without changing page content. */
 const openCaseFromHash=()=>{const match=window.location.hash.match(/^#case-(01|02)$/);if(!match)return;const card=document.querySelector('.project-open[data-case="'+match[1]+'"]');if(card)window.setTimeout(()=>openProjectViewer(card,{fromHistory:true}),120)};
 openCaseFromHash();
+
+/* VECTA / Mobile navigation */
+const mobileNavToggle=document.querySelector('.mobile-nav-toggle');
+const mobileNav=document.querySelector('#mobile-nav');
+const setMobileNav=(open)=>{
+  if(!mobileNav||!mobileNavToggle)return;
+  mobileNav.hidden=!open;
+  mobileNavToggle.setAttribute('aria-expanded',open?'true':'false');
+  mobileNavToggle.textContent=open?'CLOSE':'MENU';
+  document.body.classList.toggle('mobile-nav-open',open);
+};
+mobileNavToggle?.addEventListener('click',()=>setMobileNav(mobileNav.hidden));
+mobileNav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMobileNav(false)));
+window.addEventListener('hashchange',()=>{if(mobileNav&&!mobileNav.hidden)setMobileNav(false)});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&mobileNav&&!mobileNav.hidden){event.preventDefault();setMobileNav(false);mobileNavToggle?.focus({preventScroll:true})}
+});
+window.addEventListener('resize',()=>{if(window.innerWidth>=1101&&mobileNav&&!mobileNav.hidden)setMobileNav(false)});
