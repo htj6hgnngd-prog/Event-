@@ -344,7 +344,7 @@ const briefStatus=document.querySelector('#brief-status');
 const briefCopy=document.querySelector('.brief-copy');
 const briefServices=document.querySelector('.brief-services');
 const briefRecipient='79858954264@ya.ru';
-const briefDefaultStatus='Данные не сохраняются на сайте. Письмо откроется в вашем почтовом приложении.';
+const briefDefaultStatus='Черновик хранится только в этом браузере. При отправке откроется ваше почтовое приложение.';
 const BRIEF_DRAFT_KEY='vecta-brief-draft-v1';
 const saveBriefDraft=()=>{try{const brief=collectBrief();if(brief)window.localStorage.setItem(BRIEF_DRAFT_KEY,JSON.stringify(brief))}catch(_){}};
 const restoreBriefDraft=()=>{try{const saved=JSON.parse(window.localStorage.getItem(BRIEF_DRAFT_KEY)||'null');if(!saved||!briefForm)return;['date','venue','format','contact'].forEach(key=>{const input=briefForm.elements.namedItem(key);if(input&&typeof saved[key]==='string')input.value=saved[key]});if(Array.isArray(saved.services))briefForm.querySelectorAll('input[name="services"]').forEach(input=>input.checked=saved.services.includes(input.value));if(briefFrame&&typeof saved.frame==='string')briefFrame.value=saved.frame;if(briefContext&&typeof saved.context==='string')briefContext.value=saved.context}catch(_){}};
@@ -409,6 +409,13 @@ if(briefForm){
   briefForm.addEventListener('input',()=>{saveBriefDraft();
     briefForm.classList.remove('is-invalid');
     if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent=briefDefaultStatus;
+  });
+  briefServices?.addEventListener('change',event=>{
+    const selected=event.target;
+    if(!(selected instanceof HTMLInputElement)||selected.name!=='services'||!selected.checked)return;
+    const boxes=[...briefServices.querySelectorAll('input[name="services"]')];
+    if(selected.value==='Фото + видео')boxes.filter(box=>box!==selected&&['Фото','Видео'].includes(box.value)).forEach(box=>box.checked=false);
+    else if(['Фото','Видео'].includes(selected.value))boxes.filter(box=>box.value==='Фото + видео').forEach(box=>box.checked=false);
   });
   briefForm.addEventListener('change',()=>{saveBriefDraft();
     briefForm.classList.remove('is-invalid');
@@ -592,6 +599,7 @@ window.addEventListener('hashchange',()=>{const hash=window.location.hash;if(has
 agencyModeCta?.addEventListener('click',event=>{
   event.preventDefault();
   if(briefContext)briefContext.value='AGENCY / '+agencySelectedConfig;
+  saveBriefDraft();
   if(briefStatus){
     briefStatus.textContent='Agency context добавлен в бриф. Укажите дату, площадку и контакт.';
     briefStatus.classList.add('is-success');
@@ -795,6 +803,7 @@ const transferFrameToBrief=()=>{
   else if(hasPhoto){const photo=checkboxes.find(box=>box.value==='Фото');if(photo)photo.checked=true}
   else if(hasVideo){const video=checkboxes.find(box=>box.value==='Видео');if(video)video.checked=true}
   if(hasContent){const content=checkboxes.find(box=>box.value==='Контент');if(content)content.checked=true}
+  saveBriefDraft();
   if(briefStatus){briefStatus.textContent='VECTA FRAME перенесён в бриф. Добавьте дату, площадку и контакт.';briefStatus.classList.add('is-success')}
   closeFrameBuilder(false);
   window.setTimeout(()=>document.querySelector('#contact')?.scrollIntoView({behavior:'smooth',block:'start'}),320);
