@@ -18,7 +18,6 @@ const sources={
   'event-1':{url:'https://disk.yandex.ru/i/iIj6z28I2z0d3w',poster:'34.8'},
   'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28.0'}
 };
-
 const jobs=new Map();
 const sourceJobs=new Map();
 const clips={
@@ -330,7 +329,7 @@ const securityHeaders={
   'Permissions-Policy':'camera=(), microphone=(), geolocation=()',
   'Cross-Origin-Opener-Policy':'same-origin',
   'Strict-Transport-Security':'max-age=31536000',
-  'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+  'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://d2ol7oe51mr4n.cloudfront.net data: blob:; media-src 'self' https://d2ol7oe51mr4n.cloudfront.net blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 };
 
 http.createServer(async(req,res)=>{
@@ -355,12 +354,6 @@ http.createServer(async(req,res)=>{
       res.writeHead(status,headers);
       if(req.method==='HEAD'){res.end();return;}
       res.end(body);return;
-    }
-    let rm=u.pathname.match(/^\/media\/(teaser|photo-[1-8])$/);
-    if(rm){
-      const ext=rm[1]==='teaser'?'.mp4':'.jpg';
-      const file=path.join(root,'media',rm[1]+ext);
-      await serveStatic(req,res,'/media/'+rm[1]+ext); return;
     }
     let m=u.pathname.match(/^\/media\/(event-[12])$/);
     if(m){await serveVideo(req,res,m[1]);return;}
