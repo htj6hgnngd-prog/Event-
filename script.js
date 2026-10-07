@@ -155,10 +155,10 @@ const caseData={
     coverage:'STAGE / AUDIENCE / DETAIL',
     outputs:'FULL FILM / MOTION / COVER',
     delivery:'WEB SHOWCASE / 16:9',
-    film:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/d23736c7-652b-49e8-bb9b-8e181dd9c667.mp4',
-    poster:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg',
-    loop:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/d23736c7-652b-49e8-bb9b-8e181dd9c667.mp4',
-    loopPoster:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg',
+    film:'/remote/teaser',
+    poster:'/remote/photo-1',
+    loop:'/remote/teaser',
+    loopPoster:'/remote/photo-1',
     note:'Сначала читаем пространство и свет, затем собираем действия, реакции и детали в единый визуальный ритм. Камера работает внутри события и не ломает его естественный ход.'
   },
   '02':{
