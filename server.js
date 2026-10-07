@@ -19,30 +19,6 @@ const sources={
   'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28.0'}
 };
 
-const remoteMedia={
-  teaser:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/d23736c7-652b-49e8-bb9b-8e181dd9c667.mp4',
-  photo1:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg',photo2:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/d98718af-7c73-4501-965d-87bb87264f79.jpg',photo3:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/2e921bdb-7941-447b-94f0-b481b25f4029.jpg',photo4:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/4cef0aaf-7826-4180-b9e9-4c7e5c10cf3b.jpg',
-  photo5:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/7673020d-b1c5-496f-8a71-0cec4367d6dc.jpg',photo6:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/db36e786-44dc-496b-a0b7-ddf7a08ae3ed.jpg',photo7:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/279df75c-3bbf-4a00-9154-ef0b27557487.jpg',photo8:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/c1f63e07-bfed-4627-9547-d459b0cc4aee.jpg'
-};
-
-async function serveRemoteMedia(req,res,key){
-  const target=remoteMedia[key];
-  if(!target){res.writeHead(404,{'Cache-Control':'no-store'});res.end('Not found');return;}
-  const headers={'User-Agent':'Mozilla/5.0 VECTA/1.0'};
-  if(req.headers.range) headers.Range=req.headers.range;
-  const r=await fetch(target,{headers,redirect:'follow'});
-  if(!r.ok||!r.body) throw new Error('Remote media '+r.status);
-  const out={
-    'Content-Type':r.headers.get('content-type')|| (key==='teaser'?'video/mp4':'image/jpeg'),
-    'Cache-Control':'public, max-age=86400, stale-while-revalidate=604800',
-    'Accept-Ranges':r.headers.get('accept-ranges')||'bytes'
-  };
-  for(const h of ['content-length','content-range','etag','last-modified']){const v=r.headers.get(h);if(v)out[h.replace(/(^|-)([a-z])/g,(_,a,b)=>a+b.toUpperCase())]=v;}
-  res.writeHead(r.status,out);
-  if(req.method==='HEAD'){res.end();return;}
-  Readable.fromWeb(r.body).pipe(res);
-}
-
 const jobs=new Map();
 const sourceJobs=new Map();
 const clips={
@@ -354,7 +330,7 @@ const securityHeaders={
   'Permissions-Policy':'camera=(), microphone=(), geolocation=()',
   'Cross-Origin-Opener-Policy':'same-origin',
   'Strict-Transport-Security':'max-age=31536000',
-  'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://d2ol7oe51mr4n.cloudfront.net data: blob:; media-src 'self' https://d2ol7oe51mr4n.cloudfront.net blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+  'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 };
 
 http.createServer(async(req,res)=>{
@@ -380,8 +356,12 @@ http.createServer(async(req,res)=>{
       if(req.method==='HEAD'){res.end();return;}
       res.end(body);return;
     }
-    let rm=u.pathname.match(/^\/remote\/(teaser|photo-[1-8])$/);
-    if(rm){await serveRemoteMedia(req,res,rm[1]);return;}
+    let rm=u.pathname.match(/^\/media\/(teaser|photo-[1-8])$/);
+    if(rm){
+      const ext=rm[1]==='teaser'?'.mp4':'.jpg';
+      const file=path.join(root,'media',rm[1]+ext);
+      await serveStatic(req,res,'/media/'+rm[1]+ext); return;
+    }
     let m=u.pathname.match(/^\/media\/(event-[12])$/);
     if(m){await serveVideo(req,res,m[1]);return;}
     m=u.pathname.match(/^\/poster\/(event-[12])$/);
