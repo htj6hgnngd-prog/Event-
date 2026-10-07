@@ -329,7 +329,7 @@ const securityHeaders={
   'Permissions-Policy':'camera=(), microphone=(), geolocation=()',
   'Cross-Origin-Opener-Policy':'same-origin',
   'Strict-Transport-Security':'max-age=31536000',
-  'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+  'Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' https://d2ol7oe51mr4n.cloudfront.net data: blob:; media-src 'self' https://d2ol7oe51mr4n.cloudfront.net blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 };
 
 http.createServer(async(req,res)=>{
@@ -361,7 +361,7 @@ http.createServer(async(req,res)=>{
     if(m){await servePoster(req,res,m[1]);return;}
     m=u.pathname.match(/^\/clip\/(work-top|work-bottom)$/);
     if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
-    if(u.pathname==='/cover/event-1'){const file=path.join(root,'assets','event1-cover-final.webp');const st=await fsp.stat(file);res.writeHead(200,{'Content-Type':'image/webp','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(file).pipe(res);return;}
+    if(u.pathname==='/cover/event-1'){res.writeHead(302,{Location:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg','Cache-Control':'public, max-age=31536000, immutable'});res.end();return;}
     if(u.pathname==='/hero-loop'){const {video}=await prepareHero();await serveFileVideo(req,res,video);return;}
     if(u.pathname==='/hero-poster'){const {poster}=await prepareHero();const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
     m=u.pathname.match(/^\/clip-poster\/(work-top|work-bottom)$/);
