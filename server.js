@@ -280,6 +280,11 @@ async function servePoster(req,res,id){
 
 async function serveStatic(req,res,pathname){
   let rel=pathname==='/'?'index.html':pathname.replace(/^\/+/, '');
+  if(path.extname(rel)==='' && rel!=='index.html'){
+    const clean=rel.replace(/\/+$/,'');
+    const candidate=path.join(root,clean+'.html');
+    try{await fsp.access(candidate);rel=clean+'.html';}catch{}
+  }
   try{rel=decodeURIComponent(rel)}catch{res.writeHead(400);res.end('Bad request');return;}
   const file=path.resolve(root,rel);
   if(file!==path.join(root,'index.html')&&!file.startsWith(root+path.sep)){res.writeHead(403);res.end('Forbidden');return;}
