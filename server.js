@@ -335,12 +335,52 @@ const securityHeaders={
 http.createServer(async(req,res)=>{
   for(const [name,value] of Object.entries(securityHeaders)) res.setHeader(name,value);
   try{
+    const u=new URL(req.url,'http://localhost');
+    if(req.method==='POST'&&u.pathname==='/api/lead'){
+      let raw='';
+      req.setEncoding('utf8');
+      req.on('data',chunk=>{raw+=chunk;if(raw.length>20000)req.destroy()});
+      req.on('end',async()=>{
+        try{
+          const lead=JSON.parse(raw||'{}');
+          const required=['date','venue','format','contact'];
+          if(required.some(k=>typeof lead[k]!=='string'||!lead[k].trim())||!Array.isArray(lead.services)||!lead.services.length){
+            res.writeHead(400,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
+            res.end(JSON.stringify({message:'Заполните обязательные поля'}));
+            return;
+          }
+          const safe={
+            date:lead.date.trim(),
+            venue:lead.venue.trim(),
+            format:lead.format.trim(),
+            services:lead.services.map(String).slice(0,3),
+            contact:lead.contact.trim(),
+            createdAt:new Date().toISOString(),
+            ip:String(req.headers['x-forwarded-for']||'').split(',')[0].trim()
+          };
+          console.log('NEW_LEAD',JSON.stringify(safe));
+          if(process.env.LEAD_WEBHOOK_URL){
+            try{
+              await fetch(process.env.LEAD_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(safe)});
+            }catch(err){console.error('Lead webhook failed:',err.message)}
+          }
+          const telegramUrl=process.env.TELEGRAM_USERNAME
+            ? 'https://t.me/'+process.env.TELEGRAM_USERNAME+'?text='+encodeURIComponent('Здравствуйте! Хочу получить расчёт. Дата: '+safe.date+'. Мероприятие: '+safe.format+'. Площадка: '+safe.venue+'. Нужно: '+safe.services.join(', ')+'. Контакт: '+safe.contact)
+            : '';
+          res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
+          res.end(JSON.stringify({ok:true,telegramUrl}));
+        }catch(_){
+          res.writeHead(400,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
+          res.end(JSON.stringify({message:'Не удалось обработать заявку'}));
+        }
+      });
+      return;
+    }
     if(req.method!=='GET'&&req.method!=='HEAD'){
-      res.writeHead(405,{'Allow':'GET, HEAD','Cache-Control':'no-store'});
+      res.writeHead(405,{'Allow':'GET, HEAD, POST','Cache-Control':'no-store'});
       res.end('Method not allowed');
       return;
     }
-    const u=new URL(req.url,'http://localhost');
     if(u.pathname==='/health'){
       const status=criticalMediaReady?200:503;
       const body=JSON.stringify({
