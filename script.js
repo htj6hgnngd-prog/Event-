@@ -338,127 +338,20 @@ document.addEventListener('keydown',event=>{
   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
 });
 
-/* Stage 05 / Conversion brief. The site stores nothing: it prepares a local email draft. */
+/* Заявка на расчёт */
 const briefForm=document.querySelector('#project-brief');
 const briefStatus=document.querySelector('#brief-status');
 const briefCopy=document.querySelector('.brief-copy');
 const briefServices=document.querySelector('.brief-services');
-const briefRecipient='79858954264@ya.ru';
-const briefDefaultStatus='Черновик хранится только в этом браузере. При отправке откроется ваше почтовое приложение.';
-const BRIEF_DRAFT_KEY='vecta-brief-draft-v1';
+const BRIEF_DRAFT_KEY='vecta-brief-draft-v2';
 const saveBriefDraft=()=>{try{const brief=collectBrief();if(brief)window.localStorage.setItem(BRIEF_DRAFT_KEY,JSON.stringify(brief))}catch(_){}};
-const restoreBriefDraft=()=>{try{const saved=JSON.parse(window.localStorage.getItem(BRIEF_DRAFT_KEY)||'null');if(!saved||!briefForm)return;['date','venue','format','contact'].forEach(key=>{const input=briefForm.elements.namedItem(key);if(input&&typeof saved[key]==='string')input.value=saved[key]});if(Array.isArray(saved.services))briefForm.querySelectorAll('input[name="services"]').forEach(input=>input.checked=saved.services.includes(input.value));if(briefFrame&&typeof saved.frame==='string')briefFrame.value=saved.frame;if(briefContext&&typeof saved.context==='string')briefContext.value=saved.context}catch(_){}};
-
-const setBriefStatus=(message,state='')=>{
-  if(!briefStatus)return;
-  briefStatus.textContent=message;
-  briefStatus.classList.toggle('is-success',state==='success');
-  if(briefForm)briefForm.classList.toggle('is-invalid',state==='error');
-};
-
-const collectBrief=()=>{
-  if(!briefForm)return null;
-  const data=new FormData(briefForm);
-  const services=data.getAll('services').map(String);
-  return{
-    date:String(data.get('date')||'').trim(),
-    venue:String(data.get('venue')||'').trim(),
-    format:String(data.get('format')||'').trim(),
-    services,
-    contact:String(data.get('contact')||'').trim(),
-    frame:String(data.get('frame')||'').trim(),
-    context:String(data.get('context')||'').trim()
-  };
-};
-
-const validateBrief=()=>{
-  if(!briefForm)return null;
-  if(!briefForm.checkValidity()){
-    briefForm.reportValidity();
-    setBriefStatus('Заполните обязательные поля брифа.','error');
-    return null;
-  }
-  const brief=collectBrief();
-  if(!brief||!brief.services.length){
-    if(briefServices)briefServices.setAttribute('aria-invalid','true');
-    setBriefStatus('Выберите, что нужно от продакшена.','error');
-    briefServices?.scrollIntoView({behavior:'smooth',block:'center'});
-    return null;
-  }
-  if(briefServices)briefServices.removeAttribute('aria-invalid');
-  return brief;
-};
-
-const formatBriefText=brief=>{
-  const lines=[
-    'VECTA - НОВЫЙ ПРОЕКТ',
-    '',
-    'Дата: '+brief.date,
-    'Площадка: '+brief.venue,
-    'Формат: '+brief.format,
-    'Нужно: '+brief.services.join(', '),
-    'Контакт: '+brief.contact
-  ];
-  if(brief.context)lines.push('Контекст: '+brief.context);
-  if(brief.frame)lines.push('','VECTA FRAME',brief.frame);
-  return lines.join('\n');
-};
-
-if(briefForm){
-  restoreBriefDraft();
-  briefForm.addEventListener('input',()=>{saveBriefDraft();
-    briefForm.classList.remove('is-invalid');
-    if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent=briefDefaultStatus;
-  });
-  briefServices?.addEventListener('change',event=>{
-    const selected=event.target;
-    if(!(selected instanceof HTMLInputElement)||selected.name!=='services'||!selected.checked)return;
-    const boxes=[...briefServices.querySelectorAll('input[name="services"]')];
-    if(selected.value==='Фото + видео')boxes.filter(box=>box!==selected&&['Фото','Видео'].includes(box.value)).forEach(box=>box.checked=false);
-    else if(['Фото','Видео'].includes(selected.value))boxes.filter(box=>box.value==='Фото + видео').forEach(box=>box.checked=false);
-  });
-  briefForm.addEventListener('change',()=>{saveBriefDraft();
-    briefForm.classList.remove('is-invalid');
-    if(briefServices)briefServices.removeAttribute('aria-invalid');
-    if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent=briefDefaultStatus;
-  });
-  briefForm.addEventListener('submit',event=>{
-    event.preventDefault();
-    const brief=validateBrief();
-    if(!brief)return;
-    const subject='VECTA / Новый проект / '+brief.date;
-    const body=formatBriefText(brief);
-    setBriefStatus('Бриф собран. Открываю письмо.','success');
-    window.location.href='mailto:'+briefRecipient+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-  });
-}
-
-if(briefCopy){
-  briefCopy.addEventListener('click',async()=>{
-    const brief=validateBrief();
-    if(!brief)return;
-    const text=formatBriefText(brief);
-    try{
-      if(navigator.clipboard&&window.isSecureContext){
-        await navigator.clipboard.writeText(text);
-      }else{
-        const area=document.createElement('textarea');
-        area.value=text;
-        area.setAttribute('readonly','');
-        area.style.position='fixed';
-        area.style.opacity='0';
-        document.body.appendChild(area);
-        area.select();
-        document.execCommand('copy');
-        area.remove();
-      }
-      setBriefStatus('Бриф скопирован. Его можно отправить в любом мессенджере.','success');
-    }catch(error){
-      setBriefStatus('Не удалось скопировать автоматически. Выделите данные и отправьте их вручную.','error');
-    }
-  });
-}
-
+const restoreBriefDraft=()=>{try{const saved=JSON.parse(window.localStorage.getItem(BRIEF_DRAFT_KEY)||'null');if(!saved||!briefForm)return;['date','venue','format','contact'].forEach(key=>{const input=briefForm.elements.namedItem(key);if(input&&typeof saved[key]==='string')input.value=saved[key]});if(Array.isArray(saved.services))briefForm.querySelectorAll('input[name="services"]').forEach(input=>input.checked=saved.services.includes(input.value))}catch(_) {}};
+const setBriefStatus=(message,state='')=>{if(!briefStatus)return;briefStatus.textContent=message;briefStatus.classList.toggle('is-success',state==='success');if(briefForm)briefForm.classList.toggle('is-invalid',state==='error')};
+const collectBrief=()=>{if(!briefForm)return null;const data=new FormData(briefForm);return{date:String(data.get('date')||'').trim(),venue:String(data.get('venue')||'').trim(),format:String(data.get('format')||'').trim(),services:data.getAll('services').map(String),contact:String(data.get('contact')||'').trim()}};
+const validateBrief=()=>{if(!briefForm)return null;if(!briefForm.checkValidity()){briefForm.reportValidity();setBriefStatus('Заполните обязательные поля.','error');return null}const brief=collectBrief();if(!brief||!brief.services.length){briefServices?.setAttribute('aria-invalid','true');setBriefStatus('Выберите фото, видео или оба варианта.','error');return null}briefServices?.removeAttribute('aria-invalid');return brief};
+const formatBriefText=brief=>['VECTA - НОВАЯ ЗАЯВКА','','Дата: '+brief.date,'Город и площадка: '+brief.venue,'Мероприятие: '+brief.format,'Нужно: '+brief.services.join(', '),'Контакт: '+brief.contact].join('\\n');
+if(briefForm){restoreBriefDraft();briefForm.addEventListener('input',()=>{saveBriefDraft();briefForm.classList.remove('is-invalid');if(briefStatus&&!briefStatus.classList.contains('is-success'))briefStatus.textContent='Данные можно проверить перед отправкой'});briefServices?.addEventListener('change',event=>{const selected=event.target;if(!(selected instanceof HTMLInputElement)||selected.name!=='services'||!selected.checked)return;const boxes=[...briefServices.querySelectorAll('input[name="services"]')];if(selected.value==='Фото + видео')boxes.filter(box=>box!==selected).forEach(box=>box.checked=false);else boxes.filter(box=>box.value==='Фото + видео').forEach(box=>box.checked=false);saveBriefDraft()});briefForm.addEventListener('submit',async event=>{event.preventDefault();const brief=validateBrief();if(!brief)return;setBriefStatus('Отправляем заявку...');try{const response=await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(brief)});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.message||'Ошибка отправки');window.dispatchEvent(new CustomEvent('vecta:lead',{detail:brief}));setBriefStatus('Заявка получена. Мы свяжемся с вами и подготовим расчёт.','success');briefForm.reset();try{window.localStorage.removeItem(BRIEF_DRAFT_KEY)}catch(_){}if(data.telegramUrl){const link=document.createElement('a');link.href=data.telegramUrl;link.target='_blank';link.rel='noopener';link.textContent='Можно сразу написать нам в Telegram';link.className='brief-telegram-link';briefStatus.insertAdjacentElement('afterend',link)}}catch(error){setBriefStatus('Не удалось отправить заявку. Попробуйте ещё раз или скопируйте данные и отправьте их вручную.','error')}})}
+if(briefCopy){briefCopy.addEventListener('click',async()=>{const brief=validateBrief();if(!brief)return;try{await navigator.clipboard.writeText(formatBriefText(brief));setBriefStatus('Данные скопированы.','success')}catch(_){setBriefStatus('Не удалось скопировать автоматически.','error')}})}
 
 /* Stage 06 / Agency mode */
 const agencyMode=document.querySelector('#agency-mode');
@@ -595,7 +488,7 @@ agencyMode?.addEventListener('click',event=>{
   if(event.target===agencyMode)closeAgencyMode(true);
 });
 
-window.addEventListener('hashchange',()=>{const hash=window.location.hash;if(hash==='#agency'){if(window.innerWidth>=1101&&!agencyMode?.classList.contains('open'))openAgencyMode(true);return}if(hash==='#frame'||hash.startsWith('#frame-map=')){if(!frameBuilder?.classList.contains('open'))openFrameBuilder(document.querySelector('.frame-builder-trigger'));return}if(agencyMode?.classList.contains('open'))closeAgencyMode(false,false);if(frameBuilder?.classList.contains('open'))closeFrameBuilder(false,false)});
+window.addEventListener('hashchange',()=>{const hash=window.location.hash;if(false&&hash==='#agency'){if(window.innerWidth>=1101&&!agencyMode?.classList.contains('open'))openAgencyMode(true);return}if(false&&(hash==='#frame'||hash.startsWith('#frame-map=')){if(!frameBuilder?.classList.contains('open'))openFrameBuilder(document.querySelector('.frame-builder-trigger'));return}if(agencyMode?.classList.contains('open'))closeAgencyMode(false,false);if(frameBuilder?.classList.contains('open'))closeFrameBuilder(false,false)});
 agencyModeCta?.addEventListener('click',event=>{
   event.preventDefault();
   if(briefContext)briefContext.value='AGENCY / '+agencySelectedConfig;
