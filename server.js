@@ -16,7 +16,8 @@ const port=Number(process.env.PORT||3000);
 const mediaRoot=path.join('/tmp','event-production-media');
 const sources={
   'event-1':{url:'https://disk.yandex.ru/i/iIj6z28I2z0d3w',poster:'34.8'},
-  'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28.0'}
+  'event-2':{url:'https://disk.yandex.ru/i/CGJbZxDuh1ORXw',poster:'28.0'},
+  'event-3':{url:'https://disk.yandex.ru/d/OjgZma7LYXbsbg',poster:'0.5'}
 };
 const jobs=new Map();
 const sourceJobs=new Map();
@@ -400,9 +401,9 @@ http.createServer(async(req,res)=>{
       if(req.method==='HEAD'){res.end();return;}
       res.end(body);return;
     }
-    let m=u.pathname.match(/^\/media\/(event-[12])$/);
+    let m=u.pathname.match(/^\/media\/(event-[1-3])$/);
     if(m){await serveVideo(req,res,m[1]);return;}
-    m=u.pathname.match(/^\/poster\/(event-[12])$/);
+    m=u.pathname.match(/^\/poster\/(event-[1-3])$/);
     if(m){await servePoster(req,res,m[1]);return;}
     m=u.pathname.match(/^\/clip\/(work-top|work-bottom)$/);
     if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
