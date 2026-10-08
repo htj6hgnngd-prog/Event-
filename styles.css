@@ -90,3 +90,5 @@ body.frame-builder-open{overflow:hidden}
   .agency-mode-config{grid-template-columns:1fr}.agency-config-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.agency-config-nav button{text-align:center}
   .agency-config-grid{grid-template-columns:1fr}
 }
+
+.client-service-links{display:flex;flex-wrap:wrap;gap:24px;margin:28px 0 0 25%;padding-top:22px;border-top:1px solid var(--line)}.client-service-links .arrow-link{justify-self:auto}@media(max-width:900px){.client-service-links{margin-left:0;gap:16px 22px}}@media(max-width:560px){.client-service-links{margin-top:18px;padding-top:16px;gap:12px 18px}.client-service-links .arrow-link{font-size:9px}}
