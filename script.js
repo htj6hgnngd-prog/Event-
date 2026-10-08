@@ -146,36 +146,36 @@ const caseContact=document.querySelector('.case-contact');
 
 const caseData={
   '01':{
-    title:'LIVE EVENT / 01',
-    format:'LIVE EVENT / VIDEO PRODUCTION',
-    summary:'Динамичный live-event с акцентом на сцену, публику и энергию момента. Визуальный ритм строится на чередовании общего масштаба, реакций людей и сильных сценических эпизодов.',
-    focus:'PEOPLE / STAGE / ENERGY',
-    task:'Передать масштаб события через сцену, аудиторию и реакции',
-    plan:'LIVE EVENT / RHYTHM FIRST',
-    coverage:'STAGE / AUDIENCE / DETAIL',
-    outputs:'FULL FILM / MOTION / COVER',
-    delivery:'WEB SHOWCASE / 16:9',
+    title:'СОБЫТИЕ / 01',
+    format:'СОБЫТИЕ / ВИДЕО',
+    summary:'Съёмка события с акцентом на сцену, людей и ключевые моменты программы.',
+    focus:'ЛЮДИ / СЦЕНА / СОБЫТИЕ',
+    task:'Показать событие через людей, сцену и ключевые моменты',
+    plan:'СЦЕНА / ЛЮДИ / ДЕТАЛИ',
+    coverage:'СЦЕНА / ГОСТИ / ДЕТАЛИ',
+    outputs:'ФИЛЬМ / КОРОТКАЯ ВЕРСИЯ / ОБЛОЖКА',
+    delivery:'ФИЛЬМ / 16:9',
     film:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/d23736c7-652b-49e8-bb9b-8e181dd9c667.mp4',
     poster:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg',
     loop:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/d23736c7-652b-49e8-bb9b-8e181dd9c667.mp4',
     loopPoster:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg',
-    note:'Сначала читаем пространство и свет, затем собираем действия, реакции и детали в единый визуальный ритм. Камера работает внутри события и не ломает его естественный ход.'
+    note:'Снимаем происходящее внутри события, не мешая программе.'
   },
   '02':{
-    title:'LIVE EVENT / 02',
-    format:'LIVE EVENT / VIDEO PRODUCTION',
-    summary:'Событие показано через людей, сценический свет и атмосферу площадки. Монтаж держит ощущение присутствия и соединяет масштаб, движение и короткие эмоциональные детали.',
-    focus:'ATMOSPHERE / PEOPLE / MOTION',
-    task:'Сохранить ощущение присутствия через людей, свет и движение',
-    plan:'LIVE EVENT / PRESENCE FIRST',
-    coverage:'PEOPLE / LIGHT / STAGE',
-    outputs:'FULL FILM / MOTION / COVER',
-    delivery:'WEB SHOWCASE / 16:9',
+    title:'СОБЫТИЕ / 02',
+    format:'СОБЫТИЕ / ВИДЕО',
+    summary:'Событие показано через людей, сцену, движение и детали площадки.',
+    focus:'АТМОСФЕРА / ЛЮДИ / ДВИЖЕНИЕ',
+    task:'Показать атмосферу через людей, свет и движение',
+    plan:'ЛЮДИ / СВЕТ / СЦЕНА',
+    coverage:'ЛЮДИ / СВЕТ / СЦЕНА',
+    outputs:'ФИЛЬМ / КОРОТКАЯ ВЕРСИЯ / ОБЛОЖКА',
+    delivery:'ФИЛЬМ / 16:9',
     film:'/media/event-2',
     poster:'/clip-poster/work-bottom?v=2',
     loop:'/clip/work-bottom',
     loopPoster:'/clip-poster/work-bottom',
-    note:'Ключевой принцип: не просто зафиксировать программу, а передать ощущение присутствия. Для этого чередуем масштаб, людей, сцену и короткие детали, сохраняя естественный темп события.'
+    note:'Не просто фиксируем программу, а собираем цельную историю события.'
   }
 };
 
@@ -499,7 +499,7 @@ const setMobileNav=(open)=>{
   if(!mobileNav||!mobileNavToggle)return;
   mobileNav.hidden=!open;
   mobileNavToggle.setAttribute('aria-expanded',open?'true':'false');
-  mobileNavToggle.textContent=open?'CLOSE':'MENU';
+  mobileNavToggle.textContent=open?'ЗАКРЫТЬ':'МЕНЮ';
   document.body.classList.toggle('mobile-nav-open',open);
 };
 mobileNavToggle?.addEventListener('click',()=>setMobileNav(mobileNav.hidden));
