@@ -166,3 +166,34 @@ Choose the nearest mechanism by post goal:
 - Lead generation: a real follow-on resource or service link.
 
 Every VECTA draft should name the case/pattern being adapted, what is different in the supplied material, and what should not be copied.
+
+## 8. Russian fashion/editorial and production-team cases
+
+### Danil Golovkin — «МНЕНИЕ РЕДАКЦИИ*» editorial
+- Profile: https://www.instagram.com/danilgolovkin/
+- Post: https://www.instagram.com/danilgolovkin/p/DbvsKt0CjkY/
+- Public caption snapshot: 4,222 likes and 24 comments; dated 7 August 2026 in the fetched public data.
+- **What was checked:** caption and credits; two carousel images were downloaded and visually inspected.
+- **Visual sequence observed:** a dramatic black-and-white portrait with strong perspective/light, followed in the sample by a wider monochrome frame with several people and more environmental context. It provides a useful contrast between a tightly authored portrait and a wider production/world frame.
+- **Copy mechanism:** the caption is almost entirely people and role credits: editor-in-chief, photographer, gaffer, stylist, styling assistants, set design, makeup, hair, video, art direction, producer and assistants.
+- **Transfer to VECTA:** a production post does not always need a poetic caption. In a large-team project, exact role-based credits can function as proof that VECTA participates in a broader production ecosystem. Group credits by department, check every handle/name and avoid an unstructured wall of tags.
+- **Do not copy:** the celebrity-name list or lengthy credits if the VECTA project is small and the list does not add value.
+- **Confidence:** Level 3 for caption and two inspected carousel samples; not all slides were audited.
+
+### Mariya Tatarnikova / Tatarnikova Studio — photography, styling and production design
+- Profile: https://www.instagram.com/tatarnikova_studio/
+- Post: https://www.instagram.com/p/DRzOizoCJfC/
+- Public caption snapshot: 4 likes and 0 comments in the fetched data; posted 3 December 2025. These numbers are not a meaningful performance conclusion.
+- **What was checked:** public profile metadata, caption, comments, and two carousel images visually.
+- **Visual sequence observed:** a graphic, close still-life/object arrangement with a light oval element and saturated details; another frame shows a close portrait partly obscured by translucent pink fabric against strong red/green graphic blocks. The contrast makes the sequence read as authored fashion-editorial work rather than straightforward portrait coverage.
+- **Copy mechanism:** “Photography, styling, production design” plus the studio handle. It names the creative contribution without attempting to narrate the images.
+- **Transfer to VECTA:** for a visually coherent fashion/editorial series, role-based positioning can be both concise and useful. It names the breadth of authorship (not only camera operation) while leaving the work to speak.
+- **Boundary:** the post’s low visible likes/comments are not evidence for or against minimal credits. Account size, distribution, paid support and other factors are unknown.
+- **Confidence:** Level 3 for caption and two inspected images.
+
+### OMNI Production — Russian production-team account structure
+- Profile: https://www.instagram.com/omniproduction.ru/
+- **What was checked:** current public profile metadata/grid; not a particular post sequence.
+- The bio positions OMNI as a Moscow-based creative production company working across advertising, photography, music videos and AR. Highlights separate projects, years, team, on-set, photography and music videos.
+- **Transfer to VECTA:** a production team can organize the profile around disciplines and project archives, rather than an individual’s personal diary. Highlight categories such as “кейсы”, “съёмки”, “команда”, “фото”, “видео”, “BTS” can reduce friction when a buyer scans the profile.
+- **Confidence:** Level 1, profile-level review only.
