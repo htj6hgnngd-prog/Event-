@@ -1,0 +1,1192 @@
+[
+  {
+    "name": "mol0chko",
+    "category": "photographer",
+    "url": "https://www.instagram.com/mol0chko/",
+    "level": 2,
+    "sourceType": "Instagram posts directly reviewed",
+    "status": "active",
+    "focus": [
+      "visual premise + compact caption",
+      "storytelling anecdote",
+      "specific audience question"
+    ]
+  },
+  {
+    "name": "erick_abgaryan",
+    "category": "photographer",
+    "url": "https://www.instagram.com/erick_abgaryan/",
+    "level": 2,
+    "sourceType": "Instagram posts directly reviewed",
+    "status": "active",
+    "focus": [
+      "series sequencing",
+      "frame-choice question",
+      "verified team credits"
+    ]
+  },
+  {
+    "name": "magreego",
+    "category": "photographer",
+    "url": "https://www.instagram.com/magreego/",
+    "level": 2,
+    "sourceType": "Instagram posts directly reviewed",
+    "status": "active",
+    "focus": [
+      "editorial series",
+      "minimal caption and credits",
+      "cinematic Reel response"
+    ]
+  },
+  {
+    "name": "Greg Finck",
+    "category": "photographer",
+    "url": "https://www.instagram.com/gregfinck/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial image samples",
+    "status": "active",
+    "focus": [
+      "soft yet crisp color",
+      "portrait/context balance",
+      "destination narrative"
+    ]
+  },
+  {
+    "name": "Jose Villa",
+    "category": "photographer",
+    "url": "https://www.instagram.com/josevilla/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial image samples",
+    "status": "active",
+    "focus": [
+      "luminous fine-art treatment",
+      "grand setting and intimate expression"
+    ]
+  },
+  {
+    "name": "Erich McVey",
+    "category": "photographer",
+    "url": "https://www.instagram.com/erichmcvey/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial image samples",
+    "status": "active",
+    "focus": [
+      "documentary plus clean finish",
+      "natural light",
+      "gallery continuity"
+    ]
+  },
+  {
+    "name": "KT Merry",
+    "category": "photographer",
+    "url": "https://www.instagram.com/ktmerry/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial image samples",
+    "status": "active",
+    "focus": [
+      "fashion-informed editorial",
+      "magazine-quality single frames"
+    ]
+  },
+  {
+    "name": "Danilo & Sharon",
+    "category": "photographer",
+    "url": "https://www.instagram.com/daniloandsharon/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "fashion-derived portraiture",
+      "flash and saturated color",
+      "architecture and intimacy"
+    ]
+  },
+  {
+    "name": "Norman & Blake",
+    "category": "photographer",
+    "url": "https://www.instagram.com/normanandblake/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "editorial polish plus event movement",
+      "emotional portraits"
+    ]
+  },
+  {
+    "name": "Courtney Marie Photography",
+    "category": "photographer",
+    "url": "https://www.instagram.com/courtneymariephotography/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata",
+    "status": "active",
+    "focus": [
+      "editorial approach to real moments",
+      "natural and fashion-led framing",
+      "true-to-life color"
+    ]
+  },
+  {
+    "name": "Sav & Cam",
+    "category": "photo-film",
+    "url": "https://www.instagram.com/sav.and.cam/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "Super 8 and 16mm mixed with digital",
+      "unscripted moments",
+      "tactile memory texture"
+    ]
+  },
+  {
+    "name": "Sommar Films",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/sommarfilms/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "luminous palette",
+      "wide/close pacing",
+      "mood and atmosphere"
+    ]
+  },
+  {
+    "name": "AY Video",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/ay_video/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "music and experimentation",
+      "two-perspective coverage",
+      "remember how it felt"
+    ]
+  },
+  {
+    "name": "Dear Vincent",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/dear.vincent/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "chemistry over chronology",
+      "unobtrusive presence",
+      "unscripted intimacy"
+    ]
+  },
+  {
+    "name": "Laguna Santa",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/lagunasanta/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "rhythm-driven narrative",
+      "human texture",
+      "know when to linger"
+    ]
+  },
+  {
+    "name": "No Matter the Weather Films",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/nomattertheweather_films/",
+    "level": 1,
+    "sourceType": "Instagram profile and editorial source",
+    "status": "active",
+    "focus": [
+      "personality-led cinema",
+      "unscripted moments",
+      "character over template"
+    ]
+  },
+  {
+    "name": "Chebesov Films",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/chebesovfilms/",
+    "level": 1,
+    "sourceType": "Instagram profile",
+    "status": "active",
+    "focus": [
+      "Russian-language emotional positioning",
+      "separate reel/clip/film categories"
+    ]
+  },
+  {
+    "name": "Vladislav Anoshin",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/itsvladcamera/",
+    "level": 1,
+    "sourceType": "Instagram profile",
+    "status": "active",
+    "focus": [
+      "documentary videography influenced by fashion"
+    ]
+  },
+  {
+    "name": "Sazonov Photo",
+    "category": "photographer",
+    "url": "https://www.instagram.com/sazonov_photo/reels/",
+    "level": 0,
+    "sourceType": "Search result profile discovery",
+    "status": "audit_pending",
+    "focus": [
+      "Moscow/Europe wedding portfolio and Reels sequencing"
+    ]
+  },
+  {
+    "name": "Julia Bocharova",
+    "category": "photographer",
+    "url": "https://www.instagram.com/jbocharova/",
+    "level": 0,
+    "sourceType": "Search result profile discovery",
+    "status": "audit_pending",
+    "focus": [
+      "editorial cinematic destination weddings"
+    ]
+  },
+  {
+    "name": "Elen Furs",
+    "category": "photographer",
+    "url": "https://www.instagram.com/elen_furs/",
+    "level": 0,
+    "sourceType": "Search result profile discovery",
+    "status": "audit_pending",
+    "focus": [
+      "Moscow/Dubai wedding positioning"
+    ]
+  },
+  {
+    "name": "Nikita Zharkov",
+    "category": "photographer",
+    "url": "https://www.instagram.com/nikita.zharkov/",
+    "level": 0,
+    "sourceType": "Search result profile discovery",
+    "status": "audit_pending",
+    "focus": [
+      "editorial meets documentary"
+    ]
+  },
+  {
+    "name": "Pavel Lepeshev",
+    "category": "photographer",
+    "url": "https://www.instagram.com/pavellepeshev/",
+    "level": 0,
+    "sourceType": "Search result/editorial discovery",
+    "status": "audit_pending",
+    "focus": [
+      "film and digital weddings"
+    ]
+  },
+  {
+    "name": "Sarah Falugo",
+    "category": "photographer",
+    "url": "https://www.instagram.com/sarahfalugo.co/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "editorial gallery architecture",
+      "series as art"
+    ]
+  },
+  {
+    "name": "Cinzia Bruschini",
+    "category": "photographer",
+    "url": "https://www.instagram.com/cinziabruschini/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "film/digital blend",
+      "narrative and intimate moments"
+    ]
+  },
+  {
+    "name": "Corbin Gurkin",
+    "category": "photographer",
+    "url": "https://www.instagram.com/corbingurkin/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "fine art and editorial storytelling"
+    ]
+  },
+  {
+    "name": "Dos Más En La Mesa",
+    "category": "photographer",
+    "url": "https://www.instagram.com/dosmasenlamesa/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "documentary plus fashion",
+      "expressive B&W",
+      "earthy palette"
+    ]
+  },
+  {
+    "name": "Heather Waraksa",
+    "category": "photographer",
+    "url": "https://www.instagram.com/heatherwaraksa/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "digital/film",
+      "timeless modern album"
+    ]
+  },
+  {
+    "name": "CALENROSE",
+    "category": "photographer",
+    "url": "https://www.instagram.com/calenrose/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "movement and documentary dance-floor energy"
+    ]
+  },
+  {
+    "name": "James x Schulze",
+    "category": "photographer",
+    "url": "https://www.instagram.com/jamesandschulze/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "documentary moments with fine-art sensibility"
+    ]
+  },
+  {
+    "name": "Mo Davis",
+    "category": "photographer",
+    "url": "https://www.instagram.com/modavisphotography/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "storytelling and lived-in atmosphere"
+    ]
+  },
+  {
+    "name": "Pablo Laguía",
+    "category": "photographer",
+    "url": "https://www.instagram.com/pablo_laguia/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "documentary and editorial portrait"
+    ]
+  },
+  {
+    "name": "Samm Blake",
+    "category": "photographer",
+    "url": "https://www.instagram.com/sammblake/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "light/detail",
+      "documentary honesty"
+    ]
+  },
+  {
+    "name": "Joel Serrato",
+    "category": "photographer",
+    "url": "https://www.instagram.com/joelserrato/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "film aesthetic",
+      "intimate observation"
+    ]
+  },
+  {
+    "name": "Anni Graham",
+    "category": "photographer",
+    "url": "https://www.instagram.com/annigraham/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "photojournalism with editorial treatment"
+    ]
+  },
+  {
+    "name": "Kristen Marie Parker",
+    "category": "photographer",
+    "url": "https://www.instagram.com/kristenmarieparker/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "fine art plus photojournalism"
+    ]
+  },
+  {
+    "name": "Oliver Fly",
+    "category": "photographer",
+    "url": "https://www.instagram.com/oliverflyphotography/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "delicate light and fine art"
+    ]
+  },
+  {
+    "name": "Mili Ghosh",
+    "category": "photographer",
+    "url": "https://www.instagram.com/milighosh/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "editorial detail",
+      "styling"
+    ]
+  },
+  {
+    "name": "David Bastianoni",
+    "category": "photographer",
+    "url": "https://www.instagram.com/davidbastianoni/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "editorial across scale and details"
+    ]
+  },
+  {
+    "name": "Abby Jiu",
+    "category": "photographer",
+    "url": "https://www.instagram.com/abbyjiu/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "team-based wedding production",
+      "small details"
+    ]
+  },
+  {
+    "name": "Ale Bigliazzi",
+    "category": "photographer",
+    "url": "https://www.instagram.com/alebigliazzi/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "architecture",
+      "line and proportion",
+      "graphic frame"
+    ]
+  },
+  {
+    "name": "Jack Henry",
+    "category": "photographer",
+    "url": "https://www.instagram.com/jackhenry/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "painterly light",
+      "classical composition and spontaneous moments"
+    ]
+  },
+  {
+    "name": "Bottega53",
+    "category": "photographer",
+    "url": "https://www.instagram.com/bottega53/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "bright clean frames",
+      "bold crop",
+      "soft light versus flash"
+    ]
+  },
+  {
+    "name": "Kindred",
+    "category": "photographer",
+    "url": "https://www.instagram.com/kindred/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "film/digital",
+      "unexpected interactions",
+      "warmth and mischief"
+    ]
+  },
+  {
+    "name": "German Larkin",
+    "category": "photographer",
+    "url": "https://www.instagram.com/germanlarkin/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "fashion-aware imagery",
+      "gestures and half-seconds"
+    ]
+  },
+  {
+    "name": "Courtney Marie",
+    "category": "photographer",
+    "url": "https://www.instagram.com/courtneymariephotography/",
+    "level": 1,
+    "sourceType": "Profile metadata",
+    "status": "active",
+    "focus": [
+      "editorial approach to the real",
+      "true-to-life colour",
+      "film/35mm/Super 8"
+    ]
+  },
+  {
+    "name": "Romavera Films",
+    "category": "filmmaker",
+    "url": "https://thewed.com/videographers/romavera",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "emotional range",
+      "bold imagery",
+      "soundtrack and pacing"
+    ]
+  },
+  {
+    "name": "Yes and Tonic",
+    "category": "filmmaker",
+    "url": "https://thewed.com/videographers/yes-and-tonic",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "indie cinema",
+      "analogue media used with purpose",
+      "fashion references"
+    ]
+  },
+  {
+    "name": "Anker Prod",
+    "category": "filmmaker",
+    "url": "https://thewed.com/videographers/anker-prod",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "Super 8/Handycam/digital texture"
+    ]
+  },
+  {
+    "name": "Tipos",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/tiposnet/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "photographic composition",
+      "light and detail"
+    ]
+  },
+  {
+    "name": "Grand Amor",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/grandamor.studio/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "mixed media",
+      "graphic design",
+      "tactile film language"
+    ]
+  },
+  {
+    "name": "Sincere Emotions",
+    "category": "filmmaker",
+    "url": "https://thewed.com/videographers/sincere-emotions",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "raw energy",
+      "cinematic sound and quiet moments"
+    ]
+  },
+  {
+    "name": "PaiPai Prod",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/paipaiprod/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "fashion and 1990s cinema",
+      "music-led edit",
+      "candid humor"
+    ]
+  },
+  {
+    "name": "Emma K Films",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/emmak_films/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "cinematic scale plus fleeting interactions"
+    ]
+  },
+  {
+    "name": "Slowl",
+    "category": "filmmaker",
+    "url": "https://thewed.com/videographers/slowl-video",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "warm tactile mood",
+      "emotional temperature"
+    ]
+  },
+  {
+    "name": "Cordès Studio",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/cordes_studio/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "landscape as story architecture",
+      "music and movement"
+    ]
+  },
+  {
+    "name": "Giulio Cantarella",
+    "category": "filmmaker",
+    "url": "https://thewed.com/videographers/giulio-cantarella",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "music-trained tempo and contrast"
+    ]
+  },
+  {
+    "name": "Max Cutrone",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/maxcutrone/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "personality-led rhythm documentary"
+    ]
+  },
+  {
+    "name": "Kate Pervak",
+    "category": "filmmaker",
+    "url": "https://thewed.com/videographers/kate-pervak",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "documentary observation",
+      "restraint",
+      "editorial structure"
+    ]
+  },
+  {
+    "name": "Light Cannon Films",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/lightcannonfilms/",
+    "level": 0,
+    "sourceType": "Editorial roundup",
+    "status": "audit_pending",
+    "focus": [
+      "narrative transformation of events"
+    ]
+  },
+  {
+    "name": "White in Revery",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/whiteinrevery/",
+    "level": 0,
+    "sourceType": "Watchlist",
+    "status": "audit_pending",
+    "focus": [
+      "cinematic wedding film narrative"
+    ]
+  },
+  {
+    "name": "Ray Roman Films",
+    "category": "filmmaker",
+    "url": "https://www.instagram.com/rayromanfilms/",
+    "level": 0,
+    "sourceType": "Watchlist",
+    "status": "audit_pending",
+    "focus": [
+      "cinematic wedding film and pacing"
+    ]
+  },
+  {
+    "name": "Marazalite Photography",
+    "category": "event",
+    "url": "https://www.instagram.com/marazalite.photography/",
+    "level": 0,
+    "sourceType": "Search result profile discovery",
+    "status": "audit_pending",
+    "focus": [
+      "corporate conferences",
+      "nonprofit events",
+      "editorial event coverage"
+    ]
+  },
+  {
+    "name": "Fearless Russia directory",
+    "category": "event-wedding-photography",
+    "url": "https://www.fearlessphotographers.com/top10/122/russia",
+    "level": 0,
+    "sourceType": "Directory",
+    "status": "discovery_source",
+    "focus": [
+      "Russian wedding photographers shortlist"
+    ]
+  },
+  {
+    "name": "Pinnacle Live event photography",
+    "category": "event",
+    "url": "https://www.pinnaclelive.com/articles/tell-your-events-story-part-one-photography",
+    "level": 0,
+    "sourceType": "Editorial article",
+    "status": "source_reviewed",
+    "focus": [
+      "event storytelling",
+      "visual coverage structure"
+    ]
+  },
+  {
+    "name": "Lou Escobar",
+    "category": "fashion-editorial-photographer",
+    "url": "https://www.instagram.com/lou__escobar/",
+    "level": 2,
+    "sourceType": "Instagram profile, campaign post and visual sample",
+    "status": "active",
+    "focus": [
+      "high-chroma surreal editorial",
+      "specific creative premise",
+      "minimal personal mini-doc caption",
+      "complete production credits"
+    ]
+  },
+  {
+    "name": "Danil Golovkin",
+    "category": "photographer",
+    "url": "https://www.instagram.com/danilgolovkin/",
+    "level": 3,
+    "sourceType": "Instagram profile, published series statement, individual editorial post caption/credits and two inspected carousel images",
+    "status": "active",
+    "focus": [
+      "conceptual metaphor across styling and imagery",
+      "bloom/withering theme",
+      "art-series product copy",
+      "Russian editorial team-credit post",
+      "contrast between dramatic portrait and wider production frame"
+    ]
+  },
+  {
+    "name": "Chris Ha | Photography",
+    "category": "photographer",
+    "url": "https://www.instagram.com/p/DJhUHobNvWP/",
+    "level": 3,
+    "sourceType": "Individual carousel: caption plus two visually inspected slides",
+    "status": "active",
+    "focus": [
+      "full scene versus final crop",
+      "visible proof of composition",
+      "teaching through comparison",
+      "specific audience question"
+    ]
+  },
+  {
+    "name": "Lindsay Adler",
+    "category": "photographer-educator",
+    "url": "https://www.instagram.com/lindsayadler_photo/",
+    "level": 3,
+    "sourceType": "Adorama-published tutorial carousel and caption",
+    "status": "active",
+    "focus": [
+      "lighting tutorial with visible examples",
+      "one setup with multiple results",
+      "real tutorial CTA",
+      "method breakdown"
+    ]
+  },
+  {
+    "name": "Joseph L. Hart",
+    "category": "commercial-photographer",
+    "url": "https://www.instagram.com/josephlhart/",
+    "level": 2,
+    "sourceType": "Individual technical BTS post caption/comments and one preview",
+    "status": "active",
+    "focus": [
+      "specific lighting constraint",
+      "simple setup explained",
+      "V-flat use for flag/fill/negative fill",
+      "collaborator credits"
+    ]
+  },
+  {
+    "name": "Alexey Andreev",
+    "category": "cinematographer",
+    "url": "https://www.instagram.com/andreevdop/",
+    "level": 2,
+    "sourceType": "Profile plus individual Reel caption/comments; visual sequence unverified",
+    "status": "active",
+    "focus": [
+      "technical BTS",
+      "special effects and shot continuity",
+      "specific practitioner questions",
+      "production expertise via decisions"
+    ]
+  },
+  {
+    "name": "Operpost Studio",
+    "category": "production-studio",
+    "url": "https://www.instagram.com/operpost.studio/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata",
+    "status": "active",
+    "focus": [
+      "Moscow content production",
+      "Reels and blogs",
+      "podcasts/interviews/shows"
+    ]
+  },
+  {
+    "name": "Hannah Ladd Brown",
+    "category": "photographer",
+    "url": "https://www.instagram.com/hannahladdcreative/",
+    "level": 2,
+    "sourceType": "Individual post caption and visible comments; video unavailable",
+    "status": "active",
+    "focus": [
+      "constraint-to-result caption",
+      "concise credits",
+      "low-budget creative production"
+    ]
+  },
+  {
+    "name": "CandidShutters Media",
+    "category": "event-photography",
+    "url": "https://www.instagram.com/p/DdogWWwgXsO/",
+    "level": 2,
+    "sourceType": "Individual corporate-event carousel caption and visual previews",
+    "status": "active",
+    "focus": [
+      "obvious coverage vs overlooked moments",
+      "speaker/audience interactions",
+      "educational B2B carousel",
+      "save-worthy event brief CTA"
+    ]
+  },
+  {
+    "name": "Corpora Studios",
+    "category": "event-photography",
+    "url": "https://www.instagram.com/corporastudios/",
+    "level": 2,
+    "sourceType": "Profile and individual event-day caption; visual preview uncertain",
+    "status": "active",
+    "focus": [
+      "production-life metrics",
+      "crew relatable hook",
+      "peer audience question"
+    ]
+  },
+  {
+    "name": "Kainaat Uppal",
+    "category": "creative-production",
+    "url": "https://www.instagram.com/kainaatuppal/",
+    "level": 2,
+    "sourceType": "Individual production recap caption/comments; selected slides exposed",
+    "status": "active",
+    "focus": [
+      "tactile BTS details",
+      "team-as-story",
+      "role-based production credits"
+    ]
+  },
+  {
+    "name": "Adorama",
+    "category": "photo-education-publisher",
+    "url": "https://www.instagram.com/adorama/",
+    "level": 3,
+    "sourceType": "Individual lighting tutorial post and two visually inspected examples",
+    "status": "active",
+    "focus": [
+      "problem-to-technique educational carousel",
+      "one light/multiple looks",
+      "tutorial delivery CTA"
+    ]
+  },
+  {
+    "name": "Jocelyn Gardiner",
+    "category": "event-photographer",
+    "url": "https://www.instagram.com/p/DPAGKJPES-_/",
+    "level": 2,
+    "sourceType": "Individual corporate-event strategy caption",
+    "status": "active",
+    "focus": [
+      "planning aligned to client goals",
+      "shot list and asset reuse",
+      "strategy before execution"
+    ]
+  },
+  {
+    "name": "Tone Stockenstrom",
+    "category": "event-photographer",
+    "url": "https://www.instagram.com/p/DdRoFXDxThL/",
+    "level": 2,
+    "sourceType": "Individual B2B event caption",
+    "status": "active",
+    "focus": [
+      "post-event image library",
+      "client utility",
+      "generic language needs case-specific proof"
+    ]
+  },
+  {
+    "name": "Anthony B Media",
+    "category": "event-production",
+    "url": "https://www.instagram.com/p/Dd_2krllq4w/",
+    "level": 2,
+    "sourceType": "Individual event-marketing post text and metadata",
+    "status": "active",
+    "focus": [
+      "event attendance to online proof",
+      "content longevity as business value",
+      "keep service CTA compact"
+    ]
+  },
+  {
+    "name": "Lumetry Media",
+    "category": "event-production",
+    "url": "https://www.instagram.com/p/DVNB17TEp1f/",
+    "level": 2,
+    "sourceType": "Individual conference-photography caption",
+    "status": "active",
+    "focus": [
+      "photographer as content partner",
+      "sponsor moments",
+      "audience engagement",
+      "marketing-team utility"
+    ]
+  },
+  {
+    "name": "Vladimir Guryanov",
+    "category": "fashion-photographer",
+    "url": "https://www.instagram.com/vladimir_gury/",
+    "level": 1,
+    "sourceType": "Instagram profile and recent public grid previews",
+    "status": "active",
+    "focus": [
+      "Russian fashion/editorial photography",
+      "ongoing portfolio for future post-level audit"
+    ]
+  },
+  {
+    "name": "Anna Devís + Daniel Rueda",
+    "category": "conceptual-photography-duo",
+    "url": "https://www.instagram.com/anniset/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid preview",
+    "status": "active",
+    "focus": [
+      "conceptual image-making",
+      "images that make viewers look twice",
+      "visual premise over long caption"
+    ]
+  },
+  {
+    "name": "Monaris",
+    "category": "documentary-street-photographer",
+    "url": "https://www.instagram.com/monaris_/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid preview",
+    "status": "active",
+    "focus": [
+      "street/documentary observation",
+      "BTS and personal process alongside finished stills"
+    ]
+  },
+  {
+    "name": "Joshua K. Jackson",
+    "category": "street-photographer",
+    "url": "https://www.instagram.com/joshkjack/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid preview",
+    "status": "active",
+    "focus": [
+      "street photography sequences",
+      "London-based observational work"
+    ]
+  },
+  {
+    "name": "LANE Casting UK",
+    "category": "creative-production",
+    "url": "https://www.instagram.com/p/CnUunsjo9P3/",
+    "level": 2,
+    "sourceType": "Individual campaign-credit post and several visual samples",
+    "status": "active",
+    "focus": [
+      "editorial creative premise",
+      "clear collaboration credits",
+      "production role transparency"
+    ]
+  },
+  {
+    "name": "Stills Project / Ophelia",
+    "category": "fine-art-publishing",
+    "url": "https://www.instagram.com/p/CL9fkTcnIAH/",
+    "level": 2,
+    "sourceType": "Individual art-series statement and image preview",
+    "status": "active",
+    "focus": [
+      "symbolic conceptual copy",
+      "series unification",
+      "print edition and material details"
+    ]
+  },
+  {
+    "name": "Tatarnikova Studio / Mariya Tatarnikova",
+    "category": "fashion-editorial-photographer",
+    "url": "https://www.instagram.com/tatarnikova_studio/",
+    "level": 3,
+    "sourceType": "Profile metadata + individual post caption + two visually inspected carousel images",
+    "status": "active",
+    "focus": [
+      "integrated photography/styling/production design",
+      "graphic close-up vs saturated portrait",
+      "concise credits-first caption"
+    ]
+  },
+  {
+    "name": "OMNI Production",
+    "category": "production-studio",
+    "url": "https://www.instagram.com/omniproduction.ru/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid",
+    "status": "active",
+    "focus": [
+      "Moscow creative production positioning",
+      "advertising/photo/music video/AR",
+      "project archive and discipline-based Highlights"
+    ]
+  },
+  {
+    "name": "Ekaterina Nasyrova",
+    "category": "commercial-fashion-photographer",
+    "url": "https://ekaterinanasyrova.com/",
+    "level": 1,
+    "sourceType": "Portfolio website inspected; Instagram not yet audited",
+    "status": "audit_pending",
+    "focus": [
+      "Moscow fashion and celebrity photography",
+      "portrait/studio/street/event breadth",
+      "client journey and service packaging"
+    ]
+  },
+  {
+    "name": "The Production Studio",
+    "category": "commercial-production-studio",
+    "url": "https://www.instagram.com/p/DaQM_AmjH4T/",
+    "level": 3,
+    "sourceType": "Individual campaign post caption and two visually inspected carousel images; account handle surfaced as _theproductionstudio_",
+    "status": "active",
+    "focus": [
+      "commercial fashion campaign",
+      "minimal client/project + role credits",
+      "tonal/scale contrast across carousel"
+    ]
+  },
+  {
+    "name": "Select Management",
+    "category": "fashion-agency",
+    "url": "https://www.instagram.com/p/DbIBwhoDJ3i/",
+    "level": 3,
+    "sourceType": "Individual fashion campaign post caption and two visually inspected images",
+    "status": "active",
+    "focus": [
+      "role-based credits across photo/styling/HMU/video/light",
+      "portrait and full-length framing contrast",
+      "agency collaboration"
+    ]
+  },
+  {
+    "name": "Diego Ante",
+    "category": "commercial-director",
+    "url": "https://www.instagram.com/reel/DOvj0lkkQwZ/",
+    "level": 2,
+    "sourceType": "Individual commercial Reel caption and comments; video playback unavailable",
+    "status": "active",
+    "focus": [
+      "full production credits",
+      "brand/agency/production-company hierarchy",
+      "post-production and CGI roles"
+    ]
+  },
+  {
+    "name": "VKornacheva Team",
+    "category": "event-photo-video",
+    "url": "https://www.instagram.com/vkornacheva_team/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata, grid formats and Highlights",
+    "status": "active",
+    "focus": [
+      "event photography and video",
+      "service-area clarity",
+      "Highlights organized by event photo/video/BTS/reviews"
+    ]
+  },
+  {
+    "name": "Jane Petrova Film",
+    "category": "fashion-beauty-filmmaker",
+    "url": "https://www.instagram.com/janepetrova.film/",
+    "level": 1,
+    "sourceType": "Instagram profile bio, visible format mix and Highlights",
+    "status": "active",
+    "focus": [
+      "fashion and beauty video",
+      "director/DP positioning",
+      "portfolio organized by project/location"
+    ]
+  },
+  {
+    "name": "Mikhail Matvienko",
+    "category": "street-photographer",
+    "url": "https://www.instagram.com/mikhail_bearr/",
+    "level": 2,
+    "sourceType": "Editorial feature on Streetphotography Austria with attributed artist statement; own profile/archive not audited",
+    "status": "audit_pending",
+    "focus": [
+      "observational street photography",
+      "light/shape/patterns/people as triggers",
+      "background as a film editor"
+    ]
+  }
+]
