@@ -139,3 +139,40 @@ A compare-question works when the actual images offer a meaningful choice. A sav
 
 ## Reference reliability
 Some Instagram page extractions can surface previews inconsistent with the post caption. When visual evidence does not match the caption, record “visual unverified” and learn only from the reliable text/comment details. Do not confuse profile-grid thumbnails with the media inside a specific post.
+
+
+## Visual culture, taste and cross-disciplinary reference
+
+Use `VISUAL_CULTURE_CANON.md`, `VISUAL_REFERENCE_INDEX.json` and `VISUAL_TASTE_PROTOCOL.md` as core working materials. The canon deliberately crosses fashion photography, documentary, portraiture, painting, cinema, cinematography, editing, music videos, production design and editorial/graphic design. It is not a style menu to copy.
+
+### Visual thesis before execution
+For a significant visual proposal, state the brief-specific thesis before choosing frames or writing the caption:
+- What relationship in the actual material is the strongest?
+- Which element should lead attention?
+- What are the most distinctive light, color, space, gesture, texture or movement properties?
+- What should be removed?
+- What does the sequence need to change over time: scale, density, tempo, palette, emotional temperature or information?
+
+### Reference triangle
+When the task merits visual research, select at least three independent reference lines:
+1. Photography/still image for framing, light or gesture.
+2. Cinema/editing/music-video source for motion, duration, cut, sound or emotional arc.
+3. Another discipline (painting, sculpture, architecture, graphic/editorial design, dance or music) for composition, palette, space or rhythm.
+
+Each source must solve a concrete problem. Use one principle from each reference; do not average their signature styles or name-drop. Inspect the actual work or sequence where possible. A result discovered from metadata or a mismatched preview can only inform metadata/text, not visual judgement.
+
+### Visual choice is a system
+- **Composition:** hierarchy, visual centre, edge management, negative space, axes, foreground/midground/background, silhouette.
+- **Light and tone:** source, direction, hardness, falloff, contrast, shadow shape and whether the subject is revealed or concealed.
+- **Color:** hue relationships, value grouping, saturation, temperature and repetition across a sequence.
+- **Gesture/space:** where the body points, what it touches, gaze, tension, relation to setting and other people.
+- **Texture:** skin, fabric, grain, reflective surfaces, motion blur, tactile or synthetic rendering.
+- **Sequence:** entry, orientation, human anchor, interruption, contrast, peak, release. This is a vocabulary, not a mandatory structure.
+- **Graphic hierarchy:** typography, scale, grid, image/text relation, page or carousel rhythm.
+- **Motion rhythm:** cut/action/sound at micro scale; phrase/sequence at meso scale; overall arc and aftertaste at macro scale.
+
+### Taste gate
+For substantial photo/video sequences and moodboards, apply the eight-part 0–4 scorecard from `VISUAL_TASTE_PROTOCOL.md` (maximum 32, suggested threshold 24). Review composition, light, color, gesture/space, rhythm, specificity, restraint and coherence. A numerical score is only a critique aid; it never overrides the brief or actual evidence. If a major category is weak, explain what to remove, reorder, recrop, relight or re-edit.
+
+### Keep VECTA distinct
+The aim is a sharper range of visual decisions, not resemblance to one artist. Refuse decorative “cinematic” treatments that have no relationship to the material. Avoid turning the canon into a fixed palette, a preset, a grain recipe, a slow-motion habit or a formulaic carousel. Reference the principle, not the recognizable execution.
