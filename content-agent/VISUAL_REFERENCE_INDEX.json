@@ -1,0 +1,1399 @@
+{
+  "title": "VECTA Visual Reference Index",
+  "version": "0.1",
+  "updated": "2026-10-10",
+  "note": "Curated study index; not a ranking and not a replacement for direct visual inspection. Some listed works require paid access. Inspect full projects/sequences where possible. See VISUAL_CULTURE_CANON.md and VISUAL_TASTE_PROTOCOL.md for methods.",
+  "count": 110,
+  "sources": [
+    {
+      "name": "Getty - Icons of Style",
+      "url": "https://www.getty.edu/art/exhibitions/fashion_photography/"
+    },
+    {
+      "name": "Aperture - Alex Webb on color",
+      "url": "https://aperture.org/editorial/how-alex-webb-sees-in-color/"
+    },
+    {
+      "name": "Magnum - Mark Power on sequencing",
+      "url": "https://www.magnumphotos.com/theory-and-practice/mark-power-the-language-of-pictures-exploring-sequencing/"
+    },
+    {
+      "name": "Aperture - producing a photobook",
+      "url": "https://aperture.org/editorial/how-to-produce-a-photobook/"
+    },
+    {
+      "name": "ShotDeck",
+      "url": "https://shotdeck.com/"
+    },
+    {
+      "name": "FilmGrab",
+      "url": "https://film-grab.com/"
+    },
+    {
+      "name": "CineMontage - Walter Murch visual music",
+      "url": "https://cinemontage.org/visual-music-walter-murch/"
+    },
+    {
+      "name": "BFI - Roger Deakins in ten shots",
+      "url": "https://www.bfi.org.uk/sight-and-sound/features/remain-light-roger-deakins-ten-shots"
+    },
+    {
+      "name": "MAMM",
+      "url": "https://mamm-mdf.ru/en/festivals/fashion-and-style-in-photography-2021/"
+    },
+    {
+      "name": "It’s Nice That - art direction archive",
+      "url": "https://www.itsnicethat.com/media/art-direction"
+    }
+  ],
+  "references": [
+    {
+      "name": "Saul Leiter",
+      "discipline": "photography/color-street",
+      "focus": [
+        "occlusion",
+        "reflection",
+        "quiet color",
+        "foreground layers"
+      ],
+      "studyQuestion": "How can obstruction and partial visibility create a more intimate frame?",
+      "sourcePortal": "Aperture / The Independent Photographer",
+      "priority": "core"
+    },
+    {
+      "name": "Alex Webb",
+      "discipline": "photography/color-documentary",
+      "focus": [
+        "layering",
+        "high-density composition",
+        "saturated color",
+        "gesture"
+      ],
+      "studyQuestion": "Trace three simultaneous actions and how their colors organize attention.",
+      "sourcePortal": "Magnum / Aperture",
+      "priority": "core"
+    },
+    {
+      "name": "Gueorgui Pinkhassov",
+      "discipline": "photography/light-abstraction",
+      "focus": [
+        "reflections",
+        "light fragments",
+        "near-abstraction",
+        "urban observation"
+      ],
+      "studyQuestion": "How does light become the subject without losing the real place?",
+      "sourcePortal": "Magnum Photos",
+      "priority": "core"
+    },
+    {
+      "name": "William Eggleston",
+      "discipline": "photography/color",
+      "focus": [
+        "ordinary subject",
+        "color balance",
+        "edge discipline"
+      ],
+      "studyQuestion": "Why does an ordinary subject hold attention through color and placement?",
+      "sourcePortal": "Aperture / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Stephen Shore",
+      "discipline": "photography/color-documentary",
+      "focus": [
+        "spatial description",
+        "serial consistency",
+        "everyday scenes"
+      ],
+      "studyQuestion": "How do precise framing and repetition turn the ordinary into a body of work?",
+      "sourcePortal": "Aperture / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Franco Fontana",
+      "discipline": "photography/color-abstraction",
+      "focus": [
+        "color fields",
+        "geometry",
+        "minimalism"
+      ],
+      "studyQuestion": "Can hue and edge carry the image without a strong narrative subject?",
+      "sourcePortal": "The Independent Photographer",
+      "priority": "core"
+    },
+    {
+      "name": "Harry Gruyaert",
+      "discipline": "photography/color-documentary",
+      "focus": [
+        "graphic color blocks",
+        "contrasts",
+        "urban density"
+      ],
+      "studyQuestion": "How are color relationships simplifying a crowded world?",
+      "sourcePortal": "Magnum Photos",
+      "priority": "core"
+    },
+    {
+      "name": "Ernst Haas",
+      "discipline": "photography/motion-color",
+      "focus": [
+        "motion blur",
+        "color",
+        "impression"
+      ],
+      "studyQuestion": "When does blur communicate movement instead of technical softness?",
+      "sourcePortal": "The Independent Photographer",
+      "priority": "core"
+    },
+    {
+      "name": "Fan Ho",
+      "discipline": "photography/light-geometry",
+      "focus": [
+        "silhouette",
+        "hard light",
+        "urban geometry"
+      ],
+      "studyQuestion": "How do light paths and figure placement lead the eye?",
+      "sourcePortal": "Photography museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Martin Parr",
+      "discipline": "photography/documentary",
+      "focus": [
+        "flash",
+        "social codes",
+        "saturation",
+        "irony"
+      ],
+      "studyQuestion": "Which detail gives the frame social meaning rather than decoration?",
+      "sourcePortal": "Magnum / Aperture",
+      "priority": "core"
+    },
+    {
+      "name": "Rinko Kawauchi",
+      "discipline": "photography/poetic-sequence",
+      "focus": [
+        "micro-events",
+        "soft light",
+        "detail",
+        "sequence"
+      ],
+      "studyQuestion": "How can a small detail change the pace of a photo sequence?",
+      "sourcePortal": "Aperture / photobook studies",
+      "priority": "core"
+    },
+    {
+      "name": "Mark Power",
+      "discipline": "photography/sequence",
+      "focus": [
+        "serial observation",
+        "architecture",
+        "editing"
+      ],
+      "studyQuestion": "How does reordering the same archive alter its narrative?",
+      "sourcePortal": "Magnum Photos",
+      "priority": "core"
+    },
+    {
+      "name": "Alec Soth",
+      "discipline": "photography/narrative-portrait",
+      "focus": [
+        "portrait/place",
+        "distance",
+        "quiet sequence"
+      ],
+      "studyQuestion": "What is revealed through the relationship between a person and the location?",
+      "sourcePortal": "Magnum Photos",
+      "priority": "core"
+    },
+    {
+      "name": "Todd Hido",
+      "discipline": "photography/atmosphere",
+      "focus": [
+        "windows",
+        "night color",
+        "absence",
+        "distance"
+      ],
+      "studyQuestion": "How does off-screen presence shape a scene?",
+      "sourcePortal": "Photobook collections",
+      "priority": "core"
+    },
+    {
+      "name": "Trent Parke",
+      "discipline": "photography/high-contrast",
+      "focus": [
+        "silhouette",
+        "movement",
+        "high contrast"
+      ],
+      "studyQuestion": "How do light and duration create intensity in a still image?",
+      "sourcePortal": "Magnum Photos",
+      "priority": "core"
+    },
+    {
+      "name": "Helen Levitt",
+      "discipline": "photography/street",
+      "focus": [
+        "gesture",
+        "chance",
+        "humane observation"
+      ],
+      "studyQuestion": "What is the instant when geometry and behavior align?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Joel Meyerowitz",
+      "discipline": "photography/color-street",
+      "focus": [
+        "layering",
+        "public space",
+        "color",
+        "gesture"
+      ],
+      "studyQuestion": "How do foreground, background and people coexist?",
+      "sourcePortal": "Aperture / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Luigi Ghirri",
+      "discipline": "photography/color-conceptual",
+      "focus": [
+        "frames-within-frames",
+        "everyday surrealism",
+        "restraint"
+      ],
+      "studyQuestion": "How can a found edge or printed image destabilize the scene?",
+      "sourcePortal": "Aperture / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Josef Koudelka",
+      "discipline": "photography/documentary",
+      "focus": [
+        "panorama",
+        "silhouette",
+        "body-space tension"
+      ],
+      "studyQuestion": "What does the scale of the environment do to the human figure?",
+      "sourcePortal": "Magnum Photos",
+      "priority": "core"
+    },
+    {
+      "name": "Gregory Crewdson",
+      "discipline": "photography/staged-cinema",
+      "focus": [
+        "lighting",
+        "blocking",
+        "production design",
+        "suspense"
+      ],
+      "studyQuestion": "How do set, light and stillness imply an event outside the frame?",
+      "sourcePortal": "Gallery / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Irving Penn",
+      "discipline": "fashion/portrait/still-life",
+      "focus": [
+        "formal precision",
+        "texture",
+        "pose",
+        "negative space"
+      ],
+      "studyQuestion": "Which single change in pose, background or light creates the image's authority?",
+      "sourcePortal": "Getty / Aperture",
+      "priority": "core"
+    },
+    {
+      "name": "Richard Avedon",
+      "discipline": "fashion/portrait",
+      "focus": [
+        "gesture",
+        "movement",
+        "graphic background",
+        "presence"
+      ],
+      "studyQuestion": "How do motion and expression work inside a clean frame?",
+      "sourcePortal": "Getty / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Horst P. Horst",
+      "discipline": "fashion/portrait",
+      "focus": [
+        "sculptural pose",
+        "classical geometry",
+        "shadow"
+      ],
+      "studyQuestion": "How does body geometry become the composition?",
+      "sourcePortal": "Getty fashion photography",
+      "priority": "core"
+    },
+    {
+      "name": "George Hoyningen-Huene",
+      "discipline": "fashion/editorial",
+      "focus": [
+        "symmetry",
+        "sculpture",
+        "architectural pose"
+      ],
+      "studyQuestion": "How are bodies arranged like structural forms?",
+      "sourcePortal": "Getty fashion photography",
+      "priority": "core"
+    },
+    {
+      "name": "Guy Bourdin",
+      "discipline": "fashion/editorial",
+      "focus": [
+        "surreal narrative",
+        "color",
+        "crop",
+        "ambiguity"
+      ],
+      "studyQuestion": "How can an incomplete view imply a larger narrative?",
+      "sourcePortal": "Getty / fashion photography archives",
+      "priority": "core"
+    },
+    {
+      "name": "Helmut Newton",
+      "discipline": "fashion/editorial",
+      "focus": [
+        "staging",
+        "architecture",
+        "power",
+        "direct confrontation"
+      ],
+      "studyQuestion": "How does pose and location define power within a frame?",
+      "sourcePortal": "Getty fashion photography",
+      "priority": "core"
+    },
+    {
+      "name": "Deborah Turbeville",
+      "discipline": "fashion/editorial",
+      "focus": [
+        "atmosphere",
+        "imperfection",
+        "grain",
+        "group composition"
+      ],
+      "studyQuestion": "How can imperfection and distance create an editorial world?",
+      "sourcePortal": "Getty / fashion photography archives",
+      "priority": "core"
+    },
+    {
+      "name": "Sarah Moon",
+      "discipline": "fashion/editorial",
+      "focus": [
+        "blur",
+        "soft tonal range",
+        "memory",
+        "motion"
+      ],
+      "studyQuestion": "Where does ambiguity create atmosphere, and where does it obscure the idea?",
+      "sourcePortal": "Getty / fashion photography archives",
+      "priority": "core"
+    },
+    {
+      "name": "Paolo Roversi",
+      "discipline": "fashion/portrait",
+      "focus": [
+        "long exposure",
+        "painterly light",
+        "quiet presence"
+      ],
+      "studyQuestion": "How does duration alter the face and emotional register?",
+      "sourcePortal": "Fashion photography archives",
+      "priority": "core"
+    },
+    {
+      "name": "Peter Lindbergh",
+      "discipline": "fashion/portrait",
+      "focus": [
+        "monochrome",
+        "expression",
+        "skin texture",
+        "anti-gloss"
+      ],
+      "studyQuestion": "What remains when styling is reduced and expression leads?",
+      "sourcePortal": "Getty / fashion photography archives",
+      "priority": "core"
+    },
+    {
+      "name": "Steven Meisel",
+      "discipline": "fashion/editorial",
+      "focus": [
+        "characters",
+        "narrative styling",
+        "cultural codes"
+      ],
+      "studyQuestion": "What is the story premise and how does every styling choice support it?",
+      "sourcePortal": "Fashion magazine archives",
+      "priority": "core"
+    },
+    {
+      "name": "Tim Walker",
+      "discipline": "fashion/production-design",
+      "focus": [
+        "theatrical set",
+        "scale",
+        "visual premise"
+      ],
+      "studyQuestion": "Does production design change the meaning, or only decorate the frame?",
+      "sourcePortal": "Fashion image archives",
+      "priority": "core"
+    },
+    {
+      "name": "Nick Knight",
+      "discipline": "fashion/experimental",
+      "focus": [
+        "technical experimentation",
+        "color",
+        "movement"
+      ],
+      "studyQuestion": "What does the technique contribute that a conventional method would not?",
+      "sourcePortal": "SHOWstudio",
+      "priority": "core"
+    },
+    {
+      "name": "Sølve Sundsbø",
+      "discipline": "fashion/experimental",
+      "focus": [
+        "time",
+        "lens effects",
+        "movement",
+        "artifice"
+      ],
+      "studyQuestion": "Which distortion expresses the idea rather than just displaying technique?",
+      "sourcePortal": "Fashion image archives",
+      "priority": "core"
+    },
+    {
+      "name": "Viviane Sassen",
+      "discipline": "fashion/fine-art",
+      "focus": [
+        "color blocks",
+        "shadow",
+        "body abstraction",
+        "surrealism"
+      ],
+      "studyQuestion": "How does a shadow become a graphic shape, and what happens to body recognition?",
+      "sourcePortal": "FOAM / Electra",
+      "priority": "core"
+    },
+    {
+      "name": "Juergen Teller",
+      "discipline": "fashion/portrait",
+      "focus": [
+        "anti-polish",
+        "proximity",
+        "awkwardness"
+      ],
+      "studyQuestion": "What does the frame gain from resisting conventional polish?",
+      "sourcePortal": "Fashion and museum archives",
+      "priority": "core"
+    },
+    {
+      "name": "Roe Ethridge",
+      "discipline": "commercial/conceptual photography",
+      "focus": [
+        "commercial-personal friction",
+        "irony",
+        "image language"
+      ],
+      "studyQuestion": "How can an image function as both campaign and authored work?",
+      "sourcePortal": "Gallery / Aperture",
+      "priority": "core"
+    },
+    {
+      "name": "Jamie Hawkesworth",
+      "discipline": "portrait/editorial",
+      "focus": [
+        "unforced gesture",
+        "everyday portrait",
+        "directness"
+      ],
+      "studyQuestion": "Why does the pose feel observed rather than performed?",
+      "sourcePortal": "Fashion and photography archives",
+      "priority": "core"
+    },
+    {
+      "name": "Tyler Mitchell",
+      "discipline": "portrait/fashion",
+      "focus": [
+        "warmth",
+        "surreal softness",
+        "intimacy"
+      ],
+      "studyQuestion": "How do environment and palette create a lived-in ideal?",
+      "sourcePortal": "Gallery / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Nadine Ijewere",
+      "discipline": "fashion/portrait",
+      "focus": [
+        "cultural specificity",
+        "color",
+        "styling",
+        "gesture"
+      ],
+      "studyQuestion": "Which details make the visual world specific to the people represented?",
+      "sourcePortal": "Fashion/editorial archives",
+      "priority": "core"
+    },
+    {
+      "name": "Campbell Addy",
+      "discipline": "fashion/portrait",
+      "focus": [
+        "identity",
+        "saturated color",
+        "direct gaze"
+      ],
+      "studyQuestion": "How do direct address and palette change the relationship with the viewer?",
+      "sourcePortal": "Fashion/editorial archives",
+      "priority": "core"
+    },
+    {
+      "name": "Nadia Lee Cohen",
+      "discipline": "portrait/conceptual",
+      "focus": [
+        "constructed character",
+        "retro codes",
+        "theatrical staging"
+      ],
+      "studyQuestion": "How do set and performance define a character before the caption?",
+      "sourcePortal": "Gallery / campaign archives",
+      "priority": "core"
+    },
+    {
+      "name": "August Sander",
+      "discipline": "portrait/documentary",
+      "focus": [
+        "typology",
+        "social context",
+        "clothing",
+        "posture"
+      ],
+      "studyQuestion": "What social information is carried by posture, dress and background?",
+      "sourcePortal": "Photography museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Gordon Parks",
+      "discipline": "portrait/documentary",
+      "focus": [
+        "human dignity",
+        "environment",
+        "social narrative"
+      ],
+      "studyQuestion": "How does a portrait communicate context without reducing the subject to a symbol?",
+      "sourcePortal": "Aperture / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Nadav Kander",
+      "discipline": "portrait/environmental",
+      "focus": [
+        "tonal control",
+        "scale",
+        "quiet atmosphere"
+      ],
+      "studyQuestion": "How does the environment extend rather than compete with the portrait?",
+      "sourcePortal": "Gallery / photography archives",
+      "priority": "core"
+    },
+    {
+      "name": "Deana Lawson",
+      "discipline": "portrait/staged",
+      "focus": [
+        "domestic space",
+        "symbolism",
+        "relationships"
+      ],
+      "studyQuestion": "How do objects and posture make a constructed portrait specific?",
+      "sourcePortal": "Gallery / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Zanele Muholi",
+      "discipline": "portrait/identity",
+      "focus": [
+        "gaze",
+        "contrast",
+        "self-representation"
+      ],
+      "studyQuestion": "How does direct gaze establish agency and address?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Edward Hopper",
+      "discipline": "painting/light-space",
+      "focus": [
+        "windows",
+        "negative space",
+        "daylight",
+        "off-screen story"
+      ],
+      "studyQuestion": "What implied story exists outside the frame?",
+      "sourcePortal": "Tate / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Johannes Vermeer",
+      "discipline": "painting/light",
+      "focus": [
+        "window light",
+        "surface",
+        "domestic geometry"
+      ],
+      "studyQuestion": "How does one light source organize an entire scene?",
+      "sourcePortal": "Getty / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Caravaggio",
+      "discipline": "painting/light",
+      "focus": [
+        "chiaroscuro",
+        "directional focus",
+        "dramatic body"
+      ],
+      "studyQuestion": "Which parts are revealed and which disappear into shadow?",
+      "sourcePortal": "Getty / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Georges de La Tour",
+      "discipline": "painting/light",
+      "focus": [
+        "single-source illumination",
+        "darkness",
+        "stillness"
+      ],
+      "studyQuestion": "How does a small light source structure the viewer's attention?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Rembrandt",
+      "discipline": "painting/portrait",
+      "focus": [
+        "value grouping",
+        "face",
+        "tonal depth"
+      ],
+      "studyQuestion": "How is attention built through value rather than detail?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Vilhelm Hammershøi",
+      "discipline": "painting/space",
+      "focus": [
+        "empty interiors",
+        "low chroma",
+        "stillness"
+      ],
+      "studyQuestion": "What emotional meaning comes from the amount of empty space?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Henri Matisse",
+      "discipline": "painting/color",
+      "focus": [
+        "flat color",
+        "simplification",
+        "shape relationships"
+      ],
+      "studyQuestion": "What can be removed before the image loses its meaning?",
+      "sourcePortal": "MoMA / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "David Hockney",
+      "discipline": "painting/perspective",
+      "focus": [
+        "multiple viewpoints",
+        "color",
+        "collage"
+      ],
+      "studyQuestion": "What happens when the viewer's viewpoint is not singular?",
+      "sourcePortal": "MoMA / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Egon Schiele",
+      "discipline": "painting/gesture",
+      "focus": [
+        "line",
+        "body tension",
+        "proportion"
+      ],
+      "studyQuestion": "How does a gesture carry psychological energy?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Francis Bacon",
+      "discipline": "painting/distortion",
+      "focus": [
+        "enclosure",
+        "distortion",
+        "psychological pressure"
+      ],
+      "studyQuestion": "How does the space around the body amplify unease?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Tamara de Lempicka",
+      "discipline": "painting/portrait",
+      "focus": [
+        "sculptural bodies",
+        "hard surfaces",
+        "stylization"
+      ],
+      "studyQuestion": "How can light and contour make a figure feel constructed?",
+      "sourcePortal": "Museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Man Ray",
+      "discipline": "photo-art/experimental",
+      "focus": [
+        "photograms",
+        "solarization",
+        "technique as concept"
+      ],
+      "studyQuestion": "When does a process become the subject of the work?",
+      "sourcePortal": "Photography museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Cindy Sherman",
+      "discipline": "photo-art/conceptual",
+      "focus": [
+        "constructed identity",
+        "performance",
+        "visual codes"
+      ],
+      "studyQuestion": "Which details make a character legible without explaining it?",
+      "sourcePortal": "MoMA / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Wolfgang Tillmans",
+      "discipline": "photo-art/sequence",
+      "focus": [
+        "scale variation",
+        "display",
+        "abstraction",
+        "sequence"
+      ],
+      "studyQuestion": "How do scale and placement make images speak to one another?",
+      "sourcePortal": "Aperture / museum collections",
+      "priority": "core"
+    },
+    {
+      "name": "Roger Deakins",
+      "discipline": "cinematography",
+      "focus": [
+        "motivated light",
+        "silhouette",
+        "spatial clarity",
+        "economy"
+      ],
+      "studyQuestion": "Can each light source and camera position be explained by the scene?",
+      "sourcePortal": "BFI / film stills",
+      "priority": "core"
+    },
+    {
+      "name": "Gordon Willis",
+      "discipline": "cinematography",
+      "focus": [
+        "shadow",
+        "low-key exposure",
+        "psychological space"
+      ],
+      "studyQuestion": "How much information should remain hidden?",
+      "sourcePortal": "Film stills / cinematography interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Christopher Doyle",
+      "discipline": "cinematography",
+      "focus": [
+        "color",
+        "blur",
+        "fragmentation",
+        "urban night"
+      ],
+      "studyQuestion": "How does motion blur change emotional time?",
+      "sourcePortal": "FilmGrab / film essays",
+      "priority": "core"
+    },
+    {
+      "name": "Darius Khondji",
+      "discipline": "cinematography",
+      "focus": [
+        "texture",
+        "dense contrast",
+        "layered color"
+      ],
+      "studyQuestion": "How do surface and tonal density create a world?",
+      "sourcePortal": "FilmGrab / cinematography interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Emmanuel Lubezki",
+      "discipline": "cinematography",
+      "focus": [
+        "long takes",
+        "natural light",
+        "moving camera"
+      ],
+      "studyQuestion": "What does continuous movement reveal that cutting would not?",
+      "sourcePortal": "FilmGrab / cinematography interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Hoyte van Hoytema",
+      "discipline": "cinematography",
+      "focus": [
+        "scale",
+        "format",
+        "practical light",
+        "movement"
+      ],
+      "studyQuestion": "How do format and scale change the viewer's physical relation to space?",
+      "sourcePortal": "ShotDeck / FilmGrab",
+      "priority": "core"
+    },
+    {
+      "name": "Bradford Young",
+      "discipline": "cinematography",
+      "focus": [
+        "shadow detail",
+        "available light",
+        "intimacy"
+      ],
+      "studyQuestion": "How does low-key lighting preserve subject presence without exposing everything?",
+      "sourcePortal": "FilmGrab / interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Greig Fraser",
+      "discipline": "cinematography",
+      "focus": [
+        "atmosphere",
+        "silhouette",
+        "world-building"
+      ],
+      "studyQuestion": "How does lighting make a fictional environment feel physically coherent?",
+      "sourcePortal": "ShotDeck / interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Benoît Debie",
+      "discipline": "cinematography",
+      "focus": [
+        "neon",
+        "colored practicals",
+        "subjective POV"
+      ],
+      "studyQuestion": "Do saturated sources express the scene's emotional state or merely look striking?",
+      "sourcePortal": "FilmGrab",
+      "priority": "core"
+    },
+    {
+      "name": "Hélène Louvart",
+      "discipline": "cinematography",
+      "focus": [
+        "texture",
+        "natural light",
+        "body in space"
+      ],
+      "studyQuestion": "How do imperfect surfaces support the emotional realism?",
+      "sourcePortal": "FilmGrab / interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Matthew Libatique",
+      "discipline": "cinematography",
+      "focus": [
+        "camera energy",
+        "color",
+        "instability"
+      ],
+      "studyQuestion": "When should the camera's movement mirror or resist the subject?",
+      "sourcePortal": "FilmGrab",
+      "priority": "core"
+    },
+    {
+      "name": "Wong Kar-wai",
+      "discipline": "film direction",
+      "focus": [
+        "fragment",
+        "time",
+        "color",
+        "motion blur"
+      ],
+      "studyQuestion": "What information is deliberately withheld and how does repetition change meaning?",
+      "sourcePortal": "Criterion / FilmGrab",
+      "priority": "core"
+    },
+    {
+      "name": "Sofia Coppola",
+      "discipline": "film direction",
+      "focus": [
+        "negative space",
+        "emotional distance",
+        "soft pace"
+      ],
+      "studyQuestion": "How does stillness or an empty frame express a character's state?",
+      "sourcePortal": "Criterion / FilmGrab",
+      "priority": "core"
+    },
+    {
+      "name": "David Fincher",
+      "discipline": "film direction",
+      "focus": [
+        "precision",
+        "tonal continuity",
+        "controlled movement"
+      ],
+      "studyQuestion": "How does camera movement direct attention with minimum distraction?",
+      "sourcePortal": "BFI / FilmGrab",
+      "priority": "core"
+    },
+    {
+      "name": "Stanley Kubrick",
+      "discipline": "film direction",
+      "focus": [
+        "symmetry",
+        "perspective",
+        "formal pattern"
+      ],
+      "studyQuestion": "When does a repeated geometric pattern become thematic?",
+      "sourcePortal": "Criterion / FilmGrab",
+      "priority": "core"
+    },
+    {
+      "name": "Andrei Tarkovsky",
+      "discipline": "film direction",
+      "focus": [
+        "duration",
+        "material texture",
+        "landscape",
+        "sound"
+      ],
+      "studyQuestion": "Why does this shot need its duration?",
+      "sourcePortal": "Criterion / film essays",
+      "priority": "core"
+    },
+    {
+      "name": "Agnès Varda",
+      "discipline": "film direction",
+      "focus": [
+        "observation",
+        "collage",
+        "documentary/play"
+      ],
+      "studyQuestion": "How does the film shift between observation and construction?",
+      "sourcePortal": "Criterion / BFI",
+      "priority": "core"
+    },
+    {
+      "name": "Claire Denis",
+      "discipline": "film direction",
+      "focus": [
+        "body",
+        "touch",
+        "ellipsis",
+        "rhythm"
+      ],
+      "studyQuestion": "What is communicated by gesture and cut instead of dialogue?",
+      "sourcePortal": "Criterion / BFI",
+      "priority": "core"
+    },
+    {
+      "name": "Terrence Malick",
+      "discipline": "film direction",
+      "focus": [
+        "natural light",
+        "camera flow",
+        "associative montage"
+      ],
+      "studyQuestion": "What links shots when plot continuity is not the main connector?",
+      "sourcePortal": "FilmGrab / film essays",
+      "priority": "core"
+    },
+    {
+      "name": "Michelangelo Antonioni",
+      "discipline": "film direction",
+      "focus": [
+        "architecture",
+        "distance",
+        "empty space"
+      ],
+      "studyQuestion": "How does setting make a character feel separate?",
+      "sourcePortal": "Criterion",
+      "priority": "core"
+    },
+    {
+      "name": "Park Chan-wook",
+      "discipline": "film direction",
+      "focus": [
+        "geometry",
+        "camera choreography",
+        "visual rhyme"
+      ],
+      "studyQuestion": "How does a match or movement transform the scene?",
+      "sourcePortal": "Criterion / film essays",
+      "priority": "core"
+    },
+    {
+      "name": "Bong Joon-ho",
+      "discipline": "film direction",
+      "focus": [
+        "thresholds",
+        "verticality",
+        "spatial storytelling"
+      ],
+      "studyQuestion": "How does the architecture explain the power dynamics?",
+      "sourcePortal": "Criterion / film essays",
+      "priority": "core"
+    },
+    {
+      "name": "Barry Jenkins",
+      "discipline": "film direction",
+      "focus": [
+        "skin",
+        "gaze",
+        "color",
+        "camera movement"
+      ],
+      "studyQuestion": "How does color and proximity shape subjectivity?",
+      "sourcePortal": "FilmGrab / film essays",
+      "priority": "core"
+    },
+    {
+      "name": "Lynne Ramsay",
+      "discipline": "film direction",
+      "focus": [
+        "associative edit",
+        "sensory detail",
+        "off-screen action"
+      ],
+      "studyQuestion": "What does a detail or sound imply that is not shown?",
+      "sourcePortal": "FilmGrab / film essays",
+      "priority": "core"
+    },
+    {
+      "name": "Walter Murch",
+      "discipline": "editing/sound",
+      "focus": [
+        "visual music",
+        "sound bridge",
+        "emotional cut"
+      ],
+      "studyQuestion": "What makes the cut feel inevitable instead of merely on-beat?",
+      "sourcePortal": "CineMontage",
+      "priority": "core"
+    },
+    {
+      "name": "Thelma Schoonmaker",
+      "discipline": "editing",
+      "focus": [
+        "performance rhythm",
+        "pace",
+        "intensity"
+      ],
+      "studyQuestion": "Where does the edit speed up, and where does it allow a performance to land?",
+      "sourcePortal": "Film editor interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Hank Corwin",
+      "discipline": "editing",
+      "focus": [
+        "associative montage",
+        "irregular pace",
+        "density"
+      ],
+      "studyQuestion": "How can a cut create meaning through juxtaposition rather than continuity?",
+      "sourcePortal": "Editing interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Michel Gondry",
+      "discipline": "music video",
+      "focus": [
+        "practical effects",
+        "looping",
+        "handmade transitions"
+      ],
+      "studyQuestion": "What visual rule makes the clip's world memorable?",
+      "sourcePortal": "Directors' Library",
+      "priority": "core"
+    },
+    {
+      "name": "Melina Matsoukas",
+      "discipline": "music video",
+      "focus": [
+        "cultural specificity",
+        "movement",
+        "fashion image"
+      ],
+      "studyQuestion": "How do styling, choreography and place connect to the music's argument?",
+      "sourcePortal": "Directors' Library / Shots",
+      "priority": "core"
+    },
+    {
+      "name": "Hiro Murai",
+      "discipline": "music video",
+      "focus": [
+        "uncanny narrative",
+        "deadpan timing",
+        "visual metaphor"
+      ],
+      "studyQuestion": "How does the video preserve a coherent emotional logic while being surreal?",
+      "sourcePortal": "Directors' Library",
+      "priority": "core"
+    },
+    {
+      "name": "Floria Sigismondi",
+      "discipline": "music video",
+      "focus": [
+        "constructed world",
+        "symbolic props",
+        "transformation"
+      ],
+      "studyQuestion": "What does the recurring motif contribute to the whole sequence?",
+      "sourcePortal": "Directors' Library",
+      "priority": "core"
+    },
+    {
+      "name": "Kahlil Joseph",
+      "discipline": "music video",
+      "focus": [
+        "associative montage",
+        "community",
+        "poetic documentary"
+      ],
+      "studyQuestion": "How do documentary texture and music shape a shared emotional space?",
+      "sourcePortal": "Directors' Library",
+      "priority": "core"
+    },
+    {
+      "name": "The Blaze",
+      "discipline": "music video",
+      "focus": [
+        "group dynamics",
+        "long build",
+        "body movement"
+      ],
+      "studyQuestion": "How does energy accumulate across gestures and duration?",
+      "sourcePortal": "Directors' Library",
+      "priority": "core"
+    },
+    {
+      "name": "Alexey Brodovitch",
+      "discipline": "editorial design",
+      "focus": [
+        "crop",
+        "page rhythm",
+        "white space"
+      ],
+      "studyQuestion": "How do image scale and page turn control the pace of looking?",
+      "sourcePortal": "Editorial design archives",
+      "priority": "core"
+    },
+    {
+      "name": "Fabien Baron",
+      "discipline": "art direction",
+      "focus": [
+        "image/type relationship",
+        "negative space",
+        "luxury restraint"
+      ],
+      "studyQuestion": "Does type complete the image or compete with it?",
+      "sourcePortal": "Dazed / The Brand Identity",
+      "priority": "core"
+    },
+    {
+      "name": "M/M (Paris)",
+      "discipline": "graphic art direction",
+      "focus": [
+        "hand-made systems",
+        "visual identity",
+        "cultural codes"
+      ],
+      "studyQuestion": "How can a campaign remain coherent across different media without repeating one layout?",
+      "sourcePortal": "The Brand Identity",
+      "priority": "core"
+    },
+    {
+      "name": "Peter Saville",
+      "discipline": "graphic design",
+      "focus": [
+        "conceptual identity",
+        "typography",
+        "symbol"
+      ],
+      "studyQuestion": "What is the organizing idea behind the visual identity?",
+      "sourcePortal": "Design archives",
+      "priority": "core"
+    },
+    {
+      "name": "David Carson",
+      "discipline": "editorial typography",
+      "focus": [
+        "disruption",
+        "hierarchy",
+        "experimental type"
+      ],
+      "studyQuestion": "What information remains legible after the hierarchy is broken, and why?",
+      "sourcePortal": "Design archives",
+      "priority": "core"
+    },
+    {
+      "name": "Irma Boom",
+      "discipline": "book design",
+      "focus": [
+        "sequence",
+        "materiality",
+        "form"
+      ],
+      "studyQuestion": "How do paper, scale and page turn change the reading experience?",
+      "sourcePortal": "Aperture / book-design sources",
+      "priority": "core"
+    },
+    {
+      "name": "Paula Scher",
+      "discipline": "graphic design",
+      "focus": [
+        "type scale",
+        "information hierarchy",
+        "identity"
+      ],
+      "studyQuestion": "How does typography control movement and prioritization?",
+      "sourcePortal": "Design archives",
+      "priority": "core"
+    },
+    {
+      "name": "Es Devlin",
+      "discipline": "set design",
+      "focus": [
+        "sculptural space",
+        "light",
+        "spatial narrative"
+      ],
+      "studyQuestion": "How does the physical environment create a story rather than merely decorate it?",
+      "sourcePortal": "Design studio archive",
+      "priority": "core"
+    },
+    {
+      "name": "Sarah Greenwood",
+      "discipline": "production design",
+      "focus": [
+        "coherent world",
+        "period detail",
+        "visual rules"
+      ],
+      "studyQuestion": "What rules unify the set, props, costume and camera frame?",
+      "sourcePortal": "BFI / production design interviews",
+      "priority": "core"
+    },
+    {
+      "name": "Catherine Martin",
+      "discipline": "costume/set design",
+      "focus": [
+        "costume + set palette",
+        "period language",
+        "texture"
+      ],
+      "studyQuestion": "How does wardrobe reinforce or deliberately oppose the environment?",
+      "sourcePortal": "Production design interviews",
+      "priority": "core"
+    },
+    {
+      "name": "The Face",
+      "discipline": "magazine art direction",
+      "focus": [
+        "image-first editorial",
+        "typographic voice",
+        "subculture"
+      ],
+      "studyQuestion": "What visual rules distinguish the issue from a generic fashion moodboard?",
+      "sourcePortal": "Magazine archive",
+      "priority": "core"
+    },
+    {
+      "name": "i-D",
+      "discipline": "magazine art direction",
+      "focus": [
+        "portrait format",
+        "gesture",
+        "youth culture"
+      ],
+      "studyQuestion": "How do recurring cover rules create identity while allowing difference?",
+      "sourcePortal": "Magazine archive",
+      "priority": "core"
+    },
+    {
+      "name": "Dazed",
+      "discipline": "magazine art direction",
+      "focus": [
+        "experimental portrait",
+        "styling",
+        "image-text tension"
+      ],
+      "studyQuestion": "Where does the text add a new layer instead of describing the picture?",
+      "sourcePortal": "Dazed archive",
+      "priority": "core"
+    },
+    {
+      "name": "Vogue Italia / Franca Sozzani-era",
+      "discipline": "fashion editorial system",
+      "focus": [
+        "narrative fashion",
+        "conceptual cover",
+        "cultural provocation"
+      ],
+      "studyQuestion": "What is the editorial premise and how is it distributed across the series?",
+      "sourcePortal": "Getty / magazine archive",
+      "priority": "core"
+    },
+    {
+      "name": "Self Service",
+      "discipline": "fashion editorial system",
+      "focus": [
+        "restrained editorial",
+        "series cohesion",
+        "typographic economy"
+      ],
+      "studyQuestion": "How do variation and repetition establish a distinct visual pace?",
+      "sourcePortal": "Magazine archive",
+      "priority": "core"
+    },
+    {
+      "name": "The Gentlewoman",
+      "discipline": "magazine art direction",
+      "focus": [
+        "portrait clarity",
+        "typographic restraint",
+        "editorial intelligence"
+      ],
+      "studyQuestion": "How does a strong portrait and disciplined typography work without decoration?",
+      "sourcePortal": "Magazine archive",
+      "priority": "core"
+    }
+  ]
+}
