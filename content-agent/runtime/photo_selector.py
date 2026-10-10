@@ -110,7 +110,7 @@ def call_model(api_key, model, system_prompt, content, max_output_tokens=5000):
 
 def load_agent_docs():
     here = Path(__file__).resolve().parent.parent
-    names = ["AGENT_PROMPT.md","EDITORIAL_SYSTEM.md","QUALITY_GATE.md","VISUAL_TASTE_PROTOCOL.md"]
+    names = ["AGENT_PROMPT.md","EDITORIAL_SYSTEM.md","QUALITY_GATE.md","VISUAL_TASTE_PROTOCOL.md","VISUAL_CULTURE_CANON.md","VISUAL_REFERENCE_INDEX.json"]
     docs = []
     for name in names:
         p = here / name
