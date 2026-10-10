@@ -59,3 +59,6 @@ VECTA Moscow - production team, not a personal brand. Сохранять поз�
 - `REFERENCE_INDEX.json` расширен до 97 записей, включая ссылки на посты и отдельные case study entries.
 
 В разбор включены реальные посты Lou Escobar, Danil Golovkin / Stills Project, Chris Ha, Lindsay Adler / Adorama, Joseph L. Hart, Alexey Andreev, Hannah Ladd Brown, CandidShutters Media и другие. Степень проверки помечена для каждой записи. Для некоторых публикаций медиа-превью были недоступны или не совпадали с подписью; там визуальный вывод отдельно отмечен как непроверенный.
+
+- `POST_CASE_STUDIES.md` - разбор конкретных постов и ограничений проверки.
+- `COPY_PATTERNS.md` - механики текста/CTA и анти-паттерны.
