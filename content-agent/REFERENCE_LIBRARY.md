@@ -279,3 +279,37 @@ Use POST_CASE_STUDIES.md for the detailed case notes and COPY_PATTERNS.md for th
 - Portfolio website inspected, Instagram profile not yet audited. The site identifies her as a Moscow-based fashion/celebrity photographer and outlines preparation, shoot day, deliverables and service options.
 - **Transfer:** describing the client journey and outputs can reduce uncertainty around a service; do not mistake sales-page structure for a social-caption model.
 - **Confidence:** Level 1, website only.
+
+
+## 9. Third-pass commercial production and event-service references
+
+### The Production Studio — MARI PRETI digital campaign
+- Post: https://www.instagram.com/p/DaQM_AmjH4T/
+- Caption names campaign, creative direction/photo and model. Two image samples were visually checked: monochrome full-length fashion composition and a tighter, darker editorial portrait.
+- **Transfer:** for a recognisable campaign, concise client/project identification + exact credits can be enough; let the work carry the mood. Confidence Level 3 for the individual post and two samples.
+
+### Select Management — Le Nettoyant / Daria Danilenko
+- Post: https://www.instagram.com/p/DbIBwhoDJ3i/
+- Caption credits photography, styling/fashion design, makeup/hair, video, light, model and agency. Two images were checked: a low, draped pose and a vertical full-length pose with bold boots against a restrained background.
+- **Transfer:** role-based credits demonstrate that a fashion campaign is a coordinated production, not just the work of the camera operator. Confidence Level 3 for caption and two samples.
+
+### Diego Ante — t2 “Gigaback”
+- Post: https://www.instagram.com/reel/DOvj0lkkQwZ/
+- Caption names the client (t2 Russia), agency (McCann Moscow), production company, director, producers, cinematographer, AD, gaffer, AC, post-production, art direction, wardrobe, makeup, edit, music, CGI and color.
+- **Transfer:** use precise credit architecture to show production scale and collaboration. The Reel did not play in the public extraction, so only the text and comments were reviewed. Confidence Level 2.
+
+### VKornacheva Team
+- Profile: https://www.instagram.com/vkornacheva_team/
+- Bio positions the account around event photo/video coverage in Europe, Asia and the UK, with delivery speed and years of experience; Highlights separate video, event photo, BTS and reviews.
+- **Transfer:** a service-oriented account should make service, process and proof easy to find. Profile-level evidence only, Level 1.
+
+### Jane Petrova Film
+- Profile: https://www.instagram.com/janepetrova.film/
+- Bio describes a director/DP and filmmaker focused on fashion/beauty video, based in Moscow with availability in UAE and Australia; Highlights organize the portfolio by projects/locations.
+- **Transfer:** project and location categories help prospective clients self-qualify. No specific film was fully audited; Level 1.
+
+### Mikhail Matvienko
+- Editorial source: https://www.instagram.com/p/DYl2TkKiMmh/
+- Artist profile link: https://www.instagram.com/mikhail_bearr/
+- A Streetphotography Austria feature attributes a short statement to Matvienko about his background as a film editor and noticing light, shapes, patterns and people.
+- **Transfer:** describe creative vision as a practiced way of observing and making decisions, tied to actual work. This is a secondary editorial feature; Matvienko’s own archive has not yet been audited.
