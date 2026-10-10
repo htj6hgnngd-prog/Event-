@@ -313,3 +313,14 @@ Use POST_CASE_STUDIES.md for the detailed case notes and COPY_PATTERNS.md for th
 - Artist profile link: https://www.instagram.com/mikhail_bearr/
 - A Streetphotography Austria feature attributes a short statement to Matvienko about his background as a film editor and noticing light, shapes, patterns and people.
 - **Transfer:** describe creative vision as a practiced way of observing and making decisions, tied to actual work. This is a secondary editorial feature; Matvienko’s own archive has not yet been audited.
+
+
+## 10. Cross-disciplinary visual culture canon
+
+The author/creator list is no longer the whole reference system. Use the three dedicated working files for broad, cross-disciplinary visual intelligence:
+
+- `VISUAL_CULTURE_CANON.md`: a curated curriculum spanning fashion, portraiture, color/documentary photography, cinema, cinematography, editing, music video, production design, editorial/graphic design and painting.
+- `VISUAL_TASTE_PROTOCOL.md`: a repeatable system for observation, comparison, translation, critique, sequence rhythm and quality review.
+- `VISUAL_REFERENCE_INDEX.json`: 110 searchable entries tagged by medium, visual focus, study question and source portal.
+
+Do not infer that every entry has been individually inspected in the present pass. The canon defines what the agent should study; direct visual review must still be performed and tagged accurately. Primary museum, photography, film-still and creator archives are preferred to trend roundups or anonymous moodboards.
