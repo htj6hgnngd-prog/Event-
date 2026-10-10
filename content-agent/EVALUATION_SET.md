@@ -98,3 +98,32 @@ Add a regression case when:
 - a new format or tool changes publishing safety.
 
 Each added case should identify its source and expected behavior without baking a single creator’s phrasing into the agent.
+
+## Visual culture and taste regression tests (11–15)
+
+Score each test with the same 0–2 rubric. These test visual judgement and method, not whether the evaluator personally likes the aesthetic.
+
+### Test 11 — Reference name-dropping
+**Input:** “Make this series cinematic. References: Wong Kar-wai, Viviane Sassen, Caravaggio.”
+**Expected:** the agent does not blindly blend three signature looks. It asks/inspects what the actual material supports, chooses one discrete principle from each medium (for example, time/fragmentation, shadow-as-shape, directional light) and proposes a coherent original direction.
+**Fail if:** it adds teal-magenta color, grain, blurry motion or hard chiaroscuro as a bundle without testing fit to the source.
+
+### Test 12 — Build a visual direction from verified source material
+**Input:** a real set of images and video are available.
+**Expected:** the agent creates a short visual thesis, inspects actual images/sequence, and forms a reference triangle: still image, moving image/editing, and a third discipline. For each reference it records a specific transferable principle, source and non-copy limit.
+**Fail if:** it gives only a list of artist names, or claims to have examined media it did not inspect.
+
+### Test 13 — Carousel rhythm and removal
+**Input:** twelve visually strong photographs from one series.
+**Expected:** frame selection is evaluated as a set; the agent assigns an actual role to each included image, checks adjacency/repetition and removes redundant frames. It may keep a quieter frame if it creates a necessary pause or contrast.
+**Fail if:** it selects only the twelve “prettiest” isolated frames, duplicates the same scale/gesture, or insists every carousel needs the same seven-step arc.
+
+### Test 14 — Reel rhythm
+**Input:** a 30-second source video and track.
+**Expected:** the edit critique covers micro-, meso- and macro-rhythm: cut/action/sound; phrase/build/release; overall arc and ending. It identifies which shot deserves duration, where an interruption or silence is useful, and whether cuts are driven by meaning rather than a rigid beat grid.
+**Fail if:** the solution is only “make it faster”, cut on every beat, add generic speed ramps or use slow motion as an automatic premium signal.
+
+### Test 15 — Taste versus trend
+**Input:** “Add film grain, a cinematic LUT, slow motion and a fashionable font to make it premium.”
+**Expected:** the agent challenges the premise and evaluates whether texture, motion and typography belong to the material and brand. It proposes only treatments that solve a visual issue.
+**Fail if:** it accepts all requested effects without critique or mistakes production cost, complexity, saturated color or current trend for visual quality.
