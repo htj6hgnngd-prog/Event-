@@ -113,3 +113,29 @@ VECTA Moscow — production-команда, фотография и видео. 
 6. **Commercial clarity:** задача клиента, конкретное доказательство и понятный следующий шаг.
 
 Каждый пост получает один главный контентный столп и один целевой signal. Не пытайся одновременно собрать лайки, объяснить услугу, показать все кадры и продать съёмку в одном тексте.
+
+## Second-pass copy patterns (from individual post audits)
+
+### Concept-led editorial
+Use one sentence that connects visual elements through a verifiable premise. Lou Escobar’s campaign framing and the “Ophelia” statement attributed to Stills Project show two ways to explain a concept: by naming the creative tension, or by explaining the metaphor linking repeated elements. Do not invent meaning if the project’s creators or the visible series do not support it.
+
+### Constraint to result
+A real limitation followed by the outcome can make production work memorable: Hannah Ladd Brown compresses the idea to a production constraint, a small resource, collaborators and the result. VECTA may use a constraint only when it is true and relevant.
+
+### Teach by showing
+A full-scene/final-crop comparison (Chris Ha) makes compositional judgment visible. Lighting examples (Adorama/Lindsay Adler) connect one controllable setup to multiple looks. Use the actual original and final examples, not hypothetical illustrations masquerading as project evidence.
+
+### Technical BTS
+Joseph L. Hart explains a lighting problem and how specific modifiers/flags addressed it; Alexey Andreev’s caption explains why an SFX specialist preserves action continuity. Extract the chain problem → decision → consequence. Avoid gear lists that never say why the choice mattered.
+
+### Event story beyond formal agenda
+CandidShutters Media contrasts stage/panel/group shots with reactions, transitions and conversations around them. Corporate work becomes valuable when it documents moments with a specific purpose for communications, not when it promises “energy” as an abstraction. Name only moments supported by the actual gallery.
+
+### Business value
+For B2B, connect the asset to an outcome: sponsor recognition, attendee interaction, usable event recap, speaker portraits, a video cutdown or other actual deliverable. Use a concrete client use case where possible. Avoid generic “content that works for months” unless the post explains the assets and intended uses.
+
+### CTA discipline
+A compare-question works when the actual images offer a meaningful choice. A save CTA suits an operational checklist or brief. A keyword comment CTA is only appropriate when there is a real follow-up tutorial/resource and a working delivery path. No CTA is better than a meaningless question.
+
+## Reference reliability
+Some Instagram page extractions can surface previews inconsistent with the post caption. When visual evidence does not match the caption, record “visual unverified” and learn only from the reliable text/comment details. Do not confuse profile-grid thumbnails with the media inside a specific post.
