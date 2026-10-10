@@ -197,3 +197,54 @@ Every VECTA draft should name the case/pattern being adapted, what is different 
 - The bio positions OMNI as a Moscow-based creative production company working across advertising, photography, music videos and AR. Highlights separate projects, years, team, on-set, photography and music videos.
 - **Transfer to VECTA:** a production team can organize the profile around disciplines and project archives, rather than an individual’s personal diary. Highlight categories such as “кейсы”, “съёмки”, “команда”, “фото”, “видео”, “BTS” can reduce friction when a buyer scans the profile.
 - **Confidence:** Level 1, profile-level review only.
+
+
+## 9. Commercial production cases and event-team positioning
+
+### The Production Studio — MARI PRETI digital campaign
+- Post: https://www.instagram.com/p/DaQM_AmjH4T/
+- Caption: “Digital Campaign for MARI PRETI” followed by Creative Direction & Photo credit and model credit.
+- **What was checked:** caption/metadata plus two carousel frames visually.
+- **Visual sequence observed:** one black-and-white, graphic full-body fashion frame with a clean light dress and strong architecture/texture; another tighter fashion portrait with dark structured styling. The sequence changes image scale and tonal treatment while keeping a restrained editorial language.
+- **Copy mechanism:** project/client name + two essential credits. No generic statement about beauty, brand story or “capturing the essence”.
+- **Transfer to VECTA:** when the case is a clear commercial campaign and the visual does the explaining, use concise project identification and credits. If VECTA’s production contribution is larger than a shoot, name the actual scope (production, photo, video, post) but only as verified.
+- **Confidence:** Level 3 for caption and two samples.
+
+### Select Management — Le Nettoyant / Daria Danilenko
+- Post: https://www.instagram.com/p/DbIBwhoDJ3i/
+- **What was checked:** caption and two image previews visually.
+- **Visual sequence observed:** fashion frames on restrained pale backgrounds; one lower, draped pose with flowing fabric, then a more vertical standing full-length pose with bold boots and a small raised platform. The change in pose and scale gives the set movement without an elaborate caption.
+- **Copy mechanism:** a role-based team list: photography, styling/fashion design, makeup/hair, video, light, model and agency.
+- **Transfer to VECTA:** a credits block can show integrated stills/motion/styling/light coverage. It is clearer to group by role than to post an unstructured tag wall. This kind of post does not need a separate narrative unless the campaign has a distinctive concept worth stating.
+- **Confidence:** Level 3 for caption and two samples.
+
+### Diego Ante — t2 “Gigaback” commercial
+- Post: https://www.instagram.com/reel/DOvj0lkkQwZ/
+- Caption metadata in the fetched snapshot: 106 likes and 14 comments; dated 18 September 2025. The video itself did not play in the public extraction.
+- **What was checked:** full caption/role credits and visible comments; visual sequence not verified.
+- **Production detail:** the caption lists client (t2 Russia), agency (McCann Moscow), production company, director, general producer, producers, cinematographer, AD, gaffer, 1st AC, post-production producer, art director, wardrobe, makeup, editor, music, CGI studio, colorist and talent.
+- **Transfer to VECTA:** large production cases need exact credit architecture, not a generic “great team”. The production company can credit every discipline clearly and give future collaborators a sense of the actual workflow.
+- **Do not copy:** a long list of names for a post whose only goal is to show one photo; use full credits when production scale justifies it.
+- **Confidence:** Level 2, caption/comments only; video visual evidence unavailable.
+
+### VKornacheva Team — event-photo/video service profile
+- Profile: https://www.instagram.com/vkornacheva_team/
+- **What was checked:** public bio, visible grid format indicators and Highlights labels; no individual post sequence was reviewed.
+- The profile names event photo and video coverage, lists Europe/Asia/UK service area, fast delivery and more than ten years of market experience. Highlights distinguish video shoot, event photography, BTS and reviews.
+- **Transfer to VECTA:** for B2B sales, clear service navigation and proof categories reduce the time a buyer needs to understand what the team offers. Highlights should separate service, process and reviews instead of using ambiguous labels.
+- **Confidence:** Level 1, profile-level review.
+
+### Jane Petrova Film — fashion/beauty video
+- Profile: https://www.instagram.com/janepetrova.film/
+- **What was checked:** public bio, visible format mix and current highlight labels; no individual film was fully reviewed.
+- The bio identifies a director/DP and filmmaker focused on fashion/beauty video, Moscow-based with international availability; highlights sort work by locations/projects.
+- **Transfer to VECTA:** production accounts can organize a portfolio by campaign/location/vertical to help prospective clients self-qualify quickly. This is an information architecture lesson, not a claim about the videos’ quality.
+- **Confidence:** Level 1, profile-level review.
+
+### Mikhail Matvienko — street-photography editorial feature
+- Source/feature: https://www.instagram.com/p/DYl2TkKiMmh/
+- Artist handle: https://www.instagram.com/mikhail_bearr/
+- **What was checked:** the editorial account’s text and image preview; this is an editorial feature, not Mikhail’s own caption.
+- The feature describes dynamic, sometimes humorous compositions and cites his background as a film editor before taking up photography. The embedded artist statement highlights observing, carrying a camera, and noticing light, unusual shapes, patterns and people.
+- **Transfer to VECTA:** attention to framing can be described as a practiced habit of looking, not merely as a gear/style label. For VECTA, connect this thought to an actual frame or on-set decision.
+- **Confidence:** Level 2 for feature text and preview; the artist’s full profile/archive was not audited.
