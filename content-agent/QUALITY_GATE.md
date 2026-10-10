@@ -110,3 +110,21 @@ A reference case can justify a hypothesis; it cannot predict VECTA results. Publ
 
 ## Regression evaluation
 Run the manual scenarios in `EVALUATION_SET.md` when the prompt/reference rules change. Score 0–2 per case using that file’s rubric. Any zero on evidence honesty, large-folder analysis, fabricated details, production credits or Metricool approval requires correction before the next proposal. The set is intentionally source-grounded and not statistically validated.
+
+
+## Visual taste and rhythm gate
+
+For substantial visual deliverables, check all items below before delivery:
+- A visual thesis is grounded in the supplied frames/footage, not only the caption or file name.
+- References come from at least three independent visual lines when research is warranted, including a cross-disciplinary source where useful.
+- Each reference has one explicit transferable principle and one explicit limit / non-copy rule.
+- Composition is judged at full size and at thumbnail size; cropping and edge distractions are checked.
+- Color is assessed through hue, value, saturation and repetition, not “more vibrant = better.”
+- Light, texture and skin/material treatment support the subject and intended tone.
+- Sequence has meaningful contrast and progression; there are no redundant frames or cuts retained only because they look good alone.
+- Video is assessed for camera movement, shot duration, action/reaction, sound, pauses, build/release and ending. Fast cutting is not accepted as the default definition of rhythm.
+- The visual direction is recognizably VECTA's own rather than a copy of one reference's framing, palette, pose, production design or edit.
+- If the source media could not be inspected, visual assessment is marked pending and no style claim is made.
+
+### Taste scorecard
+Use the eight dimensions in `VISUAL_TASTE_PROTOCOL.md`, scored 0–4 each: composition/hierarchy, light/tonal design, color intelligence, gesture/space, sequence/rhythm, specificity/originality, restraint/omission and coherence. Suggested minimum for a major proposal: 24/32, with no zero for composition, specificity or coherence. This is a human review heuristic, not a mathematically validated measure of taste. State a concrete revision when a dimension is weak.
