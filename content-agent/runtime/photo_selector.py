@@ -49,21 +49,23 @@ def collect_source(args, work):
         root = Path(args.input_dir).expanduser().resolve()
         files = sorted(p for p in root.rglob("*") if p.is_file() and p.suffix.lower() in IMAGE_EXTS)
         if not files: raise RuntimeError("В указанной папке не найдено изображений JPEG/PNG/WebP.")
-        return files, {p.name: p for p in files}, {"source":"local_folder","count":len(files)}
+        return files, {p.name: p for p in files}, {"source":"local_folder","count":len(files)}, {}
     items = yandex_items(args.yandex_url, args.yandex_path)
     if not items: raise RuntimeError("В публичной папке Яндекс Диска не найдены изображения.")
     files, original_paths = [], {}
     for i, item in enumerate(items, 1):
         name = Path(item["name"]).name
-        safe = source / f"{i:04d}_{name}"
+        safe = source / name
+        if safe.exists():
+            raise RuntimeError(f"Повторяющееся имя файла в источнике: {name}")
         preview = item.get("preview")
         if not preview:
             href = yandex_download_href(args.yandex_url, item.get("path") or f"{args.yandex_path}/{name}")
         else: href = preview
         download(href, safe)
         files.append(safe)
-        original_paths[name] = (item.get("path") or f"{args.yandex_path}/{name}")
-    return files, original_paths, {"source":"yandex_public_folder","path":args.yandex_path,"count":len(files)}
+        original_paths[name] = (args.yandex_path.rstrip("/") + "/" + name)
+    return files, {p.name: p for p in files}, {"source":"yandex_public_folder","path":args.yandex_path,"count":len(files)}, original_paths
 
 def image_data_uri(path, max_side=1200, quality=78):
     try:
@@ -151,7 +153,7 @@ def shortlist_payload(ratings, files, limit=28):
         if row not in picked and len(picked) < limit: picked.append(row)
     return picked
 
-def original_path_for_yandex(api_key, public_url, path, dest):
+def original_path_for_yandex(public_url, path, dest):
     href = yandex_download_href(public_url, path)
     return download(href, dest)
 
@@ -212,7 +214,7 @@ def main():
     api_key=os.getenv("OPENAI_API_KEY")
     if not api_key: raise SystemExit("BLOCKED: OPENAI_API_KEY is not configured. Add it to the runtime environment; do not paste it into source code.")
     work=Path(args.out).resolve(); work.mkdir(parents=True,exist_ok=True)
-    files,file_map,inventory=collect_source(args,work)
+    files,file_map,inventory,original_paths=collect_source(args,work)
     # Ensure duplicate names from separate folders remain uniquely addressable.
     if len({p.name for p in files}) != len(files):
         raise RuntimeError("Есть повторяющиеся имена файлов. Разнесите их по подпапкам/переименуйте до запуска.")
@@ -232,12 +234,31 @@ def main():
     candidate_files=[file_map[c["filename"]] for c in candidates]
     render_contact_sheet(candidate_files,work/"candidate_sheet.jpg",[f'{i+1:02d} {c["filename"]}' for i,c in enumerate(candidates)])
     print(f"Final editorial pass: {len(candidates)} candidates.",flush=True)
-    final=final_sequence(api_key,args.final_model,system_prompt,candidates,file_map)
+    final_file_map = dict(file_map)
+    inspected_originals = 0
+    if args.yandex_url:
+        originals_dir = work / "originals"
+        originals_dir.mkdir(parents=True, exist_ok=True)
+        for c in candidates:
+            name = c["filename"]
+            if name not in original_paths:
+                continue
+            dest = originals_dir / name
+            try:
+                original_path_for_yandex(args.yandex_url, original_paths[name], dest)
+                final_file_map[name] = dest
+                inspected_originals += 1
+            except Exception as exc:
+                print(f"WARNING: full-resolution download failed for {name}: {exc}", file=sys.stderr, flush=True)
+    final=final_sequence(api_key,args.final_model,system_prompt,candidates,final_file_map)
     final["inventory"]=inventory
     final["scored_file_count"]=len(ratings)
-    final["source_review"]="preview-level first pass; finalists inspected at larger detail" if args.yandex_url else "images processed from provided local folder"
+    final["full_resolution_finalists_inspected"]=inspected_originals
+    final["source_review"]=("preview-level first pass; " + str(inspected_originals) + " finalists checked from original files")
+    if not args.yandex_url:
+        final["source_review"]="provided local files inspected; resolution depends on the files in input directory"
     (work/"selection.json").write_text(json.dumps(final,ensure_ascii=False,indent=2),encoding="utf-8")
-    chosen=[file_map[x["filename"]] for x in final["selection"]]
+    chosen=[final_file_map[x["filename"]] for x in final["selection"]]
     labels=[f'{x.get("position",i+1):02d} {x.get("filename","")}' for i,x in enumerate(final["selection"])]
     render_contact_sheet(chosen,work/"selected_sequence.jpg",labels,cols=3,thumb_w=360,thumb_h=440)
     with (work/"ratings.csv").open("w",newline="",encoding="utf-8-sig") as f:
