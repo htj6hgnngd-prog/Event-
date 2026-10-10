@@ -84,3 +84,19 @@ These were checked for captions and public metadata. Visual inspection level is 
 - Operpost Studio: https://www.instagram.com/operpost.studio/
 
 The second-pass dataset contains direct public post evidence and profile metadata; it is not a comprehensive audit of every profile or all slides in every carousel.
+
+
+## Third-pass direct-post research: commercial, fashion, event and Russian production (10 October 2026)
+
+- The Production Studio — MARI PRETI digital campaign: https://www.instagram.com/p/DaQM_AmjH4T/
+- Select Management — Le Nettoyant / Daria Danilenko campaign: https://www.instagram.com/p/DbIBwhoDJ3i/
+- Diego Ante — t2 Russia “Gigaback” commercial: https://www.instagram.com/reel/DOvj0lkkQwZ/ (caption/credits inspected; Reel playback unavailable)
+- VKornacheva Team event-photo/video profile: https://www.instagram.com/vkornacheva_team/
+- Jane Petrova Film profile: https://www.instagram.com/janepetrova.film/
+- Mikhail Matvienko editorial feature and credited artist statement: https://www.instagram.com/p/DYl2TkKiMmh/ ; artist profile: https://www.instagram.com/mikhail_bearr/
+- OMNI Moscow creative-production profile: https://www.instagram.com/omniproduction.ru/
+- Tatarnikova Studio / Mariya Tatarnikova profile and fashion post: https://www.instagram.com/tatarnikova_studio/ ; https://www.instagram.com/p/DRzOizoCJfC/
+- Danil Golovkin’s “МНЕНИЕ РЕДАКЦИИ*” production-credit post: https://www.instagram.com/danilgolovkin/p/DbvsKt0CjkY/
+- Ekaterina Nasyrova’s portfolio website: https://ekaterinanasyrova.com/ (website only; Instagram not yet audited)
+
+These examples add Russian commercial/editorial and corporate-service positioning. Captions and credits may be fully available even if the Reel itself cannot play; in those cases the library explicitly withholds conclusions about the visual sequence.
