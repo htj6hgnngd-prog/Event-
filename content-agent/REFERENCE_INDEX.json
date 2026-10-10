@@ -779,5 +779,421 @@
       "event storytelling",
       "visual coverage structure"
     ]
+  },
+  {
+    "name": "Lou Escobar",
+    "category": "fashion-editorial-photographer",
+    "url": "https://www.instagram.com/lou__escobar/",
+    "level": 2,
+    "sourceType": "Instagram profile, campaign post and visual sample",
+    "status": "active",
+    "focus": [
+      "high-chroma surreal editorial",
+      "specific creative premise",
+      "minimal personal mini-doc caption",
+      "complete production credits"
+    ]
+  },
+  {
+    "name": "Danil Golovkin",
+    "category": "photographer",
+    "url": "https://www.instagram.com/danilgolovkin/",
+    "level": 2,
+    "sourceType": "Instagram profile and published Ophelia series statement",
+    "status": "active",
+    "focus": [
+      "conceptual metaphor across styling and imagery",
+      "bloom/withering theme",
+      "art-series product copy"
+    ]
+  },
+  {
+    "name": "Chris Ha | Photography",
+    "category": "photographer",
+    "url": "https://www.instagram.com/p/DJhUHobNvWP/",
+    "level": 3,
+    "sourceType": "Individual carousel: caption plus two visually inspected slides",
+    "status": "active",
+    "focus": [
+      "full scene versus final crop",
+      "visible proof of composition",
+      "teaching through comparison",
+      "specific audience question"
+    ]
+  },
+  {
+    "name": "Lindsay Adler",
+    "category": "photographer-educator",
+    "url": "https://www.instagram.com/lindsayadler_photo/",
+    "level": 3,
+    "sourceType": "Adorama-published tutorial carousel and caption",
+    "status": "active",
+    "focus": [
+      "lighting tutorial with visible examples",
+      "one setup with multiple results",
+      "real tutorial CTA",
+      "method breakdown"
+    ]
+  },
+  {
+    "name": "Joseph L. Hart",
+    "category": "commercial-photographer",
+    "url": "https://www.instagram.com/josephlhart/",
+    "level": 2,
+    "sourceType": "Individual technical BTS post caption/comments and one preview",
+    "status": "active",
+    "focus": [
+      "specific lighting constraint",
+      "simple setup explained",
+      "V-flat use for flag/fill/negative fill",
+      "collaborator credits"
+    ]
+  },
+  {
+    "name": "Alexey Andreev",
+    "category": "cinematographer",
+    "url": "https://www.instagram.com/andreevdop/",
+    "level": 2,
+    "sourceType": "Profile plus individual Reel caption/comments; visual sequence unverified",
+    "status": "active",
+    "focus": [
+      "technical BTS",
+      "special effects and shot continuity",
+      "specific practitioner questions",
+      "production expertise via decisions"
+    ]
+  },
+  {
+    "name": "Operpost Studio",
+    "category": "production-studio",
+    "url": "https://www.instagram.com/operpost.studio/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata",
+    "status": "active",
+    "focus": [
+      "Moscow content production",
+      "Reels and blogs",
+      "podcasts/interviews/shows"
+    ]
+  },
+  {
+    "name": "Hannah Ladd Brown",
+    "category": "photographer",
+    "url": "https://www.instagram.com/hannahladdcreative/",
+    "level": 2,
+    "sourceType": "Individual post caption and visible comments; video unavailable",
+    "status": "active",
+    "focus": [
+      "constraint-to-result caption",
+      "concise credits",
+      "low-budget creative production"
+    ]
+  },
+  {
+    "name": "CandidShutters Media",
+    "category": "event-photography",
+    "url": "https://www.instagram.com/p/DdogWWwgXsO/",
+    "level": 2,
+    "sourceType": "Individual corporate-event carousel caption and visual previews",
+    "status": "active",
+    "focus": [
+      "obvious coverage vs overlooked moments",
+      "speaker/audience interactions",
+      "educational B2B carousel",
+      "save-worthy event brief CTA"
+    ]
+  },
+  {
+    "name": "Corpora Studios",
+    "category": "event-photography",
+    "url": "https://www.instagram.com/corporastudios/",
+    "level": 2,
+    "sourceType": "Profile and individual event-day caption; visual preview uncertain",
+    "status": "active",
+    "focus": [
+      "production-life metrics",
+      "crew relatable hook",
+      "peer audience question"
+    ]
+  },
+  {
+    "name": "Kainaat Uppal",
+    "category": "creative-production",
+    "url": "https://www.instagram.com/kainaatuppal/",
+    "level": 2,
+    "sourceType": "Individual production recap caption/comments; selected slides exposed",
+    "status": "active",
+    "focus": [
+      "tactile BTS details",
+      "team-as-story",
+      "role-based production credits"
+    ]
+  },
+  {
+    "name": "Adorama",
+    "category": "photo-education-publisher",
+    "url": "https://www.instagram.com/adorama/",
+    "level": 3,
+    "sourceType": "Individual lighting tutorial post and two visually inspected examples",
+    "status": "active",
+    "focus": [
+      "problem-to-technique educational carousel",
+      "one light/multiple looks",
+      "tutorial delivery CTA"
+    ]
+  },
+  {
+    "name": "Jocelyn Gardiner",
+    "category": "event-photographer",
+    "url": "https://www.instagram.com/p/DPAGKJPES-_/",
+    "level": 2,
+    "sourceType": "Individual corporate-event strategy caption",
+    "status": "active",
+    "focus": [
+      "planning aligned to client goals",
+      "shot list and asset reuse",
+      "strategy before execution"
+    ]
+  },
+  {
+    "name": "Tone Stockenstrom",
+    "category": "event-photographer",
+    "url": "https://www.instagram.com/p/DdRoFXDxThL/",
+    "level": 2,
+    "sourceType": "Individual B2B event caption",
+    "status": "active",
+    "focus": [
+      "post-event image library",
+      "client utility",
+      "generic language needs case-specific proof"
+    ]
+  },
+  {
+    "name": "Anthony B Media",
+    "category": "event-production",
+    "url": "https://www.instagram.com/p/Dd_2krllq4w/",
+    "level": 2,
+    "sourceType": "Individual event-marketing post text and metadata",
+    "status": "active",
+    "focus": [
+      "event attendance to online proof",
+      "content longevity as business value",
+      "keep service CTA compact"
+    ]
+  },
+  {
+    "name": "Lumetry Media",
+    "category": "event-production",
+    "url": "https://www.instagram.com/p/DVNB17TEp1f/",
+    "level": 2,
+    "sourceType": "Individual conference-photography caption",
+    "status": "active",
+    "focus": [
+      "photographer as content partner",
+      "sponsor moments",
+      "audience engagement",
+      "marketing-team utility"
+    ]
+  },
+  {
+    "name": "Vladimir Guryanov",
+    "category": "fashion-photographer",
+    "url": "https://www.instagram.com/vladimir_gury/",
+    "level": 1,
+    "sourceType": "Instagram profile and recent public grid previews",
+    "status": "active",
+    "focus": [
+      "Russian fashion/editorial photography",
+      "ongoing portfolio for future post-level audit"
+    ]
+  },
+  {
+    "name": "Anna Devís + Daniel Rueda",
+    "category": "conceptual-photography-duo",
+    "url": "https://www.instagram.com/anniset/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid preview",
+    "status": "active",
+    "focus": [
+      "conceptual image-making",
+      "images that make viewers look twice",
+      "visual premise over long caption"
+    ]
+  },
+  {
+    "name": "Monaris",
+    "category": "documentary-street-photographer",
+    "url": "https://www.instagram.com/monaris_/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid preview",
+    "status": "active",
+    "focus": [
+      "street/documentary observation",
+      "BTS and personal process alongside finished stills"
+    ]
+  },
+  {
+    "name": "Joshua K. Jackson",
+    "category": "street-photographer",
+    "url": "https://www.instagram.com/joshkjack/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid preview",
+    "status": "active",
+    "focus": [
+      "street photography sequences",
+      "London-based observational work"
+    ]
+  },
+  {
+    "name": "ThisIsCSMedia / CandidShutters",
+    "category": "event-photography",
+    "url": "https://www.instagram.com/p/DdogWWwgXsO/",
+    "level": 2,
+    "sourceType": "Individual event-storytelling post, duplicate identity of the caption's account",
+    "status": "active",
+    "focus": [
+      "corporate event storytelling",
+      "between-the-run-sheet moments",
+      "practical save CTA"
+    ]
+  },
+  {
+    "name": "LANE Casting UK",
+    "category": "creative-production",
+    "url": "https://www.instagram.com/p/CnUunsjo9P3/",
+    "level": 2,
+    "sourceType": "Individual campaign-credit post and several visual samples",
+    "status": "active",
+    "focus": [
+      "editorial creative premise",
+      "clear collaboration credits",
+      "production role transparency"
+    ]
+  },
+  {
+    "name": "Stills Project / Ophelia",
+    "category": "fine-art-publishing",
+    "url": "https://www.instagram.com/p/CL9fkTcnIAH/",
+    "level": 2,
+    "sourceType": "Individual art-series statement and image preview",
+    "status": "active",
+    "focus": [
+      "symbolic conceptual copy",
+      "series unification",
+      "print edition and material details"
+    ]
+  },
+  {
+    "name": "Creative corporate photographers",
+    "category": "event-photography-reference",
+    "url": "https://www.instagram.com/p/DPAGKJPES-_/",
+    "level": 2,
+    "sourceType": "Post case-study pointer; not an individual creator profile",
+    "status": "source_reviewed",
+    "focus": [
+      "strategic pre-event planning",
+      "asset reuse"
+    ]
+  },
+  {
+    "name": "CandidShutters Media: event storytelling carousel",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/p/DdogWWwgXsO/",
+    "level": 2,
+    "sourceType": "Direct caption and visual preview analysis",
+    "status": "source_reviewed",
+    "focus": [
+      "stage versus story",
+      "moments between formal program beats",
+      "specific B2B copy"
+    ]
+  },
+  {
+    "name": "Chris Ha: full-scene/crop carousel",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/p/DJhUHobNvWP/",
+    "level": 3,
+    "sourceType": "Caption and two slides inspected",
+    "status": "source_reviewed",
+    "focus": [
+      "show the process",
+      "prove crop decisions visually"
+    ]
+  },
+  {
+    "name": "Adorama/Lindsay Adler: lighting tutorial",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/p/Db6WQv9lMr1/",
+    "level": 3,
+    "sourceType": "Caption and two slides inspected",
+    "status": "source_reviewed",
+    "focus": [
+      "one setup, multiple lighting outcomes",
+      "link a real tutorial"
+    ]
+  },
+  {
+    "name": "Joseph Hart: lighting BTS",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/p/DVg40MHGvV1/",
+    "level": 2,
+    "sourceType": "Caption/comments and one slide inspected",
+    "status": "source_reviewed",
+    "focus": [
+      "constraint-to-decision BTS",
+      "technical specifics"
+    ]
+  },
+  {
+    "name": "Lou Escobar: editorial premise",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/p/CnUunsjo9P3/",
+    "level": 2,
+    "sourceType": "Campaign description and multiple image previews",
+    "status": "source_reviewed",
+    "focus": [
+      "visual premise",
+      "credits",
+      "high-contrast styling"
+    ]
+  },
+  {
+    "name": "Hannah Ladd Brown: constraint-to-result",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/p/DXpoGcqRFFI/",
+    "level": 2,
+    "sourceType": "Caption/comments; video playback unavailable",
+    "status": "source_reviewed",
+    "focus": [
+      "specific constraint",
+      "short caption",
+      "credits"
+    ]
+  },
+  {
+    "name": "Alexey Andreev: SFX BTS",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/andreevdop/reel/Czosdu3rGxn/",
+    "level": 2,
+    "sourceType": "Caption/comments; visual sequence unverified",
+    "status": "source_reviewed",
+    "focus": [
+      "technical hook",
+      "continuity problem",
+      "practitioner discussion"
+    ]
+  },
+  {
+    "name": "Kainaat Uppal: production diary",
+    "category": "content-case-study",
+    "url": "https://www.instagram.com/p/Dd1b1hXkqLI/",
+    "level": 2,
+    "sourceType": "Caption/comments and partial media exposure",
+    "status": "source_reviewed",
+    "focus": [
+      "process details",
+      "credits by role",
+      "team story"
+    ]
   }
 ]
