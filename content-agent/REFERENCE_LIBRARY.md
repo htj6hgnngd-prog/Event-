@@ -217,3 +217,34 @@ These authors are strong candidates for further visual analysis. Their descripti
 - Accounts marked “watchlist/audit pending” must not be described as deeply analyzed.
 - Keep building this library by adding direct post examples, captions, slide order, visual notes, date and confidence level.
 - Never imply likes/comments prove reach, saves, watch time, sales or causal performance.
+
+
+## 6. Second-pass direct audit: fashion, visual education, technical BTS and B2B events
+
+### Fashion / editorial / authorial series
+- **[Lou Escobar](https://www.instagram.com/lou__escobar/)** — profile, campaign post and visual sample reviewed. [Campaign credits](https://www.instagram.com/p/CnUunsjo9P3/). Observed principle: visual premise makes the caption specific; bright, unusual styling can carry the series. Full mini-doc was age-gated.
+- **[Danil Golovkin](https://www.instagram.com/danilgolovkin/)** — profile and [published “Ophelia” series statement](https://www.instagram.com/p/CL9fkTcnIAH/) reviewed. The Stills Project statement connects the flower motif to blooming/withering and a transformation motif in the model’s tattoos. It is a publisher statement, not confirmed as his own caption.
+- **[Vladimir Guryanov](https://www.instagram.com/vladimir_gury/)** — public profile/grid inspected. Russian fashion-photography source to follow for further individual-post and sequence audits.
+- **[Anna Devís + Daniel Rueda](https://www.instagram.com/anniset/)** — profile metadata/grid preview inspected; art-duo positioning says images should make viewers look twice. Candidate for concept-led framing, but individual caption sequences still need a deeper audit.
+- **[Monaris](https://www.instagram.com/monaris_/)** — profile metadata inspected; includes stills, BTS and personal-life signals in addition to finished street work. Strong candidate for documentary observation/BTS, but specific post patterns need more audit.
+- **[Joshua K. Jackson](https://www.instagram.com/joshkjack/)** — profile metadata inspected; London street-photography reference candidate.
+- **[Hannah Ladd Brown](https://www.instagram.com/hannahladdcreative/)** — [constraint-to-result post](https://www.instagram.com/p/DXpoGcqRFFI/) checked. The caption moves from a real production constraint to collaborators and the result without a long claim about creativity. Video playback unavailable.
+- **[Chris Ha | Photography](https://www.instagram.com/p/DJhUHobNvWP/)** — [full-scene versus final-crop carousel](https://www.instagram.com/p/DJhUHobNvWP/) inspected at caption and two-slide level. It makes the framing choice visible by showing the wider scene and final selected crop.
+- **[Lindsay Adler](https://www.instagram.com/lindsayadler_photo/)** — source of the [Adorama tutorial post](https://www.instagram.com/p/Db6WQv9lMr1/). A controlled lighting premise is explained through visible results and a genuine follow-on tutorial, rather than a vague aesthetic claim.
+
+### Technical and commercial production
+- **[Joseph L. Hart](https://www.instagram.com/josephlhart/)** — [lighting BTS post](https://www.instagram.com/p/DVg40MHGvV1/) checked. Strong mechanism: equipment combination + real light-control problem + specific solution + collaborator credits. One carousel image was not accessible, so the full sequence is unverified.
+- **[Alexey Andreev](https://www.instagram.com/andreevdop/)** — profile checked; [SFX-continuity Reel caption](https://www.instagram.com/andreevdop/reel/Czosdu3rGxn/) and comments reviewed. Caption points to maintaining a liquid-pour position for continuity; the returned visual preview did not reliably match the text, so visual analysis is explicitly unverified.
+- **[Operpost Studio](https://www.instagram.com/operpost.studio/)** — Moscow content-production profile checked; service formats include Reels, blogs, podcasts, interviews and shows. Use as a Russian production-team/account-structure reference, not as proof of a particular creative aesthetic.
+- **[Kainaat Uppal](https://www.instagram.com/p/Dd1b1hXkqLI/)** — production recap caption checked. Specific process details (tea, outfit checks, cold river, sunlight, a dog) make BTS more memorable than a generic “great team”; credits are assigned by role.
+
+### Corporate events / B2B content
+- **[CandidShutters Media](https://www.instagram.com/p/DdogWWwgXsO/)** — post-level caption plus visual previews reviewed. Its opening separates easy stage coverage from the harder work of observing reactions, exchanges and transitions. The ending asks the audience to save the brief; apply only when the carousel genuinely teaches something.
+- **[Corpora Studios](https://www.instagram.com/corporastudios/)** — profile and an [event-day caption](https://www.instagram.com/p/Dd6rt2vuIpe/) reviewed. Four photographers, one convention center and 61,351 combined steps turn BTS into a peer-oriented hook. Caption/media match could not be fully verified.
+- **[Jocelyn Gardiner](https://www.instagram.com/p/DPAGKJPES-_/) — individual event-strategy post. The caption ties pre-event planning to business goals, asset reuse and a balance of candid/staged moments. Its “70/30” ratio is a personal heuristic, not an industry statistic.
+- **[Tone Stockenstrom](https://www.instagram.com/p/DdRoFXDxThL/) — event post. The idea of a usable post-event image library is commercially relevant, but generic without case-specific proof.
+- **[Anthony B Media](https://www.instagram.com/p/Dd_2krllq4w/) — event-marketing post. The opening links turnout to the need for proof online; the rest is a standard pain-point/service list, so VECTA should keep the premise but shorten the pitch and show a real asset.
+- **[Lumetry Media](https://www.instagram.com/p/DVNB17TEp1f/) — conference-photo post framing the photographer as a content partner who anticipates sponsor and audience moments for the marketing team.
+
+## 7. How these cases feed the writing system
+Use POST_CASE_STUDIES.md for the detailed case notes and COPY_PATTERNS.md for the reusable mechanisms. A reviewed caption does not automatically mean its visual sequence has been verified. Each case retains the specific confidence and limitations from its source.
