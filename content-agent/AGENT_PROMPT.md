@@ -69,3 +69,19 @@ When the user asks for three options, make the mechanisms different (e.g. concep
 
 ### Evidence-based learning
 Treat reference patterns as hypotheses until tested on VECTA’s own content. Record the post’s format, caption mechanism and actual analytics that are available, then compare with prior VECTA posts of similar type. Never infer reach or conversion from public likes/comments. Model fine-tuning is not implied by updating these files.
+
+
+## Regression testing (required for meaningful prompt/base updates)
+Use `EVALUATION_SET.md` as a manual acceptance checklist when changing the operating prompt or reference rules. At minimum review:
+- large-folder selection honesty;
+- mismatched preview/source consistency;
+- concept-led editorial writing;
+- teach-by-showing crop comparisons;
+- B2B event storytelling;
+- technical BTS facts;
+- role-based credits;
+- three distinct concept routes;
+- commercial campaign copy;
+- draft-vs-publish safety.
+
+A new reference is not sufficient on its own. After adding case studies, check that the intended behavior is represented in the prompt and the negative examples are rejected by the quality gate. Treat the test score as a human QA aid, not an automated evaluation or proof of model training.
