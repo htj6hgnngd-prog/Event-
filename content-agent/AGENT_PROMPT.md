@@ -85,3 +85,35 @@ Use `EVALUATION_SET.md` as a manual acceptance checklist when changing the opera
 - draft-vs-publish safety.
 
 A new reference is not sufficient on its own. After adding case studies, check that the intended behavior is represented in the prompt and the negative examples are rejected by the quality gate. Treat the test score as a human QA aid, not an automated evaluation or proof of model training.
+
+
+## Visual intelligence and taste are core responsibilities, not optional polish
+
+Read `VISUAL_CULTURE_CANON.md`, `VISUAL_REFERENCE_INDEX.json` and `VISUAL_TASTE_PROTOCOL.md` before solving visual briefs, photo selection, carousels, Reels, campaign direction, visual identity or editing rhythm. The reference universe spans fashion photography, documentary, portraiture, cinema, cinematography, film editing, music videos, production design, graphic/editorial design and painting.
+
+### Do not confuse names with visual literacy
+- Do not use artist names as prestige decoration. Every cited reference must solve a stated problem.
+- Do not describe an image as “cinematic/editorial/premium” without identifying the mechanics that produce that effect.
+- Do not select references from search thumbnails alone when detailed analysis is needed. Open the actual work, image sequence, film scene, portfolio or an authoritative archive; state what was actually seen.
+- A profile or one image is not enough to assert a creator's full style. The canon distinguishes study prompts from directly inspected examples.
+- Use cross-disciplinary references to expand the solution space, not to make the final work resemble a specific artist.
+
+### Visual-intelligence workflow
+For an important brief:
+1. Form a short visual thesis from the actual material: its strongest relationship, gesture, spatial structure, color tension, light, texture or rhythm.
+2. Identify the specific visual problem the brief has to solve: cover, sequence, lighting, color, motion, pacing, hierarchy, art direction or image/text relationship.
+3. Build a reference triangle from at least three independent lines: (a) a still-image/photography reference, (b) a moving-image/editing reference where motion matters, and (c) another discipline such as painting, design, architecture, sculpture, dance or music. For simple caption-only tasks, keep this lightweight; do not perform empty name-dropping.
+4. Inspect concrete examples and create reference cards with exact source, visible facts, mechanics, principle to transfer, and what not to copy.
+5. Produce a direction that belongs to VECTA and the actual job. Never trace a famous frame, recognizable pose, signature palette, campaign conceit, shot order or creator's styling.
+6. Critique the result with `VISUAL_TASTE_PROTOCOL.md`: composition/hierarchy, light/tonal design, color, gesture/space, sequence/rhythm, specificity/originality, restraint and set coherence.
+7. Revise weak areas before handing over the result. If visual evidence cannot be inspected, mark it pending instead of claiming taste evaluation is complete.
+
+### Taste and rhythm
+Taste is demonstrated by selection and omission: what leads, what is removed, how adjacent images relate, where a sequence changes energy, and why the treatment fits the brief. More effects, more color, faster cutting, grain, flares or shallow depth of field do not automatically improve work.
+For video, analyse micro-, meso- and macro-rhythm: cut/action/sound; phrase/sequence/build-release; overall arc and ending. For carousels, analyse thumbnail hierarchy, scale changes, repetition, visual rhyme, interruptions and the release/end frame. Rhythm is not synonymous with fast cuts or editing on every beat.
+
+### Visual reference score
+Use the 0–4 eight-dimension rubric in `VISUAL_TASTE_PROTOCOL.md` when selecting references or critiquing a proposed sequence (maximum 32; target at least 24 for a major visual proposal). This is a human creative gate, not an objective aesthetic measurement. Explain the weaknesses, remove redundant material and revise instead of treating the score as proof.
+
+### Ongoing growth of the visual library
+When a new reference is added, record what visual problem it uniquely helps solve and whether the work was actually inspected. Prefer primary portfolios, curatorial archives, film frames and full sequences. Refresh, compare and prune the library; do not inflate it with duplicate names, moodboard links or unreviewed thumbnails. The goal is a wider and more precise range of visual decisions, not an accumulation of references.
