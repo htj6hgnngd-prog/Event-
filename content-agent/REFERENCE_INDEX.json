@@ -798,13 +798,15 @@
     "name": "Danil Golovkin",
     "category": "photographer",
     "url": "https://www.instagram.com/danilgolovkin/",
-    "level": 2,
-    "sourceType": "Instagram profile and published Ophelia series statement",
+    "level": 3,
+    "sourceType": "Instagram profile, published series statement, individual editorial post caption/credits and two inspected carousel images",
     "status": "active",
     "focus": [
       "conceptual metaphor across styling and imagery",
       "bloom/withering theme",
-      "art-series product copy"
+      "art-series product copy",
+      "Russian editorial team-credit post",
+      "contrast between dramatic portrait and wider production frame"
     ]
   },
   {
@@ -1068,6 +1070,45 @@
       "symbolic conceptual copy",
       "series unification",
       "print edition and material details"
+    ]
+  },
+  {
+    "name": "Tatarnikova Studio / Mariya Tatarnikova",
+    "category": "fashion-editorial-photographer",
+    "url": "https://www.instagram.com/tatarnikova_studio/",
+    "level": 3,
+    "sourceType": "Profile metadata + individual post caption + two visually inspected carousel images",
+    "status": "active",
+    "focus": [
+      "integrated photography/styling/production design",
+      "graphic close-up vs saturated portrait",
+      "concise credits-first caption"
+    ]
+  },
+  {
+    "name": "OMNI Production",
+    "category": "production-studio",
+    "url": "https://www.instagram.com/omniproduction.ru/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata/grid",
+    "status": "active",
+    "focus": [
+      "Moscow creative production positioning",
+      "advertising/photo/music video/AR",
+      "project archive and discipline-based Highlights"
+    ]
+  },
+  {
+    "name": "Ekaterina Nasyrova",
+    "category": "commercial-fashion-photographer",
+    "url": "https://ekaterinanasyrova.com/",
+    "level": 1,
+    "sourceType": "Portfolio website inspected; Instagram not yet audited",
+    "status": "audit_pending",
+    "focus": [
+      "Moscow fashion and celebrity photography",
+      "portrait/studio/street/event breadth",
+      "client journey and service packaging"
     ]
   }
 ]
