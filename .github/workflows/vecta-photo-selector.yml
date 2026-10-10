@@ -1,0 +1,94 @@
+name: VECTA Photo Selector
+
+on:
+  push:
+    branches:
+      - agent/vecta-content-director
+    paths:
+      - "content-agent/runtime/**"
+      - "content-agent/AGENT_PROMPT.md"
+      - "content-agent/EDITORIAL_SYSTEM.md"
+      - "content-agent/QUALITY_GATE.md"
+      - "content-agent/VISUAL_TASTE_PROTOCOL.md"
+      - "content-agent/VISUAL_CULTURE_CANON.md"
+      - "content-agent/VISUAL_REFERENCE_INDEX.json"
+      - ".github/workflows/vecta-photo-selector.yml"
+  workflow_dispatch:
+    inputs:
+      yandex_url:
+        description: Public Yandex Disk share link
+        required: true
+        default: "https://disk.yandex.ru/d/17Td35jRISCUuQ"
+        type: string
+      yandex_path:
+        description: Folder path inside the share
+        required: true
+        default: "/JPEG"
+        type: string
+      shortlist:
+        description: Number of finalists for the editorial pass
+        required: true
+        default: "28"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  select:
+    name: Select real source photos
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout VECTA Content Director
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install runtime dependencies
+        run: python -m pip install --upgrade pip && pip install -r content-agent/runtime/requirements.txt
+
+      - name: Check model credential
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        shell: bash
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::OPENAI_API_KEY repository secret is missing. Add it under Settings > Secrets and variables > Actions. Do not put it in source code."
+            exit 2
+          fi
+          echo "Model credential is configured."
+
+      - name: Run VECTA source-grounded photo selector
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          YANDEX_URL: ${{ inputs.yandex_url || 'https://disk.yandex.ru/d/17Td35jRISCUuQ' }}
+          YANDEX_PATH: ${{ inputs.yandex_path || '/JPEG' }}
+          SHORTLIST: ${{ inputs.shortlist || '28' }}
+          OUT_DIR: vecta-photo-run
+        shell: bash
+        run: |
+          python content-agent/runtime/photo_selector.py \
+            --yandex-url "$YANDEX_URL" \
+            --yandex-path "$YANDEX_PATH" \
+            --out "$OUT_DIR" \
+            --shortlist "$SHORTLIST"
+
+      - name: Upload selection and audit outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vecta-photo-selector-output
+          path: |
+            vecta-photo-run/all_sources.jpg
+            vecta-photo-run/scores.json
+            vecta-photo-run/ratings.csv
+            vecta-photo-run/candidate_sheet.jpg
+            vecta-photo-run/selection.json
+            vecta-photo-run/selected_sequence.jpg
+            vecta-photo-run/originals/
+          if-no-files-found: warn
+          retention-days: 7
