@@ -248,3 +248,34 @@ These authors are strong candidates for further visual analysis. Their descripti
 
 ## 7. How these cases feed the writing system
 Use POST_CASE_STUDIES.md for the detailed case notes and COPY_PATTERNS.md for the reusable mechanisms. A reviewed caption does not automatically mean its visual sequence has been verified. Each case retains the specific confidence and limitations from its source.
+
+
+## 8. More Russian fashion and production-team audits
+
+### Danil Golovkin — “МНЕНИЕ РЕДАКЦИИ*”
+- Profile: https://www.instagram.com/danilgolovkin/
+- Specific post: https://www.instagram.com/danilgolovkin/p/DbvsKt0CjkY/
+- Caption metadata and credits checked; two carousel images downloaded and visually inspected.
+- The inspected samples put a dramatic black-and-white portrait next to a wider monochrome frame with more context. The caption supplies an unusually comprehensive credit list: editor-in-chief, photographer, gaffer, stylist and assistants, set design, makeup, hair, video, art direction and production roles.
+- **Transfer:** credits can demonstrate production scale and collaborative working style. Group by role and confirm exact handles. The contrast from close portrait to wider set/context frame is useful to study when planning an editorial carousel.
+- **Confidence:** Level 3 for caption and two samples; full carousel not audited.
+
+### Tatarnikova Studio / Mariya Tatarnikova
+- Profile: https://www.instagram.com/tatarnikova_studio/
+- Post: https://www.instagram.com/p/DRzOizoCJfC/
+- Bio positions the account as art/fashion photography producing bold, cinematic visuals for brands and collectors. One public post caption is only “Photography, styling, production design” plus the studio handle.
+- Two samples from that post were inspected: one graphic, object/shape-led close arrangement with contrasting colour; another close portrait partly veiled by translucent pink fabric, set against vivid red/green graphic blocks.
+- **Transfer:** when a series visibly integrates styling and production design, the credit line can state the broader creative contribution without narrating obvious content. Keep the caption brief only if the image sequence has a distinct visual premise.
+- **Confidence:** Level 3 for caption and two samples.
+
+### OMNI Production
+- Profile: https://www.instagram.com/omniproduction.ru/
+- Public bio describes a Moscow creative production company doing advertising, photography, music videos and AR; current Highlights distinguish project years, team, on-set, photography and music videos.
+- **Transfer:** the profile is organized as a team’s archive of disciplines/projects, rather than as an individual's daily journal. Consider clear case-study/BTS categories for a production-company account.
+- **Confidence:** Level 1, public profile/grid metadata only.
+
+### Ekaterina Nasyrova
+- Website: https://ekaterinanasyrova.com/
+- Portfolio website inspected, Instagram profile not yet audited. The site identifies her as a Moscow-based fashion/celebrity photographer and outlines preparation, shoot day, deliverables and service options.
+- **Transfer:** describing the client journey and outputs can reduce uncertainty around a service; do not mistake sales-page structure for a social-caption model.
+- **Confidence:** Level 1, website only.
