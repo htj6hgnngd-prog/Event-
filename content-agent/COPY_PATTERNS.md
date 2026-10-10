@@ -98,3 +98,32 @@ For each VECTA post, capture after publication if account analytics become avail
 - confounding factors and sample size.
 
 Do not conclude a pattern is “best” after one post. A pattern earns higher confidence only after repeated tests in comparable conditions.
+
+## 14. Commercial campaign and production-company patterns
+
+### Project label + essential credits
+**Observed in:** The Production Studio / MARI PRETI campaign.
+- Shape: campaign/client name → creative direction/photography → model/partner credits.
+- Use when the images are a coherent campaign and the caption need not narrate the obvious.
+- Add VECTA’s role accurately; do not imply that VECTA handled styling, production design or post-production unless it did.
+
+### Role-based credits as proof of production
+**Observed in:** Danil Golovkin’s “МНЕНИЕ РЕДАКЦИИ*”, Select Management’s Le Nettoyant post and Diego Ante’s t2 “Gigaback” credits.
+- Shape: client/agency/production company → creative leadership → capture crew → styling/HMU → post-production/sound/colour/CGI → talent, as appropriate for the actual project.
+- Use full credits when the scale of collaboration is relevant. For smaller posts, keep only the roles that add useful context.
+- Credits should demonstrate the real workflow, not be a prestige wall of names. Verify role and tag spelling.
+
+### Event service navigation
+**Observed in:** VKornacheva Team’s Highlights separating event photo, video, BTS and reviews.
+- Use distinct profile Highlights or pinned posts for the service, process/BTS, case studies and proof/feedback.
+- This is a profile-information architecture pattern, not evidence that the account's visual work is stronger or higher performing.
+
+### Director/DP positioning
+**Observed in:** Jane Petrova Film’s profile.
+- The title and specialty appear before the availability notes.
+- For a production team, lead with what the company does (production/photography/film) and then list capabilities/markets. Don't imply a personal creator identity for VECTA.
+
+### Production statement based on observation
+**Observed in:** Mikhail Matvienko’s attributed statement in an editorial feature about street photography.
+- A point of view can be described as a habit of seeing (light, shapes, people, patterns) rather than a gear specification.
+- For VECTA, anchor any such claim to one visible image or verified on-set decision; never copy a street photographer’s style or exact phrasing.
