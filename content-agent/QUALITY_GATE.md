@@ -80,3 +80,29 @@ When user-authorized analytics are available, store:
 - caveats (small sample, campaign, boost, different audience, seasonality).
 
 Never infer performance causality from a single post or visible likes alone. Record “unknown” when Insights are unavailable.
+
+## Second-pass gates: copy and source consistency
+
+### Caption score / 12
+Score each draft 0–2 for:
+1. Specificity to the exact material.
+2. Factual support.
+3. A strong opening idea.
+4. Natural VECTA voice.
+5. Economy of language.
+6. Useful CTA/credits.
+
+Below 9 means rewrite. Fabricated detail or a caption that can fit many unrelated shoots is an automatic failure regardless of score.
+
+### Check caption/media consistency
+Instagram extraction can surface a thumbnail unrelated to the post caption or only one slide of a carousel. If the visible media does not match the described post:
+- label visual evidence “unverified”;
+- use only the text/comment facts that were actually returned;
+- do not infer lighting, framing, editing or narrative from the mismatched thumbnail;
+- inspect a reliable alternate source before raising the visual confidence level.
+
+### Apply a pattern, not phrasing
+When a VECTA draft uses a pattern from POST_CASE_STUDIES.md or COPY_PATTERNS.md, record (a) the verified part that transfers, (b) what is unique to VECTA’s real material and (c) what is intentionally not copied. Three variants requested by the user must represent different mechanisms, not synonyms.
+
+### Pattern performance evidence
+A reference case can justify a hypothesis; it cannot predict VECTA results. Public likes/comments are context only. Mark outcomes unknown unless VECTA Insights/Metricool analytics provide them. Compare only posts with reasonably similar formats/goals and note small samples, paid promotion, timing or audience differences.
