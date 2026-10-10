@@ -1110,5 +1110,83 @@
       "portrait/studio/street/event breadth",
       "client journey and service packaging"
     ]
+  },
+  {
+    "name": "The Production Studio",
+    "category": "commercial-production-studio",
+    "url": "https://www.instagram.com/p/DaQM_AmjH4T/",
+    "level": 3,
+    "sourceType": "Individual campaign post caption and two visually inspected carousel images; account handle surfaced as _theproductionstudio_",
+    "status": "active",
+    "focus": [
+      "commercial fashion campaign",
+      "minimal client/project + role credits",
+      "tonal/scale contrast across carousel"
+    ]
+  },
+  {
+    "name": "Select Management",
+    "category": "fashion-agency",
+    "url": "https://www.instagram.com/p/DbIBwhoDJ3i/",
+    "level": 3,
+    "sourceType": "Individual fashion campaign post caption and two visually inspected images",
+    "status": "active",
+    "focus": [
+      "role-based credits across photo/styling/HMU/video/light",
+      "portrait and full-length framing contrast",
+      "agency collaboration"
+    ]
+  },
+  {
+    "name": "Diego Ante",
+    "category": "commercial-director",
+    "url": "https://www.instagram.com/reel/DOvj0lkkQwZ/",
+    "level": 2,
+    "sourceType": "Individual commercial Reel caption and comments; video playback unavailable",
+    "status": "active",
+    "focus": [
+      "full production credits",
+      "brand/agency/production-company hierarchy",
+      "post-production and CGI roles"
+    ]
+  },
+  {
+    "name": "VKornacheva Team",
+    "category": "event-photo-video",
+    "url": "https://www.instagram.com/vkornacheva_team/",
+    "level": 1,
+    "sourceType": "Instagram profile metadata, grid formats and Highlights",
+    "status": "active",
+    "focus": [
+      "event photography and video",
+      "service-area clarity",
+      "Highlights organized by event photo/video/BTS/reviews"
+    ]
+  },
+  {
+    "name": "Jane Petrova Film",
+    "category": "fashion-beauty-filmmaker",
+    "url": "https://www.instagram.com/janepetrova.film/",
+    "level": 1,
+    "sourceType": "Instagram profile bio, visible format mix and Highlights",
+    "status": "active",
+    "focus": [
+      "fashion and beauty video",
+      "director/DP positioning",
+      "portfolio organized by project/location"
+    ]
+  },
+  {
+    "name": "Mikhail Matvienko",
+    "category": "street-photographer",
+    "url": "https://www.instagram.com/mikhail_bearr/",
+    "level": 2,
+    "sourceType": "Editorial feature on Streetphotography Austria with attributed artist statement; own profile/archive not audited",
+    "status": "audit_pending",
+    "focus": [
+      "observational street photography",
+      "light/shape/patterns/people as triggers",
+      "background as a film editor"
+    ]
   }
 ]
