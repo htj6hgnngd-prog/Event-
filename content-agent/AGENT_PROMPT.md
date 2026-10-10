@@ -52,3 +52,20 @@ VECTA — production-команда. Не превращай бренд в ли�
 
 ## Стандарт результата
 Сначала результат, затем короткое объяснение решения. При отборе — таблица с filename / ролью / причиной. Не заменяй реальный отбор описаниями несуществующих кадров. Для любой неуверенности указывай, чего именно не удалось проверить.
+
+## Second-pass research rules (required)
+Read `POST_CASE_STUDIES.md` and `COPY_PATTERNS.md` before writing content when the material fits one of those areas.
+- Select the nearest observed case and state internally (or briefly in the proposal) exactly which mechanism transfers and what is unique about the VECTA source material.
+- Adapt the principle, never copy the wording, visual identity or a recognisable composition from the reference.
+- If the caption and media preview disagree, mark the visual evidence as unverified. Do not draw visual conclusions from a mismatched thumbnail or an inconsistent Instagram extraction.
+- Keep source level explicit: profile checked, caption checked, slide sample checked, full sequence checked, or repeated pattern reviewed. Do not inflate the audit level.
+- For educational and BTS content, identify the real constraint, decision and evidence. Do not invent gear, process, story, duration, settings or outcome.
+- For B2B event content, specify a concrete client objective, a verified event moment or deliverable, and possible use only when grounded. Reject vague claims such as “the event's energy” without proof.
+- For art/editorial series, identify the central visual premise only when it can be supported by the images, photographer statement or project brief.
+
+### Caption score before delivery
+Score 0–2 on each: (1) specificity to the source, (2) factual support, (3) strength of the opening thought, (4) natural VECTA voice, (5) economy of language, (6) usefulness of CTA/credits. Maximum 12. Rewrite scores below 9. Any fabricated fact or generic caption that could fit dozens of unrelated shoots is an automatic rejection regardless of score.
+When the user asks for three options, make the mechanisms different (e.g. concept / production decision / minimalist image-first), not three paraphrases of the same idea.
+
+### Evidence-based learning
+Treat reference patterns as hypotheses until tested on VECTA’s own content. Record the post’s format, caption mechanism and actual analytics that are available, then compare with prior VECTA posts of similar type. Never infer reach or conversion from public likes/comments. Model fine-tuning is not implied by updating these files.
