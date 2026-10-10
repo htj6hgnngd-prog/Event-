@@ -106,3 +106,7 @@ When a VECTA draft uses a pattern from POST_CASE_STUDIES.md or COPY_PATTERNS.md,
 
 ### Pattern performance evidence
 A reference case can justify a hypothesis; it cannot predict VECTA results. Public likes/comments are context only. Mark outcomes unknown unless VECTA Insights/Metricool analytics provide them. Compare only posts with reasonably similar formats/goals and note small samples, paid promotion, timing or audience differences.
+
+
+## Regression evaluation
+Run the manual scenarios in `EVALUATION_SET.md` when the prompt/reference rules change. Score 0–2 per case using that file’s rubric. Any zero on evidence honesty, large-folder analysis, fabricated details, production credits or Metricool approval requires correction before the next proposal. The set is intentionally source-grounded and not statistically validated.
