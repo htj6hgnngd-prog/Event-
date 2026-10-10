@@ -1045,19 +1045,6 @@
     ]
   },
   {
-    "name": "ThisIsCSMedia / CandidShutters",
-    "category": "event-photography",
-    "url": "https://www.instagram.com/p/DdogWWwgXsO/",
-    "level": 2,
-    "sourceType": "Individual event-storytelling post, duplicate identity of the caption's account",
-    "status": "active",
-    "focus": [
-      "corporate event storytelling",
-      "between-the-run-sheet moments",
-      "practical save CTA"
-    ]
-  },
-  {
     "name": "LANE Casting UK",
     "category": "creative-production",
     "url": "https://www.instagram.com/p/CnUunsjo9P3/",
@@ -1081,119 +1068,6 @@
       "symbolic conceptual copy",
       "series unification",
       "print edition and material details"
-    ]
-  },
-  {
-    "name": "Creative corporate photographers",
-    "category": "event-photography-reference",
-    "url": "https://www.instagram.com/p/DPAGKJPES-_/",
-    "level": 2,
-    "sourceType": "Post case-study pointer; not an individual creator profile",
-    "status": "source_reviewed",
-    "focus": [
-      "strategic pre-event planning",
-      "asset reuse"
-    ]
-  },
-  {
-    "name": "CandidShutters Media: event storytelling carousel",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/p/DdogWWwgXsO/",
-    "level": 2,
-    "sourceType": "Direct caption and visual preview analysis",
-    "status": "source_reviewed",
-    "focus": [
-      "stage versus story",
-      "moments between formal program beats",
-      "specific B2B copy"
-    ]
-  },
-  {
-    "name": "Chris Ha: full-scene/crop carousel",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/p/DJhUHobNvWP/",
-    "level": 3,
-    "sourceType": "Caption and two slides inspected",
-    "status": "source_reviewed",
-    "focus": [
-      "show the process",
-      "prove crop decisions visually"
-    ]
-  },
-  {
-    "name": "Adorama/Lindsay Adler: lighting tutorial",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/p/Db6WQv9lMr1/",
-    "level": 3,
-    "sourceType": "Caption and two slides inspected",
-    "status": "source_reviewed",
-    "focus": [
-      "one setup, multiple lighting outcomes",
-      "link a real tutorial"
-    ]
-  },
-  {
-    "name": "Joseph Hart: lighting BTS",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/p/DVg40MHGvV1/",
-    "level": 2,
-    "sourceType": "Caption/comments and one slide inspected",
-    "status": "source_reviewed",
-    "focus": [
-      "constraint-to-decision BTS",
-      "technical specifics"
-    ]
-  },
-  {
-    "name": "Lou Escobar: editorial premise",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/p/CnUunsjo9P3/",
-    "level": 2,
-    "sourceType": "Campaign description and multiple image previews",
-    "status": "source_reviewed",
-    "focus": [
-      "visual premise",
-      "credits",
-      "high-contrast styling"
-    ]
-  },
-  {
-    "name": "Hannah Ladd Brown: constraint-to-result",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/p/DXpoGcqRFFI/",
-    "level": 2,
-    "sourceType": "Caption/comments; video playback unavailable",
-    "status": "source_reviewed",
-    "focus": [
-      "specific constraint",
-      "short caption",
-      "credits"
-    ]
-  },
-  {
-    "name": "Alexey Andreev: SFX BTS",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/andreevdop/reel/Czosdu3rGxn/",
-    "level": 2,
-    "sourceType": "Caption/comments; visual sequence unverified",
-    "status": "source_reviewed",
-    "focus": [
-      "technical hook",
-      "continuity problem",
-      "practitioner discussion"
-    ]
-  },
-  {
-    "name": "Kainaat Uppal: production diary",
-    "category": "content-case-study",
-    "url": "https://www.instagram.com/p/Dd1b1hXkqLI/",
-    "level": 2,
-    "sourceType": "Caption/comments and partial media exposure",
-    "status": "source_reviewed",
-    "focus": [
-      "process details",
-      "credits by role",
-      "team story"
     ]
   }
 ]
