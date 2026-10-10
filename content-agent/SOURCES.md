@@ -100,3 +100,47 @@ The second-pass dataset contains direct public post evidence and profile metadat
 - Ekaterina Nasyrova’s portfolio website: https://ekaterinanasyrova.com/ (website only; Instagram not yet audited)
 
 These examples add Russian commercial/editorial and corporate-service positioning. Captions and credits may be fully available even if the Reel itself cannot play; in those cases the library explicitly withholds conclusions about the visual sequence.
+
+
+## Visual culture canon and craft sources
+
+These sources underpin the visual-literacy, sequencing and rhythm methodology. They are reference pathways, not proof that one look is universally superior.
+
+- Getty Museum, *Icons of Style: A Century of Fashion Photography*: https://www.getty.edu/art/exhibitions/fashion_photography/
+  - Curatorial frame: the strongest fashion photographs can transcend their commercial context and expand the genre. Use to study the different visual systems across generations.
+- Aperture, *How Alex Webb Sees in Color*: https://aperture.org/editorial/how-alex-webb-sees-in-color/
+  - Source on the relationship among gesture, light, color and layered composition.
+- Magnum Photos, Mark Power, *The Language of Pictures: Exploring Sequencing*: https://www.magnumphotos.com/theory-and-practice/mark-power-the-language-of-pictures-exploring-sequencing/
+  - Case of re-editing a long-term archive to discover a different visual narrative.
+- Aperture, *How to Produce a Photobook*: https://aperture.org/editorial/how-to-produce-a-photobook/
+  - Editing, sequence, design, format and constraints as parts of a single image-making process.
+- Magnum Photos, Gueorgui Pinkhassov: https://www.magnumphotos.com/photographer/gueorgui-pinkhassov/
+  - Primary photographer biography and work context; reflections, partial details, light and near-abstraction.
+- The Independent Photographer, *20 Color Photographers You Should Know*: https://independent-photo.com/news/20-color-photographers-you-should-know/
+  - Discovery list for a wide color-photography study; follow names to complete bodies of work before making strong claims.
+- International Center of Photography, *Focus on Photography: A Curriculum Guide*: https://www.icp.org/sites/default/files/icp_curriculum_guide_part1_0.pdf
+  - Photography vocabulary and exercises for visual literacy.
+- ShotDeck: https://shotdeck.com/
+  - Film/commercial stills searchable by properties such as lighting, framing, color, composition and emotion; access may be paid.
+- FilmGrab: https://film-grab.com/
+  - Film-still index with credits for directors, cinematographers, production designers and costume designers.
+- BFI, *Roger Deakins in ten shots*: https://www.bfi.org.uk/sight-and-sound/features/remain-light-roger-deakins-ten-shots
+  - Frame-based analysis of a cinematographer’s visual decisions.
+- Criterion Current, *The Look of Frances Ha*: https://www.criterion.com/current/posts/2963-the-look-of-frances-ha
+  - Specific film visual language and black-and-white image strategy.
+- CineMontage, *Making Visual Music: an Interview with Walter Murch*: https://cinemontage.org/visual-music-walter-murch/
+  - Editing and sound as phrasing, visual music and audience attention.
+- Multimedia Art Museum Moscow, *Fashion and Style in Photography*: https://mamm-mdf.ru/en/festivals/fashion-and-style-in-photography-2021/
+  - Russian and international exhibition context.
+- Electra, *Viviane Sassen: Genre, dissection, and flowers*: https://electramagazine.fundacaoedp.pt/en/editions/issue-14/viviane-sassen-genre-dissection-and-flowers
+  - Curatorial writing on the overlap of fashion and fine-art photography and surrealist visual language.
+- It’s Nice That, art-direction archive: https://www.itsnicethat.com/media/art-direction
+  - Contemporary art direction, image-making and editorial design.
+- Dazed, *Five future fashion image-makers*: https://www.dazeddigital.com/fashion/article/57693/1/central-saint-martins-fashion-communication-ma-exhibition-identity-new-talent
+  - Contemporary image-makers and the way photography, styling and art direction can renegotiate a visual identity.
+- Directors’ Library: https://directorslibrary.com/directors/
+  - Music video, commercial and film-director work across different visual systems.
+- The Brand Identity: https://the-brandidentity.com/
+  - Campaign identities and case studies connecting art direction, image, typography and motion.
+
+The three new working files are `VISUAL_CULTURE_CANON.md`, `VISUAL_TASTE_PROTOCOL.md` and `VISUAL_REFERENCE_INDEX.json`. The canon includes historical and contemporary artists; the protocol describes how to study, translate, critique and deliberately not copy their work; the JSON index makes references searchable by discipline and visual problem.
