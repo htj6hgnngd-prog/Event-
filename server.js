@@ -409,7 +409,7 @@ http.createServer(async(req,res)=>{
     if(m){const {video}=await prepareClip(m[1]);await serveFileVideo(req,res,video);return;}
     if(u.pathname==='/cover/event-1'){res.writeHead(302,{Location:'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg','Cache-Control':'public, max-age=31536000, immutable'});res.end();return;}
     if(u.pathname==='/hero-loop'){const {video}=await prepareHero();await serveFileVideo(req,res,video);return;}
-    if(u.pathname==='/hero-poster'){const {poster}=await prepareHero();const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
+    if(u.pathname==='/hero-poster'){res.writeHead(302,{'Location':'https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg','Cache-Control':'no-store'});res.end();return;}
     m=u.pathname.match(/^\/clip-poster\/(work-top|work-bottom)$/);
     if(m){const {poster}=await prepareClip(m[1]);const st=await fsp.stat(poster);res.writeHead(200,{'Content-Type':'image/jpeg','Content-Length':st.size,'Cache-Control':'public, max-age=31536000, immutable'});if(req.method==='HEAD'){res.end();return;}fs.createReadStream(poster).pipe(res);return;}
     await serveStatic(req,res,u.pathname);
