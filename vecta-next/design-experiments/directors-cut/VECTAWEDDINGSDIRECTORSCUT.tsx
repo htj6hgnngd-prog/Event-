@@ -156,17 +156,22 @@ export const VECTAWEDDINGSDIRECTORSCUT = () => {
             <div className="vcut-hero-media-cross" aria-hidden="true"><span></span><span></span></div>
             <span className="vcut-media-bottomright">[ ВАШ КАДР ЗДЕСЬ ]</span>
           </div>
-          <h1 id="vcut-hero-title" className="vcut-hero-headline"><span>Это ваша</span><span>любовь.</span></h1>
-          <div className="vcut-script" aria-label="Навсегда">навсегда<span>.</span></div>
+          <h1 id="vcut-hero-title" className="vcut-hero-headline"><span>Ваш день.</span><span>Без дублей.</span></h1>
+          <div className="vcut-script" aria-label="Навсегда">
+            <span className="vcut-script-word">Навсегда</span>
+            <svg className="vcut-script-flourish" aria-hidden="true" viewBox="0 0 660 140" preserveAspectRatio="none" fill="none">
+              <path d="M10 90 C130 132 252 58 370 88 S553 123 651 22 M620 34 C638 11 653 8 654 6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+            </svg>
+          </div>
           <div className="vcut-hero-subline">
-            <p>Живые фотографии и свадебные фильмы,<br className="vcut-desktop-only" /> в которых вы узнаете себя.</p>
+            <p>Живые фотографии, голоса близких, ваш первый танец.<br className="vcut-desktop-only" /> Всё настоящее — в кадрах и свадебном кино.</p>
             <div className="vcut-hero-actions">
               <button type="button" onClick={goToContact} className="vcut-button vcut-button--cream">Обсудить вашу дату <Arrow diagonal /></button>
               <a className="vcut-text-link" href="#vecta-stories">Смотреть истории <span>↓</span></a>
             </div>
           </div>
-          <div className="vcut-hero-side">НЕ ПОЗА. НЕ СЦЕНАРИЙ. ВАША ИСТОРИЯ.</div>
-          <div className="vcut-hero-index"><span>01 / 05</span><span>ЛИСТАЙТЕ ВНИЗ <span aria-hidden="true">↓</span></span></div>
+          <div className="vcut-hero-side">THE VOW / THE MOMENT / THE MEMORY</div>
+          <div className="vcut-hero-index"><span>VECTA / WEDDINGS</span><span>ЛИСТАЙТЕ ВНИЗ <span aria-hidden="true">↓</span></span></div>
         </div>
       </section>
 
@@ -194,6 +199,11 @@ export const VECTAWEDDINGSDIRECTORSCUT = () => {
             <p>Фотографии и короткие фрагменты движения — рядом. Один живой кадр среди неподвижных фотографий. Без плееров, без шума.</p>
           </div>
         </div>
+        <div className="vcut-story-ledger" aria-label="Сюжет свадебного дня">
+          <span><b>I.</b> ПЕРЕД ЦЕРЕМОНИЕЙ</span>
+          <span><b>II.</b> ТАК СКАЗАЛИ «ДА»</span>
+          <span><b>III.</b> ПОСЛЕ ПОЛУНОЧИ</span>
+        </div>
         <div className="vcut-mosaic" aria-label="Редакционная галерея: четыре места для фотографий и одно для видеолупа">
           {frames.map((frame, index) => <div className={'vcut-mosaic-cell' + (index === 0 ? ' vcut-mosaic-cell--feature' : '') + (frame.kind === 'loop' ? ' vcut-mosaic-cell--motion' : '')} key={frame.number}>
             <div className="vcut-mosaic-meta"><span>{frame.number} / {frame.category}</span><span aria-hidden="true">+</span></div>
@@ -204,17 +214,25 @@ export const VECTAWEDDINGSDIRECTORSCUT = () => {
             </div>
           </div>)}
         </div>
-        <div className="vcut-stories-bottom"><span>01 — 05 / CURATED MOMENTS</span><p><b>Важно:</b> это пустые места для ваших настоящих съёмок. Видеофрагмент займёт точно такую же ячейку, как фотография.</p></div>
+        <div className="vcut-stories-bottom"><span>05 МОМЕНТОВ / 04 СНИМКА + 01 ВИДЕОЛУП</span><p>Именно так: одна «живая фотография» среди остальных. Без отдельного видеоплеера и смены пропорций.</p></div>
       </section>
 
-      <section className="vcut-ethos" aria-label="Наш подход">
-        <div className="vcut-ethos-num">VECTA / WEDDINGS</div>
-        <div className="vcut-ethos-content"><span>БЫТЬ СОБОЙ — ДОСТАТОЧНО</span><h2>Не нужно<br />играть роль.<br /><em>Просто живите.</em></h2></div>
-        <span className="vcut-ethos-year">СЕЗОН 2027</span>
+      <section className="vcut-vow" aria-labelledby="vcut-vow-heading">
+        <div className="vcut-vow-top"><span>03 / САМОЕ ВАЖНОЕ</span><span>THE VOW / СЛОВО, КОТОРОЕ ОСТАНЕТСЯ</span></div>
+        <div className="vcut-vow-main">
+          <h2 id="vcut-vow-heading">Да<span>.</span></h2>
+          <div className="vcut-vow-copy">
+            <span className="vcut-vow-mark">✳</span>
+            <p>Одно слово. И целый мир после него.</p>
+            <small>В тот день вы будете смотреть друг на друга. Мы — замечать моменты, к которым захочется вернуться.</small>
+            <button className="vcut-vow-action" type="button" onClick={goToContact}>Уточнить вашу дату <Arrow diagonal /></button>
+          </div>
+        </div>
+        <div className="vcut-vow-bottom"><span>ОНА И ОН / СЕМЬЯ / ДРУЗЬЯ / ВЫ</span><span>VECTA WEDDINGS 2027</span></div>
       </section>
 
       <section className="vcut-services" id="vecta-services" aria-labelledby="vcut-services-title">
-        <div className="vcut-section-top"><span>03 / ВАШ ФОРМАТ</span><span>ONE STORY. YOUR WAY.</span></div>
+        <div className="vcut-section-top"><span>04 / ВАШ ФОРМАТ</span><span>ONE STORY. YOUR WAY.</span></div>
         <div className="vcut-services-heading"><h2 id="vcut-services-title">Как вы хотите<br /><em>это помнить?</em></h2><p>У каждого дня свой ритм. Выберите формат, а детали и продолжительность мы обсудим вместе.</p></div>
         <div className="vcut-service-list">
           {services.map(item => <article className="vcut-service" key={item.key}>
@@ -230,10 +248,8 @@ export const VECTAWEDDINGSDIRECTORSCUT = () => {
         <p className="vcut-service-note">Никаких обещаний «всё включено» вслепую. Команда, часы, материалы и стоимость согласуются до бронирования.</p>
       </section>
 
-      <section className="vcut-quote" aria-label="Философия VECTA"><span>«</span><p>Вы проживаете.<br /><em>Мы замечаем.</em></p><small>VECTA — ФОТОГРАФИЯ И КИНО</small></section>
-
       <section className="vcut-contact" id="vecta-contact" aria-labelledby="vcut-contact-title">
-        <div className="vcut-section-top"><span>04 / НАЧАЛО ЗНАКОМСТВА</span><span>МОСКВА / ПОДМОСКОВЬЕ</span></div>
+        <div className="vcut-section-top"><span>05 / НАЧАЛО ЗНАКОМСТВА</span><span>МОСКВА / ПОДМОСКОВЬЕ</span></div>
         <div className="vcut-contact-grid">
           <div className="vcut-contact-lead">
             <span className="vcut-eyebrow">СВАДЕБНЫЙ СЕЗОН / 2027</span>
@@ -271,7 +287,7 @@ export const VECTAWEDDINGSDIRECTORSCUT = () => {
       </section>
 
       <section className="vcut-faq" aria-labelledby="vcut-faq-title">
-        <div className="vcut-section-top"><span>05 / ВОПРОСЫ</span><span>BEFORE WE MEET</span></div>
+        <div className="vcut-section-top"><span>06 / ВОПРОСЫ</span><span>BEFORE WE MEET</span></div>
         <div className="vcut-faq-grid">
           <h2 id="vcut-faq-title">Важное<br /><em>заранее.</em></h2>
           <div className="vcut-faq-list">
