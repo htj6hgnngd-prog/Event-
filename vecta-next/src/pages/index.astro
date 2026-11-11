@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro'
+import {services} from '../data/services'
+import {getHomeContent,getSiteSettings,getServiceContent} from '../lib/cms'
+import EditorialMosaic from '../components/EditorialMosaic.astro'
+
+const [page,settings,offerings]=await Promise.all([
+  getHomeContent(),
+  getSiteSettings(),
+  Promise.all(services.map(service=>getServiceContent(service.slug,service)))
+])
+const telegram='https://t.me/'+settings.telegram
+---
+<Base title={page.seoTitle} description={page.seoDescription}>
+  <section class="hero wedding-hero" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="eyebrow">{page.heroEyebrow}</p>
+        <h1 id="hero-title">
+          <span class="hero-heading-main">{page.heroTitle}</span>
+          <em class="hero-heading-accent">{page.heroAccent}</em>
+        </h1>
+      </div>
+      <div class="hero-art media-window" aria-hidden={!page.heroMedia?.src}>
+        {page.heroMedia?.kind==='photo' && page.heroMedia.src ? (
+          <img src={page.heroMedia.src} alt={page.heroMedia.alt||'Свадебная фотография'} fetchpriority="high" />
+        ) : page.heroMedia?.kind==='loop' && page.heroMedia.src && page.heroMedia.poster ? (
+          <video data-hero-loop muted loop playsinline preload="none" poster={page.heroMedia.poster}
+            aria-label={page.heroMedia.alt||'Свадебное видео'}>
+            <source src={page.heroMedia.src} type="video/mp4" />
+          </video>
+        ) : null}
+      </div>
+      <div class="hero-summary">
+        <p class="hero-desc">{page.heroDescription}</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#contact" data-yandex-goal="wedding_date_cta">
+            Уточнить дату свадьбы <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href="#work">Смотреть истории <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bottom"><span>VECTA / WEDDING STORIES</span><span>МОСКВА · 2027</span></div>
+  </section>
+
+  {page.sections.map(section=>(
+    section._type==='introSection' ? (
+      <section class="section intro" id="approach">
+        <p class="eyebrow">{section.eyebrow}</p>
+        <div class="intro-grid">
+          <h2>{section.title}<br/><span class="muted">{section.muted}</span></h2>
+          <div class="intro-copy">
+            {section.paragraphs?.map(paragraph=><p>{paragraph}</p>)}
+            <a class="text-link" href="#contact">Расскажите о своей свадьбе ↗</a>
+          </div>
+        </div>
+      </section>
+    ) : section._type==='servicesSection' ? (
+      <section class="section services" id="services">
+        <div class="section-top">
+          <div><p class="eyebrow">{section.eyebrow}</p><h2>{section.title}<br/><span class="muted">{section.muted}</span></h2></div>
+          <p>{section.description}</p>
+        </div>
+        <div class="service-list">
+          {offerings.map((service,i)=>(
+            <a href={'/'+service.slug+'/'} class="service-row">
+              <span class="service-index">0{i+1}</span>
+              <h3>{service.name}</h3>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ) : section._type==='mosaicSection' ? (
+      <section class="section work wedding-stories" id="work">
+        <div class="stories-head">
+          <div><p class="eyebrow">{section.eyebrow}</p><h2>{section.title}<br/><span class="muted">{section.muted}</span></h2></div>
+          <p>{section.description}</p>
+        </div>
+        <EditorialMosaic items={section.items} layout={section.layout} spacing={section.spacing} scale={section.scale} />
+        <div class="stories-foot">
+          <span>VECTA / WEDDING STORIES</span>
+          <a class="text-link" href="#contact">Уточнить дату свадьбы ↗</a>
+        </div>
+      </section>
+    ) : section._type==='processSection' ? (
+      <section class="section steps" id="process">
+        <p class="eyebrow">{section.eyebrow}</p>
+        <h2>{section.title}<br/><span class="muted">{section.muted}</span></h2>
+        <div class="steps-grid">
+          {section.steps?.map((step,i)=>(
+            <div><span>{String(i+1).padStart(2,'0')}</span><h3>{step.title}</h3><p>{step.description}</p></div>
+          ))}
+        </div>
+      </section>
+    ) : section._type==='contactSection' ? (
+      <section class="section contact" id="contact">
+        <p class="eyebrow">{section.eyebrow}</p>
+        <h2>{section.title}<br/><em>{section.accent}</em></h2>
+        <div class="contact-grid">
+          <p>{section.description}</p>
+          <div class="contact-links">
+            <a href={telegram} data-yandex-goal="telegram_click" target="_blank"
+              rel="noopener noreferrer" class="btn btn-light">
+              {section.ctaLabel||'Написать о дате в Telegram'} <span aria-hidden="true">↗</span>
+            </a>
+            <span>Свободные даты подтверждаем лично. Отправка заявки на сайте пока не настроена.</span>
+          </div>
+        </div>
+      </section>
+    ) : null
+  ))}
+</Base>
+
+<script>
+  const heroVideo=document.querySelector<HTMLVideoElement>('[data-hero-loop]');
+  if(heroVideo){
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isVisible=false;
+    const sync=()=>{
+      if(isVisible&&!document.hidden&&!reduced.matches){
+        if(heroVideo.paused)void heroVideo.play().catch(()=>{ /* Keep its poster visible. */ });
+      }else{
+        heroVideo.pause();
+      }
+    };
+    const observer=new IntersectionObserver(entries=>{
+      isVisible=entries[0]?.isIntersecting&&entries[0].intersectionRatio>=.25||false;
+      sync();
+    },{threshold:[0,.25,.6]});
+    observer.observe(heroVideo);
+    document.addEventListener('visibilitychange',sync);
+    reduced.addEventListener('change',sync);
+    window.addEventListener('pagehide',()=>heroVideo.pause());
+  }
+</script>

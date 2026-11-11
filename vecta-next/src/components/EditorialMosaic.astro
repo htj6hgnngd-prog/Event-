@@ -1,0 +1,78 @@
+---
+import type { EditorialLayout, FiveTileGrid } from '../data/mediaTypes';
+
+interface Props {
+  items: FiveTileGrid;
+  layout?: EditorialLayout;
+  spacing?: 'tight' | 'regular' | 'airy';
+  scale?: 'balanced' | 'dramatic';
+}
+
+const { items, layout = 'feature-left', spacing = 'regular', scale = 'balanced' } = Astro.props;
+---
+<div class:list={['editorial-mosaic', layout, 'editorial-mosaic--'+spacing, 'editorial-mosaic--'+scale]} data-editorial-mosaic aria-label="Свадебная галерея">
+  {items.map((item, index) => (
+    <div
+      class:list={['editorial-mosaic__tile', { 'editorial-mosaic__tile--lead': index === 0 }]}
+      data-media-kind={item.kind}
+      data-media-id={item.id}
+    >
+      {item.kind === 'photo' && item.src ? (
+        <img src={item.src} alt={item.alt || 'Свадебная фотография'} loading="lazy" decoding="async" />
+      ) : item.kind === 'loop' && item.src && item.poster ? (
+        <video data-mosaic-loop muted loop playsinline preload="none"
+          poster={item.poster} aria-label={item.alt || 'Фрагмент свадебного фильма'}>
+          <source src={item.src} type="video/mp4" />
+        </video>
+      ) : (
+        <div class="editorial-mosaic__empty" aria-hidden="true"></div>
+      )}
+    </div>
+  ))}
+</div>
+
+<script>
+  const mobile = window.matchMedia('(max-width: 767px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const videos = [...document.querySelectorAll<HTMLVideoElement>('[data-mosaic-loop]')];
+  const visible = new Set<HTMLVideoElement>();
+
+  function updatePlayback() {
+    const maxPlaying = mobile.matches ? 1 : 2;
+    const canPlay = !document.hidden && !reducedMotion.matches;
+    const ordered = videos.filter(video => visible.has(video));
+    const allowed = new Set(canPlay ? ordered.slice(0, maxPlaying) : []);
+
+    for (const video of videos) {
+      if (allowed.has(video)) {
+        if (video.paused) void video.play().catch(() => {
+          // Leave the poster visible when autoplay is not available.
+        });
+      } else if (!video.paused) {
+        video.pause();
+      }
+    }
+  }
+
+  if (videos.length) {
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+          visible.add(video);
+        } else {
+          visible.delete(video);
+        }
+      }
+      updatePlayback();
+    }, { threshold: [0, 0.35, 0.65] });
+
+    for (const video of videos) observer.observe(video);
+    document.addEventListener('visibilitychange', updatePlayback);
+    mobile.addEventListener('change', updatePlayback);
+    reducedMotion.addEventListener('change', updatePlayback);
+    window.addEventListener('pagehide', () => {
+      for (const video of videos) video.pause();
+    });
+  }
+</script>
