@@ -8,6 +8,7 @@ const zlib=require('zlib');
 const {execFile}=require('child_process');
 const {promisify}=require('util');
 const {URL}=require('url');
+const {deliverLead}=require('./lead-delivery');
 const ffmpeg=require('ffmpeg-static');
 
 const execFileAsync=promisify(execFile);
@@ -364,17 +365,19 @@ http.createServer(async(req,res)=>{
             createdAt:new Date().toISOString(),
             ip:String(req.headers['x-forwarded-for']||'').split(',')[0].trim()
           };
-          console.log('NEW_LEAD',JSON.stringify(safe));
-          if(process.env.LEAD_WEBHOOK_URL){
-            try{
-              await fetch(process.env.LEAD_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(safe)});
-            }catch(err){console.error('Lead webhook failed:',err.message)}
-          }
+          // A lead is accepted only after the configured destination confirms receipt.
+          const delivery=await deliverLead(safe);
           const telegramUrl=process.env.TELEGRAM_USERNAME
             ? 'https://t.me/'+process.env.TELEGRAM_USERNAME+'?text='+encodeURIComponent('Здравствуйте! Хочу получить расчёт. Дата: '+safe.date+'. Мероприятие: '+safe.format+'. Площадка: '+safe.venue+'. Нужно: '+safe.services.join(', ')+'. Контакт: '+safe.contact)
             : '';
+          if(!delivery.delivered){
+            console.error('Lead delivery unavailable:',delivery.reason);
+            res.writeHead(503,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
+            res.end(JSON.stringify({ok:false,delivered:false,message:'Автоматическая отправка недоступна',telegramUrl}));
+            return;
+          }
           res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
-          res.end(JSON.stringify({ok:true,telegramUrl}));
+          res.end(JSON.stringify({ok:true,delivered:true,telegramUrl}));
         }catch(_){
           res.writeHead(400,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
           res.end(JSON.stringify({message:'Не удалось обработать заявку'}));
