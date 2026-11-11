@@ -4,3 +4,36 @@
 .breadcrumbs{display:flex;align-items:center;gap:12px;margin-top:30px;font-size:12px;color:#aeb7ae}
 .breadcrumbs a{text-decoration:underline;text-underline-offset:4px}
 .breadcrumbs span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* WEDDING EDITION / 2027 | images deliberately withheld pending owner assets */
+:root{--bg:#151413;--fg:#f2ede7;--muted:#b2a9a0;--line:#534a43;--accent:#d6b9a4}
+body{font-family:'Helvetica Neue',Arial,sans-serif}
+.wedding-hero{min-height:790px;height:min(890px,100svh);background:linear-gradient(135deg,#211d1a,#151413 61%,#403127);padding-top:150px}
+.wedding-hero::before{content:'';pointer-events:none;position:absolute;inset:0;background:radial-gradient(ellipse at 80% 58%,#b68e6e22,transparent 54%)}
+.hero-inner{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);width:100%;gap:5vw;align-items:center;position:relative;z-index:1}
+.wedding-hero .hero-content{max-width:900px}
+.wedding-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(55px,6.9vw,115px);font-weight:400;letter-spacing:-.055em;line-height:1.08}
+.wedding-hero h1 em{font-style:italic;font-weight:400;letter-spacing:-.06em}
+.wedding-hero .hero-desc{max-width:490px;color:#e5dcd3}
+.wedding-hero .hero-bottom{z-index:2}
+.hero-art{display:flex;flex-direction:column;justify-content:space-between;align-items:center;min-height:490px;border:1px solid #dbc8b652;position:relative;padding:28px 24px 23px;overflow:hidden;background:linear-gradient(155deg,#51403844,#b28c684d 50%,#2d2723aa)}
+.hero-art::after{content:'';position:absolute;inset:17px;border:1px solid #ebd8ca3d;pointer-events:none}
+.art-quiet,.art-caption{font-size:10px;letter-spacing:.22em;color:#e6d7c9;text-align:center;z-index:1}
+.art-caption{align-self:flex-end;text-align:right;line-height:1.8}
+.art-year{font-family:Georgia,'Times New Roman',serif;font-size:clamp(80px,11vw,175px);letter-spacing:-.11em;font-style:italic;color:#e7d0bc3b;z-index:1}
+.work .media-slot{min-height:530px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;background:linear-gradient(160deg,#3c332e,#201d1b);border:1px solid #6b5749}
+.media-slot span{font-size:11px;letter-spacing:.18em;color:#e5cfbb}.media-slot strong{font:italic 70px Georgia,'Times New Roman',serif;font-weight:400;color:#edd8c54d;align-self:flex-end}
+.section h2{font-family:Georgia,'Times New Roman',serif;letter-spacing:-.055em;font-weight:400}
+.section .eyebrow{color:#c9b19d}
+.services{background:#211e1b}.alternate{background:#211e1b}
+.contact{background:#d8c1ad;color:#211b17}.contact .eyebrow{color:#594338}.contact h2 em{color:#826150}
+.service-row:hover{background:#473b31}
+.steps{background:#1d1a18}
+.steps-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin-top:70px}
+.steps-grid>div{border-top:1px solid #75675a;padding-top:18px}
+.steps-grid span{font-size:12px;letter-spacing:.18em;color:#c9b19d}
+.steps-grid h3{font:normal clamp(25px,2.5vw,39px) Georgia,'Times New Roman',serif;letter-spacing:-.045em;margin:37px 0 15px}
+.steps-grid p{font-size:15px;line-height:1.65;color:#ccc0b5}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr 250px;gap:2vw}.hero-art{min-height:380px}.steps-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:750px){.wedding-hero{height:auto;min-height:740px;padding-top:120px;padding-bottom:110px}.hero-inner{display:block}.wedding-hero h1{font-size:clamp(48px,11.3vw,78px)}.hero-art{display:none}.work .media-slot{min-height:325px}.media-slot strong{font-size:54px}.steps-grid{grid-template-columns:1fr 1fr;gap:24px}.steps-grid h3{margin-top:22px}.steps-grid p{font-size:14px}.contact .btn{max-width:100%}}
+@media(max-width:390px){.steps-grid{grid-template-columns:1fr}.wedding-hero h1{font-size:47px}}
