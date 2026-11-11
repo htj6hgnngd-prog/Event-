@@ -7,7 +7,7 @@ for name in json.loads((root/'docs/desktop-pages.json').read_text()):
  s=(root/name).read_text();body=re.search(r'<body[^>]*>(.*?)</body>',s,re.S)[1];pages['/'+name if name!='index.html' else '/']=re.sub(r'<script.*?</script>','',body,flags=re.S)
 (out/'pages.ts').write_text('const pages:Record<string,string>='+json.dumps(pages,ensure_ascii=False)+';\nexport default pages;\n')
 css=(root/'design.css').read_text()+'\n'+(root/'editorial-desktop.css').read_text()
-for font in ['cormorant-regular','cormorant-italic','manrope-regular']:
+for font in ['cormorant-regular','cormorant-italic','manrope-regular','playfair-upright','playfair-italic']:
  css=css.replace("'/fonts/"+font+".woff2'","'data:font/woff2;base64,"+base64.b64encode((root/'fonts'/f'{font}.woff2').read_bytes()).decode()+"'")
 for prefix in ['@media(max-width:1000px)','@media(max-width:650px)']:
  start=css.find(prefix)

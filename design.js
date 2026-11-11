@@ -1,7 +1,7 @@
 (()=>{'use strict';
  const scope=document;
  function filter(button){const value=button.dataset.filter;scope.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));let visible=0;scope.querySelectorAll('[data-category]').forEach(entry=>{const show=value==='all'||entry.dataset.category===value||entry.dataset.category==='both';entry.hidden=!show;if(show)visible++;});scope.querySelector('.archive-grid')?.classList.toggle('is-filtered',value!=='all');const status=scope.querySelector('.archive-count');if(status)status.textContent=visible+' '+(visible===1?'макет':visible<5?'макета':'макетов');}
- scope.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>filter(b)));
+ scope.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{if(document.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.startViewTransition(()=>filter(b));else filter(b);}));
  const form=scope.querySelector('#brief');if(!form)return;
  const names={photo:'Фотография',highlight:'Фото + Highlight',film:'Фото + фильм',discuss:'Обсудим вместе'};
  const selected=new URLSearchParams(location.search).get('format');if(selected&&names[selected]){const radio=form.querySelector('input[name="format"][value="'+selected+'"]');if(radio)radio.checked=true;}
