@@ -1,14 +1,16 @@
 ---
-import type { MediaTile, EditorialLayout, FiveTileGrid } from '../data/mediaTypes';
+import type { EditorialLayout, FiveTileGrid } from '../data/mediaTypes';
 
 interface Props {
   items: FiveTileGrid;
   layout?: EditorialLayout;
+  spacing?: 'tight' | 'regular' | 'airy';
+  scale?: 'balanced' | 'dramatic';
 }
 
-const { items, layout = 'feature-left' } = Astro.props;
+const { items, layout = 'feature-left', spacing = 'regular', scale = 'balanced' } = Astro.props;
 ---
-<div class:list={['editorial-mosaic', layout]} data-editorial-mosaic aria-label="Свадебная галерея">
+<div class:list={['editorial-mosaic', layout, 'editorial-mosaic--'+spacing, 'editorial-mosaic--'+scale]} data-editorial-mosaic aria-label="Свадебная галерея">
   {items.map((item, index) => (
     <div
       class:list={['editorial-mosaic__tile', { 'editorial-mosaic__tile--lead': index === 0 }]}
