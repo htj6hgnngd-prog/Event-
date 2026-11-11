@@ -1,0 +1,104 @@
+[
+  {
+    "path": "index.html",
+    "status": 200,
+    "bytes": 9296,
+    "final": "https://vecta-fashion-preview.vercel.app/index.html"
+  },
+  {
+    "path": "portfolio.html",
+    "status": 200,
+    "bytes": 5879,
+    "final": "https://vecta-fashion-preview.vercel.app/portfolio.html"
+  },
+  {
+    "path": "project-film.html",
+    "status": 200,
+    "bytes": 5164,
+    "final": "https://vecta-fashion-preview.vercel.app/project-film.html"
+  },
+  {
+    "path": "photo.html",
+    "status": 200,
+    "bytes": 3963,
+    "final": "https://vecta-fashion-preview.vercel.app/photo.html"
+  },
+  {
+    "path": "films.html",
+    "status": 200,
+    "bytes": 3892,
+    "final": "https://vecta-fashion-preview.vercel.app/films.html"
+  },
+  {
+    "path": "studio.html",
+    "status": 200,
+    "bytes": 4707,
+    "final": "https://vecta-fashion-preview.vercel.app/studio.html"
+  },
+  {
+    "path": "request.html",
+    "status": 200,
+    "bytes": 3888,
+    "final": "https://vecta-fashion-preview.vercel.app/request.html"
+  },
+  {
+    "path": "svadebnyy-fotograf.html",
+    "status": 200,
+    "bytes": 4116,
+    "final": "https://vecta-fashion-preview.vercel.app/svadebnyy-fotograf.html"
+  },
+  {
+    "path": "svadebnaya-videosemka.html",
+    "status": 200,
+    "bytes": 4063,
+    "final": "https://vecta-fashion-preview.vercel.app/svadebnaya-videosemka.html"
+  },
+  {
+    "path": "foto-i-video-na-svadbu.html",
+    "status": 200,
+    "bytes": 4030,
+    "final": "https://vecta-fashion-preview.vercel.app/foto-i-video-na-svadbu.html"
+  },
+  {
+    "path": "formats.html",
+    "status": 200,
+    "bytes": 5663,
+    "final": "https://vecta-fashion-preview.vercel.app/formats.html"
+  },
+  {
+    "path": "design.css",
+    "status": 200,
+    "bytes": 14517,
+    "final": "https://vecta-fashion-preview.vercel.app/design.css"
+  },
+  {
+    "path": "editorial-desktop.css",
+    "status": 200,
+    "bytes": 18704,
+    "final": "https://vecta-fashion-preview.vercel.app/editorial-desktop.css"
+  },
+  {
+    "path": "design.js",
+    "status": 200,
+    "bytes": 2222,
+    "final": "https://vecta-fashion-preview.vercel.app/design.js"
+  },
+  {
+    "path": "fonts/cormorant-regular.woff2",
+    "status": 200,
+    "bytes": 38756,
+    "final": "https://vecta-fashion-preview.vercel.app/fonts/cormorant-regular.woff2"
+  },
+  {
+    "path": "fonts/cormorant-italic.woff2",
+    "status": 200,
+    "bytes": 39944,
+    "final": "https://vecta-fashion-preview.vercel.app/fonts/cormorant-italic.woff2"
+  },
+  {
+    "path": "fonts/manrope-regular.woff2",
+    "status": 200,
+    "bytes": 21004,
+    "final": "https://vecta-fashion-preview.vercel.app/fonts/manrope-regular.woff2"
+  }
+]

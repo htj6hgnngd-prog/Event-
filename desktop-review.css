@@ -1,0 +1,4 @@
+/* Desktop design review only. No responsive redesign in this pass. */
+html,body{min-width:1440px}
+.header .menu,.mobile-nav{display:none!important}
+.header nav{display:flex!important}

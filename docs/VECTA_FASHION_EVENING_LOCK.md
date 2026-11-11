@@ -1,3 +1,5 @@
+> Исторический документ корпоративного направления. Не применять как текущий бриф свадебного сайта. Приоритет: [восстановленные решения](VECTA_DECISIONS_FROM_DIALOGUES.md) и [текущий объём](CURRENT_WEDDING_SCOPE.md). Содержимое сохранено для истории.
+
 # VECTA / FASHION EVENING — DESIGN LOCK v1
 
 Status: working direction for review, not final visual sign-off.

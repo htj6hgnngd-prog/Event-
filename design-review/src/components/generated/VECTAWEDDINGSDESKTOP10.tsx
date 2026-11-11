@@ -1,0 +1,16 @@
+import {useEffect,useRef,useState} from 'react';
+import type {MouseEvent,FormEvent} from 'react';
+import pages from './pages';
+import './VECTAWEDDINGSDESKTOP10.css';
+const names:Record<string,string>={photo:'Фотография',highlight:'Фото + Highlight',film:'Фото + фильм',discuss:'Обсудим вместе'};
+function requestText(form:HTMLFormElement){const d=new FormData(form);return ['Здравствуйте, VECTA! Хотим обсудить свадебную съёмку.',`Дата свадьбы: ${d.get('date')||'Уточним'}`,`Город / площадка: ${d.get('venue')||'Уточним'}`,`Формат: ${names[String(d.get('format'))]||names.discuss}`,`О свадьбе: ${d.get('task')||'Обсудим'}`].join('\n');}
+export const VECTAWEDDINGSDESKTOP10=()=>{
+ const [location,setLocation]=useState('/');const viewport=useRef<HTMLDivElement>(null);const path=location.split(/[?#]/)[0];
+ function sync(){const form=viewport.current?.querySelector<HTMLFormElement>('#brief');const link=viewport.current?.querySelector<HTMLAnchorElement>('#telegram-brief');if(form&&link)link.href='https://t.me/denisovphotos?text='+encodeURIComponent(requestText(form));}
+ useEffect(()=>{const root=viewport.current;if(!root)return;const url=new URL(location,'https://vecta.example');const format=url.searchParams.get('format');if(format&&names[format]){const radio=root.querySelector<HTMLInputElement>(`input[name="format"][value="${format}"]`);if(radio)radio.checked=true;}if(url.hash){root.querySelector(url.hash)?.scrollIntoView({behavior:'instant'});}else root.scrollTo({top:0,left:0,behavior:'instant'});sync();},[location]);
+ function navigate(e:MouseEvent<HTMLDivElement>){const target=e.target as Element;const anchor=target.closest<HTMLAnchorElement>('a');const root=viewport.current;if(!root)return;
+ if(anchor){const href=anchor.getAttribute('href')||'';if(href.startsWith('/')){const next=href.split(/[?#]/)[0]||'/';if(pages[next]){e.preventDefault();if(location!==href)setLocation(href);else root.scrollTo({top:0,behavior:'instant'});return;}}if(href.startsWith('#')){e.preventDefault();if(href==='#top')root.scrollTo({top:0});else root.querySelector(href)?.scrollIntoView();}}
+ const filter=target.closest<HTMLButtonElement>('[data-filter]');if(filter){const value=filter.dataset.filter;root.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===filter)));let visible=0;root.querySelectorAll<HTMLElement>('[data-category]').forEach(entry=>{const show=value==='all'||entry.dataset.category===value||entry.dataset.category==='both';entry.hidden=!show;if(show)visible++;});root.querySelector('.archive-grid')?.classList.toggle('is-filtered',value!=='all');const status=root.querySelector('.archive-count');if(status)status.textContent=visible+' '+(visible===1?'макет':visible<5?'макета':'макетов');}
+ if(target.closest('#copy-brief')){const form=root.querySelector<HTMLFormElement>('#brief');const status=root.querySelector('#brief-status');if(form)navigator.clipboard.writeText(requestText(form)).then(()=>{if(status)status.textContent='Текст скопирован. Отправьте его удобным способом.';}).catch(()=>{if(status)status.textContent='Откройте Telegram: текст уже подготовлен.';});}}
+ return <div ref={viewport} className="vecta-preview editorial-v3" onClick={navigate} onInput={sync} onSubmit={(e:FormEvent)=>e.preventDefault()}><div key={location} dangerouslySetInnerHTML={{__html:pages[path]||pages['/']}}/></div>;
+};

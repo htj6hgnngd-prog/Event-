@@ -1,3 +1,5 @@
+> Исторический документ корпоративного направления. Не применять как текущий бриф свадебного сайта. Приоритет: [восстановленные решения](VECTA_DECISIONS_FROM_DIALOGUES.md) и [текущий объём](CURRENT_WEDDING_SCOPE.md). Содержимое сохранено для истории.
+
 # VECTA / ART DIRECTION & RELEASE LOCK
 Status: FROZEN for the November 12, 2026 release. Owner decision: retain and develop the existing Event- repository; no clean-slate rebuild.
 
