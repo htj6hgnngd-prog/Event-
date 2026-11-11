@@ -62,6 +62,25 @@ async function inspect(page, size) {
       fontFaces:[...document.styleSheets].length
     };
   });
+  // Preserve a read-only snapshot of the exact Work deployment for reliable follow-up fixes.
+  if (size.label === 'mobile-360') {
+    const dom = await page.evaluate(() => ({
+      services: [...document.querySelectorAll('section')].filter(el=>/Фотографии|Фото \+ кино|Кино/.test(el.innerText||'')).slice(0,3).map(el=>el.outerHTML.slice(0,14000)),
+      form: [...document.querySelectorAll('form')].map(el=>el.outerHTML.slice(0,14000)),
+      inputControls: [...document.querySelectorAll('input, select, textarea, button')].map(el=>({
+        tag:el.tagName, type:el.getAttribute('type'), name:el.getAttribute('name'), id:el.id,
+        text:(el.innerText||'').trim().slice(0,100), value:el.getAttribute('value')
+      })),
+      fontFaces:[...document.fonts].map(f=>({family:f.family,status:f.status,weight:f.weight})),
+      links:[...document.querySelectorAll('a')].filter(a=>/съёмке|Кино|Фотограф|формат/i.test(a.innerText||'')).map(a=>({text:a.innerText.trim().slice(0,80),href:a.getAttribute('href')}))
+    }));
+    fs.writeFileSync(path.join(outDir,'dom-mobile-360.json'), JSON.stringify(dom,null,2));
+    fs.writeFileSync(path.join(outDir,'live-index.html'), await page.content());
+    for(const urlPath of ['/site.css','/robots.txt']) {
+      const response=await page.request.get(new URL(urlPath,base).toString());
+      if(response.ok())fs.writeFileSync(path.join(outDir,urlPath.slice(1)),await response.body());
+    }
+  }
   await page.screenshot({path:path.join(outDir, size.label+'-top.png'),fullPage:false});
   await page.screenshot({path:path.join(outDir, size.label+'-full.png'),fullPage:true});
   const interaction=[];
