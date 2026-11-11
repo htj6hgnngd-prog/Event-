@@ -1,51 +1,41 @@
-# VECTA Visual Admin — architecture
+# VECTA Weddings 2027 — управление сайтом через Sanity Studio
 
-## Goal
-Sign in as an administrator and visually edit wedding texts, photos,
-video loops, page sections, crop, ratios, sizes, ordering, and placement.
+## Что уже в коде
+- `sanity.config.ts` и `sanity/schemaTypes.ts`: встроенная Studio с настоящей авторизацией Sanity.
+- `src/lib/cms.ts`: опубликованные документы CMS используются для главной, трёх страниц услуг и контактов.
+- `src/pages/index.astro`: секции выводятся в выбранном редактором порядке.
+- `src/components/EditorialMosaic.astro`: фото и видеолупы занимают одинаковые ячейки.
+- Предусмотрены 5 ячеек, перетаскивание их порядка в Studio, большой кадр слева/справа, размер большого кадра (2 пресета) и интервалы (3 пресета).
+- Медиа пока пустые: чужие/старые изображения не используются.
 
-## Selected direction: Sanity Studio + Presentation / Visual Editing
-With the Astro 7 frontend and a controlled layout model.
-Official references:
-https://www.sanity.io/docs/visual-editing/introduction-to-visual-editing
-https://www.sanity.io/docs/visual-editing/enabling-drag-and-drop
-https://www.sanity.io/docs/visual-editing
+## Для первого включения админки (требует владельца)
+1. Зарегистрировать или выбрать собственный проект в https://www.sanity.io/manage.
+2. Взять **Project ID** (публичный технический идентификатор, не секрет).
+3. Создать публичный dataset (например, `production`), так как публичный сайт читает только опубликованные тексты и медиа без API-ключа.
+4. Задать `PUBLIC_SANITY_PROJECT_ID` и `PUBLIC_SANITY_DATASET` в настройках окружения Vercel и локально.
+5. Разрешить в Sanity API → CORS Origins адрес редактора `https://<your-domain>` с credentials **только для контролируемых адресов**.
+6. Пересобрать Astro-проект с корневой директорией `vecta-next`. После этого появится `/admin`; вход через Sanity Login. **Не создавать пароль в коде.**
+7. При первом открытии «Главная страница» поля будут заполнены стартовыми текстами, а 5 медиаокон пустыми. Изменения видны публично только после Publish + нового деплоя.
 
-Sanity provides click-to-edit, preview, draft/publish and drag-to-reorder
-for configured page sections. Freehand pixel dragging and resizing
-like Figma is not automatic. We will add controlled tile size and
-placement presets in custom content schemas / Studio components.
+## Работа редактора
+- Главная: SEO title / description, заголовок и описание первого экрана, медиа первого экрана.
+- Секции: drag-and-drop порядка секций, редактирование текстов.
+- Mosaic: первая карточка крупная, следующие четыре одинаковые. Порядок можно менять перетаскиванием; фото/видеолуп, постер, crop, alt.
+- Сетка: пресеты крупного кадра слева/справа, плотности и размера.
+- Услуги: отдельные записи; укажите один из трёх существующих slug, название и содержание.
+- Настройки: Telegram username, подпись в подвале сайта.
 
-## Editorial Mosaic schema
-- layout: feature-left or feature-right; can be extended with presets.
-- items: five stable-id tiles, ordered; each tile photo or muted video loop.
-- media fields: asset, poster for loops, crop/focal point and alt text.
-- tile order is editable; the same layout renders public and preview modes.
-- existing renderer: src/components/EditorialMosaic.astro
-- existing empty data adapter: src/data/weddingGallery.ts
-- CSS: public/site.css / EDITORIAL MOSAIC
+## Что важно не путать
+Сейчас проект работает как **статический Astro-сайт**. Studio сохраняет черновики и публикации в Content Lake, но чтобы опубликованное изменение стало видно на публичном сайте, требуется новый деплой. Для автоматизации нужно создать **Vercel Deploy Hook** и Sanity webhook с ограниченными правами; URL хука — секрет, не храните его в GitHub и не пересылайте в чат.
 
-## Desired editor
-- Proper authenticated admin and MFA when possible.
-- Navigation: Pages / Stories / Media / Layout / SEO / Publish.
-- Preview actual site in desktop and mobile modes.
-- Click a headline to change its copy.
-- Replace each media slot with an uploaded photo or video loop.
-- Drag tile order, choose featured position and approved size ratios.
-- Preview before publishing, revision history and rollback.
-- No visual editor controls or editable public endpoints for visitors.
+Полностью интерактивный предпросмотр черновиков «кликнул прямо по тексту на сайте → отредактировал» потребует дополнительного этапа: защищённый draft mode, серверная отрисовка Astro/адаптер Vercel, Visual Editing + Presentation. Не утверждаем, что он уже работает. Официальное руководство для Astro 7: https://www.sanity.io/docs/visual-editing/astro-visual-editing.
 
-## Implementation gates
-1. Owner provides or connects a Sanity project/account.
-2. Define page, gallery, media and SEO schemas.
-3. Add secure preview endpoints and frontend content queries.
-4. Configure access control, secrets and publication permissions.
-5. Verify responsive previews, media storage and performance.
-6. Review any applicable Russian privacy/data localization requirements.
+## Что нельзя изменять без тестирования
+- Произвольные координаты элементов и нестандартные размеры: мобильные ограничения пока защищены пресетами.
+- Одновременное воспроизведение более 2 видеолупов на десктопе или 1 на мобильном.
+- Доставка заявок: её пока нет. Кнопка открывает Telegram, не сообщает ложный успех.
+- Не помещать персональные данные пар, контакты, договоры и коммерческую переписку в публичный Sanity dataset.
 
-Alternative for fully self-hosted operation: Payload CMS + Puck-style
-visual block editor, persistent database, object storage and Railway.
-This requires more development and operational maintenance.
-
-No real CMS/admin login has yet been provisioned; do not present a mock
-authentication screen as functional.
+## Тестирование
+CI workflow `.github/workflows/vecta-weddings-ci.yml` на выделенной ветке запускает `npm run check` и `npm run build`. Наличие workflow не равно подтверждённому успешному запуску.
+Рабочая ветка: `feat/vecta-wedding-season-2027`. Production / `main` не менялись.
