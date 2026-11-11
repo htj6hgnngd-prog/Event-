@@ -276,3 +276,6 @@
     overflow-wrap:anywhere;
   }
 }
+
+/* Reserve invisible glyph descent space without loosening the visual line rhythm. */
+.vcut-hero-headline{padding-bottom:.14em}
