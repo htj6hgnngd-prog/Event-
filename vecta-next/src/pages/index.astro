@@ -1,11 +1,98 @@
 ---
 import Base from '../layouts/Base.astro';
-import {services} from '../data/services';
+import { services } from '../data/services';
 ---
-<Base title="VECTA — фото, видео и продакшен мероприятий в Москве" description="VECTA: фото- и видеопроизводство для корпоративных, деловых и частных мероприятий в Москве. Планируем съёмку, формируем команду, создаём готовый контент.">
-<section class="hero"><div class="hero-media"><img src="https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg" alt="Световая сцена мероприятия" width="1200" height="675" fetchpriority="high"/><div class="hero-media-shade"></div></div><div class="hero-content"><p class="eyebrow">ФОТО И ВИДЕО / ПРОДАКШЕН МЕРОПРИЯТИЙ / МОСКВА</p><h1>Фото и видео,<br/><em>которые работают<br/>после события.</em></h1><p class="hero-desc">Снимаем корпоративные мероприятия, конференции и частные события в Москве. Продумываем съёмку и готовим материалы для PR, соцсетей и коммуникаций бренда.</p><div class="hero-actions"><a class="btn btn-light" href="#contact">Обсудить съёмку <span>↗</span></a><a class="text-link" href="#services">Наши направления ↓</a></div></div><div class="hero-bottom"><span>VECTA / CREATIVE PRODUCTION</span><span>01 — 04</span></div></section>
-<section class="section intro" id="approach"><p class="eyebrow">01 / ПОДХОД</p><div class="intro-grid"><h2>Кадры, у которых<br/><span class="muted">есть задача.</span></h2><div class="intro-copy"><p>Фотографии нужны для публикаций и отчётов. Видео — для сайта, соцсетей и презентаций. Мы планируем съёмку с учётом того, где и как вы будете использовать результат.</p><p>До начала работы уточняем ключевые эпизоды, состав материалов и сроки. Затем организуем команду, съёмку и постпродакшен в рамках согласованного плана.</p><a class="text-link" href="#contact">Расскажите о вашем событии ↗</a></div></div></section>
-<section class="section services" id="services"><div class="section-top"><div><p class="eyebrow">02 / ЧТО МЫ ДЕЛАЕМ</p><h2>Под задачу.<br/><span class="muted">Под событие.</span></h2></div><p>Можно заказать отдельную съёмку или собрать команду под всю программу события.</p></div><div class="service-list">{services.slice(0,3).map((s,i)=><a href={'/'+s.slug+'/'} class="service-row"><span class="service-index">0{i+1}</span><h3>{s.name}</h3><span class="service-arrow" aria-hidden="true">↗</span></a>)}</div><div class="service-extra"><p>Также работаем с форматами:</p>{services.slice(3).map(s=><a href={'/'+s.slug+'/'}>{s.name} ↗</a>)}</div></section>
-<section class="section work" id="work"><p class="eyebrow">03 / КАК ЭТО ВЫГЛЯДИТ</p><div class="work-grid"><div><h2>Хорошее событие<br/><span class="muted">заслуживает сильных кадров.</span></h2><p>Показываем атмосферу, выступления, детали и людей. Оцените визуальный уровень в нашем портфолио, а подходящий формат производства подберём под вашу программу.</p><a class="text-link" href="https://disk.yandex.ru/d/UvDtVknOUREkJw" data-yandex-goal="portfolio_click" target="_blank" rel="noopener noreferrer">Смотреть портфолио ↗</a></div><div class="work-image"><img src="https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg" alt="Визуальные материалы event production" loading="lazy" width="1200" height="675"/></div></div></section>
-<section class="section contact" id="contact"><p class="eyebrow">04 / НАЧНЁМ С ЗАДАЧИ</p><h2>Расскажите, что<br/><em>планируете.</em></h2><div class="contact-grid"><p>Дата, формат, площадка, желаемый результат. Поможем определить подходящий состав съёмки и подготовить расчёт.</p><div class="contact-links"><a data-yandex-goal="telegram_click" href="https://t.me/denisovphotos?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D1%8A%D1%91%D0%BC%D0%BA%D1%83%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F." target="_blank" rel="noopener noreferrer" class="btn btn-light">Написать в Telegram <span>↗</span></a><span>Дата, площадка и программа помогут точнее рассчитать съёмку.</span></div></div></section>
+<Base
+  title="Свадебный фотограф и видеосъёмка в Москве | VECTA"
+  description="Свадебные фотографии и фильмы в Москве и Подмосковье. Живые моменты, портреты и история вашего дня. Принимаем запросы на даты свадебного сезона 2027."
+>
+  <section class="hero wedding-hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="eyebrow">СВАДЕБНАЯ ФОТО- И ВИДЕОСЪЁМКА · МОСКВА</p>
+        <h1>Ваша история.<br/><em>В каждом кадре.</em></h1>
+        <p class="hero-desc">Живые фотографии и свадебные фильмы, в которых остаются ваши эмоции, близкие люди и атмосфера дня.</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#contact" data-yandex-goal="wedding_date_cta">
+            Узнать о дате на 2027 год <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href="#approach">Наш подход ↓</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-quiet">YOUR DAY / YOUR STORY</div>
+        <div class="art-year">2027</div>
+        <div class="art-caption">WEDDING STORIES<br/>MOSCOW & REGION</div>
+      </div>
+    </div>
+    <div class="hero-bottom"><span>VECTA / WEDDING STORIES</span><span>СЕЗОН 2027</span></div>
+  </section>
+
+  <section class="section intro" id="approach">
+    <p class="eyebrow">01 / О ТОМ, ЧТО ВАЖНО</p>
+    <div class="intro-grid">
+      <h2>Не только красивые кадры.<br/><span class="muted">Ваши настоящие моменты.</span></h2>
+      <div class="intro-copy">
+        <p>Свадебный день проходит быстро. В памяти остаются отдельные моменты: встреча, улыбка родителей, слова на церемонии, вечер с близкими.</p>
+        <p>Мы сочетаем внимательный репортаж с продуманными портретами, чтобы фотографии и фильм были не просто красивыми, а вашими.</p>
+        <a class="text-link" href="#contact">Расскажите о своей свадьбе ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services" id="services">
+    <div class="section-top">
+      <div><p class="eyebrow">02 / ФОРМАТЫ СЪЁМКИ</p><h2>Выберите то,<br/><span class="muted">что важно вам.</span></h2></div>
+      <p>Только фотографии, свадебный фильм или оба формата. Состав и длительность съёмки подбираем под день.</p>
+    </div>
+    <div class="service-list">
+      {services.map((service, i) => (
+        <a href={'/'+service.slug+'/'} class="service-row">
+          <span class="service-index">0{i + 1}</span>
+          <h3>{service.name}</h3>
+          <span class="service-arrow" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section work" id="work">
+    <p class="eyebrow">03 / СВАДЕБНЫЕ ИСТОРИИ</p>
+    <div class="work-grid">
+      <div>
+        <h2>Каждая свадьба<br/><span class="muted">звучит по-своему.</span></h2>
+        <p>Скоро здесь появятся новые свадебные истории: полные серии фотографий и фильмы. Мы покажем не отдельные случайные кадры, а то, как выглядит целый день.</p>
+        <a class="text-link" href="#contact">Уточнить свободную дату ↗</a>
+      </div>
+      <div class="media-slot" aria-hidden="true">
+        <span>REAL WEDDING STORIES</span><strong>01 / 2027</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section steps">
+    <p class="eyebrow">04 / КАК МЫ РАБОТАЕМ</p>
+    <h2>От первого разговора<br/><span class="muted">до готовой истории.</span></h2>
+    <div class="steps-grid">
+      <div><span>01</span><h3>Знакомство</h3><p>Обсуждаем дату, программу свадьбы и то, что для вас действительно важно.</p></div>
+      <div><span>02</span><h3>Подготовка</h3><p>Согласуем формат, длительность съёмки, основные сцены и условия работы.</p></div>
+      <div><span>03</span><h3>Ваш день</h3><p>Снимаем живые моменты, помогаем с портретами и остаёмся внимательны к деталям.</p></div>
+      <div><span>04</span><h3>Воспоминания</h3><p>Обрабатываем фотографии, монтируем фильм и передаём материалы в согласованные сроки.</p></div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <p class="eyebrow">05 / СВАДЕБНЫЙ СЕЗОН 2027</p>
+    <h2>Уже выбрали<br/><em>свою дату?</em></h2>
+    <div class="contact-grid">
+      <p>Напишите дату свадьбы, площадку и какой формат съёмки рассматриваете. Уточним возможность съёмки и обсудим подходящий вариант.</p>
+      <div class="contact-links">
+        <a href="https://t.me/denisovphotos" data-yandex-goal="telegram_click"
+           target="_blank" rel="noopener noreferrer" class="btn btn-light">
+          Написать о дате в Telegram <span aria-hidden="true">↗</span>
+        </a>
+        <span>Свободные даты подтверждаем лично. Отправка заявки на сайте пока не настроена.</span>
+      </div>
+    </div>
+  </section>
 </Base>
