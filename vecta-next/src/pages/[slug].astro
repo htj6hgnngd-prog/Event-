@@ -2,13 +2,15 @@
 import Base from '../layouts/Base.astro';
 import {services, serviceBySlug} from '../data/services';
 import type {Service} from '../data/services';
+import {getServiceContent} from '../lib/cms';
 
 export function getStaticPaths() {
   return services.map(service=>({
     params:{slug:service.slug},props:{service}
   }));
 }
-const {service}=Astro.props as {service:Service};
+const {service:original}=Astro.props as {service:Service};
+const service=await getServiceContent(original.slug,original);
 const related=service.related.map(serviceBySlug).filter(
   (item):item is Service=>Boolean(item)
 );
@@ -28,7 +30,7 @@ const seoGraph={
   ]
 };
 ---
-<Base title={service.title+' | VECTA'} description={service.description}
+<Base title={service.seoTitle||service.title+' | VECTA'} description={service.description}
       canonicalPath={'/'+service.slug+'/'}>
   <script type="application/ld+json" set:html={JSON.stringify(seoGraph)} />
   <div class="service-hero section">
