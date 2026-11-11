@@ -64,7 +64,7 @@ const homeQuery=`*[_type == "homePage" && _id == "homePage"][0]{
 }`
 
 const serviceQuery=`*[_type=="servicePage" && slug == $slug][0]{
-  title,seoTitle,description,lead,points,deliverables
+  title,displayName,seoTitle,description,lead,points,deliverables
 }`
 const settingsQuery=`*[_type=="siteSettings" && _id=="siteSettings"][0]{
   telegram,footerDescription,copyrightName
@@ -111,7 +111,9 @@ export async function getServiceContent(slug:string,original:Service):Promise<Se
   const api=client()
   if(!api)return original
   const override=await api.fetch<Partial<Service & {seoTitle:string}>|null>(serviceQuery,{slug})
-  return override?{...original,...Object.fromEntries(Object.entries(override).filter(([,v])=>v!==null && v!==undefined))}:original
+  if(!override)return original
+  const cleaned=Object.fromEntries(Object.entries(override).filter(([,v])=>v!==null && v!==undefined))
+  return {...original,...cleaned,name:typeof override.displayName==='string'&&override.displayName.trim()?override.displayName:original.name}
 }
 
 export type SiteSettings={telegram:string;footerDescription:string;copyrightName:string}
