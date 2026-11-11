@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700;800&family=Comforter+Brush&display=swap');
 
 .vcut{--bg:#0a0a0c;--bg2:#151315;--cream:#ede8e1;--red:#a61c3b;--red2:#c53d58;--muted:#989097;--line:#343035;--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--sans:Manrope,Arial,sans-serif;--pad:clamp(23px,5.2vw,96px);color:var(--cream);background:var(--bg);font-family:var(--sans);width:100%;min-height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
 .vcut *, .vcut *:before,.vcut *:after{box-sizing:border-box}
@@ -279,3 +279,89 @@
 
 /* Reserve invisible glyph descent space without loosening the visual line rhythm. */
 .vcut-hero-headline{padding-bottom:.14em}
+
+/* VECTA Director's Cut Vol. II — one signature gesture, rather than many
+   equally loud copy blocks. The red calligraphy is its own layer. */
+.vcut-hero-headline{font-size:clamp(94px,10.4vw,202px);line-height:.91;letter-spacing:-.062em}
+.vcut-hero-headline span:nth-child(2){margin-left:clamp(16px,5.5vw,100px)}
+.vcut-script{
+  left:16%;top:44.5%;font-family:'Comforter Brush','Cormorant Garamond',serif;
+  font-weight:400;font-style:normal;font-size:clamp(126px,15vw,285px);
+  line-height:1.12;letter-spacing:-.045em;
+  transform:rotate(-8deg);text-shadow:none;
+}
+.vcut-script .vcut-script-word{display:block;transform:none;padding:0 .07em .16em;white-space:nowrap}
+.vcut-script-flourish{display:block;position:absolute;left:9%;top:74%;width:85%;height:26%;color:#8a1731;transform:rotate(-2deg)}
+.vcut-hero-media{background:#252227;right:8%;top:11%;height:72%;width:min(41%,630px)}
+.vcut-hero-media::after{inset:25px;border-color:#ffffff1c}
+.vcut-hero-kicker{font-size:10px;top:51px}
+.vcut-hero-subline{bottom:94px}
+.vcut-story-ledger{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid #4a3d44;border-bottom:1px solid #4a3d44;
+  margin:0 0 19px;padding:16px 0;gap:12px;
+  font-size:9px;letter-spacing:.18em;color:#bbb0b4
+}
+.vcut-story-ledger span{display:flex;gap:12px;align-items:center}
+.vcut-story-ledger b{color:#c8415b;font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:0}
+.vcut-mosaic{gap:7px}
+.vcut-mosaic-cell--motion::after{
+  content:'MOTION';position:absolute;right:17px;top:48px;
+  transform:rotate(90deg) translate(100%,0);transform-origin:100% 0;
+  font-family:var(--sans);font-size:8px;letter-spacing:.2em;color:#d7a9ba;opacity:.75;
+  pointer-events:none
+}
+.vcut-vow{
+  background:#510e26;color:#f5e9e9;
+  min-height:580px;padding:45px var(--pad) 38px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  overflow:hidden
+}
+.vcut-vow-top,.vcut-vow-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  font:600 9px/1.6 var(--sans);letter-spacing:.19em;color:#e1b4c1}
+.vcut-vow-top{border-bottom:1px solid #a35b72;padding-bottom:16px}
+.vcut-vow-bottom{border-top:1px solid #a35b72;padding-top:16px}
+.vcut-vow-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,300px);gap:30px;align-items:end}
+.vcut-vow h2{font:500 clamp(190px,27vw,440px)/.82 var(--serif);letter-spacing:-.078em;margin:0}
+.vcut-vow h2 span{color:#c86f88}
+.vcut-vow-copy{padding-bottom:30px}
+.vcut-vow-mark{font-size:21px;color:#e4a6b5}
+.vcut-vow-copy p{font:400 clamp(30px,3vw,51px)/1.04 var(--serif);letter-spacing:-.03em;margin:21px 0 20px}
+.vcut-vow-copy small{display:block;font-size:12px;line-height:1.8;max-width:290px;color:#e1bfc9}
+.vcut-vow-action{display:inline-flex;gap:30px;align-items:center;border:0;border-bottom:1px solid #e2a1b2;
+  background:none;padding:12px 0;color:#fff;margin-top:29px;font-size:11px;font-weight:700}
+.vcut-services{padding-top:92px}
+.vcut-contact{background:#1e1017}
+@media(max-width:1100px){
+  .vcut-hero-headline{font-size:clamp(79px,10.5vw,133px)}
+  .vcut-script{font-size:clamp(110px,16vw,190px);left:12%;top:47%}
+  .vcut-vow{min-height:510px}
+}
+@media(max-width:767px){
+  .vcut-hero-inner{height:770px;min-height:770px}
+  .vcut-hero-media{top:28%;width:75%;height:40%;right:var(--pad)}
+  .vcut-hero-headline{top:12%;font-size:clamp(52px,12.8vw,90px);line-height:1.02}
+  .vcut-hero-headline span:nth-child(2){margin-left:20px}
+  .vcut-script{top:49%;left:2%;font-size:clamp(85px,21.2vw,149px);line-height:1.16;transform:rotate(-9deg)}
+  .vcut-script .vcut-script-word{padding:0 .04em .17em}
+  .vcut-script-flourish{top:75%;left:7%;width:84%;height:27%}
+  .vcut-hero-subline{bottom:76px}
+  .vcut-story-ledger{display:flex;justify-content:space-between;gap:15px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:8px}
+  .vcut-story-ledger::-webkit-scrollbar{display:none}
+  .vcut-story-ledger span{flex:none}
+  .vcut-vow{min-height:540px;padding:32px var(--pad)}
+  .vcut-vow-main{display:block}
+  .vcut-vow h2{font-size:clamp(190px,43vw,310px);line-height:.78}
+  .vcut-vow-copy{max-width:390px;padding:0 0 12px}
+  .vcut-vow-copy p{font-size:36px;margin:10px 0 9px}
+  .vcut-vow-copy small{font-size:11px;max-width:340px}
+}
+@media(max-width:420px){
+  .vcut-hero-inner{height:770px;min-height:770px}
+  .vcut-hero-headline{top:13%;font-size:clamp(48px,12vw,60px)}
+  .vcut-script{font-size:clamp(77px,21vw,94px);left:1%;top:49%}
+  .vcut-hero-media{height:41%;top:28%;width:78%}
+  .vcut-hero-subline{bottom:68px}
+  .vcut-vow h2{font-size:clamp(174px,44vw,205px)}
+  .vcut-vow-copy p{font-size:32px}
+}
