@@ -1,6 +1,87 @@
 ---
 interface Props { title: string; description: string; canonicalPath?: string; }
-const {title,description,canonicalPath='/'}=Astro.props;
+const { title, description, canonicalPath = '/' } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site).toString();
+const homeUrl = new URL('/', Astro.site).toString();
+const orgId = homeUrl + '#organization';
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': orgId, name: 'VECTA', url: homeUrl,
+      description: 'Фото- и видеопроизводство мероприятий в Москве.',
+      areaServed: { '@type': 'Place', name: 'Москва, Россия' } },
+    { '@type': 'WebSite', name: 'VECTA', url: homeUrl, inLanguage: 'ru-RU',
+      publisher: { '@id': orgId } }
+  ]
+};
+const analyticsId = Number(import.meta.env.PUBLIC_YANDEX_METRIKA_ID || 0);
+const analyticsEnabled = Number.isSafeInteger(analyticsId) && analyticsId > 0;
+const isPreview = process.env.VERCEL_ENV === 'preview';
 ---
-<!doctype html><html lang="ru"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#0a0b0b"/><title>{title}</title><meta name="description" content={description}/><link rel="canonical" href={canonical}/><meta property="og:type" content="website"/><meta property="og:locale" content="ru_RU"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={canonical}/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><meta property="og:image" content="https://d2ol7oe51mr4n.cloudfront.net/user_3DAx441iE4cBNKdBbYvFbic9eQg/36364aa2-55cb-4bc6-9cc1-581564d9b402.jpg"/><meta name="robots" content={process.env.VERCEL_ENV === "preview" ? "noindex,nofollow" : "index,follow"}/><link rel="preconnect" href="https://d2ol7oe51mr4n.cloudfront.net" crossorigin/><link rel="stylesheet" href="/site.css"/></head><body><a class="skip" href="#content">К содержанию</a><header class="header"><a class="wordmark" href="/" aria-label="VECTA, на главную">VECTA<span class="wordmark-dot">.</span></a><nav aria-label="Основная навигация"><a href="/#approach">Подход</a><a href="/#services">Услуги</a><a href="/#work">Работы</a><a class="header-cta" href="/#contact">Обсудить проект <span aria-hidden="true">↗</span></a></nav></header><main id="content"><slot/></main><footer class="footer"><div><a href="/" class="wordmark">VECTA<span class="wordmark-dot">.</span></a><p>Фото. Видео. Продакшен мероприятий.<br/>Москва.</p></div><div><a href="https://t.me/denisovphotos" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a href="/#services">Услуги</a><a href="/#contact">Обсудить задачу</a></div><small>© {new Date().getFullYear()} VECTA. Информация об услугах не является публичной офертой.</small></footer></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0a0b0b" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content={isPreview ? 'noindex,nofollow' : 'index,follow'} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/site.css" />
+  <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+  {analyticsEnabled && (
+    <script is:inline define:vars={{ analyticsId }}>
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        k=e.createElement(t);a=e.getElementsByTagName(t)[0];
+        k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
+      })(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+      window.ym(analyticsId,'init',{
+        clickmap:true,trackLinks:true,accurateTrackBounce:true
+      });
+      document.addEventListener('click',function(event){
+        const target=event.target;
+        const link=target instanceof Element
+          ? target.closest('a[data-yandex-goal]') : null;
+        if(link && typeof window.ym === 'function'){
+          window.ym(analyticsId,'reachGoal',link.dataset.yandexGoal);
+        }
+      },{passive:true});
+    </script>
+  )}
+</head>
+<body>
+  <a class="skip" href="#content">К содержанию</a>
+  <header class="header">
+    <a class="wordmark" href="/" aria-label="VECTA, на главную">VECTA<span class="wordmark-dot">.</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="/#approach">Подход</a>
+      <a href="/#services">Услуги</a>
+      <a href="/#work">Работы</a>
+      <a class="header-cta" href="/#contact">Обсудить проект <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="content"><slot /></main>
+  <footer class="footer">
+    <div>
+      <a href="/" class="wordmark">VECTA<span class="wordmark-dot">.</span></a>
+      <p>Фото. Видео. Продакшен мероприятий.<br/>Москва.</p>
+    </div>
+    <div>
+      <a href="https://t.me/denisovphotos" data-yandex-goal="telegram_click"
+         target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+      <a href="/#services">Услуги</a>
+      <a href="/#contact">Обсудить задачу</a>
+    </div>
+    <small>© {new Date().getFullYear()} VECTA. Информация об услугах не является публичной офертой.</small>
+  </footer>
+</body>
+</html>
