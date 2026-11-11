@@ -113,6 +113,31 @@ const contactSection = defineType({
 
 const homePage=defineType({
   name:'homePage',title:'Главная страница',type:'document',
+  initialValue:{
+    seoTitle:'Свадебный фотограф и видеосъёмка в Москве | VECTA',
+    seoDescription:'Свадебные фотографии и фильмы в Москве и Подмосковье. Сезон 2027 — уточните свободную дату.',
+    heroEyebrow:'СВАДЕБНАЯ ФОТО- И ВИДЕОСЪЁМКА · МОСКВА',
+    heroTitle:'Ваша история.',heroAccent:'В каждом кадре.',
+    heroDescription:'Живые фотографии и свадебные фильмы, в которых остаются ваши эмоции, близкие люди и атмосфера дня.',
+    sections:[
+      {_type:'introSection',_key:'intro-1',eyebrow:'01 / О ТОМ, ЧТО ВАЖНО',title:'Не только красивые кадры.',muted:'Ваши настоящие моменты.',paragraphs:['Свадебный день проходит быстро. В памяти остаются отдельные моменты: встреча, улыбка родителей, слова на церемонии, вечер с близкими.','Мы сочетаем внимательный репортаж с продуманными портретами, чтобы фотографии и фильм были не просто красивыми, а вашими.']},
+      {_type:'servicesSection',_key:'services-1',eyebrow:'02 / ФОРМАТЫ СЪЁМКИ',title:'Выберите то,',muted:'что важно вам.',description:'Только фотографии, свадебный фильм или оба формата. Состав и длительность съёмки подбираем под день.'},
+      {_type:'mosaicSection',_key:'mosaic-1',eyebrow:'03 / СВАДЕБНЫЕ ИСТОРИИ',title:'Мгновения.',muted:'И чуть больше.',description:'Фотографии и короткие движения рядом. Каждый кадр — часть одной истории.',layout:'feature-left',spacing:'regular',scale:'balanced',tiles:[
+        {_type:'mediaTile',_key:'tile-1',kind:'photo'},
+        {_type:'mediaTile',_key:'tile-2',kind:'photo'},
+        {_type:'mediaTile',_key:'tile-3',kind:'loop'},
+        {_type:'mediaTile',_key:'tile-4',kind:'photo'},
+        {_type:'mediaTile',_key:'tile-5',kind:'photo'}
+      ]},
+      {_type:'processSection',_key:'process-1',eyebrow:'04 / КАК МЫ РАБОТАЕМ',title:'От первого разговора',muted:'до готовой истории.',steps:[
+        {_type:'stepItem',_key:'step-1',title:'Знакомство',description:'Обсуждаем дату, программу свадьбы и то, что для вас действительно важно.'},
+        {_type:'stepItem',_key:'step-2',title:'Подготовка',description:'Согласуем формат, длительность съёмки, основные сцены и условия работы.'},
+        {_type:'stepItem',_key:'step-3',title:'Ваш день',description:'Снимаем живые моменты, помогаем с портретами и остаёмся внимательны к деталям.'},
+        {_type:'stepItem',_key:'step-4',title:'Воспоминания',description:'Обрабатываем фотографии, монтируем фильм и передаём материалы в согласованные сроки.'}
+      ]},
+      {_type:'contactSection',_key:'contact-1',eyebrow:'05 / СВАДЕБНЫЙ СЕЗОН 2027',title:'Уже выбрали',accent:'свою дату?',description:'Напишите дату свадьбы, площадку и какой формат съёмки рассматриваете. Уточним возможность съёмки и обсудим подходящий вариант.',ctaLabel:'Написать о дате в Telegram'}
+    ]
+  },
   fields:[
     defineField({name:'seoTitle',title:'SEO Title / Яндекс',type:'string',validation:required}),
     defineField({name:'seoDescription',title:'SEO Description',type:'text',rows:3,validation:required}),
@@ -143,6 +168,7 @@ const servicePage=defineType({
         {title:'Фото + видео',value:'foto-i-video-na-svadbu'}
       ]},validation:required}),
     defineField({name:'title',title:'Заголовок H1',type:'string',validation:required}),
+    defineField({name:'displayName',title:'Название в меню услуг на главной',type:'string'}),
     defineField({name:'seoTitle',title:'SEO Title',type:'string'}),
     defineField({name:'description',title:'SEO Description',type:'text',rows:3}),
     defineField({name:'lead',title:'Вступление',type:'text',rows:4}),
@@ -154,9 +180,11 @@ const servicePage=defineType({
 
 const siteSettings=defineType({
   name:'siteSettings',title:'Настройки сайта',type:'document',
+  initialValue:{telegram:'denisovphotos',footerDescription:'Свадебные фотографии и фильмы. Москва и Подмосковье.',copyrightName:'VECTA'},
   fields:[
     defineField({name:'telegram',title:'Telegram username без @',type:'string',
-      description:'Замените на подтверждённый контакт. На сайте ссылки не должны вести в пустоту.'}),
+      description:'Замените на подтверждённый контакт. На сайте ссылки не должны вести в пустоту.',
+      validation:Rule=>Rule.regex(/^[A-Za-z0-9_]{5,32}$/).error('Укажите имя пользователя Telegram без @')}),
     defineField({name:'footerDescription',title:'Текст под логотипом',type:'text',rows:3}),
     defineField({name:'copyrightName',title:'Название для подвала сайта',type:'string'}),
   ],
