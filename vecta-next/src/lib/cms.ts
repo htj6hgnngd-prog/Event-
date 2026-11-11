@@ -111,7 +111,7 @@ export async function getServiceContent(slug:string,original:Service):Promise<Se
   const api=client()
   if(!api)return original
   const override=await api.fetch<Partial<Service & {seoTitle:string}>|null>(serviceQuery,{slug})
-  return override?{...original,...override}:original
+  return override?{...original,...Object.fromEntries(Object.entries(override).filter(([,v])=>v!==null && v!==undefined))}:original
 }
 
 export type SiteSettings={telegram:string;footerDescription:string;copyrightName:string}
