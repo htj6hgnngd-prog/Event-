@@ -12,31 +12,36 @@ const [page,settings,offerings]=await Promise.all([
 const telegram='https://t.me/'+settings.telegram
 ---
 <Base title={page.seoTitle} description={page.seoDescription}>
-  <section class="hero wedding-hero">
+  <section class="hero wedding-hero" aria-labelledby="hero-title">
     <div class="hero-inner">
       <div class="hero-content">
         <p class="eyebrow">{page.heroEyebrow}</p>
-        <h1>{page.heroTitle}<br/><em>{page.heroAccent}</em></h1>
-        <p class="hero-desc">{page.heroDescription}</p>
-        <div class="hero-actions">
-          <a class="btn btn-light" href="#contact" data-yandex-goal="wedding_date_cta">
-            Узнать о дате на 2027 год <span aria-hidden="true">↗</span>
-          </a>
-          <a class="text-link" href="#approach">Наш подход ↓</a>
-        </div>
+        <h1 id="hero-title">
+          <span class="hero-heading-main">{page.heroTitle}</span>
+          <em class="hero-heading-accent">{page.heroAccent}</em>
+        </h1>
       </div>
-      <div class="hero-art media-window" aria-label="Главное свадебное медиа">
+      <div class="hero-art media-window" aria-hidden={!page.heroMedia?.src}>
         {page.heroMedia?.kind==='photo' && page.heroMedia.src ? (
           <img src={page.heroMedia.src} alt={page.heroMedia.alt||'Свадебная фотография'} fetchpriority="high" />
         ) : page.heroMedia?.kind==='loop' && page.heroMedia.src && page.heroMedia.poster ? (
-          <video muted autoplay loop playsinline preload="metadata" poster={page.heroMedia.poster}
+          <video data-hero-loop muted loop playsinline preload="none" poster={page.heroMedia.poster}
             aria-label={page.heroMedia.alt||'Свадебное видео'}>
             <source src={page.heroMedia.src} type="video/mp4" />
           </video>
         ) : null}
       </div>
+      <div class="hero-summary">
+        <p class="hero-desc">{page.heroDescription}</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#contact" data-yandex-goal="wedding_date_cta">
+            Уточнить дату свадьбы <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href="#work">Смотреть истории <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
     </div>
-    <div class="hero-bottom"><span>VECTA / WEDDING STORIES</span><span>СЕЗОН 2027</span></div>
+    <div class="hero-bottom"><span>VECTA / WEDDING STORIES</span><span>МОСКВА · 2027</span></div>
   </section>
 
   {page.sections.map(section=>(
