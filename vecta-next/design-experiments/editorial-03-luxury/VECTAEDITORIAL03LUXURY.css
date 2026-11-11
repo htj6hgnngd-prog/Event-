@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&display=swap');
+.vlux{
+ --ink:#0b0a0b;--cream:#efede7;--red:#791122;--red-light:#ab344b;--grey:#858185;--hair:#302d2e;--pad:clamp(20px,4.4vw,76px);--serif:'Prata',Georgia,serif;--sans:'Manrope',sans-serif;
+ width:100%;min-height:100vh;background:var(--ink);color:var(--cream);
+ font-family:var(--sans);font-synthesis:none;-webkit-font-smoothing:antialiased;overflow-x:clip;
+}
+.vlux *, .vlux *:before,.vlux *:after{box-sizing:border-box}
+.vlux :where(h1,h2,h3,p){margin-top:0}
+.vlux :where(button,input,textarea){font:inherit}
+.vlux :where(button){cursor:pointer}
+.vlux :where(a){color:inherit;text-decoration:none}
+.vlux :where(button,a,input,textarea,summary):focus-visible{outline:2px solid #d57d91;outline-offset:4px}
+.vlux ::selection{background:var(--red);color:white}
+.vlux-skip{position:absolute;left:15px;top:-100px;background:var(--cream);padding:15px;color:var(--ink)!important;z-index:90}
+.vlux-skip:focus{top:12px}
+.vlux-header{position:relative;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:35px;padding:0 var(--pad);height:85px;border-bottom:1px solid #ffffff23}
+.vlux-logo{font-weight:800;letter-spacing:-.105em;font-size:29px;line-height:1;white-space:nowrap}
+.vlux-logo span,.vlux-brand-display span,.vlux-footer-logo span{color:#a32a44}
+.vlux-desktop-nav{display:flex;gap:clamp(22px,3.4vw,58px);margin-left:auto}
+.vlux-desktop-nav a{font-size:11px;letter-spacing:.035em;color:#bcb6b8;transition:color .2s}
+.vlux-desktop-nav a:hover{color:#fff}
+.vlux-header-cta{border:0;border-bottom:1px solid #9e9297;padding:13px 0;display:inline-flex;align-items:center;gap:28px;background:none;color:var(--cream);font-size:11px;font-weight:700;white-space:nowrap}
+.vlux-header-cta svg{width:16px}
+.vlux-menu-toggle,.vlux-mobile-nav{display:none}
+.vlux-hero{position:relative;min-height:790px;height:min(870px,calc(100svh - 85px));background:#0b0a0b;isolation:isolate;overflow:hidden;padding:0 var(--pad)}
+.vlux-hero-meta{position:absolute;z-index:5;top:38px;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;gap:20px;font-size:9px;letter-spacing:.18em;color:#c0b8bb}
+.vlux-hero-portrait{position:absolute;top:13%;right:9%;height:70%;width:40%;background:#292629;z-index:1;display:flex;flex-direction:column;justify-content:space-between;padding:21px 22px}
+.vlux-portrait-label,.vlux-portrait-status{font-size:8px;letter-spacing:.18em;color:#80777c}
+.vlux-portrait-status{align-self:flex-end}
+.vlux-emblem{position:absolute;z-index:4;width:clamp(180px,31vw,560px);height:auto;left:32%;top:4%;color:var(--red);transform:rotate(-9deg);opacity:.97;pointer-events:none}
+.vlux-brand-display{position:absolute;z-index:5;top:33%;left:calc(var(--pad) - .1em);font-weight:800;font-size:min(23vw,410px);line-height:.92;letter-spacing:-.117em;white-space:nowrap;pointer-events:none}
+.vlux-hero-foot{position:absolute;left:var(--pad);bottom:74px;right:var(--pad);z-index:6;display:flex;justify-content:space-between;align-items:end;gap:35px}
+.vlux-hero-info{max-width:460px}
+.vlux-hero-info h1{font-weight:600;font-size:clamp(17px,1.6vw,25px);line-height:1.35;letter-spacing:-.025em;margin:0 0 13px}
+.vlux-hero-info p{max-width:390px;color:#aaa3a6;font-size:12px;line-height:1.8;margin:0}
+.vlux-primary,.vlux-submit{min-height:63px;display:flex;align-items:center;justify-content:space-between;gap:35px;background:var(--cream);border:1px solid var(--cream);padding:17px 23px;font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap;transition:background .2s ease}
+.vlux-primary:hover,.vlux-submit:hover{background:#d6d0ca}
+.vlux-hero-baseline{position:absolute;bottom:21px;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;border-top:1px solid #ffffff27;padding-top:13px;font-size:9px;letter-spacing:.19em;color:#958d91;z-index:8}
+.vlux-section-meta{display:flex;justify-content:space-between;gap:25px;border-bottom:1px solid #ffffff29;padding-bottom:15px;letter-spacing:.19em;font-size:9px;font-weight:600;color:#ada6a9}
+.vlux-work{padding:clamp(82px,8vw,130px) var(--pad) clamp(90px,9vw,145px);background:#0d0c0d}
+.vlux-work-heading,.vlux-services-head{display:flex;align-items:end;justify-content:space-between;gap:45px;margin:54px 0 53px}
+.vlux-work-heading h2,.vlux-services-head h2,.vlux-faq h2{font-family:var(--serif);font-weight:400;font-size:clamp(54px,8.4vw,148px);letter-spacing:-.055em;line-height:1.05;margin:0;padding-bottom:.12em}
+.vlux-work-heading h2 span,.vlux-services-head h2 span,.vlux-faq h2 span{color:var(--red-light)}
+.vlux-work-heading>p,.vlux-services-head>p{max-width:270px;font-size:13px;line-height:1.85;color:#aba3a6;margin:0 0 12px}
+.vlux-mosaic{display:grid;grid-template-columns:minmax(0,1.19fr) repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));height:clamp(425px,52vw,780px);gap:9px}
+.vlux-tile{position:relative;min-width:0;min-height:0;overflow:hidden;background:#282528;display:flex;flex-direction:column;justify-content:space-between;padding:18px;isolation:isolate}
+.vlux-tile:nth-child(2){background:#242225}
+.vlux-tile:nth-child(4){background:#27272a}
+.vlux-tile:nth-child(5){background:#222023}
+.vlux-tile--lead{grid-row:span 2;background:#2b282a}
+.vlux-tile--loop{background:#33252b}
+.vlux-tile-top,.vlux-tile-foot{position:relative;display:flex;justify-content:space-between;gap:10px;z-index:2;font-size:9px;letter-spacing:.14em;color:#a59da1}
+.vlux-tile-top span:first-child{color:#dfd6d9}
+.vlux-tile-foot{align-items:end}
+.vlux-tile-empty{font-size:8px;color:#716c70;text-align:right}
+.vlux-work-bottom{display:flex;justify-content:space-between;align-items:start;gap:30px;padding-top:20px;font-size:9px;letter-spacing:.1em;color:#9a9296}
+.vlux-work-bottom span:last-child{max-width:360px;text-align:right;line-height:1.6}
+.vlux-approach{background:var(--cream);color:#1a1718;padding:clamp(85px,9vw,145px) var(--pad)}
+.vlux-approach .vlux-section-meta{border-color:#aaa4a2;color:#6f6466}
+.vlux-approach-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(260px,.7fr);gap:9vw;align-items:end;padding-top:70px}
+.vlux-approach h2{font-family:var(--serif);font-size:clamp(60px,7.8vw,134px);font-weight:400;letter-spacing:-.055em;line-height:1.07;margin:0;padding-bottom:.15em}
+.vlux-approach h2 em{font-style:normal;color:var(--red)}
+.vlux-approach-copy{max-width:370px;padding-bottom:18px}
+.vlux-approach-copy p{font-size:clamp(14px,1.3vw,17px);line-height:1.85;color:#393234;margin-bottom:23px}
+.vlux-approach-copy p:first-child{font-weight:700}
+.vlux-inline-link{display:inline-flex;align-items:center;gap:22px;border-bottom:1px solid #53484c;padding:0 0 9px;margin-top:12px;font-size:11px;font-weight:700}
+.vlux-services{padding:clamp(95px,10vw,155px) var(--pad) clamp(95px,10vw,150px)}
+.vlux-services-head{margin-bottom:54px}
+.vlux-service-list{border-top:1px solid #51494d}
+.vlux-service{display:grid;grid-template-columns:65px minmax(0,1fr) 190px;gap:35px;align-items:center;padding:42px 0;border-bottom:1px solid #51494d;transition:background .25s}
+.vlux-service:hover{background:#1b171a}
+.vlux-service-num{font-size:10px;color:#b46d7d;letter-spacing:.2em;align-self:start;padding-top:13px}
+.vlux-service-main h3{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.04em;font-size:clamp(50px,5.6vw,88px);margin:0;padding-bottom:.08em}
+.vlux-service-main p{font-size:12px;line-height:1.7;color:#aaa2a6;margin:8px 0 0;max-width:440px}
+.vlux-service-actions{display:flex;align-items:flex-start;flex-direction:column;gap:16px}
+.vlux-service-actions button{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:12px 0;border:0;border-bottom:1px solid #d0b8be;color:#f1e9ea;background:none;font-size:12px;font-weight:700;width:170px}
+.vlux-service-actions button:hover{color:#eeb0bf}
+.vlux-service-actions a{font-size:10px;color:#9c9498;border-bottom:1px solid #635b5f;padding-bottom:6px}
+.vlux-enquiry{padding:clamp(105px,10vw,160px) var(--pad);background:#181416}
+.vlux-enquiry-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.78fr);gap:clamp(45px,8vw,150px);padding-top:71px}
+.vlux-enquiry h2{font-family:var(--serif);font-weight:400;letter-spacing:-.055em;line-height:1.09;font-size:clamp(53px,6.9vw,112px);padding-bottom:.12em;margin:0}
+.vlux-enquiry h2 em{font-style:normal;color:#af5369}
+.vlux-enquiry-intro>p{font-size:15px;line-height:1.8;max-width:445px;color:#bcb3b7;margin:28px 0 0}
+.vlux-enquiry-note{padding-top:20px;border-top:1px solid #615158;font-size:11px;color:#92858c;margin-top:53px;max-width:400px}
+.vlux-form{min-width:0}
+.vlux-formats-field{min-width:0;border:0;padding:0;margin:0 0 28px}
+.vlux-formats-field legend,.vlux-input-row label{display:block;font-size:9px;letter-spacing:.16em;font-weight:700;color:#bcb0b5;margin-bottom:15px}
+.vlux-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.vlux-choice-grid label{min-height:75px;display:flex;align-items:end;justify-content:space-between;gap:5px;padding:13px;border:1px solid #61545a;background:#211c1f;font-size:11px;cursor:pointer}
+.vlux-choice-grid label.is-selected{border-color:#d1b2bb;background:#54303d}
+.vlux-choice-grid label:focus-within{outline:2px solid #deb4bf;outline-offset:3px}
+.vlux-choice-grid label input{position:absolute;opacity:0;width:1px;height:1px}
+.vlux-choice-grid label span:first-of-type{min-width:0;overflow-wrap:anywhere}
+.vlux-choice-grid label span:last-child{font-size:13px;line-height:1}
+.vlux-input-row{border-bottom:1px solid #564b50;padding-bottom:20px;margin-bottom:25px}
+.vlux-input-row label span{font-weight:400;letter-spacing:.05em;color:#8a7f84}
+.vlux-input-row input,.vlux-input-row textarea{width:100%;background:transparent;border:0;color:#f1ebed;font-size:15px;padding:0;outline:0;resize:vertical;color-scheme:dark;min-height:24px;border-radius:0}
+.vlux-input-row input::placeholder,.vlux-input-row textarea::placeholder{color:#83777d}
+.vlux-input-row input:focus-visible,.vlux-input-row textarea:focus-visible{outline:2px solid #dcb0bd;outline-offset:4px}
+.vlux-submit{width:100%;margin-top:34px}
+.vlux-legal{font-size:10px;line-height:1.7;color:#93888e;margin:13px 0 0}
+.vlux-fallback{font-size:11px;line-height:1.7;border:1px solid #8f6873;padding:13px;color:#ded1d5}
+.vlux-fallback a{text-decoration:underline;text-underline-offset:3px}
+.vlux-faq{padding:clamp(80px,8vw,135px) var(--pad)}
+.vlux-faq-grid{display:grid;grid-template-columns:minmax(0,.7fr) 1.3fr;gap:8vw;align-items:start;padding-top:50px}
+.vlux-faq h2{font-size:clamp(55px,7.4vw,115px)}
+.vlux-faq-list{border-top:1px solid #51494d}
+.vlux-faq details{border-bottom:1px solid #51494d}
+.vlux-faq summary{cursor:pointer;list-style:none;padding:27px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:14px}
+.vlux-faq summary::-webkit-details-marker{display:none}
+.vlux-faq summary .vlux-plus{color:#ad6f82;font-size:23px;transition:transform .2s;line-height:1}
+.vlux-faq details[open] .vlux-plus{transform:rotate(45deg)}
+.vlux-faq details p{font-size:12px;color:#b1a8ad;line-height:1.85;max-width:560px;margin:0;padding:0 35px 26px 0}
+.vlux-footer{background:#070708;padding:42px var(--pad) 25px}
+.vlux-footer-top,.vlux-footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:23px;font-size:9px;color:#a79ea2;letter-spacing:.18em}
+.vlux-footer-top a{display:flex;align-items:center;gap:18px;border-bottom:1px solid #877e82;padding-bottom:10px}
+.vlux-footer-logo{font-size:min(23vw,410px);font-weight:800;letter-spacing:-.117em;line-height:1.03;white-space:nowrap;padding:40px 0 35px;margin-left:-.09em}
+.vlux-footer-bottom{border-top:1px solid #453b40;padding-top:20px}
+@media(max-width:1040px){
+ .vlux-hero{min-height:720px}
+ .vlux-hero-portrait{right:8%;width:43%;height:65%;top:14%}
+ .vlux-brand-display{top:32%}
+ .vlux-enquiry-grid{gap:6vw}
+ .vlux-approach-grid{gap:6vw}
+ .vlux-service{grid-template-columns:40px 1fr 172px;gap:22px}
+}
+@media(max-width:767px){
+ .vlux{--pad:20px}
+ .vlux-header{height:69px}
+ .vlux-logo{font-size:26px}
+ .vlux-desktop-nav,.vlux-header-cta{display:none}
+ .vlux-menu-toggle{display:block;margin-left:auto;position:relative;height:42px;width:45px;background:none;border:1px solid #5b5155}
+ .vlux-menu-toggle span{display:block;position:absolute;left:12px;width:19px;height:1px;background:#e9e4e4;top:15px}
+ .vlux-menu-toggle span:last-child{top:24px}
+ .vlux-menu-toggle[aria-expanded=true] span:first-child{transform:translateY(4px) rotate(45deg)}
+ .vlux-menu-toggle[aria-expanded=true] span:last-child{transform:translateY(-5px) rotate(-45deg)}
+ .vlux-mobile-nav{display:flex;position:absolute;left:0;right:0;top:69px;flex-direction:column;background:#181416;padding:12px var(--pad) 24px;border-bottom:1px solid #725661;box-shadow:0 22px 45px #0008}
+ .vlux-mobile-nav a,.vlux-mobile-nav button{padding:16px 0;border:0;border-bottom:1px solid #54464c;color:#f1eaed;background:none;text-align:left;display:flex;align-items:center;justify-content:space-between;font-size:14px}
+ .vlux-hero{min-height:760px;height:760px}
+ .vlux-hero-meta{top:24px;font-size:8px;gap:9px}
+ .vlux-hero-portrait{top:16%;right:var(--pad);width:68%;height:46%;padding:13px}
+ .vlux-emblem{width:45%;left:21%;top:12%}
+ .vlux-brand-display{font-size:24vw;top:35%;left:calc(var(--pad) - .1em)}
+ .vlux-hero-foot{bottom:65px;display:block}
+ .vlux-hero-info h1{font-size:19px;max-width:310px;margin:0 0 10px}
+ .vlux-hero-info p{font-size:12px;max-width:335px}
+ .vlux-primary{margin-top:20px;min-height:50px;font-size:11px;padding:14px 17px;width:max-content}
+ .vlux-hero-baseline{font-size:8px;bottom:18px}
+ .vlux-work,.vlux-approach,.vlux-services,.vlux-enquiry,.vlux-faq{padding:78px var(--pad) 87px}
+ .vlux-section-meta{font-size:8px}
+ .vlux-work-heading,.vlux-services-head{display:block;margin:37px 0}
+ .vlux-work-heading h2,.vlux-services-head h2{font-size:clamp(49px,12vw,91px)}
+ .vlux-work-heading p,.vlux-services-head p{margin:16px 0 0;max-width:375px}
+ .vlux-mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;height:auto;gap:7px}
+ .vlux-tile{aspect-ratio:4/5;padding:12px}
+ .vlux-tile--lead{grid-column:1/-1;grid-row:auto;aspect-ratio:4/5}
+ .vlux-tile-top,.vlux-tile-foot{font-size:8px}
+ .vlux-tile-empty{display:none}
+ .vlux-work-bottom{display:block;font-size:8px}
+ .vlux-work-bottom span:last-child{display:block;text-align:left;margin-top:11px}
+ .vlux-approach-grid{grid-template-columns:1fr;gap:28px;padding-top:45px}
+ .vlux-approach h2{font-size:clamp(49px,11.5vw,93px)}
+ .vlux-approach-copy{max-width:460px}
+ .vlux-service{grid-template-columns:32px minmax(0,1fr);gap:12px;padding:28px 0}
+ .vlux-service-num{padding-top:9px}
+ .vlux-service-main h3{font-size:clamp(41px,10vw,73px)}
+ .vlux-service-main p{font-size:12px}
+ .vlux-service-actions{grid-column:2;display:flex;flex-direction:row;align-items:center;gap:25px;flex-wrap:wrap}
+ .vlux-service-actions button{width:auto;gap:22px}
+ .vlux-enquiry-grid{grid-template-columns:1fr;gap:42px;padding-top:47px}
+ .vlux-enquiry h2{font-size:clamp(49px,11vw,90px)}
+ .vlux-enquiry-intro>p{font-size:14px;margin-top:17px}
+ .vlux-enquiry-note{margin-top:22px}
+ .vlux-faq-grid{grid-template-columns:1fr;gap:25px}
+ .vlux-faq h2{font-size:clamp(49px,11vw,80px)}
+ .vlux-footer{padding:33px var(--pad) 22px}
+ .vlux-footer-logo{font-size:24vw;margin-left:-.1em;padding:42px 0 35px}
+ .vlux-footer-bottom{flex-wrap:wrap;font-size:8px}
+}
+@media(max-width:420px){
+ .vlux-hero{min-height:745px;height:745px}
+ .vlux-hero-portrait{top:19%;height:43%;width:72%}
+ .vlux-emblem{width:49%;top:14%;left:18%}
+ .vlux-brand-display{top:37%;font-size:23.9vw}
+ .vlux-hero-foot{bottom:68px}
+ .vlux-choice-grid{grid-template-columns:1fr;gap:8px}
+ .vlux-choice-grid label{min-height:50px;align-items:center;font-size:12px;padding:11px 15px}
+ .vlux-hero-info h1{font-size:18px}
+ .vlux-primary{min-height:48px}
+ .vlux-approach h2{font-size:clamp(48px,11.7vw,64px)}
+ .vlux-enquiry h2{font-size:clamp(46px,11.3vw,62px)}
+}
+@media(prefers-reduced-motion:reduce){.vlux *,.vlux *:before,.vlux *:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
