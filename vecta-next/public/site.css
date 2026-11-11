@@ -37,3 +37,27 @@ body{font-family:'Helvetica Neue',Arial,sans-serif}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr 250px;gap:2vw}.hero-art{min-height:380px}.steps-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:750px){.wedding-hero{height:auto;min-height:740px;padding-top:120px;padding-bottom:110px}.hero-inner{display:block}.wedding-hero h1{font-size:clamp(48px,11.3vw,78px)}.hero-art{display:none}.work .media-slot{min-height:325px}.media-slot strong{font-size:54px}.steps-grid{grid-template-columns:1fr 1fr;gap:24px}.steps-grid h3{margin-top:22px}.steps-grid p{font-size:14px}.contact .btn{max-width:100%}}
 @media(max-width:390px){.steps-grid{grid-template-columns:1fr}.wedding-hero h1{font-size:47px}}
+
+
+/* EDITORIAL MOSAIC — media stays in one layout regardless of photo or video */
+.wedding-stories{background:#151413}
+.stories-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:42px}
+.stories-head h2{margin-bottom:0}
+.stories-head>p{max-width:280px;line-height:1.6;color:#bfb8b1;margin:0 0 6px}
+.editorial-mosaic{display:grid;grid-template-columns:minmax(0,1.17fr) repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;height:clamp(410px,52vw,720px);width:100%}
+.editorial-mosaic__tile{min-width:0;min-height:0;position:relative;overflow:hidden;background:#24201f;isolation:isolate}
+.editorial-mosaic__tile--lead{grid-row:span 2}
+.editorial-mosaic.feature-right .editorial-mosaic__tile--lead{grid-column:3;grid-row:1/span 2}
+.editorial-mosaic__tile img,.editorial-mosaic__tile video,.editorial-mosaic__empty{display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.editorial-mosaic__empty{background:#24201f}
+.stories-foot{display:flex;justify-content:space-between;gap:24px;align-items:center;margin-top:25px}
+.stories-foot>span{font-size:10px;letter-spacing:.18em;color:#988f89}
+@media(max-width:767px){
+  .stories-head{display:block;margin-bottom:27px}
+  .stories-head>p{margin-top:22px}
+  .editorial-mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;height:auto;gap:8px}
+  .editorial-mosaic__tile{aspect-ratio:4/5}
+  .editorial-mosaic__tile--lead,.editorial-mosaic.feature-right .editorial-mosaic__tile--lead{grid-column:1/-1;grid-row:auto;aspect-ratio:4/5}
+  .stories-foot{align-items:start}
+  .stories-foot>span{max-width:120px;line-height:1.4}
+}
