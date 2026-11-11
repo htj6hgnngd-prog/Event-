@@ -8,7 +8,7 @@ const organizationSchema = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'Organization', '@id': orgId, name: 'VECTA', url: homeUrl,
-      description: 'Фото- и видеопроизводство мероприятий в Москве.',
+      description: 'Свадебная фото- и видеосъёмка в Москве и Подмосковье.',
       areaServed: { '@type': 'Place', name: 'Москва, Россия' } },
     { '@type': 'WebSite', name: 'VECTA', url: homeUrl, inLanguage: 'ru-RU',
       publisher: { '@id': orgId } }
@@ -65,21 +65,21 @@ const isPreview = process.env.VERCEL_ENV === 'preview';
     <nav aria-label="Основная навигация">
       <a href="/#approach">Подход</a>
       <a href="/#services">Услуги</a>
-      <a href="/#work">Работы</a>
-      <a class="header-cta" href="/#contact">Обсудить проект <span aria-hidden="true">↗</span></a>
+      <a href="/#work">Истории</a>
+      <a class="header-cta" href="/#contact">Уточнить дату <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
   <main id="content"><slot /></main>
   <footer class="footer">
     <div>
       <a href="/" class="wordmark">VECTA<span class="wordmark-dot">.</span></a>
-      <p>Фото. Видео. Продакшен мероприятий.<br/>Москва.</p>
+      <p>Свадебные фотографии и фильмы.<br/>Москва и Подмосковье.</p>
     </div>
     <div>
       <a href="https://t.me/denisovphotos" data-yandex-goal="telegram_click"
          target="_blank" rel="noopener noreferrer">Telegram ↗</a>
       <a href="/#services">Услуги</a>
-      <a href="/#contact">Обсудить задачу</a>
+      <a href="/#contact">Уточнить дату</a>
     </div>
     <small>© {new Date().getFullYear()} VECTA. Информация об услугах не является публичной офертой.</small>
   </footer>
