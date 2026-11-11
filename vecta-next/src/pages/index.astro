@@ -1,19 +1,23 @@
 ---
-import Base from '../layouts/Base.astro';
-import { services } from '../data/services';
-import EditorialMosaic from '../components/EditorialMosaic.astro';
-import { weddingGallery } from '../data/weddingGallery';
+import Base from '../layouts/Base.astro'
+import {services} from '../data/services'
+import {getHomeContent,getSiteSettings,getServiceContent} from '../lib/cms'
+import EditorialMosaic from '../components/EditorialMosaic.astro'
+
+const [page,settings,offerings]=await Promise.all([
+  getHomeContent(),
+  getSiteSettings(),
+  Promise.all(services.map(service=>getServiceContent(service.slug,service)))
+])
+const telegram='https://t.me/'+settings.telegram
 ---
-<Base
-  title="Свадебный фотограф и видеосъёмка в Москве | VECTA"
-  description="Свадебные фотографии и фильмы в Москве и Подмосковье. Живые моменты, портреты и история вашего дня. Принимаем запросы на даты свадебного сезона 2027."
->
+<Base title={page.seoTitle} description={page.seoDescription}>
   <section class="hero wedding-hero">
     <div class="hero-inner">
       <div class="hero-content">
-        <p class="eyebrow">СВАДЕБНАЯ ФОТО- И ВИДЕОСЪЁМКА · МОСКВА</p>
-        <h1>Ваша история.<br/><em>В каждом кадре.</em></h1>
-        <p class="hero-desc">Живые фотографии и свадебные фильмы, в которых остаются ваши эмоции, близкие люди и атмосфера дня.</p>
+        <p class="eyebrow">{page.heroEyebrow}</p>
+        <h1>{page.heroTitle}<br/><em>{page.heroAccent}</em></h1>
+        <p class="hero-desc">{page.heroDescription}</p>
         <div class="hero-actions">
           <a class="btn btn-light" href="#contact" data-yandex-goal="wedding_date_cta">
             Узнать о дате на 2027 год <span aria-hidden="true">↗</span>
@@ -21,77 +25,85 @@ import { weddingGallery } from '../data/weddingGallery';
           <a class="text-link" href="#approach">Наш подход ↓</a>
         </div>
       </div>
-      <div class="hero-art media-window" aria-hidden="true"></div>
+      <div class="hero-art media-window" aria-label="Главное свадебное медиа">
+        {page.heroMedia?.kind==='photo' && page.heroMedia.src ? (
+          <img src={page.heroMedia.src} alt={page.heroMedia.alt||'Свадебная фотография'} fetchpriority="high" />
+        ) : page.heroMedia?.kind==='loop' && page.heroMedia.src && page.heroMedia.poster ? (
+          <video muted autoplay loop playsinline preload="metadata" poster={page.heroMedia.poster}
+            aria-label={page.heroMedia.alt||'Свадебное видео'}>
+            <source src={page.heroMedia.src} type="video/mp4" />
+          </video>
+        ) : null}
+      </div>
     </div>
     <div class="hero-bottom"><span>VECTA / WEDDING STORIES</span><span>СЕЗОН 2027</span></div>
   </section>
 
-  <section class="section intro" id="approach">
-    <p class="eyebrow">01 / О ТОМ, ЧТО ВАЖНО</p>
-    <div class="intro-grid">
-      <h2>Не только красивые кадры.<br/><span class="muted">Ваши настоящие моменты.</span></h2>
-      <div class="intro-copy">
-        <p>Свадебный день проходит быстро. В памяти остаются отдельные моменты: встреча, улыбка родителей, слова на церемонии, вечер с близкими.</p>
-        <p>Мы сочетаем внимательный репортаж с продуманными портретами, чтобы фотографии и фильм были не просто красивыми, а вашими.</p>
-        <a class="text-link" href="#contact">Расскажите о своей свадьбе ↗</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section services" id="services">
-    <div class="section-top">
-      <div><p class="eyebrow">02 / ФОРМАТЫ СЪЁМКИ</p><h2>Выберите то,<br/><span class="muted">что важно вам.</span></h2></div>
-      <p>Только фотографии, свадебный фильм или оба формата. Состав и длительность съёмки подбираем под день.</p>
-    </div>
-    <div class="service-list">
-      {services.map((service, i) => (
-        <a href={'/'+service.slug+'/'} class="service-row">
-          <span class="service-index">0{i + 1}</span>
-          <h3>{service.name}</h3>
-          <span class="service-arrow" aria-hidden="true">↗</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section work wedding-stories" id="work">
-    <div class="stories-head">
-      <div>
-        <p class="eyebrow">03 / СВАДЕБНЫЕ ИСТОРИИ</p>
-        <h2>Мгновения.<br/><span class="muted">И чуть больше.</span></h2>
-      </div>
-      <p>Фотографии и короткие движения рядом. Каждый кадр — часть одной истории.</p>
-    </div>
-    <EditorialMosaic items={weddingGallery.items} layout={weddingGallery.layout} />
-    <div class="stories-foot">
-      <span>VECTA / WEDDING STORIES</span>
-      <a class="text-link" href="#contact">Уточнить дату свадьбы ↗</a>
-    </div>
-  </section>
-
-  <section class="section steps">
-    <p class="eyebrow">04 / КАК МЫ РАБОТАЕМ</p>
-    <h2>От первого разговора<br/><span class="muted">до готовой истории.</span></h2>
-    <div class="steps-grid">
-      <div><span>01</span><h3>Знакомство</h3><p>Обсуждаем дату, программу свадьбы и то, что для вас действительно важно.</p></div>
-      <div><span>02</span><h3>Подготовка</h3><p>Согласуем формат, длительность съёмки, основные сцены и условия работы.</p></div>
-      <div><span>03</span><h3>Ваш день</h3><p>Снимаем живые моменты, помогаем с портретами и остаёмся внимательны к деталям.</p></div>
-      <div><span>04</span><h3>Воспоминания</h3><p>Обрабатываем фотографии, монтируем фильм и передаём материалы в согласованные сроки.</p></div>
-    </div>
-  </section>
-
-  <section class="section contact" id="contact">
-    <p class="eyebrow">05 / СВАДЕБНЫЙ СЕЗОН 2027</p>
-    <h2>Уже выбрали<br/><em>свою дату?</em></h2>
-    <div class="contact-grid">
-      <p>Напишите дату свадьбы, площадку и какой формат съёмки рассматриваете. Уточним возможность съёмки и обсудим подходящий вариант.</p>
-      <div class="contact-links">
-        <a href="https://t.me/denisovphotos" data-yandex-goal="telegram_click"
-           target="_blank" rel="noopener noreferrer" class="btn btn-light">
-          Написать о дате в Telegram <span aria-hidden="true">↗</span>
-        </a>
-        <span>Свободные даты подтверждаем лично. Отправка заявки на сайте пока не настроена.</span>
-      </div>
-    </div>
-  </section>
+  {page.sections.map(section=>(
+    section._type==='introSection' ? (
+      <section class="section intro" id="approach">
+        <p class="eyebrow">{section.eyebrow}</p>
+        <div class="intro-grid">
+          <h2>{section.title}<br/><span class="muted">{section.muted}</span></h2>
+          <div class="intro-copy">
+            {section.paragraphs?.map(paragraph=><p>{paragraph}</p>)}
+            <a class="text-link" href="#contact">Расскажите о своей свадьбе ↗</a>
+          </div>
+        </div>
+      </section>
+    ) : section._type==='servicesSection' ? (
+      <section class="section services" id="services">
+        <div class="section-top">
+          <div><p class="eyebrow">{section.eyebrow}</p><h2>{section.title}<br/><span class="muted">{section.muted}</span></h2></div>
+          <p>{section.description}</p>
+        </div>
+        <div class="service-list">
+          {offerings.map((service,i)=>(
+            <a href={'/'+service.slug+'/'} class="service-row">
+              <span class="service-index">0{i+1}</span>
+              <h3>{service.name}</h3>
+              <span class="service-arrow" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ) : section._type==='mosaicSection' ? (
+      <section class="section work wedding-stories" id="work">
+        <div class="stories-head">
+          <div><p class="eyebrow">{section.eyebrow}</p><h2>{section.title}<br/><span class="muted">{section.muted}</span></h2></div>
+          <p>{section.description}</p>
+        </div>
+        <EditorialMosaic items={section.items} layout={section.layout} spacing={section.spacing} scale={section.scale} />
+        <div class="stories-foot">
+          <span>VECTA / WEDDING STORIES</span>
+          <a class="text-link" href="#contact">Уточнить дату свадьбы ↗</a>
+        </div>
+      </section>
+    ) : section._type==='processSection' ? (
+      <section class="section steps" id="process">
+        <p class="eyebrow">{section.eyebrow}</p>
+        <h2>{section.title}<br/><span class="muted">{section.muted}</span></h2>
+        <div class="steps-grid">
+          {section.steps?.map((step,i)=>(
+            <div><span>{String(i+1).padStart(2,'0')}</span><h3>{step.title}</h3><p>{step.description}</p></div>
+          ))}
+        </div>
+      </section>
+    ) : section._type==='contactSection' ? (
+      <section class="section contact" id="contact">
+        <p class="eyebrow">{section.eyebrow}</p>
+        <h2>{section.title}<br/><em>{section.accent}</em></h2>
+        <div class="contact-grid">
+          <p>{section.description}</p>
+          <div class="contact-links">
+            <a href={telegram} data-yandex-goal="telegram_click" target="_blank"
+              rel="noopener noreferrer" class="btn btn-light">
+              {section.ctaLabel||'Написать о дате в Telegram'} <span aria-hidden="true">↗</span>
+            </a>
+            <span>Свободные даты подтверждаем лично. Отправка заявки на сайте пока не настроена.</span>
+          </div>
+        </div>
+      </section>
+    ) : null
+  ))}
 </Base>
