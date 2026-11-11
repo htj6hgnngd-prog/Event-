@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import {services,serviceBySlug} from '../data/services';
 export function getStaticPaths(){return services.map(s=>({params:{slug:s.slug},props:{service:s}}));}
-const {service}=Astro.props;
+const {service}=Astro.props as {service: import("../data/services").Service};
 const related=service.related.map((s:string)=>serviceBySlug(s)).filter(Boolean);
 ---
 <Base title={service.title+' | VECTA'} description={service.description} canonicalPath={'/'+service.slug+'/'}><div class="service-hero section"><p class="eyebrow">VECTA / {service.eyebrow}</p><h1>{service.title}</h1><p class="service-lead">{service.lead}</p><a class="btn btn-light" href="/#contact">Обсудить проект ↗</a></div><section class="section detail"><p class="eyebrow">ПРОЦЕСС / 01</p><div class="detail-grid"><h2>От задачи<br/>к результату.</h2><ol>{service.points.map((point:string)=><li>{point}</li>)}</ol></div></section><section class="section detail alternate"><p class="eyebrow">РЕЗУЛЬТАТ / 02</p><div class="detail-grid"><h2>Что вы<br/>получаете.</h2><ul>{service.deliverables.map((item:string)=><li>{item}</li>)}</ul></div><p class="fine">Точный состав материалов, сроки, команда и стоимость определяются в брифе и фиксируются в предложении.</p></section><section class="section detail"><p class="eyebrow">ДРУГИЕ НАПРАВЛЕНИЯ / 03</p><div class="service-list">{related.map((item:any)=><a class="service-row" href={'/'+item.slug+'/'}><h3>{item.name}</h3><span>↗</span></a>)}</div></section><section class="section contact"><p class="eyebrow">ОБСУДИМ ВАШЕ СОБЫТИЕ</p><h2>Соберём съёмку<br/><em>под вашу задачу.</em></h2><a href="https://t.me/denisovphotos" class="btn btn-light" target="_blank" rel="noopener noreferrer">Написать в Telegram ↗</a></section></Base>
