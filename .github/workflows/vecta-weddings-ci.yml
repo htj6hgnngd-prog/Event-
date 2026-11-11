@@ -7,6 +7,12 @@ on:
     paths:
       - "vecta-next/**"
       - ".github/workflows/vecta-weddings-ci.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "vecta-next/**"
+      - ".github/workflows/vecta-weddings-ci.yml"
   workflow_dispatch:
 
 permissions:
