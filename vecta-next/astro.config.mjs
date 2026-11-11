@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import {defineConfig} from 'astro/config'
 
 // The public site works without a Sanity account while we await owner access.
