@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://event-production-site.vercel.app/</loc></url><url><loc>https://event-production-site.vercel.app/foto-meropriyatiy/</loc></url><url><loc>https://event-production-site.vercel.app/video-meropriyatiy/</loc></url><url><loc>https://event-production-site.vercel.app/foto-video-meropriyatiy/</loc></url><url><loc>https://event-production-site.vercel.app/fotograf-na-konferenciyu/</loc></url><url><loc>https://event-production-site.vercel.app/fotograf-na-korporativ/</loc></url><url><loc>https://event-production-site.vercel.app/semka-foruma/</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://event-production-site.vercel.app/</loc></url>
+  <url><loc>https://event-production-site.vercel.app/svadebnyy-fotograf/</loc></url>
+  <url><loc>https://event-production-site.vercel.app/svadebnaya-videosemka/</loc></url>
+  <url><loc>https://event-production-site.vercel.app/foto-i-video-na-svadbu/</loc></url>
+</urlset>
