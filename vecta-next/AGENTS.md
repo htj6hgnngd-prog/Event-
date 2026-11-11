@@ -27,3 +27,18 @@ Avoid "навсегда", "любовь", sentimental quotes, and wedding salon 
 Speak through portfolio, art direction, quality of production and service.
 Latest working prototype: https://designs.magicpath.ai/v1/eagerly-summer-3171
 Do not confuse this with published production code.
+
+## REFERENCE-LED ARCHITECTURE — OWNER'S CURRENT DIRECTION (2026-11-11)
+
+**Read this FIRST before any VECTA architecture/design work:**
+[Four owner-selected reference systems and architecture v0.1](docs/SELECTED_REFERENCES_ARCHITECTURE_V0.1.md).
+Selected: **BOTTEGA53 (#1), Danilo & Sharon (#2), KT Merry (#5), Greg Finck (#8)**.
+The owner selected the **underlying visual/page-construction system**, NOT
+colors/fonts/sentimental text and NOT a specific no-code product.
+The generic SaaS-shaped landing architecture in previous MagicPath prototypes
+is REJECTED, including Director's Cut and Editorial 03 Luxury.
+Do **not** iterate by recoloring or modifying hero/benefits/service cards.
+Start with structural spatial portfolio index and deeply authored project pages.
+Do not implement the v0.1 outline as if already approved; use it as a researched
+architectural candidate for wireframes and review, then implement in the real
+latest Work source. Preserve production and approved media slot specifications.
