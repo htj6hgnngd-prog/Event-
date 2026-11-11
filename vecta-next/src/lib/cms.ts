@@ -110,7 +110,7 @@ export async function getHomeContent():Promise<HomeContent>{
 export async function getServiceContent(slug:string,original:Service):Promise<Service & {seoTitle?:string}>{
   const api=client()
   if(!api)return original
-  const override=await api.fetch<Partial<Service & {seoTitle:string}>|null>(serviceQuery,{slug})
+  const override=await api.fetch<Partial<Service & {seoTitle:string;displayName:string}>|null>(serviceQuery,{slug})
   if(!override)return original
   const cleaned=Object.fromEntries(Object.entries(override).filter(([,v])=>v!==null && v!==undefined))
   return {...original,...cleaned,name:typeof override.displayName==='string'&&override.displayName.trim()?override.displayName:original.name}
