@@ -30,6 +30,7 @@ button,a{outline-offset:5px}
 .header nav a:hover{opacity:.62}
 .header-cta{padding:14px 18px;border:1px solid #ffffff78}
 .header-cta span{margin-left:22px}
+.mobile-nav{display:none}
 .eyebrow{font-size:10px;letter-spacing:.23em;font-weight:600;text-transform:uppercase;color:var(--muted);line-height:1.7}
 h1,h2,h3,p{overflow-wrap:break-word}
 h2{
@@ -262,9 +263,29 @@ h2{
   :root{--gutter:22px}
   .header{height:72px}
   .header nav{gap:0}
-  .header nav a:not(.header-cta){display:none}
+  .header .desktop-nav{display:none}
+  .mobile-nav{display:block;position:relative;margin-left:auto}
   .header-cta{font-size:11px;padding:11px 12px}
   .header-cta span{margin-left:10px}
+  .mobile-nav summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;
+    gap:16px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    padding:12px 0 12px 12px;min-height:44px;
+  }
+  .mobile-nav summary::-webkit-details-marker{display:none}
+  .mobile-nav summary span{font-size:24px;font-weight:300;line-height:1;transition:transform .2s}
+  .mobile-nav[open] summary span{transform:rotate(45deg)}
+  .header .mobile-nav nav{
+    display:flex;flex-direction:column;align-items:stretch;gap:0;
+    position:absolute;right:calc(-1 * var(--gutter));top:calc(100% + 14px);
+    width:min(88vw,340px);background:#171519;border:1px solid var(--line);
+    padding:12px 20px;box-shadow:0 25px 60px #0009;
+  }
+  .header .mobile-nav nav a{
+    display:block;padding:16px 0;border-bottom:1px solid var(--line);
+    font-size:14px;letter-spacing:0;
+  }
+  .header .mobile-nav nav a:last-child{border-bottom:0;color:#d78a9b}
   .wordmark{font-size:24px}
   .section{padding:90px var(--gutter)}
   h2{font-size:clamp(45px,10.8vw,70px)}
