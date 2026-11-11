@@ -1,15 +1,9 @@
 ---
-export type MediaTile = {
-  id: string;
-  kind: 'photo' | 'loop';
-  src?: string;
-  poster?: string;
-  alt?: string;
-};
+import type { MediaTile, EditorialLayout, FiveTileGrid } from '../data/mediaTypes';
 
 interface Props {
-  items: [MediaTile, MediaTile, MediaTile, MediaTile, MediaTile];
-  layout?: 'feature-left' | 'feature-right';
+  items: FiveTileGrid;
+  layout?: EditorialLayout;
 }
 
 const { items, layout = 'feature-left' } = Astro.props;
