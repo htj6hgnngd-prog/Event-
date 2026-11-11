@@ -1,47 +1,52 @@
-# VECTA Plugin Workflow — Candidate Standard
+# VECTA Weddings — Preferred Plugin Workflows
 
-Status: **PROVISIONAL (round 1 benchmark)**. Follow until a better
-experiment is measured; do not present it as a proven final winner.
+Updated: 2026-11-11, benchmark round 2.
+Status: **PROVISIONAL**, evidence-backed engineering preference; no proven conversion lift or final aesthetic winner.
 
-## Candidate workflow
+## Track A: premium editorial design
 
-**Taste -> Impeccable -> GitHub CI / browser QA -> Vercel preview.**
+1. **Taste**: design direction, reject generic SaaS patterns, preserve user's approved editorial look and media rules.
+2. **MagicPath**: isolated interactive prototypes **only when testing a real component or layout**. First successful test: [five-slot Editorial Mosaic](https://designs.magicpath.ai/v1/wondrously-mountain-5550).
+3. **Adobe Fonts**: optional Cyrillic support/licensing checks. Do not use supplied font files from other users or assume a custom calligraphy font exists.
+4. **Firecrawl** browser interact: verify the preview on desktop and mobile.
+5. **Impeccable**: design/UX critique before implementation approval.
+6. **GitHub + Vercel**: port selected changes to latest Work source, run tests, stage a preview, verify, then publish after approval.
 
-- Taste: create/refine the VECTA editorial composition. Avoid generic SaaS,
-  unnecessary ornaments, centered giant type inside photos and motion overload.
-- Impeccable: review visual hierarchy, readability, responsive interaction,
-  motion limits, booking-date enquiry path, copy and keyboard accessibility.
-- GitHub: preserve the latest source, commit in reviewable branch and verify CI.
-- Vercel: deliver accessible preview. Compare live desktop/mobile renders and
-  test the actual enquiry route. Production remains protected until approval.
+## Track B: software implementation / regression control
 
-Special-purpose enhancements:
-- Product Design **in Work**: concept generation, visual flow audit, and
-  prototype comparison when browser+Sites tools are available.
-- Awesome DESIGN.md: design reference studies, not production UI source code.
-- Railway: only when backend, persistent data, upload, media storage or
-  workflows require it. Do not introduce it for static styling changes.
+**Agent Skills TDD -> Context7 official docs -> GitHub branch+CI -> Vercel preview -> browser QA**.
+Ponytail can review complexity at the end, but must not delete requirements, SEO, accessibility or the video-loop feature.
 
-## Objective evidence
+Never assume an older GitHub prototype is the newest unpublished Work source.
+Never call a successful build a visual approval.
 
-The first controlled test on VECTA public HTML/CSS showed:
-- 12/12 page render checks (320, 390, 1440; four variants) with no horizontal
-  overflow or runtime JS errors.
-- The two conversion variants passed 9/9 format choices and 9/9 keyboard
-  Enter choices, preserving SEO links and the 5-tile editorial gallery.
-- No real traffic A/B or booking conversion data; no final visual approval.
+## Track C: SEO and conversion for Russia
 
-Details: [Plugin Stack Benchmarks](./PLUGIN_STACK_BENCHMARK_2026-11-11.md).
+- **Firecrawl + TinyFish** for public on-page audits, links, titles, canonicals and sitemap coverage.
+- **Supermetrics** after the user connects **Yandex.Direct** and **Yandex.metrica** to audit paid funnel data; these sources were NOT_AUTHENTICATED on the benchmark date.
+- **Ahrefs** would be supplemental only if existing plan includes it; a Russia keyword request returned `Insufficient plan`. No upgrade was authorized.
+- Do not claim increased conversion rate without lead and visit measurements.
 
-## Memory mechanism
+## Unproven / conditional
 
-This file is the **persistent project-level record** for future agents and
-conversations working with the repository. Always read it before changing
-the VECTA workflow. No claim is made that ChatGPT's account-wide memory
-or Product Design plugin local user-context storage has been updated.
+- **Figma**: connected but no Figma source frame supplied, starter View seat; no end-to-end design creation test yet.
+- **Lovable**: account works, zero projects; using it just to rebuild existing Astro stack would add unnecessary fragmentation.
+- **Graphify**: installed but no indexed repositories enabled; GitHub directly is safer today.
+- **Supabase / Railway**: reserve for admin/media storage/backend once planned.
+- **fal / Adobe media generation**: only with approved assets/use case. Never invent wedding portfolio photos.
 
-## Revision rule
+## Invariant VECTA brief
 
-Revisit after a second test on the latest Work implementation or if newly
-connected tools become available. Prefer the stack with both verified
-creative quality and lead-flow performance, not whichever has more plugins.
+- Wedding-only VECTA, Russia/Moscow, 2027 enquiry funnel.
+- Elegant original fashion-editorial (NOT SaaS, generic wedding, heavy gilding, cheap curtains/velvet).
+- One large + four equal small editorial mosaic slots; silent 2–4s video loops occupy photo-size cells.
+- Red expressive lettering belongs to the background and may partially overlap a media edge.
+- Empty media placeholders until owner supplies assets; don't use reference photos as portfolio.
+- Prioritize both emotional impact AND enquiry completion.
+- Protect production and unpublished Work versions.
+
+## Results and memory
+
+[Round 1](./PLUGIN_STACK_BENCHMARK_2026-11-11.md) · [Round 2](./PLUGIN_STACK_BENCHMARK_ROUND2_2026-11-11.md).
+
+This document is a durable **repository memory for future coding agents**. It does NOT mean ChatGPT account Memory was updated.
