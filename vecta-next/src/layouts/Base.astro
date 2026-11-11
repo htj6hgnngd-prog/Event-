@@ -65,12 +65,21 @@ const isPreview = process.env.VERCEL_ENV === 'preview';
   <a class="skip" href="#content">К содержанию</a>
   <header class="header">
     <a class="wordmark" href="/" aria-label="VECTA, на главную">VECTA<span class="wordmark-dot">.</span></a>
-    <nav aria-label="Основная навигация">
+    <nav class="desktop-nav" aria-label="Основная навигация">
       <a href="/#approach">Подход</a>
-      <a href="/#services">Услуги</a>
       <a href="/#work">Истории</a>
+      <a href="/#services">Услуги</a>
       <a class="header-cta" href="/#contact">Уточнить дату <span aria-hidden="true">↗</span></a>
     </nav>
+    <details class="mobile-nav">
+      <summary>Меню <span aria-hidden="true">+</span></summary>
+      <nav aria-label="Мобильная навигация">
+        <a href="/#approach">Подход</a>
+        <a href="/#work">Свадебные истории</a>
+        <a href="/#services">Фото и видео</a>
+        <a href="/#contact">Уточнить дату <span aria-hidden="true">↗</span></a>
+      </nav>
+    </details>
   </header>
   <main id="content"><slot /></main>
   <footer class="footer">
@@ -86,5 +95,17 @@ const isPreview = process.env.VERCEL_ENV === 'preview';
     </div>
     <small>© {new Date().getFullYear()} {siteSettings.copyrightName}. Информация об услугах не является публичной офертой.</small>
   </footer>
+  <script>
+    const mobileMenu=document.querySelector<HTMLDetailsElement>('.mobile-nav');
+    if(mobileMenu){
+      mobileMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mobileMenu.open=false}));
+      document.addEventListener('keydown',event=>{
+        if(event.key==='Escape' && mobileMenu.open){
+          mobileMenu.open=false;
+          mobileMenu.querySelector('summary')?.focus();
+        }
+      });
+    }
+  </script>
 </body>
 </html>
