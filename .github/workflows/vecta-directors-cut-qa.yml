@@ -1,0 +1,37 @@
+name: VECTA Director's Cut — responsive QA
+
+on:
+  push:
+    branches:
+      - feat/vecta-wedding-season-2027
+    paths:
+      - ".github/workflows/vecta-directors-cut-qa.yml"
+      - ".github/scripts/vecta-directors-cut-qa.cjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "22.23.4"
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.57.0
+          which google-chrome
+      - name: Test independent MagicPath preview, no submissions
+        run: node .github/scripts/vecta-directors-cut-qa.cjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: director-cut-mobile-and-desktop-qa
+          path: director-cut-qa/
+          retention-days: 7
