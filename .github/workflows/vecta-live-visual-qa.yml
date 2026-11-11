@@ -35,7 +35,7 @@ jobs:
       - name: Install Playwright
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.57.0
-          npx playwright install --with-deps chromium
+          which google-chrome
       - name: Inspect live typography, grids and interactive controls
         env:
           VECTA_LIVE_URL: https://vecta-weddings.vercel.app/
