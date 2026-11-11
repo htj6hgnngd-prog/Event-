@@ -7,6 +7,12 @@ on:
     paths:
       - ".github/workflows/vecta-live-visual-qa.yml"
       - ".github/scripts/vecta-live-qa.cjs"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/vecta-live-visual-qa.yml"
+      - ".github/scripts/vecta-live-qa.cjs"
   workflow_dispatch:
 
 permissions:
