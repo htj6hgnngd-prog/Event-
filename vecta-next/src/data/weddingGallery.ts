@@ -1,4 +1,4 @@
-import type { MediaTile } from '../components/EditorialMosaic.astro';
+import type { FiveTileGrid } from './mediaTypes';
 
 /**
  * Temporary data adapter for the editorial gallery.
@@ -13,5 +13,5 @@ export const weddingGallery = {
     { id: 'wedding-03', kind: 'loop' },
     { id: 'wedding-04', kind: 'photo' },
     { id: 'wedding-05', kind: 'photo' },
-  ] satisfies [MediaTile, MediaTile, MediaTile, MediaTile, MediaTile],
+  ] satisfies FiveTileGrid,
 };
