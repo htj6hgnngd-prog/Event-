@@ -94,7 +94,7 @@ async function inspect(page, size) {
 }
 
 (async()=>{
-  const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+  const browser=await chromium.launch({headless:true,channel:'chrome',args:['--no-sandbox']});
   const results=[];
   let hasFailure=false;
   try{
