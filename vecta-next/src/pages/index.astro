@@ -112,3 +112,26 @@ const telegram='https://t.me/'+settings.telegram
     ) : null
   ))}
 </Base>
+
+<script>
+  const heroVideo=document.querySelector<HTMLVideoElement>('[data-hero-loop]');
+  if(heroVideo){
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let isVisible=false;
+    const sync=()=>{
+      if(isVisible&&!document.hidden&&!reduced.matches){
+        if(heroVideo.paused)void heroVideo.play().catch(()=>{ /* Keep its poster visible. */ });
+      }else{
+        heroVideo.pause();
+      }
+    };
+    const observer=new IntersectionObserver(entries=>{
+      isVisible=entries[0]?.isIntersecting&&entries[0].intersectionRatio>=.25||false;
+      sync();
+    },{threshold:[0,.25,.6]});
+    observer.observe(heroVideo);
+    document.addEventListener('visibilitychange',sync);
+    reduced.addEventListener('change',sync);
+    window.addEventListener('pagehide',()=>heroVideo.pause());
+  }
+</script>
