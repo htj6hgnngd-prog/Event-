@@ -1,4 +1,7 @@
 ---
+import {getSiteSettings} from '../lib/cms';
+const siteSettings=await getSiteSettings();
+const telegramUrl='https://t.me/'+siteSettings.telegram;
 interface Props { title: string; description: string; canonicalPath?: string; }
 const { title, description, canonicalPath = '/' } = Astro.props;
 const canonical = new URL(canonicalPath, Astro.site).toString();
@@ -73,15 +76,15 @@ const isPreview = process.env.VERCEL_ENV === 'preview';
   <footer class="footer">
     <div>
       <a href="/" class="wordmark">VECTA<span class="wordmark-dot">.</span></a>
-      <p>Свадебные фотографии и фильмы.<br/>Москва и Подмосковье.</p>
+      <p>{siteSettings.footerDescription}</p>
     </div>
     <div>
-      <a href="https://t.me/denisovphotos" data-yandex-goal="telegram_click"
+      <a href={telegramUrl} data-yandex-goal="telegram_click"
          target="_blank" rel="noopener noreferrer">Telegram ↗</a>
       <a href="/#services">Услуги</a>
       <a href="/#contact">Уточнить дату</a>
     </div>
-    <small>© {new Date().getFullYear()} VECTA. Информация об услугах не является публичной офертой.</small>
+    <small>© {new Date().getFullYear()} {siteSettings.copyrightName}. Информация об услугах не является публичной офертой.</small>
   </footer>
 </body>
 </html>
