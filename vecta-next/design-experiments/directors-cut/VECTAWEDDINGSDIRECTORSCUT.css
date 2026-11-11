@@ -257,12 +257,12 @@
 }
 @media(prefers-reduced-motion:reduce){.vcut *,.vcut *:before,.vcut *:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 /* Mobile QA: glyphs must not be cut by an overly compressed headline line box. */
-.vcut-hero-headline{line-height:.89}
+.vcut-hero-headline{line-height:1.06}
 @media(max-width:767px){
-  .vcut-hero-headline{line-height:.96}
+  .vcut-hero-headline{line-height:1.10}
 }
 @media(max-width:420px){
-  .vcut-hero-headline{top:13.5%;line-height:.97}
+  .vcut-hero-headline{top:12.7%;line-height:1.12}
   /* On a 320px screen all 3 format choices must remain legible and tappable. */
   .vcut-format-options{grid-template-columns:1fr;gap:8px}
   .vcut-format-options label{
