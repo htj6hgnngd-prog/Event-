@@ -449,3 +449,31 @@ html{scroll-behavior:auto}
 .editorial-v3 .editorial-opening h1{top:350px}
 .editorial-v3 .opening-bottom{top:590px}
 @media(min-width:1800px){.editorial-v3 .editorial-opening{height:970px}.editorial-v3 .editorial-opening h1{top:420px}.editorial-v3 .opening-bottom{top:740px}.editorial-v3 .cover-main{height:690px}}
+
+/* V8: connected pen calligraphy. Ivory type; material gold belongs to engraving. */
+@font-face{font-family:VCalligraphy;src:url('/fonts/great-vibes-cyrillic.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+.editorial-v3{--accent:#af925a;--gold-deep:#715933;--gold-light:#cfb67c}
+.editorial-v3 .chapter,.editorial-v3 .selected-heading h2{font-family:VCalligraphy,cursive;font-style:normal;font-weight:400;font-size:clamp(175px,16.8vw,310px);letter-spacing:0;line-height:1.12;color:#e8ddc9;font-feature-settings:"kern" 1,"liga" 1,"calt" 1;overflow:visible}
+.editorial-v3 .editorial-opening h1 em{font-family:VCalligraphy,cursive;font-style:normal;font-size:1.15em;letter-spacing:0;line-height:1.05;margin-left:4vw;color:#e8ddc9;padding-top:.08em;padding-bottom:.15em}
+.editorial-v3 .selected-heading h2{font-size:clamp(125px,11.5vw,205px)}
+.editorial-v3 .editorial-opening h1{top:350px}
+.editorial-v3 .editorial-opening{height:900px}
+.editorial-v3 .opening-bottom{top:620px;gap:14px}
+.editorial-v3 .opening-bottom>.vecta-flourish{width:300px;height:75px;margin-left:-8px;margin-bottom:0}
+.editorial-v3 .vecta-flourish{display:block;width:300px;height:75px;overflow:visible;pointer-events:none}
+.editorial-v3 .studio-ornament{right:1%;top:120px;transform:none;opacity:1}
+.editorial-v3 .studio-ornament>.vecta-flourish{width:280px;height:70px}
+.editorial-v3 .editorial-request .editorial-copy{top:350px}
+.editorial-v3 .editorial-request{height:660px}
+.editorial-v3 .request-editorial h1.chapter{font-size:clamp(145px,13.5vw,245px);line-height:1.15;letter-spacing:0}
+.editorial-v3 .archive-title h1{font-family:VCalligraphy,cursive;font-style:normal;letter-spacing:0;line-height:1.08}
+.editorial-v3 .archive-title h1 em{font-family:VSans,Arial,sans-serif;font-style:normal}
+.editorial-v3 .brand{color:#dfcba6}
+@media(min-width:1800px){
+ .editorial-v3 .editorial-opening h1{top:420px}
+ .editorial-v3 .opening-bottom{top:790px}
+ .editorial-v3 .editorial-opening{height:1120px}
+ .editorial-v3 .studio-ornament{top:145px}
+ .editorial-v3 .editorial-request .editorial-copy{top:420px}
+ .editorial-v3 .editorial-request{height:750px}
+}

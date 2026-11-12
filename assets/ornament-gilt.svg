@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="vecta-flourish" viewBox="0 0 600 150" fill="none" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gilt-metal" x1="100" y1="18" x2="445" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#897044"/><stop offset=".19" stop-color="#b29a60"/><stop offset=".35" stop-color="#e0c58a"/><stop offset=".46" stop-color="#75603a"/><stop offset=".62" stop-color="#bda26c"/><stop offset=".78" stop-color="#806638"/><stop offset=".9" stop-color="#c8b17b"/><stop offset="1" stop-color="#88703e"/>
+    </linearGradient>
+    <mask id="gilt-wear">
+      <path fill="white" d="M0 0H600V150H0z"/>
+      <g stroke="black" opacity=".7" stroke-width=".8">
+        <path d="m61 81 3-1m35-5 2 2m31-33 2 2m-8 27 3-1m27 19 2-2m26-38 3 1m15 13 2-2m34 22 2 1m16-31 3-1m12-23 2 2m8 36 3 1m19 20 2-1m11-44 2 2m24 29 3-1m15-20 2 1m20-28 3 1m10 36 3-1m25-11 2 2m24 11 3-1m16-26 2 2m23 25 3 1m18-11 2-2m35 22 3-1"/>
+        <path d="m290 32 2 1m12 74 2-1m-10 21 1 2m7-75 2 1m-20 22 3-1m20 12 2 2m-48-6 2-1" stroke-width="1.6"/>
+      </g>
+    </mask>
+    <g id="gilt-wing">
+      <!-- Engraved stems: fine return strokes and broad tapered downstrokes. -->
+      <path d="M294 79C270 59 242 71 230 87C215 106 184 108 163 87C144 67 151 39 172 36C192 33 204 52 194 65C185 77 169 68 173 58C176 51 185 53 183 59" stroke-width="1.25"/>
+      <path d="M293 78C265 60 240 78 229 91C208 114 175 105 162 86C153 73 151 60 157 51C150 74 164 94 187 99C212 106 225 85 240 77C259 67 277 68 293 78Z" fill="url(#gilt-metal)" stroke="none"/>
+      <path d="M250 77C225 67 220 42 231 32C242 23 255 30 252 41C250 48 242 48 239 43M232 87C213 83 205 63 214 55C221 48 232 53 229 60M166 81C136 90 112 67 96 60C71 48 41 51 16 66M165 86C130 109 109 97 96 86C86 78 75 81 77 90C79 98 90 97 88 91M112 69C94 69 92 49 105 42C117 37 128 44 126 53C124 62 112 63 111 56M100 63C67 72 43 72 24 71" stroke-width=".9"/>
+      <path d="M224 75C217 55 204 39 188 33C198 44 193 54 203 60C210 65 216 66 224 75ZM146 79C133 67 135 51 143 44C142 58 151 58 151 68C151 72 148 76 146 79ZM126 82C111 83 103 75 99 68C110 73 113 68 119 73C122 76 122 79 126 82ZM206 100C191 113 177 115 164 109C178 110 178 100 189 102C194 103 200 104 206 100ZM262 69C253 56 255 49 263 43C261 53 271 57 268 63Z" fill="url(#gilt-metal)" stroke="none"/>
+      <path d="M289 80C276 85 271 101 258 107C245 113 234 108 234 100C234 92 245 89 249 96C251 101 246 104 243 101M273 71C274 59 266 45 255 40M186 34C179 27 161 25 147 33M153 91C137 105 119 112 101 108" stroke-width=".65"/>
+      <path d="M247 111C255 116 263 117 271 112C266 112 265 104 259 106C256 107 253 111 247 111Z" fill="url(#gilt-metal)" stroke="none"/>
+    </g>
+  </defs>
+  <g stroke="url(#gilt-metal)" stroke-linecap="round" stroke-linejoin="round" mask="url(#gilt-wear)">
+    <use href="#gilt-wing"/><use href="#gilt-wing" transform="translate(600 0) scale(-1 1)"/>
+    <path d="M300 15C287 35 293 48 300 57C307 48 313 35 300 15ZM300 56C287 66 287 81 300 91C313 81 313 66 300 56ZM300 91C291 105 293 124 300 137C307 124 309 105 300 91Z" stroke-width="1"/>
+    <path d="M300 18C296 35 297 45 300 54M300 94C297 110 297 123 300 134" stroke-width=".45"/>
+    <path d="M300 65C295 70 295 77 300 82C305 77 305 70 300 65Z" fill="url(#gilt-metal)" stroke="none"/>
+    <path d="M294 60C285 47 277 47 273 50C282 50 279 58 288 60ZM306 60C315 47 323 47 327 50C318 50 321 58 312 60ZM293 89C281 89 278 99 282 103C282 95 291 98 293 89ZM307 89C319 89 322 99 318 103C318 95 309 98 307 89Z" fill="url(#gilt-metal)" stroke="none"/>
+  </g>
+</svg>

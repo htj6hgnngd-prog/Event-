@@ -11,9 +11,12 @@ def slot(kind='Фото',num='01',cls=''):
 def layout(file,title,body):
  links=''.join(f'<a href="/{u}"'+(' aria-current="page"' if file==u else '')+f'>{t}</a>' for u,t in nav)
  footer='<footer class="footer"><span>VECTA WEDDINGS / МОСКВА · ПОДМОСКОВЬЕ</span><a href="/request.html">Обсудить дату</a><a href="#top">Наверх</a></footer>'
- doc=f'''<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=1440"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0b0c0e"><title>{html.escape(title)} | VECTA</title><link rel="icon" href="/favicon.svg"><link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-upright.woff2" crossorigin><link rel="stylesheet" href="/design.css"><link rel="stylesheet" href="/desktop-review.css"><link rel="stylesheet" href="/editorial-desktop.css"></head><body id="top" class="editorial-v3"><a class="skip" href="#main">К содержанию</a><header class="header"><a href="/" class="brand" aria-label="VECTA Weddings — главная">VECTA</a><nav aria-label="Основная навигация">{links}</nav><button class="menu" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav">Меню +</button></header><nav class="mobile-nav" id="mobile-nav" hidden aria-label="Мобильная навигация">{links}</nav><main id="main">{body}</main>{footer}<script src="/design.js" defer></script></body></html>'''
+ doc=f'''<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=1440"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0b090a"><title>{html.escape(title)} | VECTA</title><link rel="icon" href="/favicon.svg"><link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-upright.woff2" crossorigin><link rel="preload" as="font" type="font/woff" href="/fonts/great-vibes-cyrillic.woff" crossorigin><link rel="stylesheet" href="/design.css"><link rel="stylesheet" href="/desktop-review.css"><link rel="stylesheet" href="/editorial-desktop.css"></head><body id="top" class="editorial-v3"><a class="skip" href="#main">К содержанию</a><header class="header"><a href="/" class="brand" aria-label="VECTA Weddings — главная">VECTA</a><nav aria-label="Основная навигация">{links}</nav><button class="menu" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav">Меню +</button></header><nav class="mobile-nav" id="mobile-nav" hidden aria-label="Мобильная навигация">{links}</nav><main id="main">{body}</main>{footer}<script src="/design.js" defer></script></body></html>'''
  (root/file).write_text(doc)
-flourish='<svg class="vecta-flourish" viewBox="0 0 240 70" fill="none" aria-hidden="true" focusable="false"><path d="M12 39C37 39 55 12 76 17C94 21 84 44 69 40C56 36 70 22 87 30C99 35 108 46 120 35C132 24 143 30 155 35C171 42 188 40 187 30C186 19 168 25 178 37C190 50 216 26 230 30M19 47C47 50 84 25 111 34M127 34C155 45 197 12 224 20" stroke="currentColor" stroke-width=".9" stroke-linecap="round"/><path d="M120 16C111 24 113 37 120 53C127 37 129 24 120 16Z" stroke="currentColor" stroke-width=".7"/></svg>'
+def flourish(name):
+ # Unique paint servers per inline instance; no duplicated SVG fragment IDs.
+ return (root/'assets/ornament-gilt.svg').read_text().replace('gilt-',f'gilt-{name}-')
+
 link=lambda href,text:f'<a class="line-link" href="/{href}">{text}</a>'
 # Spatial system: continuous editorial spreads, not stacked component cards.
 def chapter(title,body,cls=''):
@@ -36,10 +39,10 @@ layout('index.html','Свадебная фотография и кино в Мо
  <div class="opening-wordmark" aria-hidden="true">VECTA</div>
  <div class="cover-main">{frame('Фотография','01')}</div><div class="cover-inset">{frame('Видеолуп','02')}</div>
  <h1>Свадебная<br><em>фотография и кино.</em></h1>
- <div class="opening-bottom">{flourish}<p>Портреты пары, репортаж и свадебный фильм.<br>Москва и Подмосковье. Сезон 2027.</p><div class="opening-actions">{link('request.html','Обсудить дату')}{link('portfolio.html','Смотреть истории')}</div></div>
+ <div class="opening-bottom">{flourish("opening")}<p>Портреты пары, репортаж и свадебный фильм.<br>Москва и Подмосковье. Сезон 2027.</p><div class="opening-actions">{link('request.html','Обсудить дату')}{link('portfolio.html','Смотреть истории')}</div></div>
 </section>
 <section class="editorial-studio">
- <h2 class="chapter">Студия</h2><div class="studio-ornament">{flourish}</div><div class="studio-portrait">{frame('Портрет','03')}</div>
+ <h2 class="chapter">Студия</h2><div class="studio-ornament">{flourish("studio")}</div><div class="studio-portrait">{frame('Портрет','03')}</div>
  <div class="editorial-copy"><p class="editorial-statement">Съёмка пары.<br><em>Репортаж дня.</em></p><p>Портреты пары и репортаж свадьбы в одной серии. Видеоформат выбираем под то, что важно сохранить: короткий Highlight или фильм с речами и клятвами.</p>{link('studio.html','О студии')}</div>
  <span class="margin-note">ФОТОГРАФИЯ / ДВИЖЕНИЕ / ЗВУК</span>
 </section>
@@ -48,7 +51,7 @@ layout('index.html','Свадебная фотография и кино в Мо
 </div><p class="archive-note">Медиа пока не опубликованы.</p></section>
 <section class="editorial-approach"><div class="approach-main">{frame('Видеолуп','09')}</div><div class="approach-detail">{frame('Деталь','10')}</div><h2 class="chapter">Подход</h2><div class="editorial-copy"><p class="editorial-statement">До съёмки<br><em>согласуем главное.</em></p><p>Продолжительность, состав команды, материалы, стоимость и сроки передачи. Программу используем, чтобы спланировать портреты и параллельные эпизоды.</p>{link('studio.html#approach','До, во время и после съёмки')}</div></section>
 <section class="editorial-formats"><div class="format-intro"><h2>Что вы<br><em>получите.</em></h2><p>Фотосерия, фото с Highlight или фото с фильмом.<br>Состав съёмки обсудим по вашей программе.</p></div><div class="format-rows">{format_rows()}</div>{link('formats.html','Сравнить форматы съёмки')}</section>
-<section class="editorial-request"><h2 class="chapter">Запрос</h2><div class="request-ornament">{flourish}</div><div class="request-fragment">{frame('Портрет','11')}</div><div class="editorial-copy"><p class="editorial-statement">Дата и место.<br><em>С них начнём.</em></p><p>Достаточно даты, города и желаемого формата. Готовая программа для первого обращения не нужна.</p>{link('request.html','Обсудить свадьбу')}</div></section>''')
+<section class="editorial-request"><h2 class="chapter">Запрос</h2><div class="request-fragment">{frame('Портрет','11')}</div><div class="editorial-copy"><p class="editorial-statement">Дата и место.<br><em>С них начнём.</em></p><p>Достаточно даты, города и желаемого формата. Готовая программа для первого обращения не нужна.</p>{link('request.html','Обсудить свадьбу')}</div></section>''')
 
 archive=''
 for i,kind in enumerate(['Фото + кино','Фотографии','Кино','Фотографии','Фото + кино','Кино'],1):
