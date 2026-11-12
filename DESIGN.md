@@ -52,3 +52,8 @@ No photography or video is published in this phase. Gray/red planes mark planned
 One short cover-title entrance, initially visible. Native scroll; no repetitive chapter drift and no masked state that leaves a page blank. Reduced-motion fallback remains explicit. Media hover stays subtle. No extra animation framework or cursor gimmick.
 
 Before publication: inspect real rendered home sequence and functional pages, verify titles never collide with body copy, controls receive pointer/keyboard focus, paper-surface text and inputs have contrast, all route links resolve, archive filter works, format selection reaches the correct inquiry, and no success is shown without actual delivery. Test the active desktop range and record actual viewport dimensions rather than claiming exact emulation.
+
+
+## v11 — продолжение полной светлой версии
+
+Все 11 страниц используют единое поле #f3f1eb, графит #292627, вторичный текст #68635f. Глубокий красный #510d1b остаётся в мастхеде и двух медиа-плоскостях; золото #806849 — только тонкие линии. Чёрные секции удалены из активной версии, а не чередуются с белыми. Сохраняются композиция v10, Prata / Cormorant / Manrope, маршруты и коммерческие переходы. Главный экран: тёмный текст на нейтральных плоскостях, красный мастхед. Новых изображений нет. Мобильная композиция не разрабатывается. Активный финальный слой — editorial-light.css; предыдущая система сохранена для истории.

@@ -1,0 +1,37 @@
+/* VECTA v11 — complete light editorial continuation.
+   Desktop prototype only; same route system, no published media. */
+.editorial-v3,.editorial-v3.surface-paper,.editorial-v3 .paper-surface{
+ --ink:#f3f1eb;--paper:#292627;--muted:#68635f;--accent:#806849;--line:#38302b2b;
+ background:#f3f1eb;color:var(--paper);color-scheme:light;scrollbar-color:#92877b #f3f1eb;
+}
+.editorial-v3 .brand,.editorial-v3.surface-paper .brand,.editorial-v3 .opening-wordmark{color:#510d1b}
+.editorial-v3 .header{border-bottom-color:#38302b20}
+.editorial-v3 .line-link:hover{color:#68182b;border-color:#68182b}
+.editorial-v3 .opening-bottom>p{color:#4f4946}
+.editorial-v3 .media-space{background:#d6d2cc}
+.editorial-v3 .media-space>span{color:#554d48}
+.editorial-v3 .cover-main .media-space{background:#d8d3cb}
+.editorial-v3 .cover-inset .media-space{background:#c7bfb6}
+.editorial-v3 .studio-portrait .media-space,.editorial-v3 .studio-title-frame .media-space{background:#d3cec6}
+.editorial-v3 .frame-link::after,.editorial-v3 .paper-surface .frame-link::after{color:#292627}
+.editorial-v3 .editorial-mosaic>.frame-link:nth-child(1) .media-space{background:#cfcbc5}
+.editorial-v3 .editorial-mosaic>.frame-link:nth-child(2) .media-space{background:#ddd8d0}
+.editorial-v3 .editorial-mosaic>.frame-link:nth-child(3) .media-space{background:#d5d0c8}
+.editorial-v3 .editorial-mosaic>.frame-link:nth-child(4) .media-space{background:#c5beb5}
+.editorial-v3 .editorial-mosaic .media-space>span{color:#554d48}
+.editorial-v3 .approach-main .media-space{background:#510d1b}
+.editorial-v3 .approach-main .media-space>span,.editorial-v3 .request-fragment .media-space>span{color:#eee7dc}
+.editorial-v3 .approach-detail{box-shadow:0 0 0 14px #f3f1eb}
+.editorial-v3 .approach-detail .media-space{background:#c9c1b6}
+.editorial-v3 .request-fragment .media-space{background:#510d1b}
+.editorial-v3 .archive-entry:nth-child(3n+1) .media-space,.editorial-v3 .story-cover .media-space,.editorial-v3 .discipline-cover .media-space{background:#cec7be}
+.editorial-v3 .archive-entry:nth-child(3n+2) .media-space,.editorial-v3 .story-small .media-space,.editorial-v3 .story-portrait .media-space{background:#ddd8d0}
+.editorial-v3 .service-opening>div>.media-space{background:#cec7be}
+.editorial-v3 .archive-toolbar button{color:#68635f}
+.editorial-v3 .archive-description>p:first-child{color:#292627}
+.editorial-v3 .story-intro>p,.editorial-v3 .story-meta,.editorial-v3 .discipline-statement h2,.editorial-v3 .studio-principle h2{color:#292627}
+.editorial-v3 .format-detail-content dt{color:#68635f}
+.editorial-v3 .format-detail-content dd{color:#292627}
+.editorial-v3 .request-editorial .brief input::placeholder,.editorial-v3 .request-editorial .brief textarea::placeholder{color:#68635f}
+.editorial-v3 :focus-visible{outline-color:#68182b}
+.editorial-v3 .skip{background:#f3f1eb;color:#292627}
