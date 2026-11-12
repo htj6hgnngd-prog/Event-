@@ -35,18 +35,18 @@ layout('index.html','Свадебная фотография и кино в Мо
  <div class="opening-wordmark" aria-hidden="true">VECTA</div>
  <div class="cover-main">{frame('Фотография','01')}</div><div class="cover-inset">{frame('Видеолуп','02')}</div>
  <h1>Свадебная<br><em>фотография и кино.</em></h1>
- <div class="opening-bottom"><p>Портреты пары, репортаж и свадебный фильм.<br>Москва и Подмосковье. Сезон 2027.</p><div class="opening-actions">{link('request.html','Обсудить дату')}{link('portfolio.html','Смотреть истории')}</div></div>
+ <div class="opening-bottom"><p>Портреты, репортаж и кино.<br>Состав съёмки — под вашу свадьбу.</p><div class="opening-actions">{link('request.html','Обсудить дату')}{link('portfolio.html','Смотреть истории')}</div></div>
 </section>
 <section class="editorial-studio">
  <h2 class="chapter">Студия</h2><div class="studio-portrait">{frame('Портрет','03')}</div>
- <div class="editorial-copy"><p class="editorial-statement">Съёмка пары.<br><em>Репортаж дня.</em></p><p>Портреты пары и репортаж свадьбы в одной серии. Видеоформат выбираем под то, что важно сохранить: короткий Highlight или фильм с речами и клятвами.</p>{link('studio.html','О студии')}</div>
+ <div class="editorial-copy"><p class="editorial-statement">Портреты пары.<br><em>Репортаж свадьбы.</em></p><p>Помогаем с движением и ракурсом на портретной съёмке. В репортаже даём событиям идти своим чередом. Фотографии и видео собираем в согласованном формате.</p>{link('studio.html','О студии')}</div>
  <span class="margin-note">ФОТОГРАФИЯ / ДВИЖЕНИЕ / ЗВУК</span>
 </section>
 <section class="editorial-selected paper-surface"><div class="selected-heading"><h2>Избранное</h2>{link('portfolio.html','Весь архив')}</div><div class="editorial-mosaic">
 {frame('Фотография','04','lead','project-film.html')}{frame('Фотография','05','','project-film.html')}{frame('Видеолуп','06','','project-film.html')}{frame('Фотография','07','','project-film.html')}
 </div><p class="archive-note">Медиа пока не опубликованы.</p></section>
-<section class="editorial-approach paper-surface"><div class="approach-main">{frame('Видеолуп','09')}</div><div class="approach-detail">{frame('Деталь','10')}</div><h2 class="chapter">Подход</h2><div class="editorial-copy"><p class="editorial-statement">До съёмки<br><em>согласуем главное.</em></p><p>Продолжительность, состав команды, материалы, стоимость и сроки передачи. Программу используем, чтобы спланировать портреты и параллельные эпизоды.</p>{link('studio.html#approach','До, во время и после съёмки')}</div></section>
-<section class="editorial-formats"><div class="format-intro"><h2>Что вы<br><em>получите.</em></h2><p>Фотосерия, фото с Highlight или фото с фильмом.<br>Состав съёмки обсудим по вашей программе.</p></div><div class="format-rows">{format_rows()}</div>{link('formats.html','Сравнить форматы съёмки')}</section>
+<section class="editorial-approach paper-surface"><div class="approach-main">{frame('Видеолуп','09')}</div><div class="approach-detail">{frame('Деталь','10')}</div><h2 class="chapter">Подход</h2><div class="editorial-copy"><p class="editorial-statement">До съёмки<br><em>согласуем главное.</em></p><p>Время съёмки, материалы, стоимость и сроки передачи. По программе планируем портреты и эпизоды, которые проходят одновременно.</p>{link('studio.html#approach','До, во время и после съёмки')}</div></section>
+<section class="editorial-formats"><div class="format-intro"><h2>Форматы<br><em>съёмки.</em></h2><p>Фотосерия, фото с Highlight или фото с фильмом.<br>Состав съёмки обсудим по вашей программе.</p></div><div class="format-rows">{format_rows()}</div>{link('formats.html','Сравнить форматы съёмки')}</section>
 <section class="editorial-request"><h2 class="chapter">Запрос</h2><div class="request-fragment">{frame('Портрет','11')}</div><div class="editorial-copy"><p class="editorial-statement">Дата и место.<br><em>С них начнём.</em></p><p>Достаточно даты, города и желаемого формата. Готовая программа для первого обращения не нужна.</p>{link('request.html','Обсудить свадьбу')}</div></section>''')
 
 archive=''
